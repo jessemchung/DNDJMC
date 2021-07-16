@@ -2,6 +2,7 @@ import React from 'react';
 import Monster from './Monster.jsx'
 import Battlefield from './Battlefield.jsx'
 import axios from 'axios';
+import Registration from './Registration.jsx'
 
 class App extends React.Component {
 
@@ -23,8 +24,11 @@ class App extends React.Component {
 
 
       <h1>Hello World!</h1>
+      <Registration />
       <Monster />
       <Battlefield />
+
+
     </>
 
     );
