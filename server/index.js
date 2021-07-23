@@ -104,7 +104,7 @@ app.post('/registration', (req, res) => {
       console.log(err, 'what is this');
       console.error(err.stack);
       console.log('this should be triggereddddddddddddddddddddddddd');
-      res.send(err.stack);
+      res.status(404).json(err.stack);
       //placing a 404 tag for the status actually gets in the way in this case.
       //this does not technially registers as an error
       //only when the status is there does it register, but then the error itself doesn't register

@@ -49,9 +49,15 @@ function Registration() {
       console.log(response.data);
     })
     .catch(function (error) {
-      console.log('error triggered, but we need to get the right error to show');
+      //this is a good showcasing of the difference between the two
+      console.log(error);
+      console.dir(error);
       //when this is console.error it seems to always send an error even when no error
-      console.error(error);
+
+      console.log(error.response.data, 'this should be the data');
+      console.error(error.response.data);
+
+      //this is found in error handling in axios
     });
 
 
