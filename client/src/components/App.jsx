@@ -3,8 +3,54 @@ import Monster from './Monster.jsx'
 import Battlefield from './Battlefield.jsx'
 import axios from 'axios';
 import Registration from './Registration.jsx';
+import Header from './Header.jsx';
 import * as THREE from "three";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import styled, { css } from 'styled-components'
+const Overall = styled.div`
+display: grid;
+background-image: url('https://live.staticflickr.com/3543/3379709212_1dc4d3b211_h.jpg');
+width: 100vw;
+height: 100vh;
+grid-template-columns: 20% 20% 20% 20% 20%;
+grid-template-rows: 20% 20% 20% 20% 20%;
+align-items: center;
+justify-content: center;
+`;
 
+const HeaderDiv = styled.header`
+display: grid;
+grid-column-start: 1;
+grid-column-end: 6;
+`;
+
+const TitleDiv = styled.h1`
+grid-column-start: 4;
+grid-column-end: 5;
+justify-content: center;
+
+
+`;
+
+
+const RegistrationDiv = styled.div`
+display: grid;
+grid-column-start: 6;
+border-style: dotted;
+align-items: center;
+justify-content: center;
+`;
+
+const MonsterDiv = styled.div`
+display: grid;
+grid-column-start: 2;
+grid-column-end: 5;
+border-style: dotted;
+justify-content: center;
+`;
+
+
+//https://live.staticflickr.com/3543/3379709212_1dc4d3b211_h.jpg
 
 class App extends React.Component {
 
@@ -13,36 +59,37 @@ class App extends React.Component {
     this.state = { date: new Date() };
   }
 
-  componentDidMount() {
 
-    console.log('this', this);
-    console.log('this.mount', this.mount);
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  // componentDidMount() {
+  //   let scene, camera, renderer, hlight;
 
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    this.mount.appendChild( renderer.domElement );
+  //   scene = new THREE.Scene();
+  //   scene.background = new THREE.Color(0xdddddd);
+  //   camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 5000);
+  //   camera.position.set(0, 0, 10);
 
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-    const cube = new THREE.Mesh( geometry, material );
-    scene.add( cube );
 
-    camera.position.z = 5;
+  //   hlight = new THREE.AmbientLight(0x404040, 10);
+  //   scene.add(hlight);
 
-    const animate = function () {
-      requestAnimationFrame( animate );
+  //   renderer = new THREE.WebGLRenderer({ antialias: true });
+  //   renderer.setSize(window.innerWidth, window.innerHeight);
+  //   renderer.outputEncoding = THREE.sRGBEncoding;
+  //   this.cheese.appendChild(renderer.domElement);
+  //   const loader = new GLTFLoader();
+  //   loader.load('./nara/scene.gltf', function (gltf) {
+  //     console.log('anything here success?', gltf);
+  //     scene.add(gltf.scene);
+  //     renderer.render(scene, camera);
 
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
+  //   }, undefined, function (error) {
+  //     console.log('anything here?');
 
-      renderer.render( scene, camera );
-    };
+  //     console.error(error);
 
-    animate();
+  //   });
 
-  }
+  // }
 
 
 
@@ -51,19 +98,26 @@ class App extends React.Component {
 
 
     return (
-      <>
+      <Overall>
 
 
 
 
-        <h1>Hello World!</h1>
+        <HeaderDiv>
+        <TitleDiv>A heading here</TitleDiv>
+        <RegistrationDiv>
         <Registration />
+        </RegistrationDiv>
+        </HeaderDiv>
+        <MonsterDiv>
         <Monster />
+        </MonsterDiv>
         <Battlefield />
-        <div ref={ref => (this.mount = ref)} />
 
+        <div ref={ref => (this.cheese = ref)}><div id="info">Description</div>
+        </div>
 
-      </>
+      </Overall>
 
     );
 

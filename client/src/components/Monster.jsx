@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import MonsterItem from './MonsterItem.jsx'
+import styled, { css } from 'styled-components'
+
+
 
 class Monster extends React.Component {
   constructor(props) {
@@ -15,6 +18,12 @@ class Monster extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange1 = this.handleChange1.bind(this);
+//working on this
+    this.OverallMonsterDiv = styled.div`
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    `
+
   }
 
   handleChange(event) {
@@ -64,7 +73,7 @@ class Monster extends React.Component {
     })
     console.log(this.state.monster, 'this state monster');
     return (
-      <>
+      <this.OverallMonsterDiv>
 
         <h2>Monsters</h2>
 
@@ -90,7 +99,7 @@ class Monster extends React.Component {
         </ul>
 
 
-        </>
+        </this.OverallMonsterDiv>
 
     );
 

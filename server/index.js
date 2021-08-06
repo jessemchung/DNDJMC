@@ -6,8 +6,7 @@ const { MongoClient } = require("mongodb");
 
 const monstars = require('./monster.js');
 
-var mysql = require('mysql');
-
+const mysql = require('mysql2');
 const keys = require('./config.js');
 const client = new MongoClient(keys.URI_KEY);
 
@@ -15,6 +14,7 @@ const client = new MongoClient(keys.URI_KEY);
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
+  password:'',
   database: 'DnD'
 });
 
@@ -135,12 +135,10 @@ app.post('/favorites', (req, res) => {
 
   console.log(req.query.name, 'store string', typeof (storeString));
 
-
   connection.query(`INSERT INTO favorites (name) values ('${req.query.name}')`, function (error, results, fields) {
     if (error) console.error(error);
     console.log('The solution is: ', results);
   });
-
 
   console.log('we made a favorite');
   res.status(200);
