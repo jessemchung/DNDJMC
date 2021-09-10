@@ -4,6 +4,9 @@ import Battlefield from './Battlefield.jsx'
 import axios from 'axios';
 import Registration from './Registration.jsx';
 import Header from './Header.jsx';
+
+import ImageCrop from './ImageCrop.jsx';
+
 import * as THREE from "three";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import styled, { css } from 'styled-components'
@@ -47,6 +50,13 @@ grid-column-start: 2;
 grid-column-end: 5;
 border-style: dotted;
 justify-content: center;
+`;
+
+const ChestImg = styled.img`
+display: grid;
+grid-column-start: 1;
+grid-column-end: 2;
+width: 100%;
 `;
 
 
@@ -100,17 +110,16 @@ class App extends React.Component {
     return (
       <Overall>
 
-
-
-
         <HeaderDiv>
-        <TitleDiv>A heading here</TitleDiv>
-        <RegistrationDiv>
-        <Registration />
-        </RegistrationDiv>
+          <TitleDiv>A heading here</TitleDiv>
+          <RegistrationDiv>
+            <Registration />
+          </RegistrationDiv>
         </HeaderDiv>
+        <ChestImg src="./image/chest.gif" onClick={()=>{console.log('click image')}} />
+
         <MonsterDiv>
-        <Monster />
+          <Monster />
         </MonsterDiv>
         <Battlefield />
 

@@ -21,7 +21,7 @@ class Monster extends React.Component {
 //working on this
     this.OverallMonsterDiv = styled.div`
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: auto auto auto auto;
     `
 
   }
@@ -46,7 +46,6 @@ class Monster extends React.Component {
     //https://www.dnd5eapi.co/api/monsters?name=abo
     //https://www.dnd5eapi.co/api/monsters/aboleth
     //https://www.dnd5eapi.co/api/monsters
-
     // https://api.open5e.com/monsters/?challenge_rating=3&format=json&search=dragon
 
 
@@ -73,6 +72,7 @@ class Monster extends React.Component {
     })
     console.log(this.state.monster, 'this state monster');
     return (
+      <>
       <this.OverallMonsterDiv>
 
         <h2>Monsters</h2>
@@ -100,7 +100,7 @@ class Monster extends React.Component {
 
 
         </this.OverallMonsterDiv>
-
+        </>
     );
 
   }
