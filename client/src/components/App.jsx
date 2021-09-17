@@ -5,7 +5,10 @@ import axios from 'axios';
 import Registration from './Registration.jsx';
 import Header from './Header.jsx';
 
-import ImageCrop from './ImageCrop.jsx';
+// import ImageCrop from './ImageCrop.jsx';
+
+import ReactFirebaseUpload from './ReactFirebaseUpload.jsx';
+
 
 import * as THREE from "three";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
@@ -108,6 +111,7 @@ class App extends React.Component {
 
 
     return (
+      <>
       <Overall>
 
         <HeaderDiv>
@@ -127,6 +131,10 @@ class App extends React.Component {
         </div>
 
       </Overall>
+
+
+      <ReactFirebaseUpload />
+      </>
 
     );
 
