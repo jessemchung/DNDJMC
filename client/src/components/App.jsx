@@ -5,7 +5,7 @@ import axios from 'axios';
 import Registration from './Registration.jsx';
 import Header from './Header.jsx';
 
-// import ImageCrop from './ImageCrop.jsx';
+import ImageCrop from './ImageCrop.jsx';
 
 import ReactFirebaseUpload from './ReactFirebaseUpload.jsx';
 
@@ -132,6 +132,8 @@ class App extends React.Component {
 
       </Overall>
 
+
+      <ImageCrop />
 
       <ReactFirebaseUpload />
       </>

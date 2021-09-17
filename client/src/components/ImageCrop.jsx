@@ -20,10 +20,36 @@ class ImageCrop extends PureComponent {
 
   onClicketh = (e) => {
     this.setState({ done: true });
+    console.log('yay');
 
     //this will make an axios request
 
   };
+
+
+  //! working here
+
+  handleUpload = () => {
+    // const storage = getStorage(firebaseApp);
+
+    // Create a reference to 'mountains.jpg'
+    const storageRef = ref(storage, this.state.name);
+
+
+    // 'file' comes from the Blob or File API
+    uploadBytes(storageRef, this.state.file).then((snapshot) => {
+      console.log(snapshot);
+      console.log('Uploaded a blob or file!');
+      getDownloadURL(snapshot.ref).then((downloadURL) => {
+        console.log('File available at', downloadURL);
+      });
+
+
+    });
+
+
+  };
+
 
 
   onSelectFile = (e) => {
