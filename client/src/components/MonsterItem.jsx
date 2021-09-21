@@ -60,6 +60,7 @@ class MonsterItem extends React.Component {
     position:absolute;
     cursor:move;
     background: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     top: ${this.state.ratio.y}px;
     left: ${this.state.ratio.x}px;
   `;

@@ -15,12 +15,36 @@ import 'firebase/analytics'
 
 
 
-
-
-
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 const storage = getStorage(firebaseApp);
 
 
-export { storage, firebase as default };
+const handleUpload = (file) => {
+  const storage = getStorage(firebaseApp);
+
+  // Create a reference to 'mountains.jpg'
+  const storageRef = ref(storage, file.name);
+
+
+  // 'file' comes from the Blob or File API
+  uploadBytes(storageRef, file).then((snapshot) => {
+    console.log(snapshot);
+    console.log('Uploaded a blob or file!');
+    getDownloadURL(snapshot.ref).then((downloadURL) => {
+      console.log('File available at', downloadURL);
+    });
+
+
+  });
+
+
+};
+
+
+
+
+
+
+
+export default { storage, handleUpload, firebase };
