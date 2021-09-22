@@ -3,7 +3,8 @@ import React, { PureComponent } from 'react';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import Button from '@material-ui/core/Button';
-import fireBaseThings from './firebase'
+import { storage, handleUpload, firebase } from './firebase/index.js';
+
 //  Alt + d access search bar
 
 class ImageCrop extends PureComponent {
@@ -22,7 +23,8 @@ class ImageCrop extends PureComponent {
 
   onClicketh = (e) => {
     this.setState({ done: true });
-    console.log(fireBaseThings.storage, 'what is this?');
+    // console.log(fireBaseThings.storage, 'what is this?');
+    handleUpload(this.state.file);
 
     console.log(this.state.file, 'this needs to be someting');
 

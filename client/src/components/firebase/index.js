@@ -21,14 +21,18 @@ const storage = getStorage(firebaseApp);
 
 
 const handleUpload = (file) => {
-  const storage = getStorage(firebaseApp);
 
   // Create a reference to 'mountains.jpg'
   const storageRef = ref(storage, file.name);
 
+  const metadata = {
+    contentType: 'image/jpeg',
+  };
+
+
 
   // 'file' comes from the Blob or File API
-  uploadBytes(storageRef, file).then((snapshot) => {
+  uploadBytes(storageRef, file, metadata).then((snapshot) => {
     console.log(snapshot);
     console.log('Uploaded a blob or file!');
     getDownloadURL(snapshot.ref).then((downloadURL) => {
@@ -47,4 +51,4 @@ const handleUpload = (file) => {
 
 
 
-export default { storage, handleUpload, firebase };
+export { storage, handleUpload, firebase };
