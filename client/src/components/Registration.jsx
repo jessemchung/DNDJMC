@@ -3,6 +3,7 @@ import axios from 'axios';
 
 //purpose import react and the use state effect
 import React, { useState, useEffect } from 'react';
+import UserContext from './userContext.jsx';
 
 
 function Registration() {
@@ -10,6 +11,9 @@ function Registration() {
   const [name, setName] = useState("Name Here");
   const [email, setEmail] = useState("Email");
   const [password, setPassword] = useState("Password");
+
+  const { userInfo, setUserInfo } = useContext(UserContext);
+
 
 
   // Similar to componentDidMount and componentDidUpdate:

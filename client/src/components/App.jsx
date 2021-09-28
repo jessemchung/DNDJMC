@@ -4,6 +4,7 @@ import Battlefield from './Battlefield.jsx'
 import axios from 'axios';
 import Registration from './Registration.jsx';
 import Header from './Header.jsx';
+import UserContext from './userContext.jsx';
 
 import ImageCrop from './ImageCrop.jsx';
 
@@ -65,12 +66,14 @@ width: 100%;
 
 //https://live.staticflickr.com/3543/3379709212_1dc4d3b211_h.jpg
 
-class App extends React.Component {
+function App() {
 
-  constructor(props) {
-    super(props);
-    this.state = { date: new Date() };
-  }
+
+  const [name, setName] = useState("Name Here");
+  const [email, setEmail] = useState("Email");
+  const [password, setPassword] = useState("Password");
+
+  const [userInfo, setUserInfo] = useState();
 
 
   // componentDidMount() {
@@ -111,6 +114,8 @@ class App extends React.Component {
 
 
     return (
+      <UserContext.Provider value={{name, setName, email, setEmail, password, setPassword}}>
+
       <>
       <Overall>
 
@@ -137,6 +142,8 @@ class App extends React.Component {
 
       <ReactFirebaseUpload />
       </>
+      </UserContext.Provider>
+
 
     );
 
