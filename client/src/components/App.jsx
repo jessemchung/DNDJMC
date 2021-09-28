@@ -10,6 +10,12 @@ import ImageCrop from './ImageCrop.jsx';
 
 import ReactFirebaseUpload from './ReactFirebaseUpload.jsx';
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 import * as THREE from "three";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';

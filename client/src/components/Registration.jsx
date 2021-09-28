@@ -12,6 +12,17 @@ function Registration() {
   const [email, setEmail] = useState("Email");
   const [password, setPassword] = useState("Password");
 
+  //userInfoLikely should be all the other stuff, like images, and personal data for favorites
+
+  // as such a schema should be constructed
+
+  //userName
+  //password
+  //email
+  //idphoto
+  //favorites
+  //maybe dice somewhere down the line
+  //characterSheets
   const { userInfo, setUserInfo } = useContext(UserContext);
 
 
