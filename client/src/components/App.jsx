@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Monster from './Monster.jsx'
 import Battlefield from './Battlefield.jsx'
 import axios from 'axios';
@@ -115,45 +115,82 @@ function App() {
 
 
 
-  render() {
 
 
 
-    return (
-      <UserContext.Provider value={{name, setName, email, setEmail, password, setPassword}}>
+  return (
+    <UserContext.Provider value={{ name, setName, email, setEmail, password, setPassword }}>
 
       <>
-      <Overall>
+        <Overall>
 
-        <HeaderDiv>
-          <TitleDiv>A heading here</TitleDiv>
-          <RegistrationDiv>
-            <Registration />
-          </RegistrationDiv>
-        </HeaderDiv>
-        <ChestImg src="./image/chest.gif" onClick={()=>{console.log('click image')}} />
-
-        <MonsterDiv>
-          <Monster />
-        </MonsterDiv>
-        <Battlefield />
-
-        <div ref={ref => (this.cheese = ref)}><div id="info">Description</div>
-        </div>
-
-      </Overall>
+          <HeaderDiv>
+            <TitleDiv>A heading here</TitleDiv>
+          </HeaderDiv>
+          <Router>
+            <div>
+              {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+              <Switch>
+                <Route path="/login">
+                  <RegistrationDiv>
+                    <Registration />
+                  </RegistrationDiv>
+                </Route>
+                <Route path="/">
+                  <TitleDiv>A heading here</TitleDiv>
 
 
-      <ImageCrop />
 
-      <ReactFirebaseUpload />
+                  <RegistrationDiv>
+                    <Registration />
+                  </RegistrationDiv>
+                  <ChestImg src="./image/chest.gif" onClick={() => { console.log('click image') }} />
+
+                  <MonsterDiv>
+                    <Monster />
+                  </MonsterDiv>
+                  <Battlefield />
+
+                  {/* <div ref={ref => (this.cheese = ref)}><div id="info">Description</div> */}
+                  {/* </div> */}
+
+
+
+                  <ImageCrop />
+
+                  <ReactFirebaseUpload />
+                </Route>
+              </Switch>
+            </div>
+
+            <nav>
+            <ul>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+
+            </ul>
+          </nav>
+          </Router>
+
+
+
+
+
+        </Overall>
+
       </>
-      </UserContext.Provider>
+    </UserContext.Provider>
 
 
-    );
+  );
 
-  }
+
 }
 
 
