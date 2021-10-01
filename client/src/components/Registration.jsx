@@ -115,6 +115,11 @@ function Registration() {
         <button type='submit'>
           Register
         </button>
+
+        <button onClick={()=>{console.log(fish)}}>
+          Login
+        </button>
+
       </form>
 
 
