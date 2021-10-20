@@ -2,6 +2,14 @@ const express = require('express');
 const app = express();
 const PORT = 3000 || process.env.PORT;
 const axios = require('axios');
+const bcrypt = require('bcrypt');
+
+
+const saltRounds = 10;
+const myPlaintextPassword = 's0/\/\P4$$w0rD';
+const someOtherPlaintextPassword = 'not_bacon';
+
+
 const { MongoClient } = require("mongodb");
 
 const monstars = require('./monster.js');
@@ -35,6 +43,25 @@ connection.query('SELECT * FROM favorites', function (error, results, fields) {
 app.use(express.static('client/dist'));
 
 
+
+app.post('/login', (req,res) => {
+
+  bcrypt.genSalt(saltRounds, function(err, salt) {
+    bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
+
+      console.log('hash', hash);
+      bcrypt.compare(myPlaintextPassword, hash, function(err, result) {
+        console.log(result, 'should be true');
+      });
+
+    });
+
+
+});
+
+
+
+})
 
 //this part is for the monster area
 app.get('/monster', monstars.monsall)

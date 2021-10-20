@@ -21,25 +21,16 @@ import * as THREE from "three";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import styled, { css } from 'styled-components'
 const Overall = styled.div`
-display: grid;
 background-image: url('https://live.staticflickr.com/3543/3379709212_1dc4d3b211_h.jpg');
 width: 100vw;
 height: 100vh;
-grid-template-columns: 20% 20% 20% 20% 20%;
-grid-template-rows: 20% 20% 20% 20% 20%;
-align-items: center;
-justify-content: center;
 `;
 
 const HeaderDiv = styled.header`
-display: grid;
-grid-column-start: 1;
-grid-column-end: 6;
+
 `;
 
 const TitleDiv = styled.h1`
-grid-column-start: 4;
-grid-column-end: 5;
 justify-content: center;
 
 
@@ -47,17 +38,12 @@ justify-content: center;
 
 
 const RegistrationDiv = styled.div`
-display: grid;
-grid-column-start: 6;
 border-style: dotted;
 align-items: center;
 justify-content: center;
 `;
 
 const MonsterDiv = styled.div`
-display: grid;
-grid-column-start: 2;
-grid-column-end: 5;
 border-style: dotted;
 justify-content: center;
 `;
@@ -79,7 +65,7 @@ function App() {
   const [email, setEmail] = useState("Email");
   const [password, setPassword] = useState("Password");
 
-  const [userInfo, setUserInfo] = useState();
+  const [photos, setPhotos] = useState();
 
 
   // componentDidMount() {
@@ -132,12 +118,12 @@ function App() {
               {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
               <Switch>
-                <Route path="/login">
+                <Route path="/what">
                   <RegistrationDiv>
                     <Registration />
                   </RegistrationDiv>
                 </Route>
-                <Route path="/">
+                <Route path="/main">
                   <TitleDiv>A heading here</TitleDiv>
 
 
@@ -161,17 +147,42 @@ function App() {
 
                   <ReactFirebaseUpload />
                 </Route>
+
+                <Route path="/dice">
+                  <TitleDiv>Dice</TitleDiv>
+
+
+
+                  <RegistrationDiv>
+                    <Registration />
+                  </RegistrationDiv>
+                  <ChestImg src="./image/chest.gif" onClick={() => { console.log('click image') }} />
+
+                  <MonsterDiv>
+                    <Monster />
+                  </MonsterDiv>
+                  <Battlefield />
+
+
+
+
+                  <ImageCrop />
+
+                  <ReactFirebaseUpload />
+                </Route>
+
+
               </Switch>
             </div>
 
             <nav>
             <ul>
               <li>
-                <Link to="/login">Login</Link>
+                <Link to="/what">Login</Link>
               </li>
 
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/main">Home</Link>
               </li>
 
             </ul>
