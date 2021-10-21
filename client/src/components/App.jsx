@@ -30,6 +30,21 @@ const HeaderDiv = styled.header`
 
 `;
 
+const MyComponent = styled.div`background-color: green;`;
+
+// my-component.css
+
+
+
+const Button = styled.span`
+  background: palevioletred;
+  border-radius: 3px;
+  border: none;
+  color: white;
+`
+
+
+
 const TitleDiv = styled.h1`
 justify-content: center;
 
@@ -106,14 +121,31 @@ function App() {
 
   return (
     <UserContext.Provider value={{ name, setName, email, setEmail, password, setPassword }}>
-
       <>
+      <MyComponent className="red-bg" >testing</MyComponent>
+      <h1 className="myHeader">My Header</h1>
+      <div id="first"> hello</div>
+
         <Overall>
 
           <HeaderDiv>
             <TitleDiv>A heading here</TitleDiv>
           </HeaderDiv>
           <Router>
+
+            <nav>
+              <Button id="first">
+                <Link to="/what">Login</Link>
+              </Button>
+              <span>
+                <Link to="/main">Home</Link>
+              </span>
+            </nav>
+
+
+
+
+
             <div>
               {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
@@ -174,19 +206,6 @@ function App() {
 
               </Switch>
             </div>
-
-            <nav>
-            <ul>
-              <li>
-                <Link to="/what">Login</Link>
-              </li>
-
-              <li>
-                <Link to="/main">Home</Link>
-              </li>
-
-            </ul>
-          </nav>
           </Router>
 
 

@@ -1,19 +1,17 @@
-body {
-  font-family: sans-serif, arial;
+
+.myHeader.myHeader {
+  background-color: lightblue;
+  color: black;
+  padding: 40px;
+  text-align: center;
 }
 
-#info {
-	position: absolute;
-	top: 10px;
-	width: 100%;
-	text-align: center;
-	z-index: 100;
-	display:block;
+.red-bg.red-bg {
+  background-color: red;
 }
 
+#first {
 
-*{
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+	background-color: red;
+
 }
