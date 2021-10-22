@@ -36,7 +36,7 @@ const MyComponent = styled.div`background-color: green;`;
 
 
 
-const Button = styled.span`
+const Button = styled.button`
   background: palevioletred;
   border-radius: 3px;
   border: none;
@@ -79,6 +79,7 @@ function App() {
   const [name, setName] = useState("Name Here");
   const [email, setEmail] = useState("Email");
   const [password, setPassword] = useState("Password");
+  const [button, setButton] = useState("Password");
 
   const [photos, setPhotos] = useState();
 
@@ -114,6 +115,11 @@ function App() {
 
   // }
 
+  const handleClick = (event) => {
+    console.log(event.target.innerText);    // Click Me
+    console.log(event.target.tagName);      // BUTTON this is A because it is a hyperlink
+}
+
 
 
 
@@ -134,7 +140,7 @@ function App() {
           <Router>
 
             <nav>
-              <Button id="first">
+              <Button className="something" id="first" onClick={(event)=> {handleClick(event)}}>
                 <Link to="/what">Login</Link>
               </Button>
               <span>
