@@ -13,6 +13,8 @@ import * as THREE from "three";
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import styled, { css } from 'styled-components'
 
+
+//the old relic, it should still contain the things needed, IN THE COMMENTS that I can use eventually
 import {
   BrowserRouter as Router,
   Routes,
