@@ -7,21 +7,7 @@ import * as THREE from "three";
 import axios from 'axios';
 
 export default function Ryuutama() {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     show: false
-  //   }
 
-
-  // window.location.reload();
-//causes one refresh
-//   window.onload = function() {
-//     if(!window.location.hash) {
-//       window.location.href = window.location + '#loaded';
-//         window.location.reload();
-//     }
-// }
 
   var cheese;
   // }

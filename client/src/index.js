@@ -7,6 +7,8 @@
 import Expenses from "./components/routes/expenses.jsx";
 import Invoices from "./components/routes/invoices.jsx";
 import Invoice from "./components/routes/invoice.jsx";
+import Ryuutama from "./components/Ryuutama/Ryuutama.js";
+
 import './main.css';
 import { HashRouter } from 'react-router-dom'
 

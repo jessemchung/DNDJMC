@@ -4,7 +4,7 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "noImplicitAny": true,
     "target": "es5",
 
@@ -12,6 +12,11 @@
   },
   
 }
+
+
+//jsx set to preserve so that files are converted to jsx file instead
+
+//tsc -w
 
 
 // "sourceMap": true,
