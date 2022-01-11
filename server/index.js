@@ -3,7 +3,7 @@ const app = express();
 const PORT = 3000 || process.env.PORT;
 const axios = require('axios');
 const bcrypt = require('bcrypt');
-
+const path = require('path');
 
 const saltRounds = 10;
 const myPlaintextPassword = 's0/\/\P4$$w0rD';
@@ -15,28 +15,28 @@ const { MongoClient } = require("mongodb");
 const monstars = require('./monster.js');
 
 const mysql = require('mysql2');
-const keys = require('./config.js');
-const client = new MongoClient(keys.URI_KEY);
+// const keys = require('./config.js');
+const client = new MongoClient('mongodb+srv://Jesse:Mongodbsucks1@cluster0.xhqpy.mongodb.net/test');
 
 
-var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password:'',
-  database: 'DnD'
-});
+// var connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password:'',
+//   database: 'DnD'
+// });
 
-connection.connect((err) => {
-  console.error(err);
-});
+// connection.connect((err) => {
+//   console.error(err);
+// });
 
 
-//the error was that the object was getting run into the browser but I needed to properlly turn it into
-//a json string first before i did that.
-connection.query('SELECT * FROM favorites', function (error, results, fields) {
-  if (error) console.error(error);
-  // console.log('The solution is: ', results);
-});
+// //the error was that the object was getting run into the browser but I needed to properlly turn it into
+// //a json string first before i did that.
+// connection.query('SELECT * FROM favorites', function (error, results, fields) {
+//   if (error) console.error(error);
+//   // console.log('The solution is: ', results);
+// });
 
 
 
@@ -162,18 +162,14 @@ app.post('/favorites', (req, res) => {
 
   console.log(req.query.name, 'store string', typeof (storeString));
 
-  connection.query(`INSERT INTO favorites (name) values ('${req.query.name}')`, function (error, results, fields) {
-    if (error) console.error(error);
-    console.log('The solution is: ', results);
-  });
+  // connection.query(`INSERT INTO favorites (name) values ('${req.query.name}')`, function (error, results, fields) {
+  //   if (error) console.error(error);
+  //   console.log('The solution is: ', results);
+  // });
 
-  console.log('we made a favorite');
+  // console.log('we made a favorite');
   res.status(200);
   res.send();
-
-
-  // INSERT INTO tbl_name (a,b,c)
-  //   VALUES(1,2,3), (4,5,6), (7,8,9);
 
 
 
@@ -181,20 +177,20 @@ app.post('/favorites', (req, res) => {
 
 app.get('/favorites', (req, res) => {
   // console.log('request for favorites has been initiated');
-  connection.query('SELECT * FROM favorites', function (error, results, fields) {
-    if (error) console.error(error);
-    else {
-      console.log(results);
+  // connection.query('SELECT * FROM favorites', function (error, results, fields) {
+  //   if (error) console.error(error);
+  //   else {
+  //     console.log(results);
 
 
-      // let thing2;
-      // // = JSON.parse(thing.name);
-      // console.log((thing.name), 'maybe things needs to be parsed more?')
-      // console.log(typeof(thing2), thing2, '.name');
-      res.status(200);
-      res.send(results.data)
-    }
-  });
+  //     // let thing2;
+  //     // // = JSON.parse(thing.name);
+  //     // console.log((thing.name), 'maybe things needs to be parsed more?')
+  //     // console.log(typeof(thing2), thing2, '.name');
+  //     res.status(200);
+  //     res.send(results.data)
+  //   }
+  // });
 
 
 

@@ -2,8 +2,7 @@ import ReactDOM from 'react-dom';
 import React, { PureComponent } from 'react';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
-import Button from '@material-ui/core/Button';
-import { storage, handleUpload, firebase } from './firebase/index.js';
+// import { storage, handleUpload, firebase } from './firebase/index.js';
 
 //  Alt + d access search bar
 
@@ -24,7 +23,7 @@ class ImageCrop extends PureComponent {
   onClicketh = (e) => {
     this.setState({ done: true });
     // console.log(fireBaseThings.storage, 'what is this?');
-    handleUpload(this.state.file);
+    // handleUpload(this.state.file);
 
     console.log(this.state.file, 'this needs to be someting');
 
@@ -156,6 +155,7 @@ class ImageCrop extends PureComponent {
   }
 
   render() {
+    console.log('render')
     const { crop, croppedImageUrl, src } = this.state;
     if (this.state.done===false) {
       return (
@@ -176,7 +176,7 @@ class ImageCrop extends PureComponent {
           {croppedImageUrl && (
             <img alt="Crop" style={{ maxWidth: '100%' }} src={croppedImageUrl} />
           )}
-        <Button variant="contained" color="primary" onClick={this.onClicketh}>Submit</Button>
+        <button onClick={this.onClicketh}>Submit</button>
         </div>
       );
 

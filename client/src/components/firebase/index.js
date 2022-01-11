@@ -4,8 +4,25 @@
 
 import React, { useState } from 'react';
 // import { storage } from "./firebase";
-const keys = require('../../../../server/config.js');
-const firebaseConfig = keys.firebaseConfig;
+// const keys = require('../../../../server/config.js');
+
+const firebaseConfig = {
+
+  apiKey: "AIzaSyB1TBwW7qKUvlPX56Lt7N913Fu8bFBHxAw",
+
+  authDomain: "dndimages-a4807.firebaseapp.com",
+
+  projectId: "dndimages-a4807",
+
+  storageBucket: "dndimages-a4807.appspot.com",
+
+  messagingSenderId: "484043042562",
+
+  appId: "1:484043042562:web:8b3532a80d48ae014a1c1b",
+
+  measurementId: "G-DQ8PPLZXZ0"
+
+};
 
 
 import firebase from 'firebase/compat/app';

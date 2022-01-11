@@ -60,7 +60,11 @@ var drawPoint1 = function (point) {
 //Class: Groups variables (properties) and functions (methods) that are highly related
 //interfaces are purely for declatons and cannot include implementations (like functions)
 var ClassPoint = /** @class */ (function () {
-    function ClassPoint() {
+    //contructor allows easier building of objects in typescript and will also build requirements for testing
+    //todo you can also make parameters optional by adding questionmark after the arguments as seen below with y only
+    function ClassPoint(x, y) {
+        this.x = x;
+        this.y = y;
     }
     ClassPoint.prototype.draw = function () {
         console.log('X:' + this.x + ', Y' + this.y);
@@ -72,13 +76,58 @@ var ClassPoint = /** @class */ (function () {
 }());
 // let point: ClassPoint = new ClassPoint();
 //neater
-var point = new ClassPoint();
-point.x = 1;
-point.y = 4;
+//thanks to constructor, this will show an error if the parameters are not all there
+var point = new ClassPoint(1, 4);
+// point.x = 1;
+// point.y = 4;
 //has intellisense
 point.draw();
 //this says it has two things and a function defined elsewhere
 //tsc testTS.ts && node testTS.js
 //! first must succeed before second will run
 //tsc testTS.ts | node testTS.js
-//! seems to run both?
+//! seems to run both?  In no order in particular
+//tsc testTS.ts & node testTS.js
+//! runs the first one and regardless of success or failture then runs the second 1
+//todo if you want to prevent a variable from ever changing
+//access modifiers can be used to modify access
+//public, private, protected
+//by default all members are public
+//change private as seen above removes x from access but allows y
+//access can be helpful to keep things organized
+//public can be used but is unhelpful (done with draw for show)
+var ImprovedClassPoint = /** @class */ (function () {
+    //prefix with access modifiers and typescript will generate fields for us.  If you prefix a constructor parameters with an access modifier.  Typescript will generate a field
+    //with the exact same and name and also initialize that field with the  value of this argument
+    function ImprovedClassPoint(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    Object.defineProperty(ImprovedClassPoint.prototype, "X", {
+        get: function () {
+            return this.x;
+        },
+        set: function (value) {
+            if ((value < 0)) {
+                throw new Error('value cannot be less than 0');
+            }
+            this.x = value;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    ImprovedClassPoint.prototype.draw = function () {
+        console.log('X:' + this.x + ', Y' + this.y);
+    };
+    ImprovedClassPoint.prototype.getDistance = function (another) {
+        // ....
+    };
+    return ImprovedClassPoint;
+}());
+var point1 = new ImprovedClassPoint(1, 2);
+//made possible by the getter above (useful if we want to have x set to private)
+var x = point1.X;
+//the below is mad possible by the setter above
+point1.X = 10;
+//camel case for fields like arguments above .  One way to reduce clashing is to use _x that way no need for capital X
+//# sourceMappingURL=testTS.js.map

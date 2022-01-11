@@ -7,8 +7,16 @@ module.exports = {
   entry: `${SRC_DIR}/index.js`,
   output: {
     filename: 'bundle.js',
-    path: DIST_DIR
+    path: DIST_DIR,
+    publicPath: "/",
   },
+
+  devServer: {
+    historyApiFallback: true,
+  },
+
+
+
   module: {
     rules: [
       {

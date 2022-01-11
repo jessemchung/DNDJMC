@@ -1,9 +1,9 @@
 
-function log(message) {
+function log(message:string) {
   console.log(message);
 }
 
-var message = "Hello World";
+var message:string = "Hello World";
 
 let count = 5;
 // count = "hello";
