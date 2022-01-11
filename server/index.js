@@ -9,14 +9,13 @@ const saltRounds = 10;
 const myPlaintextPassword = 's0/\/\P4$$w0rD';
 const someOtherPlaintextPassword = 'not_bacon';
 
-
+const Keys = require('./config.js')
 const { MongoClient } = require("mongodb");
 
 const monstars = require('./monster.js');
-
 const mysql = require('mysql2');
 // const keys = require('./config.js');
-const client = new MongoClient('mongodb+srv://Jesse:Mongodbsucks1@cluster0.xhqpy.mongodb.net/test');
+const client = new MongoClient(Keys.Mongo);
 
 
 // var connection = mysql.createConnection({
@@ -44,20 +43,20 @@ app.use(express.static('client/dist'));
 
 
 
-app.post('/login', (req,res) => {
+app.post('/login', (req, res) => {
 
-  bcrypt.genSalt(saltRounds, function(err, salt) {
-    bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
+  bcrypt.genSalt(saltRounds, function (err, salt) {
+    bcrypt.hash(myPlaintextPassword, salt, function (err, hash) {
 
       console.log('hash', hash);
-      bcrypt.compare(myPlaintextPassword, hash, function(err, result) {
+      bcrypt.compare(myPlaintextPassword, hash, function (err, result) {
         console.log(result, 'should be true');
       });
 
     });
 
 
-});
+  });
 
 
 

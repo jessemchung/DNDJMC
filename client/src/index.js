@@ -7,15 +7,14 @@
 import Expenses from "./components/routes/expenses.jsx";
 import Invoices from "./components/routes/invoices.jsx";
 import Invoice from "./components/routes/invoice.jsx";
-import Ryuutama from "./components/Ryuutama/Ryuutama.js";
+import Ryuutama from "./components/Ryuutama/Ryuutama.jsx";
 
 import './main.css';
 import { HashRouter } from 'react-router-dom'
-
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { Router, Route, Routes, IndexRoute } from 'react-router'
+import { Route, Routes } from 'react-router'
 import "./main.css";
 import App from './components/App.jsx';
 
@@ -25,7 +24,7 @@ ReactDOM.render(
     <Routes>
       <Route path="/" element={<App />}>
         <Route path="expenses" element={<Expenses />} />
-        <Route path="ryuutama" element={<Invoices />}>
+        <Route path="invoices" element={<Invoices />}>
           <Route
             index
             element={
@@ -36,6 +35,9 @@ ReactDOM.render(
           />
           <Route path=":invoiceId" element={<Invoice />} />
         </Route>
+
+        <Route path="ryuutama" element={<Ryuutama />} />
+
         <Route
           path="*"
           element={
