@@ -9,6 +9,8 @@ import axios from 'axios';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import Weather from './ImageDecoration/Weather.jsx'
 
+
+
 export default function Image() {
 
 
@@ -25,8 +27,24 @@ export default function Image() {
 
   return (
     <>
-      <div style={{position: 'relative'}}> Weather on left, Time of Day of Right </div>
-      <Weather />
+      <div style={{ position: 'relative' }}> Weather on left, Time of Day of Right </div>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          p: 1,
+          m: 1,
+          bgcolor: 'background.paper',
+          borderRadius: 1,
+        }}
+      >
+
+        <Weather />
+
+        <Weather />
+
+      </Box>
+
 
 
 
@@ -34,6 +52,24 @@ export default function Image() {
 
 
       <div>Terrain Advantage left, Terrain Toggle Right</div>
+
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          p: 1,
+          m: 1,
+          bgcolor: 'background.paper',
+          borderRadius: 1,
+        }}
+      >
+
+        <Weather />
+
+        <Weather />
+
+      </Box>
+
     </>
   )
 }
