@@ -11,6 +11,13 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { purple } from '@mui/material/colors';
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -28,95 +35,116 @@ const bull = (
   </Box>
 );
 
-export default function PropsBar() {
 
+const arrayOfBenefits = ['Protective', 'Hampering', 'Offensive']
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      // Purple and green play nicely together.
+      main: purple[500],
+    },
+    secondary: {
+      // This is green.A700 as hex.
+      main: '#11cb5f',
+    },
+  },
+});
+
+export default function PropsBarIndividualCard() {
+
+  const [title, setTitle] = useState<string>('Title');
+
+  const [titleEdit, setTitleEdit] = useState<string>('Title');
+
+
+  const [benefit, setBenefit] = useState<number>(0);
+
+  const [open, setOpen] = useState(false);
+
+
+
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const toggleBenefit = () => {
+
+    if (benefit<2) {
+      setBenefit(benefit+1)
+    } else {
+      setBenefit(0);
+    }
+
+
+  }
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleSubmit = () => {
+    setTitle(titleEdit)
+    setOpen(false);
+  };
+
+
+  const handleChange = (event:any) => {
+    setTitleEdit(event.target.value)
+  }
 
   return (
     <>
+    <ThemeProvider theme={theme}>
+      <Card >
+        <CardContent >
+          <Typography variant="body1" component="div">
+            {title}
+          </Typography>
 
-      <Card sx={{ minWidth: 275, maxWidth: 275 }}>
-        <CardContent>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            Word of the Day
-          </Typography>
-          <Typography variant="h5" component="div">
-            be{bull}nev{bull}o{bull}lent
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            adjective
-          </Typography>
-          <Typography variant="body2">
-            well meaning and kindly.
-            <br />
-            {'"a benevolent smile"'}
+          <Typography variant="body2" color="error">
+            {arrayOfBenefits[benefit]}
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Learn More</Button>
+          <Button size="small" onClick={handleClickOpen}>Edit</Button>
+
+          <Dialog open={open} onClose={handleClose}>
+            <DialogTitle>Prop</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+
+                Edit this card
+              </DialogContentText>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                color="success"
+                type="email"
+                fullWidth
+                value={titleEdit}
+                onChange={handleChange}
+                variant="standard"
+              />
+
+              <Button onClick={toggleBenefit}>
+                {arrayOfBenefits[benefit]}
+              </Button>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>Cancel</Button>
+              <Button  onClick={handleSubmit} type="submit">Submit</Button>
+            </DialogActions>
+          </Dialog>
+
+
         </CardActions>
       </Card>
 
-      <Box sx={{ flexGrow: 0 }}>
-        <Grid container spacing={1} columns={10}>
-          <Grid item xs={1} >
+      </ThemeProvider>
 
-
-
-          <Card >
-        <CardContent>
-          <Typography sx={{ fontSize: 10 }} color="text.secondary" gutterBottom>
-            Word of the Day
-          </Typography>
-          <Typography variant="h5" component="div">
-            be{bull}nev{bull}o{bull}lent
-          </Typography>
-          <Typography color="text.secondary">
-            adjective
-          </Typography>
-          <Typography variant="body2">
-            well meaning and kindly.
-            <br />
-            {'"a benevolent smile"'}
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Learn More</Button>
-        </CardActions>
-      </Card>
-
-
-
-          </Grid>
-          <Grid item xs={1}>
-            <Item>xs=4</Item>
-          </Grid>
-          <Grid item xs={1}>
-            <Item>xs=4</Item>
-          </Grid>
-          <Grid item xs={1}>
-            <Item>xs=8</Item>
-          </Grid>
-
-          <Grid item xs={1}>
-            <Item>xs=8</Item>
-          </Grid>
-          <Grid item xs={1}>
-            <Item>xs=8</Item>
-          </Grid>
-          <Grid item xs={1}>
-            <Item>xs=8</Item>
-          </Grid>
-          <Grid item xs={1}>
-            <Item>xs=8</Item>
-          </Grid>
-          <Grid item xs={1}>
-            <Item>xs=8</Item>
-          </Grid>
-          <Grid item xs={1}>
-            <Item>xs=8</Item>
-          </Grid>
-        </Grid>
-      </Box>
     </>
   )
 }

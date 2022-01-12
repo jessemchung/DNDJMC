@@ -7,14 +7,10 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-
+import Weather from './ImageDecoration/Weather.jsx'
 
 export default function Image() {
 
-
-  var cheese;
-  // }
-  // var color = randomColor(); // a hex code for an attractive color
 
 
   //images are going to need to be there, it will likely need layers for a background which should be fine.
@@ -29,7 +25,8 @@ export default function Image() {
 
   return (
     <>
-      <div> Weather on left, Time of Day of Right </div>
+      <div style={{position: 'relative'}}> Weather on left, Time of Day of Right </div>
+      <Weather />
 
 
 
