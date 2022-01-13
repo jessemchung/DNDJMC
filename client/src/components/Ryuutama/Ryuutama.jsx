@@ -20,6 +20,7 @@ var Grid_1 = require("@mui/material/Grid");
 var axios_1 = require("axios");
 var styles_1 = require("@mui/material/styles");
 var MainStage_jsx_1 = require("./Stage/MainStage.jsx");
+var FreepsMain_jsx_1 = require("./Stage/Pieces/Freeps/FreepsMain.jsx");
 function Ryuutama() {
     // }
     // var color = randomColor(); // a hex code for an attractive color
@@ -68,7 +69,12 @@ function Ryuutama() {
             }}>
 
 
-                    <Item>Freeps</Item>
+                    <Item>
+                      <div>Freeps</div>
+
+                      <FreepsMain_jsx_1.default />
+
+                    </Item>
 
                     <Item>
                       

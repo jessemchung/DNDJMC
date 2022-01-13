@@ -4,7 +4,7 @@ var react_1 = require("react");
 var React = require("react");
 var styles_1 = require("@mui/material/styles");
 var colors_1 = require("@mui/material/colors");
-var arrayOfBenefits = ['Forest', 'Desert', 'Snow', 'Mountain'];
+var arrayOfBenefits = ['Sun', 'Rain', 'Snow', 'Windy'];
 var theme = (0, styles_1.createTheme)({
     palette: {
         primary: {
@@ -18,10 +18,10 @@ var theme = (0, styles_1.createTheme)({
     },
 });
 function PropsBarIndividualCard() {
-    var _a = (0, react_1.useState)(0), terrain = _a[0], setTerrain = _a[1];
+    var _a = (0, react_1.useState)(0), weather = _a[0], setWeather = _a[1];
     return (<>
-    <h3> {arrayOfBenefits[terrain]} </h3>
+    <h3> {arrayOfBenefits[weather]} </h3>
     </>);
 }
 exports.default = PropsBarIndividualCard;
-//# sourceMappingURL=TerrainType.jsx.map
+//# sourceMappingURL=TimeOfDay.jsx.map
