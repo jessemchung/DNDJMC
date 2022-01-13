@@ -4,6 +4,7 @@ var randomColor = require('randomcolor'); // import the script
 var React = require("react");
 var Box_1 = require("@mui/material/Box");
 var Weather_jsx_1 = require("./ImageDecoration/Weather.jsx");
+var Terrain_jsx_1 = require("./ImageDecoration/Terrain.jsx");
 function Image() {
     //images are going to need to be there, it will likely need layers for a background which should be fine.
     //This is the main box
@@ -22,7 +23,7 @@ function Image() {
 
         <Weather_jsx_1.default />
 
-        <Weather_jsx_1.default />
+        <Terrain_jsx_1.default />
 
       </Box_1.default>
 

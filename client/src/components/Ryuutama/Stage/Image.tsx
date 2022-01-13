@@ -9,6 +9,7 @@ import axios from 'axios';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import Weather from './ImageDecoration/Weather.jsx'
 
+import Terrain from './ImageDecoration/Terrain.jsx'
 
 
 export default function Image() {
@@ -41,7 +42,7 @@ export default function Image() {
 
         <Weather />
 
-        <Weather />
+        <Terrain />
 
       </Box>
 
