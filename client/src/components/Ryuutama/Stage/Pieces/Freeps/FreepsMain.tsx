@@ -7,6 +7,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import FreepsSampleCard from './FreepsSampleCard.jsx'
 
 
 
@@ -16,6 +17,7 @@ export default function Freeps() {
   return (
     <>
       <div> Freeps </div>
+      <FreepsSampleCard />
 
     </>
   )
