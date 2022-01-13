@@ -38,4 +38,4 @@ function FreepsSampleCard() {
     </>);
 }
 exports.default = FreepsSampleCard;
-//# sourceMappingURL=FreepsSampleCard.jsx.map
+//# sourceMappingURL=CreepsSampleCard.jsx.map

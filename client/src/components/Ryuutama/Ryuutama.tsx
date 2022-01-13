@@ -9,6 +9,8 @@ import axios from 'axios';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import MainStage from './Stage/MainStage.jsx'
 import FreesMain from './Stage/Pieces/Freeps/FreepsMain.jsx'
+import CreesMain from './Stage/Pieces/Creeps/CreepsMain.jsx'
+
 
 export default function Ryuutama() {
 
