@@ -21,6 +21,7 @@ var axios_1 = require("axios");
 var styles_1 = require("@mui/material/styles");
 var MainStage_jsx_1 = require("./Stage/MainStage.jsx");
 var FreepsMain_jsx_1 = require("./Stage/Pieces/Freeps/FreepsMain.jsx");
+var CreepsMain_jsx_1 = require("./Stage/Pieces/Creeps/CreepsMain.jsx");
 function Ryuutama() {
     // }
     // var color = randomColor(); // a hex code for an attractive color
@@ -82,11 +83,13 @@ function Ryuutama() {
 
                       <MainStage_jsx_1.default />
 
-
-
                     </Item>
 
-                    <Item>Creeps</Item>
+                    <Item><div>Creeps </div>
+
+                    <CreepsMain_jsx_1.default />
+
+                    </Item>
 
                   </Box_1.default>
                 </styles_1.ThemeProvider>

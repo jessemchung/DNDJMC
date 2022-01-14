@@ -24,32 +24,81 @@ import { purple } from '@mui/material/colors';
 //card likely needs to have flex to split it in a half
 export default function FreepsSampleCard() {
 
+  // <Grid container spacing={1} columns={10}>
 
   return (
     <>
 
       <Card sx={{ display: 'flex' }}>
-        <CardContent >
-          <Typography variant="body1" component="div">
-            Sample Card
-          </Typography>
-          <Typography variant="body2" color="error">
-            details
-          </Typography>
-        </CardContent>
+
+        <Grid container spacing={1} columns={2}>
+
+          <CardContent >
+            <img src="./image/Ryuutama/SampleIcons/BradGood.png" onClick={() => { console.log('click image') }} />
+          </CardContent>
 
 
-        <CardContent >
-          <Typography variant="body1" component="div">
-            Sample Card
-          </Typography>
-
-          <Typography variant="body2" color="error">
-            details
-          </Typography>
-        </CardContent>
+          <CardContent >
+            <Typography variant="body1" component="div" color="primary">
+              Sample Card
 
 
+            </Typography>
+
+
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+
+              <Typography display="inline" variant="body2" align="left" >
+                HP
+              </Typography>
+
+
+              <Typography display="inline" variant="body2" align="left">
+                5
+
+
+              </Typography>
+
+            </Box>
+
+
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+
+              <Typography display="inline" variant="body2" align="left" >
+                Initiative
+              </Typography>
+
+
+              <Typography display="inline" variant="body2" align="left">
+                0
+
+
+              </Typography>
+
+            </Box>
+
+
+            <Typography variant="body2" align="left">
+              Armor
+            </Typography>
+
+            <Button size="small">E</Button>
+
+
+
+          </CardContent>
+
+        </Grid>
 
       </Card>
 

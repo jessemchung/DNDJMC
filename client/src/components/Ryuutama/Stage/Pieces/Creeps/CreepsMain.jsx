@@ -2,11 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var randomColor = require('randomcolor'); // import the script
 var React = require("react");
-var FreepsSampleCard_jsx_1 = require("./FreepsSampleCard.jsx");
+var CreepsSampleCard_jsx_1 = require("./CreepsSampleCard.jsx");
+//add creep button on the bottom
 function Freeps() {
     return (<>
       <div> Freeps </div>
-      <FreepsSampleCard_jsx_1.default />
+      <CreepsSampleCard_jsx_1.default />
 
     </>);
 }

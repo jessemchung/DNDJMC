@@ -8,8 +8,8 @@ import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import MainStage from './Stage/MainStage.jsx'
-import FreesMain from './Stage/Pieces/Freeps/FreepsMain.jsx'
-import CreesMain from './Stage/Pieces/Creeps/CreepsMain.jsx'
+import FreepsMain from './Stage/Pieces/Freeps/FreepsMain.jsx'
+import CreepsMain from './Stage/Pieces/Creeps/CreepsMain.jsx'
 
 
 export default function Ryuutama() {
@@ -81,7 +81,7 @@ export default function Ryuutama() {
                     <Item>
                       <div>Freeps</div>
 
-                      <FreesMain />
+                      <FreepsMain />
 
                     </Item>
 
@@ -91,11 +91,13 @@ export default function Ryuutama() {
 
                       <MainStage />
 
-
-
                     </Item>
 
-                    <Item>Creeps</Item>
+                    <Item><div>Creeps </div>
+
+                    <CreepsMain />
+
+                    </Item>
 
                   </Box>
                 </ThemeProvider>
