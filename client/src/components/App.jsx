@@ -10,6 +10,8 @@ export default function App() {
         <Link to="/expenses">Expenses</Link> |{' '}
 
         <Link to="/ryuutama">Ryuutama</Link>
+
+        
       </nav>
       <Outlet />
     </div>

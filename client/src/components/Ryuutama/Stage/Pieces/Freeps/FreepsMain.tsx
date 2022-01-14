@@ -11,7 +11,7 @@ import FreepsSampleCard from './FreepsSampleCard.jsx'
 
 
 
-export default function Freeps() {
+export default function FreepsMain() {
 
 
   return (

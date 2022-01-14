@@ -7,17 +7,18 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import FreepsSampleCard from './CreepsSampleCard.jsx'
+import CreepsSampleCard from './CreepsSampleCard.jsx'
 
 
 //add creep button on the bottom
-export default function Freeps() {
+//this will need to grab from database or from sample data set
+export default function Creeps() {
 
 
   return (
     <>
       <div> Freeps </div>
-      <FreepsSampleCard />
+      <CreepsSampleCard />
 
     </>
   )
