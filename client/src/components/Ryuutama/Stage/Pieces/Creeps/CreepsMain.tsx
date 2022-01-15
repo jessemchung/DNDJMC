@@ -12,6 +12,8 @@ import CreepsSampleCard from './CreepsSampleCard.jsx'
 
 //add creep button on the bottom
 //this will need to grab from database or from sample data set
+
+//cards will be an array of objects
 export default function Creeps() {
 
 
