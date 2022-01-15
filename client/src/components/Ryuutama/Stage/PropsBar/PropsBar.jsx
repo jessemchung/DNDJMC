@@ -27,9 +27,6 @@ var bull = (<Box_1.default component="span" sx={{ display: 'inline-block', mx: '
   </Box_1.default>);
 function PropsBar() {
     return (<>
-
-
-
       <Box_1.default sx={{ flexGrow: 0 }}>
         <Grid_1.default container spacing={1} columns={10}>
           <Grid_1.default item xs={1}>

@@ -34,9 +34,6 @@ export default function PropsBar() {
 
   return (
     <>
-
-
-
       <Box sx={{ flexGrow: 0 }}>
         <Grid container spacing={1} columns={10}>
           <Grid item xs={1} >

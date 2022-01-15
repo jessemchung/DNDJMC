@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var randomColor = require('randomcolor'); // import the script
 var React = require("react");
 var Box_1 = require("@mui/material/Box");
+var Grid_1 = require("@mui/material/Grid");
 var Weather_jsx_1 = require("./ImageDecoration/Weather.jsx");
 var Terrain_jsx_1 = require("./ImageDecoration/Terrain.jsx");
 function Image() {
@@ -20,12 +21,23 @@ function Image() {
             bgcolor: 'background.paper',
             borderRadius: 1,
         }}>
+        <Grid_1.default container spacing={1} columns={8} sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            p: 1,
+            m: 1,
+            bgcolor: 'background.paper',
+            borderRadius: 1,
+        }}>
 
         <Weather_jsx_1.default />
 
         <Terrain_jsx_1.default />
 
+        </Grid_1.default>
+
       </Box_1.default>
+
 
 
 
