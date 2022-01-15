@@ -65,7 +65,7 @@ export default function PropsBarIndividualCard() {
     setAge(event.target.value as string);
   };
 
-  const [weather, setWeather] = useState<number>(0);
+  const [weather, setWeather] = useState<string>('./image/Ryuutama/Weather/Ryuutama_Cold.png');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -82,88 +82,18 @@ export default function PropsBarIndividualCard() {
       <img style={{ 'width': '8%' }} src="./image/Ryuutama/Weather/Ryuutama_Cold.png" onClick={handleClickOpen} />
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Add Creep</DialogTitle>
+        <DialogTitle>Choose Weather</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Fill Out Your Creep Here
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            name='name'
-            label="Name"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
+          <img style={{ 'width': '8%' }} src="./image/Ryuutama/Weather/Ryuutama_Cold.png" onClick={handleClickOpen} />
 
-          <TextField
-            autoFocus
-            margin="dense"
-            id="armor"
-            name='armor'
-            label="Armor"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-
-          <TextField
-            autoFocus
-            margin="dense"
-            id="initiative"
-            name='initiative'
-            label="Initiative"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-
-          <TextField
-            autoFocus
-            margin="dense"
-            id="appearance"
-            name='appearance'
-            label="Appearance"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-
-          <TextField
-            autoFocus
-            margin="dense"
-            id="bloodyImage"
-            name='bloodyImage'
-            label="Bloody Image"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-
-          <TextField
-            autoFocus
-            margin="dense"
-            id="healthyImage"
-            name='healthyImage'
-            label="Healthy Image"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
+          <img style={{ 'width': '8%' }} src="./image/Ryuutama/Weather/Ryuutama_Cold.png" onClick={handleClickOpen} />
 
 
-
-          <Button>
-
-            Delete
-          </Button>
         </DialogContent>
-        <DialogActions>
+        {/* <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Subscribe</Button>
-        </DialogActions>
+        </DialogActions> */}
       </Dialog>
 
 
