@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FreepsSampleCard = void 0;
+exports.CreepsSingleCard = void 0;
 var randomColor = require('randomcolor'); // import the script
 var React = require("react");
 var Box_1 = require("@mui/material/Box");
@@ -11,7 +11,7 @@ var Button_1 = require("@mui/material/Button");
 var Typography_1 = require("@mui/material/Typography");
 ;
 //card likely needs to have flex to split it in a half
-var FreepsSampleCard = function (prop) {
+var CreepsSingleCard = function (prop) {
     // <Grid container spacing={1} columns={10}>
     return (<>
 
@@ -87,5 +87,5 @@ var FreepsSampleCard = function (prop) {
 
     </>);
 };
-exports.FreepsSampleCard = FreepsSampleCard;
+exports.CreepsSingleCard = CreepsSingleCard;
 //# sourceMappingURL=CreepsSingleCard.jsx.map

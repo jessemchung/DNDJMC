@@ -8,14 +8,23 @@ import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import CreepsSampleCard from './CreepsSampleCard.jsx'
-
-
+import {CreepsSampleData} from './CreepsSampleData.jsx'
+import {CreepsCardData} from '../Common/_Types.jsx'
+import {CreepsSingleCard} from './CreepsSingleCard'
 //add creep button on the bottom
 //this will need to grab from database or from sample data set
 
 //cards will be an array of objects
 export default function Creeps() {
 
+  const [fullDataCreeps, setFullDataCreeps] = useState<CreepsCardData[]>(CreepsSampleData)
+
+  const allCards = fullDataCreeps.map((singleCard)=> {
+
+    return (
+      <CreepsSingleCard creepInfo={singleCard}/>
+    )
+  })
 
   return (
     <>

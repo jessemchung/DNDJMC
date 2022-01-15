@@ -21,17 +21,18 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { purple } from '@mui/material/colors';
 
-
+import {CreepsCardData} from '../Common/_Types.jsx'
 
 interface Props {
-
+  creepInfo: CreepsCardData,
+  //this is expecting a single object
 
 };
 
 
 
 //card likely needs to have flex to split it in a half
-export const FreepsSampleCard: React.FC<Props> = (prop: Props) => {
+export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
   
 
   // <Grid container spacing={1} columns={10}>
