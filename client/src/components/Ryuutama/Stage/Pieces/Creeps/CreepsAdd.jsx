@@ -1,90 +1,65 @@
 "use strict";
 //purpose, to add a creep to the menu
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CreepsAdd = void 0;
+var react_1 = require("react");
 var randomColor = require('randomcolor'); // import the script
 var React = require("react");
-var Box_1 = require("@mui/material/Box");
-var Grid_1 = require("@mui/material/Grid");
-var Card_1 = require("@mui/material/Card");
-var CardContent_1 = require("@mui/material/CardContent");
 var Button_1 = require("@mui/material/Button");
-var Typography_1 = require("@mui/material/Typography");
+var TextField_1 = require("@mui/material/TextField");
+var Dialog_1 = require("@mui/material/Dialog");
+var DialogActions_1 = require("@mui/material/DialogActions");
+var DialogContent_1 = require("@mui/material/DialogContent");
+var DialogContentText_1 = require("@mui/material/DialogContentText");
+var DialogTitle_1 = require("@mui/material/DialogTitle");
 //card likely needs to have flex to split it in a half
-function FreepsSampleCard() {
+function CreepsAdd() {
+    var _a = (0, react_1.useState)(false), open = _a[0], setOpen = _a[1];
+    var _b = (0, react_1.useState)({}), creepInfo = _b[0], setCreepInfo = _b[1];
+    var handleClickOpen = function () {
+        setOpen(true);
+    };
+    var handleClose = function () {
+        setOpen(false);
+    };
     // <Grid container spacing={1} columns={10}>
     return (<>
 
-      <Card_1.default sx={{ display: 'flex' }}>
+      <Button_1.default size="small" onClick={handleClickOpen}>Add</Button_1.default>
 
-        <Grid_1.default container spacing={1} columns={2}>
+      <Dialog_1.default open={open} onClose={handleClose}>
+        <DialogTitle_1.default>Add Creep</DialogTitle_1.default>
+        <DialogContent_1.default>
+          <DialogContentText_1.default>
+            Fill Out Your Creep Here
+          </DialogContentText_1.default>
+          <TextField_1.default autoFocus margin="dense" id="name" name='name' label="Name" type="text" fullWidth variant="standard"/>
 
-          <CardContent_1.default>
-            <img src="./image/Ryuutama/SampleIcons/BradGood.png" onClick={function () { console.log('click image'); }}/>
-          </CardContent_1.default>
+          <TextField_1.default autoFocus margin="dense" id="armor" name='armor' label="Armor" type="text" fullWidth variant="standard"/>
 
+          <TextField_1.default autoFocus margin="dense" id="initiative" name='initiative' label="Initiative" type="text" fullWidth variant="standard"/>
 
-          <CardContent_1.default>
-            <Typography_1.default variant="body1" component="div" color="primary">
-              Sample Card
+          <TextField_1.default autoFocus margin="dense" id="appearance" name='appearance' label="Appearance" type="text" fullWidth variant="standard"/>
 
+          <TextField_1.default autoFocus margin="dense" id="bloodyImage" name='bloodyImage' label="Bloody Image" type="text" fullWidth variant="standard"/>
 
-            </Typography_1.default>
-
-
-            <Box_1.default sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-        }}>
-
-              <Typography_1.default display="inline" variant="body2" align="left">
-                HP
-              </Typography_1.default>
-
-
-              <Typography_1.default display="inline" variant="body2" align="left">
-                5
-
-
-              </Typography_1.default>
-
-            </Box_1.default>
-
-
-            <Box_1.default sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-        }}>
-
-              <Typography_1.default display="inline" variant="body2" align="left">
-                Initiative
-              </Typography_1.default>
-
-
-              <Typography_1.default display="inline" variant="body2" align="left">
-                0
-
-
-              </Typography_1.default>
-
-            </Box_1.default>
-
-
-            <Typography_1.default variant="body2" align="left">
-              Armor
-            </Typography_1.default>
-
-            <Button_1.default size="small">E</Button_1.default>
+          <TextField_1.default autoFocus margin="dense" id="healthyImage" name='healthyImage' label="Healthy Image" type="text" fullWidth variant="standard"/>
 
 
 
-          </CardContent_1.default>
+          <Button_1.default>
 
-        </Grid_1.default>
-
-      </Card_1.default>
+            Delete
+          </Button_1.default>
+        </DialogContent_1.default>
+        <DialogActions_1.default>
+          <Button_1.default onClick={handleClose}>Cancel</Button_1.default>
+          <Button_1.default onClick={handleClose}>Subscribe</Button_1.default>
+        </DialogActions_1.default>
+      </Dialog_1.default>
 
 
     </>);
 }
-exports.default = FreepsSampleCard;
+exports.CreepsAdd = CreepsAdd;
 //# sourceMappingURL=CreepsAdd.jsx.map

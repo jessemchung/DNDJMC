@@ -10,7 +10,8 @@ import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import CreepsSampleCard from './CreepsSampleCard.jsx'
 import {CreepsSampleData} from './CreepsSampleData.jsx'
 import {CreepsCardData} from '../Common/_Types.jsx'
-import {CreepsSingleCard} from './CreepsSingleCard'
+import {CreepsSingleCard} from './CreepsSingleCard.jsx'
+import {CreepsAdd} from './CreepsAdd.jsx'
 //add creep button on the bottom
 //this will need to grab from database or from sample data set
 
@@ -29,8 +30,10 @@ export default function Creeps() {
   return (
     <>
       <div> Freeps </div>
+      {allCards}
       <CreepsSampleCard />
 
+      <CreepsAdd />
     </>
   )
 }

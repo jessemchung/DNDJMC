@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 var randomColor = require('randomcolor'); // import the script
 import * as React from 'react'
-import * as THREE from "three";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -24,85 +23,109 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { purple } from '@mui/material/colors';
 
 //card likely needs to have flex to split it in a half
-export default function FreepsSampleCard() {
+export function CreepsAdd() {
+  const [open, setOpen] = useState<boolean>(false);
+  const [creepInfo, setCreepInfo] = useState({});
 
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   // <Grid container spacing={1} columns={10}>
 
   return (
     <>
 
-      <Card sx={{ display: 'flex' }}>
+      <Button size="small" onClick={handleClickOpen}>Add</Button>
 
-        <Grid container spacing={1} columns={2}>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Add Creep</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Fill Out Your Creep Here
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            name='name'
+            label="Name"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
 
-          <CardContent >
-            <img src="./image/Ryuutama/SampleIcons/BradGood.png" onClick={() => { console.log('click image') }} />
-          </CardContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="armor"
+            name='armor'
+            label="Armor"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
 
+          <TextField
+            autoFocus
+            margin="dense"
+            id="initiative"
+            name='initiative'
+            label="Initiative"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
 
-          <CardContent >
-            <Typography variant="body1" component="div" color="primary">
-              Sample Card
+          <TextField
+            autoFocus
+            margin="dense"
+            id="appearance"
+            name='appearance'
+            label="Appearance"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
 
+          <TextField
+            autoFocus
+            margin="dense"
+            id="bloodyImage"
+            name='bloodyImage'
+            label="Bloody Image"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
 
-            </Typography>
-
-
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-              }}
-            >
-
-              <Typography display="inline" variant="body2" align="left" >
-                HP
-              </Typography>
-
-
-              <Typography display="inline" variant="body2" align="left">
-                5
-
-
-              </Typography>
-
-            </Box>
-
-
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-              }}
-            >
-
-              <Typography display="inline" variant="body2" align="left" >
-                Initiative
-              </Typography>
-
-
-              <Typography display="inline" variant="body2" align="left">
-                0
-
-
-              </Typography>
-
-            </Box>
-
-
-            <Typography variant="body2" align="left">
-              Armor
-            </Typography>
-
-            <Button size="small">E</Button>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="healthyImage"
+            name='healthyImage'
+            label="Healthy Image"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
 
 
 
-          </CardContent>
+          <Button>
 
-        </Grid>
-
-      </Card>
+            Delete
+          </Button>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose}>Subscribe</Button>
+        </DialogActions>
+      </Dialog>
 
 
     </>

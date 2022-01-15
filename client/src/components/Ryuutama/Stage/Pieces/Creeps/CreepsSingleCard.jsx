@@ -20,13 +20,13 @@ var CreepsSingleCard = function (prop) {
         <Grid_1.default container spacing={1} columns={2}>
 
           <CardContent_1.default>
-            <img src="./image/Ryuutama/SampleIcons/BradGood.png" onClick={function () { console.log('click image'); }}/>
+            <img src={prop.creepInfo.healthyImage} onClick={function () { console.log('click image'); }}/>
           </CardContent_1.default>
 
 
           <CardContent_1.default>
             <Typography_1.default variant="body1" component="div" color="primary">
-              Sample Card
+              {prop.creepInfo.name}
 
 
             </Typography_1.default>
@@ -43,7 +43,7 @@ var CreepsSingleCard = function (prop) {
 
 
               <Typography_1.default display="inline" variant="body2" align="left">
-                5
+                {prop.creepInfo.hitpoints}
 
 
               </Typography_1.default>
@@ -57,22 +57,45 @@ var CreepsSingleCard = function (prop) {
         }}>
 
               <Typography_1.default display="inline" variant="body2" align="left">
-                Initiative
+                Init
               </Typography_1.default>
 
 
               <Typography_1.default display="inline" variant="body2" align="left">
-                0
-
-
+                {prop.creepInfo.initiative}
               </Typography_1.default>
 
             </Box_1.default>
 
 
-            <Typography_1.default variant="body2" align="left">
-              Armor
-            </Typography_1.default>
+            <Box_1.default sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+        }}>
+
+              <Typography_1.default display="inline" variant="body2" align="left">
+                Armor
+              </Typography_1.default>
+
+
+              <Typography_1.default display="inline" variant="body2" align="left">
+                {prop.creepInfo.armor}
+              </Typography_1.default>
+
+            </Box_1.default>
+
+            <Box_1.default sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+        }}>
+
+
+              <Typography_1.default display="inline" variant="body2" align="left">
+                {prop.creepInfo.appearance}
+              </Typography_1.default>
+
+            </Box_1.default>
+
 
             <Button_1.default size="small">E</Button_1.default>
 

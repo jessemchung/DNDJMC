@@ -45,13 +45,13 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
         <Grid container spacing={1} columns={2}>
 
           <CardContent >
-            <img src="./image/Ryuutama/SampleIcons/BradGood.png" onClick={() => { console.log('click image') }} />
+            <img src={prop.creepInfo.healthyImage} onClick={() => { console.log('click image') }} />
           </CardContent>
 
 
           <CardContent >
             <Typography variant="body1" component="div" color="primary">
-              Sample Card
+              {prop.creepInfo.name}
 
 
             </Typography>
@@ -70,7 +70,7 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
 
 
               <Typography display="inline" variant="body2" align="left">
-                5
+                {prop.creepInfo.hitpoints}
 
 
               </Typography>
@@ -86,22 +86,49 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
             >
 
               <Typography display="inline" variant="body2" align="left" >
-                Initiative
+                Init
               </Typography>
 
 
               <Typography display="inline" variant="body2" align="left">
-                0
-
-
+                {prop.creepInfo.initiative}
               </Typography>
 
             </Box>
 
 
-            <Typography variant="body2" align="left">
-              Armor
-            </Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+
+              <Typography display="inline" variant="body2" align="left" >
+                Armor
+              </Typography>
+
+
+              <Typography display="inline" variant="body2" align="left">
+                {prop.creepInfo.armor}
+              </Typography>
+
+            </Box>
+
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+
+
+              <Typography display="inline" variant="body2" align="left">
+                {prop.creepInfo.appearance}
+              </Typography>
+
+            </Box>
+
 
             <Button size="small">E</Button>
 

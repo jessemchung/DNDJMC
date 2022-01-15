@@ -9,6 +9,7 @@ exports.CreepsSampleData = [
         'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
         'initiative': 2,
         'name': "Bradford",
+        'appearance': "purple hair",
     },
     {
         'armor': 10,
@@ -16,7 +17,8 @@ exports.CreepsSampleData = [
         'healthyImage': './image/Ryuutama/SampleIcons/MarinerGood.png',
         'bloodyImage': './image/Ryuutama/SampleIcons/MarinerBad.png',
         'initiative': 3,
-        'name': "Mariner"
+        'name': "Mariner",
+        'appearance': 'dark skin',
     },
     {
         'armor': 12,
@@ -24,7 +26,8 @@ exports.CreepsSampleData = [
         'healthyImage': './image/Ryuutama/SampleIcons/TendiGood.png',
         'bloodyImage': './image/Ryuutama/SampleIcons/TendiBad.png',
         'initiative': 1,
-        'name': "Tendi"
+        'name': "Tendi",
+        'appearance': 'turquoise'
     },
     {
         'armor': 11,
@@ -32,7 +35,8 @@ exports.CreepsSampleData = [
         'healthyImage': './image/Ryuutama/SampleIcons/SamGood.png',
         'bloodyImage': './image/Ryuutama/SampleIcons/SamBad.png',
         'initiative': 1,
-        'name': "Sam"
+        'name': "Sam",
+        'appearance': 'implant',
     },
 ];
 //# sourceMappingURL=CreepsSampleData.jsx.map
