@@ -25,8 +25,8 @@ import FormControl from '@mui/material/FormControl';
 //this might need to be a drop down
 const arrayOfBenefits: string[] = [
   './image/Ryuutama/Weather/Ryuutama_Cold.png',
-  './image/Ryuutama/Weather/Ryuutama_Cold.png', 
-  './image/Ryuutama/Weather/Ryuutama_Cold.png', 
+  './image/Ryuutama/Weather/Ryuutama_Cold.png',
+  './image/Ryuutama/Weather/Ryuutama_Cold.png',
   './image/Ryuutama/Weather/Ryuutama_Cold.png',
   './image/Ryuutama/Weather/Ryuutama_Cold.png',
   './image/Ryuutama/Weather/Ryuutama_Cold.png',
@@ -72,9 +72,13 @@ export default function PropsBarIndividualCard() {
   };
 
   const handleClose = (event: any) => {
-    console.log(event.target.src);
-    setWeather(event.target.src)
+
+
+    if (event.target.src !== undefined) {
+      setWeather(event.target.src)
+    }
     setOpen(false);
+
   };
 
 
@@ -87,7 +91,7 @@ export default function PropsBarIndividualCard() {
         <DialogTitle>Choose Weather</DialogTitle>
         <DialogContent>
 
-        <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png" onClick={handleClose} />
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png" onClick={handleClose} />
 
           <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Cold.png" onClick={handleClose} />
 

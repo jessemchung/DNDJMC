@@ -10,7 +10,7 @@ import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import Weather from './ImageDecoration/Weather.jsx'
 
 import Terrain from './ImageDecoration/Terrain.jsx'
-
+import {TerrainType} from './ImageDecoration/TerrainType.jsx'
 
 export default function Image() {
 
@@ -28,7 +28,7 @@ export default function Image() {
 
   return (
     <>
-      <div style={{ position: 'relative' }}> Weather on left, Time of Day of Right </div>
+      <div style={{ position: 'relative' }}> Weather on left, Terrain on right </div>
       <Box
         sx={{
           display: 'flex',

@@ -43,8 +43,9 @@ function PropsBarIndividualCard() {
         setOpen(true);
     };
     var handleClose = function (event) {
-        console.log(event.target.src);
-        setWeather(event.target.src);
+        if (event.target.src !== undefined) {
+            setWeather(event.target.src);
+        }
         setOpen(false);
     };
     return (<>
@@ -55,7 +56,7 @@ function PropsBarIndividualCard() {
         <DialogTitle_1.default>Choose Weather</DialogTitle_1.default>
         <DialogContent_1.default>
 
-        <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png" onClick={handleClose}/>
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png" onClick={handleClose}/>
 
           <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Cold.png" onClick={handleClose}/>
 

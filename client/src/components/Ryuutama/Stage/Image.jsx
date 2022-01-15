@@ -12,7 +12,7 @@ function Image() {
     //it will have the pieces of information in the corner
     //terrain feature needed
     return (<>
-      <div style={{ position: 'relative' }}> Weather on left, Time of Day of Right </div>
+      <div style={{ position: 'relative' }}> Weather on left, Terrain on right </div>
       <Box_1.default sx={{
             display: 'flex',
             justifyContent: 'space-between',

@@ -21,7 +21,7 @@ const theme = createTheme({
   },
 });
 
-export default function PropsBarIndividualCard() {
+export function TerrainType() {
 
   const [terrain, setTerrain] = useState<number>(0);
 

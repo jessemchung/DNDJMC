@@ -40,7 +40,7 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
   return (
     <>
 
-      <Card sx={{ display: 'flex' }} key={prop.creepInfo.name}>
+      <Card sx={{ display: 'flex' }} >
 
         <Grid container spacing={1} columns={2}>
 
