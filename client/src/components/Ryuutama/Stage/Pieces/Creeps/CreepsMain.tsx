@@ -20,10 +20,10 @@ export default function Creeps() {
 
   const [fullDataCreeps, setFullDataCreeps] = useState<CreepsCardData[]>(CreepsSampleData)
 
-  const allCards = fullDataCreeps.map((singleCard)=> {
+  const allCards = fullDataCreeps.map((singleCard, index)=> {
 
     return (
-      <CreepsSingleCard creepInfo={singleCard}/>
+      <CreepsSingleCard creepInfo={singleCard} key={index} />
     )
   })
 
@@ -31,7 +31,7 @@ export default function Creeps() {
     <>
       <div> Freeps </div>
       {allCards}
-      <CreepsSampleCard />
+      {/* <CreepsSampleCard /> */}
 
       <CreepsAdd />
     </>

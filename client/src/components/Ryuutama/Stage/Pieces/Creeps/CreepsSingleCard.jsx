@@ -15,7 +15,7 @@ var CreepsSingleCard = function (prop) {
     // <Grid container spacing={1} columns={10}>
     return (<>
 
-      <Card_1.default sx={{ display: 'flex' }}>
+      <Card_1.default sx={{ display: 'flex' }} key={prop.creepInfo.name}>
 
         <Grid_1.default container spacing={1} columns={2}>
 

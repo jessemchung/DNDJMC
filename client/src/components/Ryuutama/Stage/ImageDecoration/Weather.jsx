@@ -38,24 +38,52 @@ function PropsBarIndividualCard() {
     var handleChange = function (event) {
         setAge(event.target.value);
     };
-    var _c = (0, react_1.useState)('./image/Ryuutama/Weather/Ryuutama_Cold.png'), weather = _c[0], setWeather = _c[1];
+    var _c = (0, react_1.useState)('./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png'), weather = _c[0], setWeather = _c[1];
     var handleClickOpen = function () {
         setOpen(true);
     };
-    var handleClose = function () {
+    var handleClose = function (event) {
+        console.log(event.target.src);
+        setWeather(event.target.src);
         setOpen(false);
     };
     return (<>
 
-      <img style={{ 'width': '8%' }} src="./image/Ryuutama/Weather/Ryuutama_Cold.png" onClick={handleClickOpen}/>
+      <img style={{ 'width': '8%' }} src={weather} onClick={handleClickOpen}/>
 
       <Dialog_1.default open={open} onClose={handleClose}>
         <DialogTitle_1.default>Choose Weather</DialogTitle_1.default>
         <DialogContent_1.default>
-          <img style={{ 'width': '8%' }} src="./image/Ryuutama/Weather/Ryuutama_Cold.png" onClick={handleClickOpen}/>
 
-          <img style={{ 'width': '8%' }} src="./image/Ryuutama/Weather/Ryuutama_Cold.png" onClick={handleClickOpen}/>
+        <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png" onClick={handleClose}/>
 
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Cold.png" onClick={handleClose}/>
+
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Blizzard.png" onClick={handleClose}/>
+
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Cloudy.png" onClick={handleClose}/>
+
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Cold.png" onClick={handleClose}/>
+
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Darkness.png" onClick={handleClose}/>
+
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Deep_Fog.png" onClick={handleClose}/>
+
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Fog.png" onClick={handleClose}/>
+
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Heavy_Rain.png" onClick={handleClose}/>
+
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Hot.png" onClick={handleClose}/>
+
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Hurricane.png" onClick={handleClose}/>
+
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Rain.png" onClick={handleClose}/>
+
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Snow.png" onClick={handleClose}/>
+
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Strong_Wind.png" onClick={handleClose}/>
+
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Weather/Ryuutama_Thunderstorm.png" onClick={handleClose}/>
 
         </DialogContent_1.default>
         {/* <DialogActions>
