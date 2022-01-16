@@ -65,7 +65,7 @@ export default function Image() {
       <img src="./image/Ryuutama.png" onClick={() => { console.log('click image') }} />
 
 
-      <div>Terrain Advantage left, Terrain Toggle Right</div>
+      <div>Terrain Advantage left, Elemental Field</div>
 
       <Box
         sx={{
