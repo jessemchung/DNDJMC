@@ -23,23 +23,11 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 
 //this might need to be a drop down
-const arrayOfBenefits: string[] = [
-  './image/Ryuutama/Weather/Ryuutama_Cold.png',
-  './image/Ryuutama/Weather/Ryuutama_Cold.png',
-  './image/Ryuutama/Weather/Ryuutama_Cold.png',
-  './image/Ryuutama/Weather/Ryuutama_Cold.png',
-  './image/Ryuutama/Weather/Ryuutama_Cold.png',
-  './image/Ryuutama/Weather/Ryuutama_Cold.png',
-  './image/Ryuutama/Weather/Ryuutama_Cold.png',
-  './image/Ryuutama/Weather/Ryuutama_Cold.png',
-  './image/Ryuutama/Weather/Ryuutama_Cold.png',
-  './image/Ryuutama/Weather/Ryuutama_Cold.png',
+interface Props {
+  setTerrainType: (terrain: string)=>(void),
+  terrainType: string,
 
-
-
-
-
-]
+}
 
 
 
@@ -56,7 +44,7 @@ const theme = createTheme({
   },
 });
 
-export default function PropsBarIndividualCard() {
+export function TerrainType(prop: Props) {
 
   const [age, setAge] = React.useState('');
   const [open, setOpen] = useState<boolean>(false);
@@ -65,7 +53,6 @@ export default function PropsBarIndividualCard() {
     setAge(event.target.value as string);
   };
 
-  const [weather, setWeather] = useState<string>('./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -75,7 +62,7 @@ export default function PropsBarIndividualCard() {
 
 
     if (event.target.src !== undefined) {
-      setWeather(event.target.src)
+      prop.setTerrainType(event.target.src)
     }
     setOpen(false);
 
@@ -85,7 +72,7 @@ export default function PropsBarIndividualCard() {
   return (
     <>
 
-      <img style={{ 'width': '8%' }} src={weather} onClick={handleClickOpen} />
+      <img style={{ 'width': '8%' }} src={prop.terrainType} onClick={handleClickOpen} />
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Choose Weather</DialogTitle>
@@ -122,10 +109,7 @@ export default function PropsBarIndividualCard() {
           <img style={{ 'width': '20%' }} src="./image/Ryuutama/Terrain/Ryuutama_Large_City.png" onClick={handleClose} />
 
         </DialogContent>
-        {/* <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
-        </DialogActions> */}
+
       </Dialog>
 
 

@@ -14,7 +14,7 @@ import {TerrainType} from './ImageDecoration/TerrainType.jsx'
 
 export default function Image() {
 
-
+  const [terrain, setTerrain] = useState<string>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
 
   //images are going to need to be there, it will likely need layers for a background which should be fine.
 

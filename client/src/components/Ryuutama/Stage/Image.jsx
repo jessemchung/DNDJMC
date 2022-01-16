@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = require("react");
 var randomColor = require('randomcolor'); // import the script
 var React = require("react");
 var Box_1 = require("@mui/material/Box");
@@ -7,6 +8,7 @@ var Grid_1 = require("@mui/material/Grid");
 var Weather_jsx_1 = require("./ImageDecoration/Weather.jsx");
 var Terrain_jsx_1 = require("./ImageDecoration/Terrain.jsx");
 function Image() {
+    var _a = (0, react_1.useState)('./image/Ryuutama/Terrain/Ryuutama_Alpine.png'), terrain = _a[0], setTerrain = _a[1];
     //images are going to need to be there, it will likely need layers for a background which should be fine.
     //This is the main box
     //it will have the pieces of information in the corner
@@ -45,7 +47,7 @@ function Image() {
       <img src="./image/Ryuutama.png" onClick={function () { console.log('click image'); }}/>
 
 
-      <div>Terrain Advantage left, Terrain Toggle Right</div>
+      <div>Terrain Advantage left, Elemental Field</div>
 
       <Box_1.default sx={{
             display: 'flex',
