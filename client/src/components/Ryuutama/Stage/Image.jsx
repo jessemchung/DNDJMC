@@ -9,6 +9,7 @@ var Grid_1 = require("@mui/material/Grid");
 var styles_1 = require("@mui/material/styles");
 var Weather_jsx_1 = require("./ImageDecoration/Weather.jsx");
 var TerrainType_jsx_1 = require("./ImageDecoration/TerrainType.jsx");
+var ElementalField_jsx_1 = require("./ImageDecoration/ElementalField.jsx");
 function Image() {
     var _a = (0, react_1.useState)('./image/Ryuutama/Terrain/Ryuutama_Alpine.png'), terrainType = _a[0], setTerrainType = _a[1];
     var BackgroundPaper = (0, styles_1.styled)(Paper_1.default)(function (_a) {
@@ -62,8 +63,6 @@ function Image() {
   
         </Box> */}
 
-
-
       <BackgroundPaper>
 
         <Box_1.default sx={{
@@ -82,6 +81,9 @@ function Image() {
 
             <Weather_jsx_1.default />
 
+            <div> <ElementalField_jsx_1.ElementalField /> </div>
+
+
             <TerrainType_jsx_1.TerrainType terrainType={terrainType} setTerrainType={setTerrainType}/>
 
           </Grid_1.default>
@@ -99,7 +101,11 @@ function Image() {
             // border: '1px red solid',
         }} src="./image/Ryuutama.png" onClick={function () { console.log('click image'); }}/>
 
+
+
       </BackgroundPaper>
+
+
       {/* <div>Terrain Advantage left, Elemental Field</div>
   
         <Box

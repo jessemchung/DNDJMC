@@ -9,9 +9,8 @@ import axios from 'axios';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import Weather from './ImageDecoration/Weather.jsx'
 
-import Terrain from './ImageDecoration/Terrain.jsx'
 import { TerrainType } from './ImageDecoration/TerrainType.jsx'
-
+import { ElementalField } from './ImageDecoration/ElementalField.jsx'
 export default function Image() {
 
   const [terrainType, setTerrainType] = useState<string>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
@@ -79,8 +78,6 @@ export default function Image() {
 
       </Box> */}
 
-
-
       <BackgroundPaper >
 
         <Box
@@ -103,6 +100,9 @@ export default function Image() {
 
             <Weather />
 
+            <div> <ElementalField /> </div>
+
+
             <TerrainType terrainType={terrainType} setTerrainType={setTerrainType} />
 
           </ Grid>
@@ -122,7 +122,11 @@ export default function Image() {
 
         }} src="./image/Ryuutama.png" onClick={() => { console.log('click image') }} />
 
+
+
       </BackgroundPaper>
+
+
       {/* <div>Terrain Advantage left, Elemental Field</div>
 
       <Box

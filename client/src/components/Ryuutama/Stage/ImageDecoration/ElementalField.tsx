@@ -44,9 +44,12 @@ const theme = createTheme({
 
 export function ElementalField(prop: Props) {
 
+  const [age, setAge] = React.useState('');
   const [open, setOpen] = useState<boolean>(false);
 
-
+  const handleChange = (event: SelectChangeEvent) => {
+    setAge(event.target.value as string);
+  };
 
 
   const handleClickOpen = () => {
@@ -57,7 +60,7 @@ export function ElementalField(prop: Props) {
 
 
     if (event.target.src !== undefined) {
-      //still needs to be unbothered I guess?
+      //something
     }
     setOpen(false);
 
@@ -67,7 +70,9 @@ export function ElementalField(prop: Props) {
   return (
     <>
 
-      <div style={{ 'width': '15%', 'border': '1px green solid', }} onClick={handleClickOpen} />
+    <div>Elemental Field</div>
+
+      {/* <img style={{ 'width': '1000%', zIndex: '5' }} src={prop.terrainType} onClick={handleClickOpen} />
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Choose Color</DialogTitle>
@@ -75,11 +80,38 @@ export function ElementalField(prop: Props) {
 
           <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Alpine.png" onClick={handleClose} />
 
+          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Deep_Forest.png" onClick={handleClose} />
+
+          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Desert.png" onClick={handleClose} />
+
+          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Grassland.png" onClick={handleClose} />
+
+          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Highlands.png" onClick={handleClose} />
+
+          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Jungle.png" onClick={handleClose} />
+
+          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Mountain.png" onClick={handleClose} />
+
+          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Rocky_Terrain.png" onClick={handleClose} />
+
+          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Swamp.png" onClick={handleClose} />
+
+          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Wasteland.png" onClick={handleClose} />
+
+          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Woodland.png" onClick={handleClose} />
+
+          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Village.png" onClick={handleClose} />
+
+          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Town.png" onClick={handleClose} />
+
+          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_City.png" onClick={handleClose} />
+
+          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Large_City.png" onClick={handleClose} />
 
         </DialogContent>
 
       </Dialog>
-
+ */}
 
     </>
   )
