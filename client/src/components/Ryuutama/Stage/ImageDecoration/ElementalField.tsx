@@ -70,11 +70,14 @@ export function ElementalField(prop: Props) {
 
   return (
     <>
-      <div style={{ backgroundColor: 'red', height: '75%', borderRadius: '50%', width: '1000%', display: 'flex', alignItems: 'center' }}>
+      <div style={{ backgroundColor: 'red', 
+      height: '75%', borderRadius: '50%', width: '800%', display: 'flex', 
+      alignItems: 'center',
+      border: '1px black solid', }}>
 
-        <div style={{ backgroundColor: 'blue', height: '80%', borderRadius: '50%', width: '90%', display: 'flex', alignItems: 'center' }}>
+        <div style={{ backgroundColor: 'blue', height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
 
-          <div style={{ backgroundColor: 'yellow', padding: '5px', height: '50%', borderRadius: '50%', width: '65%'}}>
+          <div style={{ backgroundColor: 'yellow', padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid'}}>
 
           </div>
 
