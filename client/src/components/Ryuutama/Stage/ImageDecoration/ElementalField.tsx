@@ -21,6 +21,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import { textAlign } from '@mui/system';
 
 //this might need to be a drop down
 interface Props {
@@ -69,10 +70,19 @@ export function ElementalField(prop: Props) {
 
   return (
     <>
+      <div style={{ backgroundColor: 'red', height: '75%', borderRadius: '50%', width: '1000%', display: 'flex', alignItems: 'center' }}>
 
-    <div>Elemental Field</div>
+        <div style={{ backgroundColor: 'blue', height: '80%', borderRadius: '50%', width: '90%', display: 'flex', alignItems: 'center' }}>
 
-      {/* <img style={{ 'width': '1000%', zIndex: '5' }} src={prop.terrainType} onClick={handleClickOpen} />
+          <div style={{ backgroundColor: 'yellow', padding: '5px', height: '50%', borderRadius: '50%', width: '65%'}}>
+
+          </div>
+
+          </div>
+
+        </div>
+
+        {/* <img style={{ 'width': '1000%', zIndex: '5' }} src={prop.terrainType} onClick={handleClickOpen} />
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Choose Color</DialogTitle>
@@ -113,7 +123,7 @@ export function ElementalField(prop: Props) {
       </Dialog>
  */}
 
-    </>
-  )
+      </>
+      )
 }
 

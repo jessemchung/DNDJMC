@@ -22,10 +22,12 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 
+import {TerrainTypeInterface} from './_Types'
+
 //this might need to be a drop down
 interface Props {
-  setTerrainType: (terrain: string)=>(void),
-  terrainType: string,
+  setTerrainType: (terrain: TerrainTypeInterface['possibleURL'])=>(void),
+  terrainType: TerrainTypeInterface['possibleURL'],
 
 }
 

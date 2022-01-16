@@ -11,9 +11,11 @@ import Weather from './ImageDecoration/Weather.jsx'
 
 import { TerrainType } from './ImageDecoration/TerrainType.jsx'
 import { ElementalField } from './ImageDecoration/ElementalField.jsx'
+
+import { TerrainTypeInterface } from './ImageDecoration/_Types.jsx';
 export default function Image() {
 
-  const [terrainType, setTerrainType] = useState<string>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
+  const [terrainType, setTerrainType] = useState<TerrainTypeInterface['possibleURL']>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
 
 
 

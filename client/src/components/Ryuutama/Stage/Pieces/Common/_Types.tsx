@@ -28,3 +28,14 @@ export class newForm {
   }
 
 };
+
+
+export enum ReadingTypes {
+  Some = 'some',
+  Variants = 'variants',
+  Of = 'of',
+  Strings = 'strings',
+}
+export interface IReadings {
+ param: ReadingTypes
+}

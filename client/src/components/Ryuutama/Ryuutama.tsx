@@ -21,6 +21,7 @@ export default function Ryuutama() {
   const [value, setValue] = useState("yes");
   const [count, setCount] = useState(0);
   const [color, setColor] = useState("");
+  
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     textAlign: 'center',
