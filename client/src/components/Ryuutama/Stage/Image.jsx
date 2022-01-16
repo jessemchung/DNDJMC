@@ -32,63 +32,92 @@ function Image() {
     //it will have the pieces of information in the corner
     //terrain feature needed
     return (<>
-      <div style={{ position: 'relative' }}> Weather on left, Terrain on right </div>
-      <Box_1.default sx={{
+      {/* <div style={{ position: 'relative' }}> Weather on left, Terrain on right </div> */}
+      {/* <Box
+          sx={{
             display: 'flex',
             justifyContent: 'space-between',
             p: 1,
             m: 1,
             bgcolor: 'background.paper',
             borderRadius: 1,
-        }}>
-        <Grid_1.default container spacing={1} columns={8} sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            p: 1,
-            m: 1,
-            bgcolor: 'background.paper',
-            borderRadius: 1,
-        }}>
-
-          <Weather_jsx_1.default />
-
-          <TerrainType_jsx_1.TerrainType terrainType={terrainType} setTerrainType={setTerrainType}/>
-
-        </Grid_1.default>
-
-      </Box_1.default>
+          }}
+        >
+          <Grid container spacing={1} columns={8}
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              p: 1,
+              m: 1,
+              bgcolor: 'background.paper',
+              borderRadius: 1,
+            }}
+          >
+  
+            <Weather />
+  
+            <TerrainType terrainType={terrainType} setTerrainType={setTerrainType} />
+  
+          </ Grid>
+  
+        </Box> */}
 
 
 
       <BackgroundPaper>
 
+        <Box_1.default sx={{
+            position: 'absolute',
+            display: 'flex',
+            justifyContent: 'space-between',
+            top: 0,
+        }}>
+          <Grid_1.default container spacing={1} columns={8} sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            p: 1,
+            m: 1,
+            borderRadius: 1,
+        }}>
+
+            <Weather_jsx_1.default />
+
+            <TerrainType_jsx_1.TerrainType terrainType={terrainType} setTerrainType={setTerrainType}/>
+
+          </Grid_1.default>
+
+        </Box_1.default>
+
 
 
 
         <img style={{
-        // position: 'absolute',
-        // top: 0,
-        // left: 0,
-        // border: '1px red solid',
+            height: '80%'
+            // position: 'absolute',
+            // top: 0,
+            // left: 0,
+            // border: '1px red solid',
         }} src="./image/Ryuutama.png" onClick={function () { console.log('click image'); }}/>
 
       </BackgroundPaper>
-      <div>Terrain Advantage left, Elemental Field</div>
-
-      <Box_1.default sx={{
+      {/* <div>Terrain Advantage left, Elemental Field</div>
+  
+        <Box
+          sx={{
             display: 'flex',
             justifyContent: 'space-between',
             p: 1,
             m: 1,
             bgcolor: 'background.paper',
             borderRadius: 1,
-        }}>
-
-        <Weather_jsx_1.default />
-
-        <Weather_jsx_1.default />
-
-      </Box_1.default>
+          }}
+        >
+  
+          <Weather />
+  
+          <Weather />
+  
+        </Box> */}
 
     </>);
 }

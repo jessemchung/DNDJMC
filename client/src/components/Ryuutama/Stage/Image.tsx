@@ -23,9 +23,8 @@ export default function Image() {
     border: '1px green solid',
     backgroundImage: `url('./image/Ryuutama/Terrain/Ryuutama_Alpine.png')`,
     width: '100%',
-
     aspectRatio: '1.5 / 1',
-    backgroundRepeat:'no-repeat',
+    backgroundRepeat: 'no-repeat',
     backgroundSize: 'contain',
     display: 'flex',
     justifyContent: 'center',
@@ -47,10 +46,11 @@ export default function Image() {
   //terrain feature needed
 
 
+
   return (
     <>
-      <div style={{ position: 'relative' }}> Weather on left, Terrain on right </div>
-      <Box
+      {/* <div style={{ position: 'relative' }}> Weather on left, Terrain on right </div> */}
+      {/* <Box
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -77,16 +77,43 @@ export default function Image() {
 
         </ Grid>
 
-      </Box>
+      </Box> */}
 
 
 
       <BackgroundPaper >
 
+        <Box
+          sx={{
+            position: 'absolute',
+            display: 'flex',
+            justifyContent: 'space-between',
+            top: 0,
+          }}
+        >
+          <Grid container spacing={1} columns={8}
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              p: 1,
+              m: 1,
+              borderRadius: 1,
+            }}
+          >
+
+            <Weather />
+
+            <TerrainType terrainType={terrainType} setTerrainType={setTerrainType} />
+
+          </ Grid>
+
+        </Box>
+
 
 
 
         <img style={{
+          height: '80%'
           // position: 'absolute',
           // top: 0,
           // left: 0,
@@ -96,7 +123,7 @@ export default function Image() {
         }} src="./image/Ryuutama.png" onClick={() => { console.log('click image') }} />
 
       </BackgroundPaper>
-      <div>Terrain Advantage left, Elemental Field</div>
+      {/* <div>Terrain Advantage left, Elemental Field</div>
 
       <Box
         sx={{
@@ -113,7 +140,7 @@ export default function Image() {
 
         <Weather />
 
-      </Box>
+      </Box> */}
 
     </>
   )
