@@ -10,13 +10,14 @@ var styles_1 = require("@mui/material/styles");
 var Weather_jsx_1 = require("./ImageDecoration/Weather.jsx");
 var TerrainType_jsx_1 = require("./ImageDecoration/TerrainType.jsx");
 function Image() {
+    var _a = (0, react_1.useState)('./image/Ryuutama/Terrain/Ryuutama_Alpine.png'), terrainType = _a[0], setTerrainType = _a[1];
     var BackgroundPaper = (0, styles_1.styled)(Paper_1.default)(function (_a) {
         var theme = _a.theme;
         return ({
             textAlign: 'center',
             position: 'relative',
             border: '1px green solid',
-            backgroundImage: "url('./image/Ryuutama/Terrain/Ryuutama_Alpine.png')",
+            backgroundImage: "url(".concat(terrainType, ")"),
             width: '100%',
             aspectRatio: '1.5 / 1',
             backgroundRepeat: 'no-repeat',
@@ -26,7 +27,6 @@ function Image() {
             alignItems: 'center',
         });
     });
-    var _a = (0, react_1.useState)('./image/Ryuutama/Terrain/Ryuutama_Alpine.png'), terrainType = _a[0], setTerrainType = _a[1];
     //images are going to need to be there, it will likely need layers for a background which should be fine.
     //This is the main box
     //it will have the pieces of information in the corner

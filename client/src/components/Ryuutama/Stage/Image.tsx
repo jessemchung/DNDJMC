@@ -14,6 +14,7 @@ import { TerrainType } from './ImageDecoration/TerrainType.jsx'
 
 export default function Image() {
 
+  const [terrainType, setTerrainType] = useState<string>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
 
 
 
@@ -21,7 +22,7 @@ export default function Image() {
     textAlign: 'center',
     position: 'relative',
     border: '1px green solid',
-    backgroundImage: `url('./image/Ryuutama/Terrain/Ryuutama_Alpine.png')`,
+    backgroundImage: `url(${terrainType})`,
     width: '100%',
     aspectRatio: '1.5 / 1',
     backgroundRepeat: 'no-repeat',
@@ -34,7 +35,6 @@ export default function Image() {
 
 
 
-  const [terrainType, setTerrainType] = useState<string>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
 
   //images are going to need to be there, it will likely need layers for a background which should be fine.
 

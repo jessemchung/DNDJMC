@@ -40,7 +40,7 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
   return (
     <>
 
-      <Card sx={{ display: 'flex' }} >
+      <Card sx={{ display: 'flex', padding: '0px', margin: '0px'}} >
 
         <Grid container spacing={1} columns={2}>
 

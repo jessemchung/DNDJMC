@@ -50,7 +50,7 @@ function PropsBarIndividualCard() {
     };
     return (<>
 
-      <img style={{ 'width': '8%' }} src={weather} onClick={handleClickOpen}/>
+      <img style={{ 'width': '6%' }} src={weather} onClick={handleClickOpen}/>
 
       <Dialog_1.default open={open} onClose={handleClose}>
         <DialogTitle_1.default>Choose Weather</DialogTitle_1.default>

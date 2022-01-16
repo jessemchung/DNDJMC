@@ -37,7 +37,7 @@ function TerrainType(prop) {
     };
     return (<>
 
-      <img style={{ 'width': '15%' }} src={prop.terrainType} onClick={handleClickOpen}/>
+      <img style={{ 'height': '90%', 'width': '10%' }} src={prop.terrainType} onClick={handleClickOpen}/>
 
       <Dialog_1.default open={open} onClose={handleClose}>
         <DialogTitle_1.default>Choose Weather</DialogTitle_1.default>
