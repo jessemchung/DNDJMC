@@ -4,11 +4,29 @@ var react_1 = require("react");
 var randomColor = require('randomcolor'); // import the script
 var React = require("react");
 var Box_1 = require("@mui/material/Box");
+var Paper_1 = require("@mui/material/Paper");
 var Grid_1 = require("@mui/material/Grid");
+var styles_1 = require("@mui/material/styles");
 var Weather_jsx_1 = require("./ImageDecoration/Weather.jsx");
-var Terrain_jsx_1 = require("./ImageDecoration/Terrain.jsx");
+var TerrainType_jsx_1 = require("./ImageDecoration/TerrainType.jsx");
 function Image() {
-    var _a = (0, react_1.useState)('./image/Ryuutama/Terrain/Ryuutama_Alpine.png'), terrain = _a[0], setTerrain = _a[1];
+    var BackgroundPaper = (0, styles_1.styled)(Paper_1.default)(function (_a) {
+        var theme = _a.theme;
+        return ({
+            textAlign: 'center',
+            position: 'relative',
+            border: '1px green solid',
+            backgroundImage: "url('./image/Ryuutama/Terrain/Ryuutama_Alpine.png')",
+            width: '100%',
+            aspectRatio: '1.5 / 1',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'contain',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+        });
+    });
+    var _a = (0, react_1.useState)('./image/Ryuutama/Terrain/Ryuutama_Alpine.png'), terrainType = _a[0], setTerrainType = _a[1];
     //images are going to need to be there, it will likely need layers for a background which should be fine.
     //This is the main box
     //it will have the pieces of information in the corner
@@ -32,9 +50,9 @@ function Image() {
             borderRadius: 1,
         }}>
 
-        <Weather_jsx_1.default />
+          <Weather_jsx_1.default />
 
-        <Terrain_jsx_1.default />
+          <TerrainType_jsx_1.TerrainType terrainType={terrainType} setTerrainType={setTerrainType}/>
 
         </Grid_1.default>
 
@@ -42,11 +60,19 @@ function Image() {
 
 
 
+      <BackgroundPaper>
 
 
-      <img src="./image/Ryuutama.png" onClick={function () { console.log('click image'); }}/>
 
 
+        <img style={{
+        // position: 'absolute',
+        // top: 0,
+        // left: 0,
+        // border: '1px red solid',
+        }} src="./image/Ryuutama.png" onClick={function () { console.log('click image'); }}/>
+
+      </BackgroundPaper>
       <div>Terrain Advantage left, Elemental Field</div>
 
       <Box_1.default sx={{

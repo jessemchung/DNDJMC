@@ -10,11 +10,32 @@ import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import Weather from './ImageDecoration/Weather.jsx'
 
 import Terrain from './ImageDecoration/Terrain.jsx'
-import {TerrainType} from './ImageDecoration/TerrainType.jsx'
+import { TerrainType } from './ImageDecoration/TerrainType.jsx'
 
 export default function Image() {
 
-  const [terrain, setTerrain] = useState<string>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
+
+
+
+  const BackgroundPaper = styled(Paper)(({ theme }) => ({
+    textAlign: 'center',
+    position: 'relative',
+    border: '1px green solid',
+    backgroundImage: `url('./image/Ryuutama/Terrain/Ryuutama_Alpine.png')`,
+    width: '100%',
+
+    aspectRatio: '1.5 / 1',
+    backgroundRepeat:'no-repeat',
+    backgroundSize: 'contain',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  }));
+
+
+
+  const [terrainType, setTerrainType] = useState<string>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
 
   //images are going to need to be there, it will likely need layers for a background which should be fine.
 
@@ -39,20 +60,20 @@ export default function Image() {
           borderRadius: 1,
         }}
       >
-        <Grid container spacing={1} columns={8}         
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          p: 1,
-          m: 1,
-          bgcolor: 'background.paper',
-          borderRadius: 1,
-        }}
->
+        <Grid container spacing={1} columns={8}
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            p: 1,
+            m: 1,
+            bgcolor: 'background.paper',
+            borderRadius: 1,
+          }}
+        >
 
-        <Weather />
+          <Weather />
 
-        <Terrain />
+          <TerrainType terrainType={terrainType} setTerrainType={setTerrainType} />
 
         </ Grid>
 
@@ -60,11 +81,21 @@ export default function Image() {
 
 
 
+      <BackgroundPaper >
 
 
-      <img src="./image/Ryuutama.png" onClick={() => { console.log('click image') }} />
 
 
+        <img style={{
+          // position: 'absolute',
+          // top: 0,
+          // left: 0,
+          // border: '1px red solid',
+
+
+        }} src="./image/Ryuutama.png" onClick={() => { console.log('click image') }} />
+
+      </BackgroundPaper>
       <div>Terrain Advantage left, Elemental Field</div>
 
       <Box
