@@ -4,6 +4,11 @@ exports.ElementalField = void 0;
 var react_1 = require("react");
 var React = require("react");
 var styles_1 = require("@mui/material/styles");
+var Button_1 = require("@mui/material/Button");
+var Dialog_1 = require("@mui/material/Dialog");
+var DialogActions_1 = require("@mui/material/DialogActions");
+var DialogContent_1 = require("@mui/material/DialogContent");
+var DialogTitle_1 = require("@mui/material/DialogTitle");
 var colors_1 = require("@mui/material/colors");
 var theme = (0, styles_1.createTheme)({
     palette: {
@@ -18,11 +23,13 @@ var theme = (0, styles_1.createTheme)({
     },
 });
 function ElementalField(prop) {
-    var _a = React.useState(''), age = _a[0], setAge = _a[1];
-    var _b = (0, react_1.useState)(false), open = _b[0], setOpen = _b[1];
-    var handleChange = function (event) {
-        setAge(event.target.value);
-    };
+    var _a = (0, react_1.useState)(false), open = _a[0], setOpen = _a[1];
+    var _b = (0, react_1.useState)(false), first = _b[0], setFirst = _b[1];
+    var _c = (0, react_1.useState)(false), second = _c[0], setSecond = _c[1];
+    var _d = (0, react_1.useState)(false), third = _d[0], setThird = _d[1];
+    // const handleChange = (event: SelectChangeEvent) => {
+    //   setAge(event.target.value as string);
+    // };
     var handleClickOpen = function () {
         setOpen(true);
     };
@@ -33,10 +40,12 @@ function ElementalField(prop) {
         setOpen(false);
     };
     return (<>
-      <div style={{ backgroundColor: 'red',
+      <div style={{
+            backgroundColor: 'red',
             height: '75%', borderRadius: '50%', width: '800%', display: 'flex',
             alignItems: 'center',
-            border: '1px black solid', }}>
+            border: '1px black solid',
+        }} onClick={handleClickOpen}>
 
         <div style={{ backgroundColor: 'blue', height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
 
@@ -44,52 +53,64 @@ function ElementalField(prop) {
 
           </div>
 
-          </div>
-
         </div>
 
-        {/* <img style={{ 'width': '1000%', zIndex: '5' }} src={prop.terrainType} onClick={handleClickOpen} />
+      </div>
 
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Choose Color</DialogTitle>
-        <DialogContent>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Alpine.png" onClick={handleClose} />
+      <Dialog_1.default open={open} onClose={handleClose}>
+        <DialogTitle_1.default>Choose Color</DialogTitle_1.default>
+        <DialogContent_1.default>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Deep_Forest.png" onClick={handleClose} />
+          <div style={{
+            backgroundColor: 'red',
+            height: '80px', borderRadius: '50%', width: '20%', display: 'flex',
+            alignItems: 'center',
+            border: '1px black solid',
+            textAlign: 'center',
+            margin: '0 auto',
+        }} onClick={handleClickOpen}>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Desert.png" onClick={handleClose} />
+            <div style={{ backgroundColor: 'blue', height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Grassland.png" onClick={handleClose} />
+              <div style={{ backgroundColor: 'yellow', padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Highlands.png" onClick={handleClose} />
+              </div>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Jungle.png" onClick={handleClose} />
+            </div>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Mountain.png" onClick={handleClose} />
+          </div>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Rocky_Terrain.png" onClick={handleClose} />
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Swamp.png" onClick={handleClose} />
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Aura.png" onClick={handleClose}/>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Wasteland.png" onClick={handleClose} />
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Djinn.png" onClick={handleClose}/>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Woodland.png" onClick={handleClose} />
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Dryad.png" onClick={handleClose}/>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Village.png" onClick={handleClose} />
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Gnome.png" onClick={handleClose}/>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Town.png" onClick={handleClose} />
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Salamander.png" onClick={handleClose}/>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_City.png" onClick={handleClose} />
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Shade.png" onClick={handleClose}/>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Large_City.png" onClick={handleClose} />
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Undine.png" onClick={handleClose}/>
 
-        </DialogContent>
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Wisp.png" onClick={handleClose}/>
 
-      </Dialog>
- */}
 
-      </>);
+        </DialogContent_1.default>
+
+        <DialogActions_1.default>
+          <Button_1.default onClick={handleClose}>Cancel</Button_1.default>
+          <Button_1.default onClick={handleClose}>Subscribe</Button_1.default>
+        </DialogActions_1.default>
+
+
+      </Dialog_1.default>
+
+
+    </>);
 }
 exports.ElementalField = ElementalField;
 //# sourceMappingURL=ElementalField.jsx.map

@@ -45,12 +45,15 @@ const theme = createTheme({
 
 export function ElementalField(prop: Props) {
 
-  const [age, setAge] = React.useState('');
   const [open, setOpen] = useState<boolean>(false);
+  const [first, setFirst] = useState<boolean>(false);
+  const [second, setSecond] = useState<boolean>(false);
+  const [third, setThird] = useState<boolean>(false);
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value as string);
-  };
+
+  // const handleChange = (event: SelectChangeEvent) => {
+  //   setAge(event.target.value as string);
+  // };
 
 
   const handleClickOpen = () => {
@@ -70,63 +73,81 @@ export function ElementalField(prop: Props) {
 
   return (
     <>
-      <div style={{ backgroundColor: 'red', 
-      height: '75%', borderRadius: '50%', width: '800%', display: 'flex', 
-      alignItems: 'center',
-      border: '1px black solid', }}>
+      <div style={{
+        backgroundColor: 'red',
+        height: '75%', borderRadius: '50%', width: '800%', display: 'flex',
+        alignItems: 'center',
+        border: '1px black solid',
+      }}
+        onClick={handleClickOpen}
+      >
 
         <div style={{ backgroundColor: 'blue', height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
 
-          <div style={{ backgroundColor: 'yellow', padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid'}}>
-
-          </div>
+          <div style={{ backgroundColor: 'yellow', padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}>
 
           </div>
 
         </div>
 
-        {/* <img style={{ 'width': '1000%', zIndex: '5' }} src={prop.terrainType} onClick={handleClickOpen} />
+      </div>
+
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Choose Color</DialogTitle>
         <DialogContent>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Alpine.png" onClick={handleClose} />
+          <div style={{
+            backgroundColor: 'red',
+            height: '80px', borderRadius: '50%', width: '20%', display: 'flex',
+            alignItems: 'center',
+            border: '1px black solid',
+            textAlign: 'center',
+            margin: '0 auto',
+          }}
+            onClick={handleClickOpen}
+          >
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Deep_Forest.png" onClick={handleClose} />
+            <div style={{ backgroundColor: 'blue', height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Desert.png" onClick={handleClose} />
+              <div style={{ backgroundColor: 'yellow', padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Grassland.png" onClick={handleClose} />
+              </div>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Highlands.png" onClick={handleClose} />
+            </div>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Jungle.png" onClick={handleClose} />
+          </div>
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Mountain.png" onClick={handleClose} />
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Rocky_Terrain.png" onClick={handleClose} />
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Aura.png" onClick={handleClose} />
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Swamp.png" onClick={handleClose} />
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Djinn.png" onClick={handleClose} />
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Wasteland.png" onClick={handleClose} />
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Dryad.png" onClick={handleClose} />
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Woodland.png" onClick={handleClose} />
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Gnome.png" onClick={handleClose} />
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Village.png" onClick={handleClose} />
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Salamander.png" onClick={handleClose} />
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Town.png" onClick={handleClose} />
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Shade.png" onClick={handleClose} />
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_City.png" onClick={handleClose} />
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Undine.png" onClick={handleClose} />
 
-          <img style={{ 'width': '30%' }} src="./image/Ryuutama/Terrain/Ryuutama_Large_City.png" onClick={handleClose} />
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Wisp.png" onClick={handleClose} />
+
 
         </DialogContent>
 
-      </Dialog>
- */}
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose}>Subscribe</Button>
+        </DialogActions>
 
-      </>
-      )
+
+      </Dialog>
+
+
+    </>
+  )
 }
 
