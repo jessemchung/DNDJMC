@@ -42,7 +42,7 @@ function ElementalField(prop) {
     return (<>
       <div style={{
             backgroundColor: 'red',
-            height: '75%', borderRadius: '50%', width: '800%', display: 'flex',
+            height: '75%', borderRadius: '50%', width: '600%', display: 'flex',
             alignItems: 'center',
             border: '1px black solid',
         }} onClick={handleClickOpen}>

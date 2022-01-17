@@ -28,3 +28,7 @@ export interface Weather {
 
 }
 
+export enum ElementalFieldsColors {
+  salamander = 'dog',
+
+}

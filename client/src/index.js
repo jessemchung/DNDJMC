@@ -38,6 +38,9 @@ ReactDOM.render(
 
         <Route path="ryuutama" element={<Ryuutama />} />
 
+        <Route path="animation" element={<Ryuutama />} />
+
+
         {/* <Route path="journal" element={<Journal />} /> */}
 
 

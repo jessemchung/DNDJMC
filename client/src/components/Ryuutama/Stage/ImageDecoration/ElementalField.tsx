@@ -46,9 +46,9 @@ const theme = createTheme({
 export function ElementalField(prop: Props) {
 
   const [open, setOpen] = useState<boolean>(false);
-  const [first, setFirst] = useState<boolean>(false);
-  const [second, setSecond] = useState<boolean>(false);
-  const [third, setThird] = useState<boolean>(false);
+  const [first, setFirst] = useState<string | null>('unset');
+  const [second, setSecond] = useState<string | null>('unset');
+  const [third, setThird] = useState<string|null>('unset');
 
 
   // const handleChange = (event: SelectChangeEvent) => {
@@ -74,8 +74,8 @@ export function ElementalField(prop: Props) {
   return (
     <>
       <div style={{
-        backgroundColor: 'red',
-        height: '75%', borderRadius: '50%', width: '800%', display: 'flex',
+        backgroundColor: `${first}`,
+        height: '75%', borderRadius: '50%', width: '600%', display: 'flex',
         alignItems: 'center',
         border: '1px black solid',
       }}
