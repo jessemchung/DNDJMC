@@ -24,9 +24,9 @@ var theme = (0, styles_1.createTheme)({
 });
 function ElementalField(prop) {
     var _a = (0, react_1.useState)(false), open = _a[0], setOpen = _a[1];
-    var _b = (0, react_1.useState)(false), first = _b[0], setFirst = _b[1];
-    var _c = (0, react_1.useState)(false), second = _c[0], setSecond = _c[1];
-    var _d = (0, react_1.useState)(false), third = _d[0], setThird = _d[1];
+    var _b = (0, react_1.useState)('unset'), first = _b[0], setFirst = _b[1];
+    var _c = (0, react_1.useState)('unset'), second = _c[0], setSecond = _c[1];
+    var _d = (0, react_1.useState)('unset'), third = _d[0], setThird = _d[1];
     // const handleChange = (event: SelectChangeEvent) => {
     //   setAge(event.target.value as string);
     // };
@@ -41,7 +41,7 @@ function ElementalField(prop) {
     };
     return (<>
       <div style={{
-            backgroundColor: 'red',
+            backgroundColor: "".concat(first),
             height: '75%', borderRadius: '50%', width: '600%', display: 'flex',
             alignItems: 'center',
             border: '1px black solid',

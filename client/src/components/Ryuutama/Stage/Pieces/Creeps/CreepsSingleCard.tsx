@@ -20,8 +20,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { purple } from '@mui/material/colors';
-
-import {CreepsCardData} from '../Common/_Types.jsx'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import { CreepsCardData } from '../Common/_Types.jsx'
 
 interface Props {
   creepInfo: CreepsCardData,
@@ -30,26 +31,26 @@ interface Props {
 };
 
 
-
+//creeps images should vibrate when taking damage or something to that effect
 //card likely needs to have flex to split it in a half
 export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
-  
+
 
   // <Grid container spacing={1} columns={10}>
 
   return (
     <>
 
-      <Card sx={{ display: 'flex', padding: '0px', margin: '0px'}} >
+      <Card sx={{ display: 'flex', padding: '0px', margin: '0px', }} >
 
-        <Grid container spacing={1} columns={2}>
+        <Grid container spacing={1} columns={2} >
 
           <CardContent >
             <img src={prop.creepInfo.healthyImage} onClick={() => { console.log('click image') }} />
           </CardContent>
 
 
-          <CardContent >
+          <CardContent sx={{ maxWidth: '30%' }} >
             <Typography variant="body1" component="div" color="primary">
               {prop.creepInfo.name}
 
@@ -64,16 +65,32 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
               }}
             >
 
-              <Typography display="inline" variant="body2" align="left" >
-                HP
-              </Typography>
+
+              {/* <AddCircleOutlineIcon display="inline" style={{ position: 'relative', top: '14px' }} /> */}
+
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                flexWrap: 'nowrap',
+              }}>
+
+                <Typography display="inline" variant="body2" align="left" >
+                  HP
+                </Typography>
+
+                <RemoveCircleOutlineIcon />
+                <Typography display="inline" variant="body2" align="left">
+                  {prop.creepInfo.hitpoints}
 
 
-              <Typography display="inline" variant="body2" align="left">
-                {prop.creepInfo.hitpoints}
+                </Typography>
+
+                <AddCircleOutlineIcon />
 
 
-              </Typography>
+
+              </div>
+
 
             </Box>
 
@@ -119,6 +136,8 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
               sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
+                flexWrap: 'nowrap',
+
               }}
             >
 

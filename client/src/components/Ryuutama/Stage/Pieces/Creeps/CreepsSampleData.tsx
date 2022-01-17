@@ -9,7 +9,7 @@ export const CreepsSampleData: CreepsCardData[] = [
     'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
     'initiative': 2,
     'name': "Bradford",
-    'appearance': "purple hair",
+    'appearance': "purple hair, white skin",
 
   },
 

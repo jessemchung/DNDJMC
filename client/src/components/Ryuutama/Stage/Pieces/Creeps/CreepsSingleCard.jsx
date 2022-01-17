@@ -9,13 +9,16 @@ var Card_1 = require("@mui/material/Card");
 var CardContent_1 = require("@mui/material/CardContent");
 var Button_1 = require("@mui/material/Button");
 var Typography_1 = require("@mui/material/Typography");
+var AddCircleOutline_1 = require("@mui/icons-material/AddCircleOutline");
+var RemoveCircleOutline_1 = require("@mui/icons-material/RemoveCircleOutline");
 ;
+//creeps images should vibrate when taking damage or something to that effect
 //card likely needs to have flex to split it in a half
 var CreepsSingleCard = function (prop) {
     // <Grid container spacing={1} columns={10}>
     return (<>
 
-      <Card_1.default sx={{ display: 'flex', padding: '0px', margin: '0px' }}>
+      <Card_1.default sx={{ display: 'flex', padding: '0px', margin: '0px', }}>
 
         <Grid_1.default container spacing={1} columns={2}>
 
@@ -24,7 +27,7 @@ var CreepsSingleCard = function (prop) {
           </CardContent_1.default>
 
 
-          <CardContent_1.default>
+          <CardContent_1.default sx={{ maxWidth: '30%' }}>
             <Typography_1.default variant="body1" component="div" color="primary">
               {prop.creepInfo.name}
 
@@ -37,16 +40,32 @@ var CreepsSingleCard = function (prop) {
             justifyContent: 'space-between',
         }}>
 
-              <Typography_1.default display="inline" variant="body2" align="left">
-                HP
-              </Typography_1.default>
+
+              {/* <AddCircleOutlineIcon display="inline" style={{ position: 'relative', top: '14px' }} /> */}
+
+              <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            flexWrap: 'nowrap',
+        }}>
+
+                <Typography_1.default display="inline" variant="body2" align="left">
+                  HP
+                </Typography_1.default>
+
+                <RemoveCircleOutline_1.default />
+                <Typography_1.default display="inline" variant="body2" align="left">
+                  {prop.creepInfo.hitpoints}
 
 
-              <Typography_1.default display="inline" variant="body2" align="left">
-                {prop.creepInfo.hitpoints}
+                </Typography_1.default>
+
+                <AddCircleOutline_1.default />
 
 
-              </Typography_1.default>
+
+              </div>
+
 
             </Box_1.default>
 
@@ -87,6 +106,7 @@ var CreepsSingleCard = function (prop) {
             <Box_1.default sx={{
             display: 'flex',
             justifyContent: 'space-between',
+            flexWrap: 'nowrap',
         }}>
 
 
