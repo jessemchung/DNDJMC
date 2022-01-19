@@ -25,8 +25,8 @@ var theme = (0, styles_1.createTheme)({
 function ElementalField(prop) {
     var _a = (0, react_1.useState)(false), open = _a[0], setOpen = _a[1];
     var _b = (0, react_1.useState)('unset'), first = _b[0], setFirst = _b[1];
-    var _c = (0, react_1.useState)('unset'), second = _c[0], setSecond = _c[1];
-    var _d = (0, react_1.useState)('unset'), third = _d[0], setThird = _d[1];
+    var _c = (0, react_1.useState)('white'), second = _c[0], setSecond = _c[1];
+    var _d = (0, react_1.useState)('white'), third = _d[0], setThird = _d[1];
     // const handleChange = (event: SelectChangeEvent) => {
     //   setAge(event.target.value as string);
     // };
@@ -39,17 +39,25 @@ function ElementalField(prop) {
         }
         setOpen(false);
     };
+    var handleElementalChange = function (event) {
+        if (event.currentTarget.src !== undefined) {
+            console.log(event.currentTarget);
+        }
+        setThird(second);
+        setSecond(first);
+        setFirst('blue');
+    };
     return (<>
       <div style={{
-            backgroundColor: "".concat(first),
+            backgroundColor: "".concat(third),
             height: '75%', borderRadius: '50%', width: '600%', display: 'flex',
             alignItems: 'center',
             border: '1px black solid',
         }} onClick={handleClickOpen}>
 
-        <div style={{ backgroundColor: 'blue', height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
+        <div style={{ backgroundColor: "".concat(second), height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
 
-          <div style={{ backgroundColor: 'yellow', padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}>
+          <div style={{ backgroundColor: "".concat(first), padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}>
 
           </div>
 
@@ -63,7 +71,7 @@ function ElementalField(prop) {
         <DialogContent_1.default>
 
           <div style={{
-            backgroundColor: 'red',
+            backgroundColor: "".concat(third),
             height: '80px', borderRadius: '50%', width: '20%', display: 'flex',
             alignItems: 'center',
             border: '1px black solid',
@@ -71,9 +79,9 @@ function ElementalField(prop) {
             margin: '0 auto',
         }} onClick={handleClickOpen}>
 
-            <div style={{ backgroundColor: 'blue', height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
+            <div style={{ backgroundColor: "".concat(second), height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
 
-              <div style={{ backgroundColor: 'yellow', padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}>
+              <div style={{ backgroundColor: "".concat(first), padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}>
 
               </div>
 
@@ -82,7 +90,7 @@ function ElementalField(prop) {
           </div>
 
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Aura.png" onClick={handleClose}/>
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Aura.png" onClick={handleElementalChange}/>
 
           <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Djinn.png" onClick={handleClose}/>
 

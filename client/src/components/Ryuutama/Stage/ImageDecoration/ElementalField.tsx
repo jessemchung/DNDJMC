@@ -22,13 +22,16 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import { textAlign } from '@mui/system';
+import { Tab } from '@mui/material';
 
 //this might need to be a drop down
 interface Props {
 
 }
 
-
+interface SyntheticEvent<T> {
+  currentTarget: EventTarget & T;
+}
 
 const theme = createTheme({
   palette: {
@@ -47,8 +50,8 @@ export function ElementalField(prop: Props) {
 
   const [open, setOpen] = useState<boolean>(false);
   const [first, setFirst] = useState<string | null>('unset');
-  const [second, setSecond] = useState<string | null>('unset');
-  const [third, setThird] = useState<string|null>('unset');
+  const [second, setSecond] = useState<string | null>('white');
+  const [third, setThird] = useState<string | null>('white');
 
 
   // const handleChange = (event: SelectChangeEvent) => {
@@ -70,11 +73,25 @@ export function ElementalField(prop: Props) {
 
   };
 
+  const handleElementalChange = (event: React.SyntheticEvent<HTMLImageElement>) => {
+
+    if (event.currentTarget.src !== undefined) {
+      console.log(event.currentTarget);
+    }
+
+    setThird(second);
+    setSecond(first);
+    setFirst('blue');
+
+
+  };
+
+
 
   return (
     <>
       <div style={{
-        backgroundColor: `${first}`,
+        backgroundColor: `${third}`,
         height: '75%', borderRadius: '50%', width: '600%', display: 'flex',
         alignItems: 'center',
         border: '1px black solid',
@@ -82,9 +99,9 @@ export function ElementalField(prop: Props) {
         onClick={handleClickOpen}
       >
 
-        <div style={{ backgroundColor: 'blue', height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
+        <div style={{ backgroundColor: `${second}`, height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
 
-          <div style={{ backgroundColor: 'yellow', padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}>
+          <div style={{ backgroundColor: `${first}`, padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}>
 
           </div>
 
@@ -98,7 +115,7 @@ export function ElementalField(prop: Props) {
         <DialogContent>
 
           <div style={{
-            backgroundColor: 'red',
+            backgroundColor: `${third}`,
             height: '80px', borderRadius: '50%', width: '20%', display: 'flex',
             alignItems: 'center',
             border: '1px black solid',
@@ -108,9 +125,9 @@ export function ElementalField(prop: Props) {
             onClick={handleClickOpen}
           >
 
-            <div style={{ backgroundColor: 'blue', height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
+            <div style={{ backgroundColor:  `${second}`, height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
 
-              <div style={{ backgroundColor: 'yellow', padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}>
+              <div style={{ backgroundColor:  `${first}`, padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}>
 
               </div>
 
@@ -119,7 +136,7 @@ export function ElementalField(prop: Props) {
           </div>
 
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Aura.png" onClick={handleClose} />
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Aura.png" onClick={handleElementalChange} />
 
           <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Djinn.png" onClick={handleClose} />
 
