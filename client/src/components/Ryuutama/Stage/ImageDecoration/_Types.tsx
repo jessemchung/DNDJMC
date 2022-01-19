@@ -23,6 +23,8 @@ export interface TerrainTypeInterface {
   "./image/Ryuutama/Terrain/Ryuutama_Large_City.png",
 }
 
+
+
 export interface Weather {
   easing: "ease-in" | "ease-out" | "ease-in-out"
 

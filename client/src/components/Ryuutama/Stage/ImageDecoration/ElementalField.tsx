@@ -29,6 +29,19 @@ interface Props {
 
 }
 
+//add a color enum for all my things as well
+enum ElementalColors {
+
+  "./image/Ryuutama/Elements/Aura.png"= 'Yellow',
+  "./image/Ryuutama/Elements/Djinn.png" = 'Cyan',
+  "./image/Ryuutama/Elements/Dryad.png" = 'Green',
+  "./image/Ryuutama/Elements/Gnome.png" = 'Brown',
+  "./image/Ryuutama/Elements/Salamander.png" = 'red',
+  "./image/Ryuutama/Elements/Shade.png" = 'black',
+  "./image/Ryuutama/Elements/Undine.png" = 'blue',
+  "./image/Ryuutama/Elements/Wisp.png" = 'white',
+}
+
 interface SyntheticEvent<T> {
   currentTarget: EventTarget & T;
 }
