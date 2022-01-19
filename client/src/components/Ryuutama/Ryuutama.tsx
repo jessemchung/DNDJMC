@@ -21,7 +21,9 @@ export default function Ryuutama() {
   const [value, setValue] = useState("yes");
   const [count, setCount] = useState(0);
   const [color, setColor] = useState("");
+
   
+
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     textAlign: 'center',
@@ -32,23 +34,12 @@ export default function Ryuutama() {
   const darkTheme = createTheme({ palette: { mode: 'dark' } });
   const lightTheme = createTheme({ palette: { mode: 'light' } });
 
+// I would suspect we need to consider where initiative is decided.  It must start with the highest one I think.  If that is the case
+// then both values should start here I suppose, then it picks starting from the highest number
 
-  console.log(value, 'hello');
-  axios.get('/favorites')
-    .then(function (response) {
-      // handle success
-      console.log('should be the favorites', response.data);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    });
+//initiative will need to be tracked so that the next lowest one will be picked.
 
-  function increment() {
-    setCount(prevCount => prevCount + 1)
-  }
-
-
+// a roll can be given I suppose.  
 
   useEffect(() => {
     setColor(randomColor())
