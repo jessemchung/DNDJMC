@@ -32,7 +32,6 @@ var DialogActions_1 = require("@mui/material/DialogActions");
 var DialogContent_1 = require("@mui/material/DialogContent");
 var DialogContentText_1 = require("@mui/material/DialogContentText");
 var DialogTitle_1 = require("@mui/material/DialogTitle");
-//!Jesse unfinished
 function CreepsAdd(props) {
     var _a = (0, react_1.useState)(false), open = _a[0], setOpen = _a[1];
     var _b = (0, react_1.useState)({

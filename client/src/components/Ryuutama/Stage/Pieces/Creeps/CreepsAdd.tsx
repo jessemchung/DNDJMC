@@ -30,7 +30,6 @@ interface Props {
   fullDataCreeps: CreepsCardData[],
 }
 
-//!Jesse unfinished
 export function CreepsAdd(props:Props) {
   const [open, setOpen] = useState<boolean>(false);
   const [creepInfo, setCreepInfo] = useState<CreepsCardData>({
