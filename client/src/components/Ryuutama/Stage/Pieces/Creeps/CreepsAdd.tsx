@@ -75,7 +75,6 @@ export function CreepsAdd(props:Props) {
   };
 
   const onSubmit = () => {
-
     props.setFullDataCreeps([...props.fullDataCreeps, creepInfo])
     handleClose()
   }

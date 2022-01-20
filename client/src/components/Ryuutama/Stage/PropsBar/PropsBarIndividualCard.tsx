@@ -38,6 +38,9 @@ const bull = (
 
 const arrayOfBenefits = ['Protective', 'Hampering', 'Offensive']
 
+const arrayOfPermanent = ['Permanent', 'One-Use', 'Temporal']
+
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -59,6 +62,8 @@ export default function PropsBarIndividualCard() {
 
 
   const [benefit, setBenefit] = useState<number>(0);
+  const [benefitPermanent, setBenefitPermanent] = useState<number>(0);
+
 
   const [open, setOpen] = useState(false);
 
@@ -71,10 +76,22 @@ export default function PropsBarIndividualCard() {
 
   const toggleBenefit = () => {
 
-    if (benefit<2) {
+    if (benefit<arrayOfBenefits.length-1) {
       setBenefit(benefit+1)
     } else {
       setBenefit(0);
+    }
+
+
+  }
+
+  const togglePermBenefit = () => {
+
+    if (benefitPermanent<arrayOfPermanent.length-1) {
+      setBenefitPermanent(benefitPermanent+1)
+    } else {
+      console.log('what the heck');
+      setBenefitPermanent(0);
     }
 
 
@@ -132,6 +149,12 @@ export default function PropsBarIndividualCard() {
               <Button onClick={toggleBenefit}>
                 {arrayOfBenefits[benefit]}
               </Button>
+
+              <Button onClick={togglePermBenefit}>
+                {arrayOfPermanent[benefitPermanent]}
+              </Button>
+
+              arrayOfPermanent
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>Cancel</Button>

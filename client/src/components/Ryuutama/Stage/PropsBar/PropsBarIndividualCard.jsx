@@ -27,6 +27,7 @@ var bull = (<Box_1.default component="span" sx={{ display: 'inline-block', mx: '
     •
   </Box_1.default>);
 var arrayOfBenefits = ['Protective', 'Hampering', 'Offensive'];
+var arrayOfPermanent = ['Permanent', 'One-Use', 'Temporal'];
 var theme = (0, styles_1.createTheme)({
     palette: {
         primary: {
@@ -43,16 +44,26 @@ function PropsBarIndividualCard() {
     var _a = (0, react_1.useState)('Title'), title = _a[0], setTitle = _a[1];
     var _b = (0, react_1.useState)('Title'), titleEdit = _b[0], setTitleEdit = _b[1];
     var _c = (0, react_1.useState)(0), benefit = _c[0], setBenefit = _c[1];
-    var _d = (0, react_1.useState)(false), open = _d[0], setOpen = _d[1];
+    var _d = (0, react_1.useState)(0), benefitPermanent = _d[0], setBenefitPermanent = _d[1];
+    var _e = (0, react_1.useState)(false), open = _e[0], setOpen = _e[1];
     var handleClickOpen = function () {
         setOpen(true);
     };
     var toggleBenefit = function () {
-        if (benefit < 2) {
+        if (benefit < arrayOfBenefits.length - 1) {
             setBenefit(benefit + 1);
         }
         else {
             setBenefit(0);
+        }
+    };
+    var togglePermBenefit = function () {
+        if (benefitPermanent < arrayOfPermanent.length - 1) {
+            setBenefitPermanent(benefitPermanent + 1);
+        }
+        else {
+            console.log('what the heck');
+            setBenefitPermanent(0);
         }
     };
     var handleClose = function () {
@@ -92,6 +103,12 @@ function PropsBarIndividualCard() {
               <Button_1.default onClick={toggleBenefit}>
                 {arrayOfBenefits[benefit]}
               </Button_1.default>
+
+              <Button_1.default onClick={togglePermBenefit}>
+                {arrayOfPermanent[benefitPermanent]}
+              </Button_1.default>
+
+              arrayOfPermanent
             </DialogContent_1.default>
             <DialogActions_1.default>
               <Button_1.default onClick={handleClose}>Cancel</Button_1.default>

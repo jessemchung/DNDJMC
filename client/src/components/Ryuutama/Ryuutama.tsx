@@ -25,7 +25,7 @@ export default function Ryuutama() {
   const [value, setValue] = useState("yes");
   const [count, setCount] = useState(0);
   const [color, setColor] = useState("");
-  const [fullDataCreeps, setFullDataCreeps] = useState<CreepsCardData[]>(CreepsSampleData)
+  const [fullDataCreeps, setFullDataCreeps] = useState<CreepsCardData[]>([])
   const [initiative, setInitiative] = useState<number>(30);
 
   //if initiative is equal to the number it should be fixed
