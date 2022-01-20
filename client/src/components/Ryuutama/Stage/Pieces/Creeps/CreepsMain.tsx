@@ -25,7 +25,7 @@ interface Props {
 
 //cards will be an array of objects
 export default function Creeps(props: Props) {
-
+  console.log(props.fullDataCreeps, 'this should be correct')
 
   const allCards = props.fullDataCreeps.map((singleCard, index)=> {
 
@@ -40,7 +40,7 @@ export default function Creeps(props: Props) {
       {allCards}
       {/* <CreepsSampleCard /> */}
 
-      <CreepsAdd />
+      <CreepsAdd setFullDataCreeps={props.setFullDataCreeps} fullDataCreeps={props.fullDataCreeps}/>
     </>
   )
 }

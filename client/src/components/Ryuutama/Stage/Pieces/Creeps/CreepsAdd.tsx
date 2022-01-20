@@ -25,9 +25,13 @@ import {CreepsCardData} from '../Common/_Types.jsx'
 
 
 //this needs to ability to set CreepsAdd
+interface Props {
+  setFullDataCreeps: React.Dispatch<React.SetStateAction<CreepsCardData[]>>,
+  fullDataCreeps: CreepsCardData[],
+}
 
 //!Jesse unfinished
-export function CreepsAdd() {
+export function CreepsAdd(props:Props) {
   const [open, setOpen] = useState<boolean>(false);
   const [creepInfo, setCreepInfo] = useState<CreepsCardData>({
   'armor': 10,
@@ -42,9 +46,15 @@ export function CreepsAdd() {
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void=> {
     const {name, value} = e.target;
+    console.log(name, value);
+    setCreepInfo({
+      ...creepInfo,
+      [name] : value,
 
+    })
 
   }
+
 
   // 'armor': 6,
   // 'hitpoints':10,
@@ -63,6 +73,15 @@ export function CreepsAdd() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const onSubmit = () => {
+
+    props.setFullDataCreeps([...props.fullDataCreeps, creepInfo])
+    handleClose()
+  }
+
+  
+
   // <Grid container spacing={1} columns={10}>
 
   return (
@@ -79,6 +98,8 @@ export function CreepsAdd() {
           <TextField
             autoFocus
             margin="dense"
+            onChange={onChange}
+            value={creepInfo.name}
             id="name"
             name='name'
             label="Name"
@@ -91,6 +112,8 @@ export function CreepsAdd() {
             autoFocus
             margin="dense"
             id="armor"
+            onChange={onChange}
+            value={creepInfo.armor}
             name='armor'
             label="Armor"
             type="text"
@@ -101,6 +124,8 @@ export function CreepsAdd() {
           <TextField
             autoFocus
             margin="dense"
+            onChange={onChange}
+            value={creepInfo.initiative}
             id="initiative"
             name='initiative'
             label="Initiative"
@@ -113,6 +138,8 @@ export function CreepsAdd() {
             autoFocus
             margin="dense"
             id="appearance"
+            onChange={onChange}
+            value={creepInfo.appearance}
             name='appearance'
             label="Appearance"
             type="text"
@@ -124,6 +151,8 @@ export function CreepsAdd() {
             autoFocus
             margin="dense"
             id="bloodyImage"
+            onChange={onChange}
+            value={creepInfo.bloodyImage}
             name='bloodyImage'
             label="Bloody Image"
             type="text"
@@ -135,6 +164,9 @@ export function CreepsAdd() {
             autoFocus
             margin="dense"
             id="healthyImage"
+
+            onChange={onChange}
+            value={creepInfo.healthyImage}
             name='healthyImage'
             label="Healthy Image"
             type="text"
@@ -144,14 +176,10 @@ export function CreepsAdd() {
 
 
 
-          <Button>
-
-            Delete
-          </Button>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button onClick={onSubmit}>Add</Button>
         </DialogActions>
       </Dialog>
 

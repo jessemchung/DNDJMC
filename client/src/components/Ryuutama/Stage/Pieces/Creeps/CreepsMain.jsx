@@ -7,6 +7,7 @@ var CreepsAdd_jsx_1 = require("./CreepsAdd.jsx");
 ;
 //cards will be an array of objects
 function Creeps(props) {
+    console.log(props.fullDataCreeps, 'this should be correct');
     var allCards = props.fullDataCreeps.map(function (singleCard, index) {
         return (<CreepsSingleCard_jsx_1.CreepsSingleCard creepInfo={singleCard} key={index}/>);
     });
@@ -15,7 +16,7 @@ function Creeps(props) {
       {allCards}
       {/* <CreepsSampleCard /> */}
 
-      <CreepsAdd_jsx_1.CreepsAdd />
+      <CreepsAdd_jsx_1.CreepsAdd setFullDataCreeps={props.setFullDataCreeps} fullDataCreeps={props.fullDataCreeps}/>
     </>);
 }
 exports.default = Creeps;
