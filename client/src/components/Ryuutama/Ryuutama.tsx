@@ -30,7 +30,7 @@ export default function Ryuutama() {
 
   //if initiative is equal to the number it should be fixed
 
-  
+
   
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -96,7 +96,7 @@ export default function Ryuutama() {
 
                     <Item><div>Creeps </div>
 
-                    <CreepsMain />
+                    <CreepsMain fullDataCreeps={fullDataCreeps} setFullDataCreeps={setFullDataCreeps}/>
 
                     </Item>
 

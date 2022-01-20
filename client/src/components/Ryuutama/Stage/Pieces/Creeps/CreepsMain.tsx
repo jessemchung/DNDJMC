@@ -17,18 +17,17 @@ import {CreepsAdd} from './CreepsAdd.jsx'
 
 interface Props {
   fullDataCreeps: CreepsCardData[],
-  setFullDataCreeps: ()=>void,
+  setFullDataCreeps: React.Dispatch<React.SetStateAction<CreepsCardData[]>>,
   //this is expecting a single object
 
 };
 
 
 //cards will be an array of objects
-export default function Creeps() {
+export default function Creeps(props: Props) {
 
-  const [fullDataCreeps, setFullDataCreeps] = useState<CreepsCardData[]>(CreepsSampleData)
 
-  const allCards = fullDataCreeps.map((singleCard, index)=> {
+  const allCards = props.fullDataCreeps.map((singleCard, index)=> {
 
     return (
       <CreepsSingleCard creepInfo={singleCard} key={index} />

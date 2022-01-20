@@ -81,7 +81,7 @@ function Ryuutama() {
 
                     <Item><div>Creeps </div>
 
-                    <CreepsMain_jsx_1.default />
+                    <CreepsMain_jsx_1.default fullDataCreeps={fullDataCreeps} setFullDataCreeps={setFullDataCreeps}/>
 
                     </Item>
 
