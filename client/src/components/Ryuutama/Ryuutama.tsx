@@ -10,6 +10,10 @@ import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import MainStage from './Stage/MainStage.jsx'
 import FreepsMain from './Stage/Pieces/Freeps/FreepsMain.jsx'
 import CreepsMain from './Stage/Pieces/Creeps/CreepsMain.jsx'
+import {CreepsSampleData} from './Stage/Pieces/Creeps/CreepsSampleData.jsx'
+import {CreepsCardData} from './Stage/Pieces/Common/_Types.jsx'
+
+
 
 
 export default function Ryuutama() {
@@ -21,7 +25,12 @@ export default function Ryuutama() {
   const [value, setValue] = useState("yes");
   const [count, setCount] = useState(0);
   const [color, setColor] = useState("");
+  const [fullDataCreeps, setFullDataCreeps] = useState<CreepsCardData[]>(CreepsSampleData)
+  const [initiative, setInitiative] = useState<number>(30);
 
+  //if initiative is equal to the number it should be fixed
+
+  
   
 
   const Item = styled(Paper)(({ theme }) => ({

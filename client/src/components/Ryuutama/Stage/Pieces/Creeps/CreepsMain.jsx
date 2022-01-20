@@ -6,8 +6,7 @@ var React = require("react");
 var CreepsSampleData_jsx_1 = require("./CreepsSampleData.jsx");
 var CreepsSingleCard_jsx_1 = require("./CreepsSingleCard.jsx");
 var CreepsAdd_jsx_1 = require("./CreepsAdd.jsx");
-//add creep button on the bottom
-//this will need to grab from database or from sample data set
+;
 //cards will be an array of objects
 function Creeps() {
     var _a = (0, react_1.useState)(CreepsSampleData_jsx_1.CreepsSampleData), fullDataCreeps = _a[0], setFullDataCreeps = _a[1];

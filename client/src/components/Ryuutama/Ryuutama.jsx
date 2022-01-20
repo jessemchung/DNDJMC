@@ -17,36 +17,30 @@ var React = require("react");
 var Box_1 = require("@mui/material/Box");
 var Paper_1 = require("@mui/material/Paper");
 var Grid_1 = require("@mui/material/Grid");
-var axios_1 = require("axios");
 var styles_1 = require("@mui/material/styles");
 var MainStage_jsx_1 = require("./Stage/MainStage.jsx");
 var FreepsMain_jsx_1 = require("./Stage/Pieces/Freeps/FreepsMain.jsx");
 var CreepsMain_jsx_1 = require("./Stage/Pieces/Creeps/CreepsMain.jsx");
+var CreepsSampleData_jsx_1 = require("./Stage/Pieces/Creeps/CreepsSampleData.jsx");
 function Ryuutama() {
     // }
     // var color = randomColor(); // a hex code for an attractive color
     var _a = (0, react_1.useState)("yes"), value = _a[0], setValue = _a[1];
     var _b = (0, react_1.useState)(0), count = _b[0], setCount = _b[1];
     var _c = (0, react_1.useState)(""), color = _c[0], setColor = _c[1];
+    var _d = (0, react_1.useState)(CreepsSampleData_jsx_1.CreepsSampleData), fullDataCreeps = _d[0], setFullDataCreeps = _d[1];
+    var _e = (0, react_1.useState)(30), initiative = _e[0], setInitiative = _e[1];
+    //if initiative is equal to the number it should be fixed
     var Item = (0, styles_1.styled)(Paper_1.default)(function (_a) {
         var theme = _a.theme;
         return (__assign(__assign({}, theme.typography.body2), { textAlign: 'center', color: theme.palette.text.secondary, lineHeight: '10px' }));
     });
     var darkTheme = (0, styles_1.createTheme)({ palette: { mode: 'dark' } });
     var lightTheme = (0, styles_1.createTheme)({ palette: { mode: 'light' } });
-    console.log(value, 'hello');
-    axios_1.default.get('/favorites')
-        .then(function (response) {
-        // handle success
-        console.log('should be the favorites', response.data);
-    })
-        .catch(function (error) {
-        // handle error
-        console.log(error);
-    });
-    function increment() {
-        setCount(function (prevCount) { return prevCount + 1; });
-    }
+    // I would suspect we need to consider where initiative is decided.  It must start with the highest one I think.  If that is the case
+    // then both values should start here I suppose, then it picks starting from the highest number
+    //initiative will need to be tracked so that the next lowest one will be picked.
+    // a roll can be given I suppose.  
     (0, react_1.useEffect)(function () {
         setColor(randomColor());
     }, [count]);

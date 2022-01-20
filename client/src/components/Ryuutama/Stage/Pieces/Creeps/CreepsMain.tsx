@@ -15,6 +15,14 @@ import {CreepsAdd} from './CreepsAdd.jsx'
 //add creep button on the bottom
 //this will need to grab from database or from sample data set
 
+interface Props {
+  fullDataCreeps: CreepsCardData[],
+  setFullDataCreeps: ()=>void,
+  //this is expecting a single object
+
+};
+
+
 //cards will be an array of objects
 export default function Creeps() {
 

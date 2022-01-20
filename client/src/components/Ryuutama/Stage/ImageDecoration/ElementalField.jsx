@@ -10,6 +10,18 @@ var DialogActions_1 = require("@mui/material/DialogActions");
 var DialogContent_1 = require("@mui/material/DialogContent");
 var DialogTitle_1 = require("@mui/material/DialogTitle");
 var colors_1 = require("@mui/material/colors");
+//add a color enum for all my things as well
+var ElementalColors;
+(function (ElementalColors) {
+    ElementalColors["./image/Ryuutama/Elements/Aura.png"] = "Yellow";
+    ElementalColors["./image/Ryuutama/Elements/Djinn.png"] = "Cyan";
+    ElementalColors["./image/Ryuutama/Elements/Dryad.png"] = "Green";
+    ElementalColors["./image/Ryuutama/Elements/Gnome.png"] = "Brown";
+    ElementalColors["./image/Ryuutama/Elements/Salamander.png"] = "red";
+    ElementalColors["./image/Ryuutama/Elements/Shade.png"] = "black";
+    ElementalColors["./image/Ryuutama/Elements/Undine.png"] = "blue";
+    ElementalColors["./image/Ryuutama/Elements/Wisp.png"] = "white";
+})(ElementalColors || (ElementalColors = {}));
 var theme = (0, styles_1.createTheme)({
     palette: {
         primary: {
