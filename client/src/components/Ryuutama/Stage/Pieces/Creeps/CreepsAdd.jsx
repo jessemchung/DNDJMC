@@ -12,10 +12,29 @@ var DialogActions_1 = require("@mui/material/DialogActions");
 var DialogContent_1 = require("@mui/material/DialogContent");
 var DialogContentText_1 = require("@mui/material/DialogContentText");
 var DialogTitle_1 = require("@mui/material/DialogTitle");
-//card likely needs to have flex to split it in a half
+//this needs to ability to set CreepsAdd
+//!Jesse unfinished
 function CreepsAdd() {
     var _a = (0, react_1.useState)(false), open = _a[0], setOpen = _a[1];
-    var _b = (0, react_1.useState)({}), creepInfo = _b[0], setCreepInfo = _b[1];
+    var _b = (0, react_1.useState)({
+        'armor': 10,
+        'hitpoints': 10,
+        'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
+        'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
+        'initiative': 10,
+        'name': "Bradford",
+        'appearance': "purple hair, white skin",
+    }), creepInfo = _b[0], setCreepInfo = _b[1];
+    var onChange = function (e) {
+        var _a = e.target, name = _a.name, value = _a.value;
+    };
+    // 'armor': 6,
+    // 'hitpoints':10,
+    // 'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
+    // 'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
+    // 'initiative': 2,
+    // 'name': "Bradford",
+    // 'appearance': "purple hair, white skin",
     var handleClickOpen = function () {
         setOpen(true);
     };

@@ -21,11 +21,39 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { purple } from '@mui/material/colors';
+import {CreepsCardData} from '../Common/_Types.jsx'
 
-//card likely needs to have flex to split it in a half
+
+//this needs to ability to set CreepsAdd
+
+//!Jesse unfinished
 export function CreepsAdd() {
   const [open, setOpen] = useState<boolean>(false);
-  const [creepInfo, setCreepInfo] = useState({});
+  const [creepInfo, setCreepInfo] = useState<CreepsCardData>({
+  'armor': 10,
+  'hitpoints':10,
+  'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
+  'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
+  'initiative': 10,
+  'name': "Bradford",
+  'appearance': "purple hair, white skin",
+
+  });
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>): void=> {
+    const {name, value} = e.target;
+
+
+  }
+
+  // 'armor': 6,
+  // 'hitpoints':10,
+  // 'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
+  // 'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
+  // 'initiative': 2,
+  // 'name': "Bradford",
+  // 'appearance': "purple hair, white skin",
+
 
 
   const handleClickOpen = () => {
