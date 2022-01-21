@@ -11,6 +11,8 @@ import MainStage from './Stage/MainStage.jsx'
 import FreepsMain from './Stage/Pieces/Freeps/FreepsMain.jsx'
 import CreepsMain from './Stage/Pieces/Creeps/CreepsMain.jsx'
 import {CreepsSampleData} from './Stage/Pieces/Creeps/CreepsSampleData.jsx'
+import {FreepsSampleData} from './Stage/Pieces/Freeps/FreepsSampleData.jsx'
+
 import {CreepsCardData, FreepsCardData} from './Stage/Pieces/Common/_Types.jsx'
 
 
