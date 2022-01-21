@@ -22,12 +22,12 @@ interface Props {
 export default function FreepsMain(props: Props) {
 
 
-  // const allCards = props.fullDataCreeps.map((singleCard, index)=> {
+  const allCards = props.fullDataFreeps.map((singleCard, index)=> {
 
-  //   return (
-  //     <CreepsSingleCard creepInfo={singleCard} key={index} />
-  //   )
-  // })
+    return (
+      <FreepsSingleCard freepInfo={singleCard} key={index+"freeps"} />
+    )
+  })
 
 
   return (

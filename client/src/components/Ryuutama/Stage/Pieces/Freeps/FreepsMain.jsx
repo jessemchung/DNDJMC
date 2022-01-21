@@ -5,11 +5,9 @@ var React = require("react");
 var FreepsSampleCard_jsx_1 = require("./FreepsSampleCard.jsx");
 var FreepsSingleCard_jsx_1 = require("./FreepsSingleCard.jsx");
 function FreepsMain(props) {
-    // const allCards = props.fullDataCreeps.map((singleCard, index)=> {
-    //   return (
-    //     <CreepsSingleCard creepInfo={singleCard} key={index} />
-    //   )
-    // })
+    var allCards = props.fullDataFreeps.map(function (singleCard, index) {
+        return (<FreepsSingleCard_jsx_1.FreepsSingleCard freepInfo={singleCard} key={index + "freeps"}/>);
+    });
     return (<>
       <div> Freeps </div>
       <FreepsSampleCard_jsx_1.default />
