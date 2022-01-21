@@ -9,6 +9,7 @@ import axios from 'axios';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import FreepsSampleCard from './FreepsSampleCard.jsx'
 import {FreepsCardData} from '../Common/_Types.jsx'
+import {FreepsSingleCard} from './FreepsSingleCard.jsx'
 
 
 interface Props {
@@ -33,6 +34,8 @@ export default function FreepsMain(props: Props) {
     <>
       <div> Freeps </div>
       <FreepsSampleCard />
+
+      <FreepsSingleCard />
 
 
 

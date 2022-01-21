@@ -21,6 +21,7 @@ var styles_1 = require("@mui/material/styles");
 var MainStage_jsx_1 = require("./Stage/MainStage.jsx");
 var FreepsMain_jsx_1 = require("./Stage/Pieces/Freeps/FreepsMain.jsx");
 var CreepsMain_jsx_1 = require("./Stage/Pieces/Creeps/CreepsMain.jsx");
+var FreepsSampleData_jsx_1 = require("./Stage/Pieces/Freeps/FreepsSampleData.jsx");
 function Ryuutama() {
     // }
     // var color = randomColor(); // a hex code for an attractive color
@@ -28,7 +29,7 @@ function Ryuutama() {
     var _b = (0, react_1.useState)(0), count = _b[0], setCount = _b[1];
     var _c = (0, react_1.useState)(""), color = _c[0], setColor = _c[1];
     var _d = (0, react_1.useState)([]), fullDataCreeps = _d[0], setFullDataCreeps = _d[1];
-    var _e = (0, react_1.useState)([]), fullDataFreeps = _e[0], setFullDataFreeps = _e[1];
+    var _e = (0, react_1.useState)(FreepsSampleData_jsx_1.FreepsSampleData), fullDataFreeps = _e[0], setFullDataFreeps = _e[1];
     var _f = (0, react_1.useState)(30), initiative = _f[0], setInitiative = _f[1];
     //if initiative is equal to the number it should be fixed
     var Item = (0, styles_1.styled)(Paper_1.default)(function (_a) {

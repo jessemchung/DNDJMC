@@ -28,7 +28,7 @@ export default function Ryuutama() {
   const [count, setCount] = useState(0);
   const [color, setColor] = useState("");
   const [fullDataCreeps, setFullDataCreeps] = useState<CreepsCardData[]>([])
-  const [fullDataFreeps, setFullDataFreeps] = useState<FreepsCardData[]>([])
+  const [fullDataFreeps, setFullDataFreeps] = useState<FreepsCardData[]>(FreepsSampleData)
   const [initiative, setInitiative] = useState<number>(30);
 
   //if initiative is equal to the number it should be fixed
