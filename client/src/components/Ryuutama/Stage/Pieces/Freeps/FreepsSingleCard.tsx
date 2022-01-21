@@ -10,11 +10,10 @@ import {FreepsCardData} from '../Common/_Types.jsx'
 
 
 interface Props {
-
   freepInfo: FreepsCardData
 }
 
-export function FreepsSingleCard() {
+export function FreepsSingleCard(props: Props) {
   const theme = useTheme();
 
   return (
@@ -22,7 +21,7 @@ export function FreepsSingleCard() {
       <Box sx={{display:"grid", gridTemplateColumns:'2fr 1fr'}}>
         <CardContent >
           <Typography component="div" variant="h5">
-            Live From Space
+            {props.freepInfo.maxHitpoints}
           </Typography>
         </CardContent>
 

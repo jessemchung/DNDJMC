@@ -35,8 +35,8 @@ export default function FreepsMain(props: Props) {
       <div> Freeps </div>
       <FreepsSampleCard />
 
-      <FreepsSingleCard />
-
+      {/* <FreepsSingleCard /> */}
+      {allCards}
 
 
     </>

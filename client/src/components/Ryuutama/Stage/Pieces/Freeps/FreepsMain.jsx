@@ -12,8 +12,8 @@ function FreepsMain(props) {
       <div> Freeps </div>
       <FreepsSampleCard_jsx_1.default />
 
-      <FreepsSingleCard_jsx_1.FreepsSingleCard />
-
+      {/* <FreepsSingleCard /> */}
+      {allCards}
 
 
     </>);
