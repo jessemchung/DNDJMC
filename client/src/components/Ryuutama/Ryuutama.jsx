@@ -28,7 +28,8 @@ function Ryuutama() {
     var _b = (0, react_1.useState)(0), count = _b[0], setCount = _b[1];
     var _c = (0, react_1.useState)(""), color = _c[0], setColor = _c[1];
     var _d = (0, react_1.useState)([]), fullDataCreeps = _d[0], setFullDataCreeps = _d[1];
-    var _e = (0, react_1.useState)(30), initiative = _e[0], setInitiative = _e[1];
+    var _e = (0, react_1.useState)([]), fullDataFreeps = _e[0], setFullDataFreeps = _e[1];
+    var _f = (0, react_1.useState)(30), initiative = _f[0], setInitiative = _f[1];
     //if initiative is equal to the number it should be fixed
     var Item = (0, styles_1.styled)(Paper_1.default)(function (_a) {
         var theme = _a.theme;
@@ -66,7 +67,7 @@ function Ryuutama() {
                     <Item>
                       <div>Freeps</div>
 
-                      <FreepsMain_jsx_1.default />
+                      <FreepsMain_jsx_1.default fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps}/>
 
                     </Item>
 

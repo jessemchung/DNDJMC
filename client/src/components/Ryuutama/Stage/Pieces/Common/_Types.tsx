@@ -39,3 +39,13 @@ export enum ReadingTypes {
 export interface IReadings {
  param: ReadingTypes
 }
+
+export type FreepsCardData = {
+  'armor': number,
+  'bloodyImage': string,
+  'healthyImage': string,
+  'hitpoints':number,
+  'maxHitpoints': number,
+  'initiative': number,
+  'name': string,
+};

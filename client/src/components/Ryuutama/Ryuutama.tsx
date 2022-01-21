@@ -11,7 +11,7 @@ import MainStage from './Stage/MainStage.jsx'
 import FreepsMain from './Stage/Pieces/Freeps/FreepsMain.jsx'
 import CreepsMain from './Stage/Pieces/Creeps/CreepsMain.jsx'
 import {CreepsSampleData} from './Stage/Pieces/Creeps/CreepsSampleData.jsx'
-import {CreepsCardData} from './Stage/Pieces/Common/_Types.jsx'
+import {CreepsCardData, FreepsCardData} from './Stage/Pieces/Common/_Types.jsx'
 
 
 
@@ -26,6 +26,7 @@ export default function Ryuutama() {
   const [count, setCount] = useState(0);
   const [color, setColor] = useState("");
   const [fullDataCreeps, setFullDataCreeps] = useState<CreepsCardData[]>([])
+  const [fullDataFreeps, setFullDataFreeps] = useState<FreepsCardData[]>([])
   const [initiative, setInitiative] = useState<number>(30);
 
   //if initiative is equal to the number it should be fixed
@@ -82,7 +83,7 @@ export default function Ryuutama() {
                     <Item>
                       <div>Freeps</div>
 
-                      <FreepsMain />
+                      <FreepsMain fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps} />
 
                     </Item>
 
