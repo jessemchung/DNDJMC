@@ -16,7 +16,7 @@ export function FreepsSingleCard() {
 
   return (
     <Card >
-      <Box sx={{display:"flex",}}>
+      <Box sx={{display:"grid", gridTemplateColumns:'2fr 1fr'}}>
         <CardContent >
           <Typography component="div" variant="h5">
             Live From Space
