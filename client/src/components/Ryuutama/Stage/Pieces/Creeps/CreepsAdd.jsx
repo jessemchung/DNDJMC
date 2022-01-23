@@ -83,6 +83,10 @@ function CreepsAdd(props) {
 
           <TextField_1.default autoFocus margin="dense" onChange={onChange} value={creepInfo.initiative} id="initiative" name='initiative' label="Initiative" type="text" fullWidth variant="standard"/>
 
+
+
+
+    <TextField_1.default autoFocus margin="dense" onChange={onChange} value={creepInfo.hitpoints} id="hitpoints" name='hitpoints' label="hitpoints" type="text" fullWidth variant="standard"/>
           <TextField_1.default autoFocus margin="dense" id="appearance" onChange={onChange} value={creepInfo.appearance} name='appearance' label="Appearance" type="text" fullWidth variant="standard"/>
 
           <TextField_1.default autoFocus margin="dense" id="bloodyImage" onChange={onChange} value={creepInfo.bloodyImage} name='bloodyImage' label="Bloody Image" type="text" fullWidth variant="standard"/>

@@ -19,7 +19,8 @@ function RyuutamaTextField(props) {
     // <Grid container spacing={1} columns={10}>
     return (<>
 
-          <TextField_1.default autoFocus margin="dense" id={props.name} name='name' label="Name" type="text" fullWidth variant="standard"/>
+    <TextField_1.default autoFocus margin="dense" id={props.name} onChange={props.onChange} value={props.value} name={props.name} label={props.label} type="text" fullWidth variant="standard"/>
+
 
     </>);
 }

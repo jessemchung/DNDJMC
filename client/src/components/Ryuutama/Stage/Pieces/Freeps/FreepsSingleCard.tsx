@@ -27,7 +27,7 @@ export function FreepsSingleCard(props: Props) {
 
         <CardMedia
         component="img"
-        image="/image/Ryuutama/SampleIcons/BradBad.png"
+        image="/image/Personal/Ra.png"
         alt="Live from space album cover"
       />
       </Box>

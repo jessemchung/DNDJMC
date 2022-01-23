@@ -18,7 +18,7 @@ function FreepsSingleCard(props) {
           </Typography_1.default>
         </CardContent_1.default>
 
-        <CardMedia_1.default component="img" image="/image/Ryuutama/SampleIcons/BradBad.png" alt="Live from space album cover"/>
+        <CardMedia_1.default component="img" image="/image/Personal/Ra.png" alt="Live from space album cover"/>
       </Box_1.default>
 
     </Card_1.default>);
