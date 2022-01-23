@@ -26,7 +26,8 @@ import { purple } from '@mui/material/colors';
 interface Props {
   name: string
   label: string
-
+  value: any
+  onChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
 }
 
 //card likely needs to have flex to split it in a half
@@ -47,16 +48,20 @@ export function RyuutamaTextField(props: Props) {
   return (
     <>
 
-          <TextField
+<TextField
             autoFocus
             margin="dense"
             id={props.name}
-            name='name'
-            label="Name"
+
+            onChange={props.onChange}
+            value={props.value}
+            name={props.name}
+            label={props.label}
             type="text"
             fullWidth
             variant="standard"
           />
+
 
     </>
   )

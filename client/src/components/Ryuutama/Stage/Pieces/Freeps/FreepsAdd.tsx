@@ -132,11 +132,25 @@ export function CreepsAdd(props:Props) {
 <TextField
             autoFocus
             margin="dense"
-            id="armor"
+            id="maxHitpoints"
+            onChange={onChange}
+            value={creepInfo.maxHitpoints}
+            name='maxHitpoints'
+            label="Max Hitpoints"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
+
+
+<TextField
+            autoFocus
+            margin="dense"
+            id="hitpoints"
             onChange={onChange}
             value={creepInfo.hitpoints}
-            name='armor'
-            label="Armor"
+            name='hitpoints'
+            label="Hitpoints"
             type="text"
             fullWidth
             variant="standard"
@@ -184,9 +198,6 @@ export function CreepsAdd(props:Props) {
             fullWidth
             variant="standard"
           />
-
-
-
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
