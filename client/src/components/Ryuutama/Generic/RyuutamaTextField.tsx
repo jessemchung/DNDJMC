@@ -23,11 +23,15 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { purple } from '@mui/material/colors';
 
 
+type typeOfText = 'string' | 'number'
+
+
 interface Props {
   name: string
   label: string
   value: any
   onChange: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>
+  type: string
 }
 
 //card likely needs to have flex to split it in a half
