@@ -21,25 +21,25 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { purple } from '@mui/material/colors';
-import {CreepsCardData} from '../Common/_Types.jsx'
+import {FreepsCardData} from '../Common/_Types.jsx'
 
 
 //this needs to ability to set CreepsAdd
 interface Props {
-  setFullDataCreeps: React.Dispatch<React.SetStateAction<CreepsCardData[]>>,
-  fullDataCreeps: CreepsCardData[],
+  setFullDataCreeps: React.Dispatch<React.SetStateAction<FreepsCardData[]>>,
+  fullDataCreeps: FreepsCardData[],
 }
 
 export function CreepsAdd(props:Props) {
   const [open, setOpen] = useState<boolean>(false);
-  const [creepInfo, setCreepInfo] = useState<CreepsCardData>({
+  const [creepInfo, setCreepInfo] = useState<FreepsCardData>({
   'armor': 10,
   'hitpoints':10,
+  maxHitpoints:10,
   'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
   'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
   'initiative': 10,
   'name': "Bradford",
-  'appearance': "purple hair, white skin",
 
   });
 
@@ -55,6 +55,16 @@ export function CreepsAdd(props:Props) {
   }
 
 
+  const onHitpointChange = (e: React.ChangeEvent<HTMLInputElement>): void=> {
+    const {name, value} = e.target;
+    console.log(name, value);
+    setCreepInfo({
+      ...creepInfo,
+      [name] : value,
+
+    })
+
+  }
   // 'armor': 6,
   // 'hitpoints':10,
   // 'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
@@ -119,6 +129,21 @@ export function CreepsAdd(props:Props) {
             variant="standard"
           />
 
+<TextField
+            autoFocus
+            margin="dense"
+            id="armor"
+            onChange={onChange}
+            value={creepInfo.hitpoints}
+            name='armor'
+            label="Armor"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
+
+          {/* some sort of value must be here integrated into the value.  Maybe a button or box */}
+
           <TextField
             autoFocus
             margin="dense"
@@ -132,18 +157,6 @@ export function CreepsAdd(props:Props) {
             variant="standard"
           />
 
-          <TextField
-            autoFocus
-            margin="dense"
-            id="appearance"
-            onChange={onChange}
-            value={creepInfo.appearance}
-            name='appearance'
-            label="Appearance"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
 
           <TextField
             autoFocus

@@ -132,6 +132,18 @@ export function CreepsAdd(props:Props) {
             variant="standard"
           />
 
+<TextField
+            autoFocus
+            margin="dense"
+            onChange={onChange}
+            value={creepInfo.hitpoints}
+            id="hitpoints"
+            name='hitpoints'
+            label="hitpoints"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
           <TextField
             autoFocus
             margin="dense"
