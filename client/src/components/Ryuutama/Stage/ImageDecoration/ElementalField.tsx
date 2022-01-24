@@ -24,16 +24,17 @@ import FormControl from '@mui/material/FormControl';
 import { textAlign } from '@mui/system';
 import { Tab } from '@mui/material';
 
-//this might need to be a drop down
+//! cancel buttons might be not that useful.  I guess I could have a duplicate set that stores the temporary value
+// while the other stores the one shown in final screen but really?
 interface Props {
 
 }
 
 //add a color enum for all my things as well
-enum ElementalColors  {
-  
+enum ElementalColors {
 
-  "Aura"= 'yellow',
+
+  "Aura" = 'yellow',
   "Djinn" = 'cyan',
   "Dryad" = 'green',
   "Gnome" = 'brown',
@@ -78,31 +79,16 @@ export function ElementalField(prop: Props) {
   };
 
   const handleClose = (event: any) => {
-
-
-    if (event.target.src !== undefined) {
-      //something
-    }
     setOpen(false);
 
   };
 
   const handleElementalChange = (event: React.SyntheticEvent<HTMLImageElement>) => {
-
-    if (event.currentTarget.src !== undefined) {
-      console.log(event.currentTarget.id, 'are we here');
-    }
-
     let newFirst = event.currentTarget.id as keyof typeof ElementalColors;
-
-    console.log(ElementalColors[newFirst], newFirst, 'Jesse what is wrong here?');
-
     if (typeof (event.currentTarget.id) === 'string') {
       setThird(second);
       setSecond(first);
       setFirst(ElementalColors[newFirst]);
-
-
     }
 
 
@@ -120,15 +106,9 @@ export function ElementalField(prop: Props) {
       }}
         onClick={handleClickOpen}
       >
-
         <div style={{ backgroundColor: `${second}`, height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
-
-          <div style={{ backgroundColor: `${first}`, padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}>
-
-          </div>
-
+          <div style={{ backgroundColor: `${first}`, padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}></div>
         </div>
-
       </div>
 
 
@@ -147,16 +127,14 @@ export function ElementalField(prop: Props) {
             onClick={handleClickOpen}
           >
 
-            <div style={{ backgroundColor:  `${second}`, height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
+            <div style={{ backgroundColor: `${second}`, height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
 
-              <div style={{ backgroundColor:  `${first}`, padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}>
+              <div style={{ backgroundColor: `${first}`, padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}>
 
               </div>
 
             </div>
-
           </div>
-
 
           <img id={'Aura'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Aura.png" onClick={handleElementalChange} />
 
@@ -174,14 +152,11 @@ export function ElementalField(prop: Props) {
 
           <img id={'Wisp'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Wisp.png" onClick={handleElementalChange} />
 
-
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button onClick={handleClose}>Finish</Button>
         </DialogActions>
-
 
       </Dialog>
 

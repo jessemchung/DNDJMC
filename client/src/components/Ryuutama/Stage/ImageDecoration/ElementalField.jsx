@@ -46,17 +46,10 @@ function ElementalField(prop) {
         setOpen(true);
     };
     var handleClose = function (event) {
-        if (event.target.src !== undefined) {
-            //something
-        }
         setOpen(false);
     };
     var handleElementalChange = function (event) {
-        if (event.currentTarget.src !== undefined) {
-            console.log(event.currentTarget.id, 'are we here');
-        }
         var newFirst = event.currentTarget.id;
-        console.log(ElementalColors[newFirst], newFirst, 'Jesse what is wrong here?');
         if (typeof (event.currentTarget.id) === 'string') {
             setThird(second);
             setSecond(first);
@@ -70,15 +63,9 @@ function ElementalField(prop) {
             alignItems: 'center',
             border: '1px black solid',
         }} onClick={handleClickOpen}>
-
         <div style={{ backgroundColor: "".concat(second), height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
-
-          <div style={{ backgroundColor: "".concat(first), padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}>
-
-          </div>
-
+          <div style={{ backgroundColor: "".concat(first), padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}></div>
         </div>
-
       </div>
 
 
@@ -102,9 +89,7 @@ function ElementalField(prop) {
               </div>
 
             </div>
-
           </div>
-
 
           <img id={'Aura'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Aura.png" onClick={handleElementalChange}/>
 
@@ -122,14 +107,11 @@ function ElementalField(prop) {
 
           <img id={'Wisp'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Wisp.png" onClick={handleElementalChange}/>
 
-
         </DialogContent_1.default>
 
         <DialogActions_1.default>
-          <Button_1.default onClick={handleClose}>Cancel</Button_1.default>
-          <Button_1.default onClick={handleClose}>Subscribe</Button_1.default>
+          <Button_1.default onClick={handleClose}>Finish</Button_1.default>
         </DialogActions_1.default>
-
 
       </Dialog_1.default>
 
