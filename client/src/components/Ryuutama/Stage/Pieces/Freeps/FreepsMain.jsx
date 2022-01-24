@@ -7,7 +7,7 @@ var FreepsSingleCard_jsx_1 = require("./FreepsSingleCard.jsx");
 var FreepsAdd_jsx_1 = require("./FreepsAdd.jsx");
 function FreepsMain(props) {
     var allCards = props.fullDataFreeps.map(function (singleCard, index) {
-        return (<FreepsSingleCard_jsx_1.FreepsSingleCard freepInfo={singleCard} key={index + "freeps"}/>);
+        return (<FreepsSingleCard_jsx_1.FreepsSingleCard freepInfo={singleCard} key={index + "freeps"} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>);
     });
     return (<>
       <div> Freeps </div>
@@ -16,7 +16,7 @@ function FreepsMain(props) {
       {/* <FreepsSingleCard /> */}
       {allCards}
 
-      <FreepsAdd_jsx_1.FreepsAdd fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>
+      <FreepsAdd_jsx_1.FreepsAdd indexPieces={props.indexPieces} setIndexPieces={props.setIndexPieces} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>
     </>);
 }
 exports.default = FreepsMain;

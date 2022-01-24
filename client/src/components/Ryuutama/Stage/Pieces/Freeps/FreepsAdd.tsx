@@ -27,11 +27,14 @@ import {FreepsCardData} from '../Common/_Types.jsx'
 interface Props {
   setFullDataFreeps:React.Dispatch<React.SetStateAction<FreepsCardData[]>>, 
   fullDataFreeps: FreepsCardData[],
+  indexPieces: number,
+  setIndexPieces: React.Dispatch<React.SetStateAction<number>>,
 }
 
 export function FreepsAdd(props:Props) {
   const [open, setOpen] = useState<boolean>(false);
   const [freepInfo, setFreepInfo] = useState<FreepsCardData>({
+  'index': props.fullDataFreeps.length-1,
   'armor': 10,
   'hitpoints':10,
   'maxHitpoints':10,
@@ -82,7 +85,12 @@ export function FreepsAdd(props:Props) {
   };
 
   const onSubmit = () => {
+ 
+
     props.setFullDataFreeps([...props.fullDataFreeps, freepInfo])
+    
+    //! Jesse, there needs to be a scan of the next empty item for index pieces, otherwise this cannot be saved
+    
     handleClose()
   }
 

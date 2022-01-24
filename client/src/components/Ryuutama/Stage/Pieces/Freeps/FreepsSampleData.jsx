@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.FreepsSampleData = void 0;
 exports.FreepsSampleData = [
     {
+        'index': -1,
         'armor': 6,
         'hitpoints': 10,
         'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
@@ -12,6 +13,7 @@ exports.FreepsSampleData = [
         'maxHitpoints': 10,
     },
     {
+        'index': -2,
         'armor': 10,
         'hitpoints': 8,
         'healthyImage': './image/Ryuutama/SampleIcons/MarinerGood.png',
@@ -21,6 +23,7 @@ exports.FreepsSampleData = [
         'maxHitpoints': 8,
     },
     {
+        'index': -3,
         'armor': 12,
         'hitpoints': 12,
         'healthyImage': './image/Ryuutama/SampleIcons/TendiGood.png',
@@ -30,6 +33,7 @@ exports.FreepsSampleData = [
         'maxHitpoints': 12,
     },
     {
+        'index': -4,
         'armor': 11,
         'hitpoints': 18,
         'healthyImage': './image/Ryuutama/SampleIcons/SamGood.png',

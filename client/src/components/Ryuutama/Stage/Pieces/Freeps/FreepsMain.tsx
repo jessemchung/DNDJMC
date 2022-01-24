@@ -14,6 +14,9 @@ import {FreepsAdd} from './FreepsAdd.jsx'
 
 interface Props {
 
+  indexPieces: number,
+  setIndexPieces: React.Dispatch<React.SetStateAction<number>>,
+
   fullDataFreeps: FreepsCardData[],
   setFullDataFreeps:React.Dispatch<React.SetStateAction<FreepsCardData[]>>, 
 }
@@ -25,7 +28,7 @@ export default function FreepsMain(props: Props) {
   const allCards = props.fullDataFreeps.map((singleCard, index)=> {
 
     return (
-      <FreepsSingleCard freepInfo={singleCard} key={index+"freeps"} />
+      <FreepsSingleCard freepInfo={singleCard} key={index+"freeps"} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps} />
     )
   })
 
@@ -38,7 +41,7 @@ export default function FreepsMain(props: Props) {
       {/* <FreepsSingleCard /> */}
       {allCards}
 
-      <FreepsAdd fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>
+      <FreepsAdd indexPieces={props.indexPieces} setIndexPieces={props.setIndexPieces} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>
     </>
   )
 }

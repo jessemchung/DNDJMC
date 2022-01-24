@@ -3,6 +3,7 @@ import {FreepsCardData} from '../Common/_Types.jsx'
 
 export const FreepsSampleData: FreepsCardData[] = [
   {
+    'index': -1,
     'armor': 6,
     'hitpoints':10,
     'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
@@ -14,6 +15,7 @@ export const FreepsSampleData: FreepsCardData[] = [
   },
 
   {
+    'index': -2,
     'armor': 10,
     'hitpoints':8,
     'healthyImage': './image/Ryuutama/SampleIcons/MarinerGood.png',
@@ -24,6 +26,8 @@ export const FreepsSampleData: FreepsCardData[] = [
   },
 
   {
+    'index': -3,
+
     'armor': 12,
     'hitpoints':12,
     'healthyImage': './image/Ryuutama/SampleIcons/TendiGood.png',
@@ -34,6 +38,7 @@ export const FreepsSampleData: FreepsCardData[] = [
   },
 
   {
+    'index': -4,
     'armor': 11,
     'hitpoints':18,
     'healthyImage': './image/Ryuutama/SampleIcons/SamGood.png',

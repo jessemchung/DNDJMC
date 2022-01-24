@@ -31,6 +31,9 @@ function Ryuutama() {
     var _d = (0, react_1.useState)([]), fullDataCreeps = _d[0], setFullDataCreeps = _d[1];
     var _e = (0, react_1.useState)(FreepsSampleData_jsx_1.FreepsSampleData), fullDataFreeps = _e[0], setFullDataFreeps = _e[1];
     var _f = (0, react_1.useState)(30), initiative = _f[0], setInitiative = _f[1];
+    //readability probably trumps in thise case, I don't want to necessarilly have everything together
+    //intitiative can be check both
+    var _g = (0, react_1.useState)(0), indexFreeps = _g[0], setIndexFreeps = _g[1];
     //if initiative is equal to the number it should be fixed
     var Item = (0, styles_1.styled)(Paper_1.default)(function (_a) {
         var theme = _a.theme;
@@ -68,7 +71,7 @@ function Ryuutama() {
                     <Item>
                       <div>Freeps</div>
 
-                      <FreepsMain_jsx_1.default fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps}/>
+                      <FreepsMain_jsx_1.default indexPieces={indexFreeps} setIndexPieces={setIndexFreeps} fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps}/>
 
                     </Item>
 

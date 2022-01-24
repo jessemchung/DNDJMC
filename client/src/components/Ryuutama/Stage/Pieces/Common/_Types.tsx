@@ -41,6 +41,7 @@ export interface IReadings {
 }
 
 export type FreepsCardData = {
+  'index': number,
   'armor': number,
   'bloodyImage': string,
   'healthyImage': string,

@@ -35,6 +35,7 @@ var DialogTitle_1 = require("@mui/material/DialogTitle");
 function FreepsAdd(props) {
     var _a = (0, react_1.useState)(false), open = _a[0], setOpen = _a[1];
     var _b = (0, react_1.useState)({
+        'index': props.fullDataFreeps.length - 1,
         'armor': 10,
         'hitpoints': 10,
         'maxHitpoints': 10,
@@ -70,6 +71,7 @@ function FreepsAdd(props) {
     };
     var onSubmit = function () {
         props.setFullDataFreeps(__spreadArray(__spreadArray([], props.fullDataFreeps, true), [freepInfo], false));
+        //! Jesse, there needs to be a scan of the next empty item for index pieces, otherwise this cannot be saved
         handleClose();
     };
     // <Grid container spacing={1} columns={10}>

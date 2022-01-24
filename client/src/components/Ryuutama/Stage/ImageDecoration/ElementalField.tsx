@@ -32,8 +32,6 @@ interface Props {
 
 //add a color enum for all my things as well
 enum ElementalColors {
-
-
   "Aura" = 'yellow',
   "Djinn" = 'cyan',
   "Dryad" = 'green',

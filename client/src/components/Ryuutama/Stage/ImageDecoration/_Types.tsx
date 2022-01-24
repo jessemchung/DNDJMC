@@ -3,7 +3,6 @@ export interface ElementalField {
 
 }
 
-
 export interface TerrainTypeInterface {
   possibleURL:
   "./image/Ryuutama/Terrain/Ryuutama_Alpine.png" |

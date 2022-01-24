@@ -31,6 +31,11 @@ export default function Ryuutama() {
   const [fullDataFreeps, setFullDataFreeps] = useState<FreepsCardData[]>(FreepsSampleData)
   const [initiative, setInitiative] = useState<number>(30);
 
+  //readability probably trumps in thise case, I don't want to necessarilly have everything together
+  //intitiative can be check both
+  const [indexFreeps, setIndexFreeps] = useState<number>(0)
+
+
   //if initiative is equal to the number it should be fixed
 
 
@@ -41,6 +46,7 @@ export default function Ryuutama() {
     textAlign: 'center',
     color: theme.palette.text.secondary,
     lineHeight: '10px',
+    
   }));
 
   const darkTheme = createTheme({ palette: { mode: 'dark' } });
@@ -85,7 +91,7 @@ export default function Ryuutama() {
                     <Item>
                       <div>Freeps</div>
 
-                      <FreepsMain fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps} />
+                      <FreepsMain indexPieces={indexFreeps} setIndexPieces={setIndexFreeps} fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps} />
 
                     </Item>
 

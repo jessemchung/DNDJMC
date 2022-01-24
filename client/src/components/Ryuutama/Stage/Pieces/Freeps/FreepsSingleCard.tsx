@@ -11,15 +11,35 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
 
+//for canceling icons, it may be useful to index values so that things can have
+// the same name and be deleted quickly
+
+// should creeps and freeps be fused together?
+import CancelIcon from '@mui/icons-material/Cancel';
+
+//for deletion purposes, it may be best to have this get access to the overall number of and allow fixing
 interface Props {
-  freepInfo: FreepsCardData
+  freepInfo: FreepsCardData,
+  fullDataFreeps: FreepsCardData[],
+  setFullDataFreeps: React.Dispatch<React.SetStateAction<FreepsCardData[]>>,
+
 }
 
 export function FreepsSingleCard(props: Props) {
   const theme = useTheme();
 
+  const handleClick = () => {
+console.log('click')
+    //this must remove the dangerous element first
+
+    //then it must clean up
+    // for (let i:number = 0; i<)
+  }
+
   return (
     <Card >
+      <CancelIcon className={"CancelButton"} sx={{float: 'right'}} onClick={handleClick} />
+      
       <Box sx={{ display: "grid", gridTemplateColumns: '2fr 1fr', alignItems: 'center', }}>
         <CardContent >
           <Typography component="div" variant="body2">
@@ -32,9 +52,6 @@ export function FreepsSingleCard(props: Props) {
               justifyContent: 'space-between',
             }}
           >
-
-
-
 
             <Typography display="inline" variant="body2" align="left" >
               HP

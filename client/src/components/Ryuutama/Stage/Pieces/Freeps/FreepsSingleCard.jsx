@@ -10,9 +10,21 @@ var CardMedia_1 = require("@mui/material/CardMedia");
 var Typography_1 = require("@mui/material/Typography");
 var AddCircleOutline_1 = require("@mui/icons-material/AddCircleOutline");
 var RemoveCircleOutline_1 = require("@mui/icons-material/RemoveCircleOutline");
+//for canceling icons, it may be useful to index values so that things can have
+// the same name and be deleted quickly
+// should creeps and freeps be fused together?
+var Cancel_1 = require("@mui/icons-material/Cancel");
 function FreepsSingleCard(props) {
     var theme = (0, styles_1.useTheme)();
+    var handleClick = function () {
+        console.log('click');
+        //this must remove the dangerous element first
+        //then it must clean up
+        // for (let i:number = 0; i<)
+    };
     return (<Card_1.default>
+      <Cancel_1.default className={"CancelButton"} sx={{ float: 'right' }} onClick={handleClick}/>
+      
       <Box_1.default sx={{ display: "grid", gridTemplateColumns: '2fr 1fr', alignItems: 'center', }}>
         <CardContent_1.default>
           <Typography_1.default component="div" variant="body2">
@@ -23,9 +35,6 @@ function FreepsSingleCard(props) {
             display: 'flex',
             justifyContent: 'space-between',
         }}>
-
-
-
 
             <Typography_1.default display="inline" variant="body2" align="left">
               HP
