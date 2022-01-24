@@ -13,14 +13,14 @@ var colors_1 = require("@mui/material/colors");
 //add a color enum for all my things as well
 var ElementalColors;
 (function (ElementalColors) {
-    ElementalColors["./image/Ryuutama/Elements/Aura.png"] = "yellow";
-    ElementalColors["./image/Ryuutama/Elements/Djinn.png"] = "cyan";
-    ElementalColors["./image/Ryuutama/Elements/Dryad.png"] = "green";
-    ElementalColors["./image/Ryuutama/Elements/Gnome.png"] = "brown";
-    ElementalColors["./image/Ryuutama/Elements/Salamander.png"] = "red";
-    ElementalColors["./image/Ryuutama/Elements/Shade.png"] = "black";
-    ElementalColors["./image/Ryuutama/Elements/Undine.png"] = "blue";
-    ElementalColors["./image/Ryuutama/Elements/Wisp.png"] = "white";
+    ElementalColors["Aura"] = "yellow";
+    ElementalColors["Djinn"] = "cyan";
+    ElementalColors["Dryad"] = "green";
+    ElementalColors["Gnome"] = "brown";
+    ElementalColors["Salamander"] = "red";
+    ElementalColors["Shade"] = "black";
+    ElementalColors["Undine"] = "blue";
+    ElementalColors["Wisp"] = "white";
 })(ElementalColors || (ElementalColors = {}));
 var theme = (0, styles_1.createTheme)({
     palette: {
@@ -53,13 +53,14 @@ function ElementalField(prop) {
     };
     var handleElementalChange = function (event) {
         if (event.currentTarget.src !== undefined) {
-            console.log(event.currentTarget);
+            console.log(event.currentTarget.id, 'are we here');
         }
-        var newFirst = event.currentTarget.src;
-        if (typeof (event.currentTarget.src) === 'string') {
+        var newFirst = event.currentTarget.id;
+        console.log(ElementalColors[newFirst], newFirst, 'Jesse what is wrong here?');
+        if (typeof (event.currentTarget.id) === 'string') {
             setThird(second);
             setSecond(first);
-            setFirst(newFirst);
+            setFirst(ElementalColors[newFirst]);
         }
     };
     return (<>
@@ -105,21 +106,21 @@ function ElementalField(prop) {
           </div>
 
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Aura.png" onClick={handleElementalChange}/>
+          <img id={'Aura'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Aura.png" onClick={handleElementalChange}/>
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Djinn.png" onClick={handleElementalChange}/>
+          <img id={'Djinn'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Djinn.png" onClick={handleElementalChange}/>
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Dryad.png" onClick={handleElementalChange}/>
+          <img id={'Dryad'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Dryad.png" onClick={handleElementalChange}/>
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Gnome.png" onClick={handleElementalChange}/>
+          <img id={'Gnome'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Gnome.png" onClick={handleElementalChange}/>
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Salamander.png" onClick={handleElementalChange}/>
+          <img id={'Salamander'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Salamander.png" onClick={handleElementalChange}/>
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Shade.png" onClick={handleElementalChange}/>
+          <img id={'Shade'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Shade.png" onClick={handleElementalChange}/>
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Undine.png" onClick={handleElementalChange}/>
+          <img id={'Undine'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Undine.png" onClick={handleElementalChange}/>
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Wisp.png" onClick={handleElementalChange}/>
+          <img id={'Wisp'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Wisp.png" onClick={handleElementalChange}/>
 
 
         </DialogContent_1.default>

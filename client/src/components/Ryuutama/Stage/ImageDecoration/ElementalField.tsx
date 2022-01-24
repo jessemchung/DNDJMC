@@ -31,15 +31,16 @@ interface Props {
 
 //add a color enum for all my things as well
 enum ElementalColors  {
+  
 
-  "./image/Ryuutama/Elements/Aura.png"= 'yellow',
-  "./image/Ryuutama/Elements/Djinn.png" = 'cyan',
-  "./image/Ryuutama/Elements/Dryad.png" = 'green',
-  "./image/Ryuutama/Elements/Gnome.png" = 'brown',
-  "./image/Ryuutama/Elements/Salamander.png" = 'red',
-  "./image/Ryuutama/Elements/Shade.png" = 'black',
-  "./image/Ryuutama/Elements/Undine.png" = 'blue',
-  "./image/Ryuutama/Elements/Wisp.png" = 'white',
+  "Aura"= 'yellow',
+  "Djinn" = 'cyan',
+  "Dryad" = 'green',
+  "Gnome" = 'brown',
+  "Salamander" = 'red',
+  "Shade" = 'black',
+  "Undine" = 'blue',
+  "Wisp" = 'white',
 }
 
 interface SyntheticEvent<T> {
@@ -89,15 +90,18 @@ export function ElementalField(prop: Props) {
   const handleElementalChange = (event: React.SyntheticEvent<HTMLImageElement>) => {
 
     if (event.currentTarget.src !== undefined) {
-      console.log(event.currentTarget);
+      console.log(event.currentTarget.id, 'are we here');
     }
 
-    let newFirst = event.currentTarget.src as ElementalColors;
+    let newFirst = event.currentTarget.id as keyof typeof ElementalColors;
 
-    if (typeof (event.currentTarget.src) === 'string') {
+    console.log(ElementalColors[newFirst], newFirst, 'Jesse what is wrong here?');
+
+    if (typeof (event.currentTarget.id) === 'string') {
       setThird(second);
       setSecond(first);
-      setFirst(newFirst);
+      setFirst(ElementalColors[newFirst]);
+
 
     }
 
@@ -154,21 +158,21 @@ export function ElementalField(prop: Props) {
           </div>
 
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Aura.png" onClick={handleElementalChange} />
+          <img id={'Aura'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Aura.png" onClick={handleElementalChange} />
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Djinn.png" onClick={handleElementalChange} />
+          <img id={'Djinn'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Djinn.png" onClick={handleElementalChange} />
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Dryad.png" onClick={handleElementalChange} />
+          <img id={'Dryad'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Dryad.png" onClick={handleElementalChange} />
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Gnome.png" onClick={handleElementalChange} />
+          <img id={'Gnome'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Gnome.png" onClick={handleElementalChange} />
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Salamander.png" onClick={handleElementalChange} />
+          <img id={'Salamander'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Salamander.png" onClick={handleElementalChange} />
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Shade.png" onClick={handleElementalChange} />
+          <img id={'Shade'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Shade.png" onClick={handleElementalChange} />
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Undine.png" onClick={handleElementalChange} />
+          <img id={'Undine'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Undine.png" onClick={handleElementalChange} />
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Wisp.png" onClick={handleElementalChange} />
+          <img id={'Wisp'} style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Wisp.png" onClick={handleElementalChange} />
 
 
         </DialogContent>
