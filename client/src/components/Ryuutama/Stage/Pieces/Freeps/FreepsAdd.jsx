@@ -21,7 +21,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     return to.concat(ar || Array.prototype.slice.call(from));
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreepsAdd = void 0;
+exports.FreepsAdd = void 0;
 var react_1 = require("react");
 var randomColor = require('randomcolor'); // import the script
 var React = require("react");
@@ -32,7 +32,7 @@ var DialogActions_1 = require("@mui/material/DialogActions");
 var DialogContent_1 = require("@mui/material/DialogContent");
 var DialogContentText_1 = require("@mui/material/DialogContentText");
 var DialogTitle_1 = require("@mui/material/DialogTitle");
-function CreepsAdd(props) {
+function FreepsAdd(props) {
     var _a = (0, react_1.useState)(false), open = _a[0], setOpen = _a[1];
     var _b = (0, react_1.useState)({
         'armor': 10,
@@ -42,18 +42,18 @@ function CreepsAdd(props) {
         'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
         'initiative': 10,
         'name': "Bradford",
-    }), creepInfo = _b[0], setCreepInfo = _b[1];
+    }), freepInfo = _b[0], setFreepInfo = _b[1];
     var onChange = function (e) {
         var _a;
         var _b = e.target, name = _b.name, value = _b.value;
         console.log(name, value);
-        setCreepInfo(__assign(__assign({}, creepInfo), (_a = {}, _a[name] = value, _a)));
+        setFreepInfo(__assign(__assign({}, freepInfo), (_a = {}, _a[name] = value, _a)));
     };
     var onHitpointChange = function (e) {
         var _a;
         var _b = e.target, name = _b.name, value = _b.value;
         console.log(name, value);
-        setCreepInfo(__assign(__assign({}, creepInfo), (_a = {}, _a[name] = value, _a)));
+        setFreepInfo(__assign(__assign({}, freepInfo), (_a = {}, _a[name] = value, _a)));
     };
     // 'armor': 6,
     // 'hitpoints':10,
@@ -69,7 +69,7 @@ function CreepsAdd(props) {
         setOpen(false);
     };
     var onSubmit = function () {
-        props.setFullDataCreeps(__spreadArray(__spreadArray([], props.fullDataCreeps, true), [creepInfo], false));
+        props.setFullDataFreeps(__spreadArray(__spreadArray([], props.fullDataFreeps, true), [freepInfo], false));
         handleClose();
     };
     // <Grid container spacing={1} columns={10}>
@@ -83,23 +83,23 @@ function CreepsAdd(props) {
           <DialogContentText_1.default>
             Fill Out Your Creep Here
           </DialogContentText_1.default>
-          <TextField_1.default autoFocus margin="dense" onChange={onChange} value={creepInfo.name} id="name" name='name' label="Name" type="text" fullWidth variant="standard"/>
+          <TextField_1.default autoFocus margin="dense" onChange={onChange} value={freepInfo.name} id="name" name='name' label="Name" type="text" fullWidth variant="standard"/>
 
-          <TextField_1.default autoFocus margin="dense" id="armor" onChange={onChange} value={creepInfo.armor} name='armor' label="Armor" type="text" fullWidth variant="standard"/>
+          <TextField_1.default autoFocus margin="dense" id="armor" onChange={onChange} value={freepInfo.armor} name='armor' label="Armor" type="text" fullWidth variant="standard"/>
 
-    <TextField_1.default autoFocus margin="dense" id="maxHitpoints" onChange={onChange} value={creepInfo.maxHitpoints} name='maxHitpoints' label="Max Hitpoints" type="text" fullWidth variant="standard"/>
+    <TextField_1.default autoFocus margin="dense" id="maxHitpoints" onChange={onChange} value={freepInfo.maxHitpoints} name='maxHitpoints' label="Max Hitpoints" type="text" fullWidth variant="standard"/>
 
 
-    <TextField_1.default autoFocus margin="dense" id="hitpoints" onChange={onChange} value={creepInfo.hitpoints} name='hitpoints' label="Hitpoints" type="text" fullWidth variant="standard"/>
+    <TextField_1.default autoFocus margin="dense" id="hitpoints" onChange={onChange} value={freepInfo.hitpoints} name='hitpoints' label="Hitpoints" type="text" fullWidth variant="standard"/>
 
           {/* some sort of value must be here integrated into the value.  Maybe a button or box */}
 
-          <TextField_1.default autoFocus margin="dense" onChange={onChange} value={creepInfo.initiative} id="initiative" name='initiative' label="Initiative" type="text" fullWidth variant="standard"/>
+          <TextField_1.default autoFocus margin="dense" onChange={onChange} value={freepInfo.initiative} id="initiative" name='initiative' label="Initiative" type="text" fullWidth variant="standard"/>
 
 
-          <TextField_1.default autoFocus margin="dense" id="bloodyImage" onChange={onChange} value={creepInfo.bloodyImage} name='bloodyImage' label="Bloody Image" type="text" fullWidth variant="standard"/>
+          <TextField_1.default autoFocus margin="dense" id="bloodyImage" onChange={onChange} value={freepInfo.bloodyImage} name='bloodyImage' label="Bloody Image" type="text" fullWidth variant="standard"/>
 
-          <TextField_1.default autoFocus margin="dense" id="healthyImage" onChange={onChange} value={creepInfo.healthyImage} name='healthyImage' label="Healthy Image" type="text" fullWidth variant="standard"/>
+          <TextField_1.default autoFocus margin="dense" id="healthyImage" onChange={onChange} value={freepInfo.healthyImage} name='healthyImage' label="Healthy Image" type="text" fullWidth variant="standard"/>
         </DialogContent_1.default>
         <DialogActions_1.default>
           <Button_1.default onClick={handleClose}>Cancel</Button_1.default>
@@ -110,5 +110,5 @@ function CreepsAdd(props) {
 
     </>);
 }
-exports.CreepsAdd = CreepsAdd;
+exports.FreepsAdd = FreepsAdd;
 //# sourceMappingURL=FreepsAdd.jsx.map

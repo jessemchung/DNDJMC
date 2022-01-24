@@ -26,13 +26,13 @@ import {FreepsCardData} from '../Common/_Types.jsx'
 
 //this needs to ability to set CreepsAdd
 interface Props {
-  setFullDataCreeps: React.Dispatch<React.SetStateAction<FreepsCardData[]>>,
-  fullDataCreeps: FreepsCardData[],
+  setFullDataFreeps:React.Dispatch<React.SetStateAction<FreepsCardData[]>>, 
+  fullDataFreeps: FreepsCardData[],
 }
 
-export function CreepsAdd(props:Props) {
+export function FreepsAdd(props:Props) {
   const [open, setOpen] = useState<boolean>(false);
-  const [creepInfo, setCreepInfo] = useState<FreepsCardData>({
+  const [freepInfo, setFreepInfo] = useState<FreepsCardData>({
   'armor': 10,
   'hitpoints':10,
   maxHitpoints:10,
@@ -46,8 +46,8 @@ export function CreepsAdd(props:Props) {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void=> {
     const {name, value} = e.target;
     console.log(name, value);
-    setCreepInfo({
-      ...creepInfo,
+    setFreepInfo({
+      ...freepInfo,
       [name] : value,
 
     })
@@ -58,8 +58,8 @@ export function CreepsAdd(props:Props) {
   const onHitpointChange = (e: React.ChangeEvent<HTMLInputElement>): void=> {
     const {name, value} = e.target;
     console.log(name, value);
-    setCreepInfo({
-      ...creepInfo,
+    setFreepInfo({
+      ...freepInfo,
       [name] : value,
 
     })
@@ -84,7 +84,7 @@ export function CreepsAdd(props:Props) {
   };
 
   const onSubmit = () => {
-    props.setFullDataCreeps([...props.fullDataCreeps, creepInfo])
+    props.setFullDataFreeps([...props.fullDataFreeps, freepInfo])
     handleClose()
   }
 
@@ -107,7 +107,7 @@ export function CreepsAdd(props:Props) {
             autoFocus
             margin="dense"
             onChange={onChange}
-            value={creepInfo.name}
+            value={freepInfo.name}
             id="name"
             name='name'
             label="Name"
@@ -121,7 +121,7 @@ export function CreepsAdd(props:Props) {
             margin="dense"
             id="armor"
             onChange={onChange}
-            value={creepInfo.armor}
+            value={freepInfo.armor}
             name='armor'
             label="Armor"
             type="text"
@@ -134,7 +134,7 @@ export function CreepsAdd(props:Props) {
             margin="dense"
             id="maxHitpoints"
             onChange={onChange}
-            value={creepInfo.maxHitpoints}
+            value={freepInfo.maxHitpoints}
             name='maxHitpoints'
             label="Max Hitpoints"
             type="text"
@@ -148,7 +148,7 @@ export function CreepsAdd(props:Props) {
             margin="dense"
             id="hitpoints"
             onChange={onChange}
-            value={creepInfo.hitpoints}
+            value={freepInfo.hitpoints}
             name='hitpoints'
             label="Hitpoints"
             type="text"
@@ -162,7 +162,7 @@ export function CreepsAdd(props:Props) {
             autoFocus
             margin="dense"
             onChange={onChange}
-            value={creepInfo.initiative}
+            value={freepInfo.initiative}
             id="initiative"
             name='initiative'
             label="Initiative"
@@ -177,7 +177,7 @@ export function CreepsAdd(props:Props) {
             margin="dense"
             id="bloodyImage"
             onChange={onChange}
-            value={creepInfo.bloodyImage}
+            value={freepInfo.bloodyImage}
             name='bloodyImage'
             label="Bloody Image"
             type="text"
@@ -191,7 +191,7 @@ export function CreepsAdd(props:Props) {
             id="healthyImage"
 
             onChange={onChange}
-            value={creepInfo.healthyImage}
+            value={freepInfo.healthyImage}
             name='healthyImage'
             label="Healthy Image"
             type="text"

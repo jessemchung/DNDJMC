@@ -10,7 +10,7 @@ import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import FreepsSampleCard from './FreepsSampleCard.jsx'
 import {FreepsCardData} from '../Common/_Types.jsx'
 import {FreepsSingleCard} from './FreepsSingleCard.jsx'
-
+import {FreepsAdd} from './FreepsAdd.jsx'
 
 interface Props {
 
@@ -38,7 +38,7 @@ export default function FreepsMain(props: Props) {
       {/* <FreepsSingleCard /> */}
       {allCards}
 
-
+      <FreepsAdd fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>
     </>
   )
 }
