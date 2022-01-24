@@ -36,18 +36,10 @@ interface Props {
 
 //card likely needs to have flex to split it in a half
 export function RyuutamaTextField(props: Props) {
-  const [open, setOpen] = useState<boolean>(false);
-  const [creepInfo, setCreepInfo] = useState({});
 
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   // <Grid container spacing={1} columns={10}>
+
+  
 
   return (
     <>
