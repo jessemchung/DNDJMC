@@ -33,14 +33,24 @@ console.log('click')
     //this must remove the dangerous element first
 
     //then it must clean up
+    let change = JSON.parse(JSON.stringify(props.fullDataFreeps));
 
     let currentIndex = props.freepInfo.index;
     for (let i =0; i<props.fullDataFreeps.length; i++) {
-      if (props.fullDataFreeps[i].index === i) {
+      console.log(i, 'is this working');
+      if (props.fullDataFreeps[i].index === currentIndex) {
         //!this will splice
+        change.splice(i, 1);
+        
       }
+      if (change[i]=== undefined) {
+        break;
+      }
+      change[i].index = i;
 
     }
+    console.log('did we make it here', change)
+    props.setFullDataFreeps(change);
 
   }
 

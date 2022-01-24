@@ -23,6 +23,7 @@ interface Props {
 
 
 export default function FreepsMain(props: Props) {
+  
 
 
   const allCards = props.fullDataFreeps.map((singleCard, index)=> {
