@@ -37,7 +37,7 @@ function FreepsAdd(props) {
     var _b = (0, react_1.useState)({
         'armor': 10,
         'hitpoints': 10,
-        maxHitpoints: 10,
+        'maxHitpoints': 10,
         'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
         'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
         'initiative': 10,

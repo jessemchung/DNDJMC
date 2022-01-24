@@ -13,10 +13,10 @@ var colors_1 = require("@mui/material/colors");
 //add a color enum for all my things as well
 var ElementalColors;
 (function (ElementalColors) {
-    ElementalColors["./image/Ryuutama/Elements/Aura.png"] = "Yellow";
-    ElementalColors["./image/Ryuutama/Elements/Djinn.png"] = "Cyan";
-    ElementalColors["./image/Ryuutama/Elements/Dryad.png"] = "Green";
-    ElementalColors["./image/Ryuutama/Elements/Gnome.png"] = "Brown";
+    ElementalColors["./image/Ryuutama/Elements/Aura.png"] = "yellow";
+    ElementalColors["./image/Ryuutama/Elements/Djinn.png"] = "cyan";
+    ElementalColors["./image/Ryuutama/Elements/Dryad.png"] = "green";
+    ElementalColors["./image/Ryuutama/Elements/Gnome.png"] = "brown";
     ElementalColors["./image/Ryuutama/Elements/Salamander.png"] = "red";
     ElementalColors["./image/Ryuutama/Elements/Shade.png"] = "black";
     ElementalColors["./image/Ryuutama/Elements/Undine.png"] = "blue";
@@ -55,9 +55,12 @@ function ElementalField(prop) {
         if (event.currentTarget.src !== undefined) {
             console.log(event.currentTarget);
         }
-        setThird(second);
-        setSecond(first);
-        setFirst('blue');
+        var newFirst = event.currentTarget.src;
+        if (typeof (event.currentTarget.src) === 'string') {
+            setThird(second);
+            setSecond(first);
+            setFirst(newFirst);
+        }
     };
     return (<>
       <div style={{
@@ -104,19 +107,19 @@ function ElementalField(prop) {
 
           <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Aura.png" onClick={handleElementalChange}/>
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Djinn.png" onClick={handleClose}/>
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Djinn.png" onClick={handleElementalChange}/>
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Dryad.png" onClick={handleClose}/>
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Dryad.png" onClick={handleElementalChange}/>
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Gnome.png" onClick={handleClose}/>
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Gnome.png" onClick={handleElementalChange}/>
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Salamander.png" onClick={handleClose}/>
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Salamander.png" onClick={handleElementalChange}/>
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Shade.png" onClick={handleClose}/>
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Shade.png" onClick={handleElementalChange}/>
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Undine.png" onClick={handleClose}/>
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Undine.png" onClick={handleElementalChange}/>
 
-          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Wisp.png" onClick={handleClose}/>
+          <img style={{ 'width': '20%' }} src="./image/Ryuutama/Elements/Wisp.png" onClick={handleElementalChange}/>
 
 
         </DialogContent_1.default>

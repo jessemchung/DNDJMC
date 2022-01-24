@@ -20,7 +20,6 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { purple } from '@mui/material/colors';
 import {FreepsCardData} from '../Common/_Types.jsx'
 
 
@@ -35,12 +34,11 @@ export function FreepsAdd(props:Props) {
   const [freepInfo, setFreepInfo] = useState<FreepsCardData>({
   'armor': 10,
   'hitpoints':10,
-  maxHitpoints:10,
+  'maxHitpoints':10,
   'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
   'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
   'initiative': 10,
   'name': "Bradford",
-
   });
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void=> {
