@@ -20,7 +20,12 @@ function FreepsSingleCard(props) {
         console.log('click');
         //this must remove the dangerous element first
         //then it must clean up
-        // for (let i:number = 0; i<)
+        var currentIndex = props.freepInfo.index;
+        for (var i = 0; i < props.fullDataFreeps.length; i++) {
+            if (props.fullDataFreeps[i].index === i) {
+                //!this will splice
+            }
+        }
     };
     return (<Card_1.default>
       <Cancel_1.default className={"CancelButton"} sx={{ float: 'right' }} onClick={handleClick}/>
