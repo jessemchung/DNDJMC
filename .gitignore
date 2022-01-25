@@ -3,4 +3,4 @@ bundle.js
 config.js
 
 *.tsx
-*.js.map
+**/*.map 
