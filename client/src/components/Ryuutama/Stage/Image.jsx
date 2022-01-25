@@ -33,35 +33,7 @@ function Image() {
     //it will have the pieces of information in the corner
     //terrain feature needed
     return (<>
-      {/* <div style={{ position: 'relative' }}> Weather on left, Terrain on right </div> */}
-      {/* <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            p: 1,
-            m: 1,
-            bgcolor: 'background.paper',
-            borderRadius: 1,
-          }}
-        >
-          <Grid container spacing={1} columns={8}
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              p: 1,
-              m: 1,
-              bgcolor: 'background.paper',
-              borderRadius: 1,
-            }}
-          >
-  
-            <Weather />
-  
-            <TerrainType terrainType={terrainType} setTerrainType={setTerrainType} />
-  
-          </ Grid>
-  
-        </Box> */}
+
 
       <BackgroundPaper>
 

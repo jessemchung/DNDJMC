@@ -34,6 +34,7 @@ function Ryuutama() {
     //readability probably trumps in thise case, I don't want to necessarilly have everything together
     //intitiative can be check both
     var _g = (0, react_1.useState)(0), indexFreeps = _g[0], setIndexFreeps = _g[1];
+    //!Jesse this is important there needs to be something that will clean the deleted items (aka, null) at loading time
     //if initiative is equal to the number it should be fixed
     var Item = (0, styles_1.styled)(Paper_1.default)(function (_a) {
         var theme = _a.theme;
@@ -45,9 +46,6 @@ function Ryuutama() {
     // then both values should start here I suppose, then it picks starting from the highest number
     //initiative will need to be tracked so that the next lowest one will be picked.
     // a roll can be given I suppose.  
-    (0, react_1.useEffect)(function () {
-        setColor(randomColor());
-    }, [count]);
     //a dice roller on top to be implemented first
     return (<>
 

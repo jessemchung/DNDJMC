@@ -20,7 +20,6 @@ export default function Ryuutama() {
 
     const [value, setValue] = useState("yes");
     const [count, setCount] = useState(0);
-    const [color, setColor] = useState("");
 
 
     console.log(value, 'hello');
@@ -38,11 +37,6 @@ export default function Ryuutama() {
       setCount(prevCount => prevCount + 1)
   }
 
-
-
-    useEffect(() => {
-      setColor(randomColor())
-  }, [count])
 
 
 

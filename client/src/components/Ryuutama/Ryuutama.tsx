@@ -35,7 +35,7 @@ export default function Ryuutama() {
   //intitiative can be check both
   const [indexFreeps, setIndexFreeps] = useState<number>(0)
 
-
+  //!Jesse this is important there needs to be something that will clean the deleted items (aka, null) at loading time
   //if initiative is equal to the number it should be fixed
 
 
@@ -59,9 +59,6 @@ export default function Ryuutama() {
 
 // a roll can be given I suppose.  
 
-  useEffect(() => {
-    setColor(randomColor())
-  }, [count])
 
 
 //a dice roller on top to be implemented first

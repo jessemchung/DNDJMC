@@ -1,5 +1,6 @@
 
 import * as React from 'react';
+import {useState} from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -27,91 +28,61 @@ interface Props {
 
 export function FreepsSingleCard(props: Props) {
   const theme = useTheme();
+  const [disappear, setDisappear] = useState<boolean>(false);
 
-  const handleClick = () => {
-console.log('click')
-    //this must remove the dangerous element first
 
-    //then it must clean up
-    let change = JSON.parse(JSON.stringify(props.fullDataFreeps));
-
-    let currentIndex = props.freepInfo.index;
-    for (let i =0; i<props.fullDataFreeps.length; i++) {
-      console.log(i, 'is this working');
-      if (props.fullDataFreeps[i].index === currentIndex) {
-        //!this will splice
-        change.splice(i, 1);
-        
-      }
-      if (change[i]=== undefined) {
-        break;
-      }
-      change[i].index = i;
-
-    }
-    console.log('did we make it here', change)
-    props.setFullDataFreeps(change);
-
+  const handleClick = (event:any) => {
+    event.preventDefault();
+    console.log('click')
+    setDisappear(true);
+  }
+  if (disappear===true) {
+    return null;
   }
 
   return (
     <Card >
-      <CancelIcon className={"CancelButton"} sx={{float: 'right'}} onClick={handleClick} />
-      
+      <CancelIcon className={"CancelButton"} sx={{ float: 'right' }} onClick={handleClick} />
+
       <Box sx={{ display: "grid", gridTemplateColumns: '2fr 1fr', alignItems: 'center', }}>
         <CardContent >
           <Typography component="div" variant="body2">
             {props.freepInfo.name}
           </Typography>
-
           <Box
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
             }}
           >
-
             <Typography display="inline" variant="body2" align="left" >
               HP
             </Typography>
-
             <RemoveCircleOutlineIcon />
             <Typography display="inline" variant="body2" align="left">
-             {props.freepInfo.hitpoints} / {props.freepInfo.maxHitpoints}
-
-
+              {props.freepInfo.hitpoints} / {props.freepInfo.maxHitpoints}
             </Typography>
-
             <AddCircleOutlineIcon />
           </Box>
-
-
           <Box
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
             }}
           >
-
             <Typography display="inline" variant="body2" align="left" >
               Init
             </Typography>
-
-
             <Typography display="inline" variant="body2" align="left">
               {props.freepInfo.initiative}
             </Typography>
-
           </Box>
-
-
           <Box
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
             }}
           >
-
             <Typography display="inline" variant="body2" align="left" >
               Armor
             </Typography>
