@@ -43,7 +43,6 @@ export function FreepsSingleCard(props: Props) {
   return (
     <Card >
       <CancelIcon className={"CancelButton"} sx={{ float: 'right' }} onClick={handleClick} />
-
       <Box sx={{ display: "grid", gridTemplateColumns: '2fr 1fr', alignItems: 'center', }}>
         <CardContent >
           <Typography component="div" variant="body2">
