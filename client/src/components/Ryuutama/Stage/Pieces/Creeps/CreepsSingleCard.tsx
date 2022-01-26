@@ -26,6 +26,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { CreepsCardData } from '../Common/_Types.jsx'
 import { CssTwoTone } from '@mui/icons-material';
+import { RyuutamaDialogue } from '../../../Generic/RyuutamaDialogue.jsx'
 
 interface Props {
   creepInfo: CreepsCardData,
@@ -69,9 +70,15 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
 
 
   const handleOpen = () => {
-    setOpenChangeDialogue(false);
+    console.log('click')
+    setOpenChangeDialogue(true);
   };
 
+  const buttonArray = [
+    <Button key={'disagree'} onClick={handleClose}>Disagree</Button>,
+
+    <Button key={'agree'} onClick={handleClose} autoFocus>Agree</Button>
+  ]
 
   // <Grid container spacing={1} columns={10}>
   if (invisible) {
@@ -169,7 +176,7 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
 
         </ Box>
       </Card>
-      <Dialog
+      {/* <Dialog
         open={openChangeDialogue}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
@@ -180,8 +187,7 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
+            Change this property
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -190,7 +196,15 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
             Agree
           </Button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
+      <RyuutamaDialogue
+        open={openChangeDialogue}
+        handleClose={handleClose}
+        // textFields: [],
+        title={'Change Property'}
+        body={'Once there was a war'}
+        buttons={buttonArray}
+      />
 
     </>
   )
