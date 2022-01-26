@@ -27,6 +27,7 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { CreepsCardData } from '../Common/_Types.jsx'
 import { CssTwoTone } from '@mui/icons-material';
 import { RyuutamaDialogue } from '../../../Generic/RyuutamaDialogue.jsx'
+import { RyuutamaTextField } from '../../../Generic/RyuutamaTextField'
 
 interface Props {
   creepInfo: CreepsCardData,
@@ -41,7 +42,7 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
   const [invisible, setInvisible] = useState<boolean>(false)
   const [creepInfo, setCreepInfo] = useState<CreepsCardData>(prop.creepInfo)
   const [openChangeDialogue, setOpenChangeDialogue] = useState<boolean>(false)
-
+  const [nameOfEdit, setNameOfEdit] = useState<keyof CreepsCardData>('name')
 
   const handleClick = () => {
     setInvisible(true);
@@ -68,19 +69,31 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
     setOpenChangeDialogue(false);
   };
 
-
   const handleOpen = () => {
-    console.log('click')
     setOpenChangeDialogue(true);
   };
 
-  const buttonArray = [
-    <Button key={'disagree'} onClick={handleClose}>Disagree</Button>,
+  const onChange =(event: React.ChangeEvent<HTMLInputElement>) => {
+    let {name, value} = event.target;
+    setCreepInfo({
+      ...creepInfo,
+      [name]: value,
+    })
+  }
 
-    <Button key={'agree'} onClick={handleClose} autoFocus>Agree</Button>
+  const buttonArray = [
+    <Button key={'agree'} onClick={handleClose} autoFocus>Save</Button>
   ]
 
-  // <Grid container spacing={1} columns={10}>
+  let textFields = <RyuutamaTextField 
+    name={nameOfEdit}
+    label={nameOfEdit}
+    value={creepInfo[nameOfEdit]}
+    onChange={onChange}
+    type='string' />
+
+
+
   if (invisible) {
     return null
   }
@@ -176,35 +189,15 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
 
         </ Box>
       </Card>
-      {/* <Dialog
-        open={openChangeDialogue}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {"Use Google's location service?"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Change this property
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
-          </Button>
-        </DialogActions>
-      </Dialog> */}
       <RyuutamaDialogue
         open={openChangeDialogue}
         handleClose={handleClose}
-        // textFields: [],
         title={'Change Property'}
         body={'Once there was a war'}
         buttons={buttonArray}
-      />
+      > 
+        {textFields}
+      </ RyuutamaDialogue>
 
     </>
   )

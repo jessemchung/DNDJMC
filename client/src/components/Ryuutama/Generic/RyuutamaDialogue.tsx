@@ -6,17 +6,24 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { RyuutamaTextField } from './RyuutamaTextField.jsx'
 
-interface Props {
+export type Props = React.PropsWithChildren<{
   //this is expecting a single object
   open: boolean
   handleClose: (change: boolean) => void,
-  textFields?: [],
+  textFields?: {
+    name: string,
+    value: any,
+    onChange: any,
+    type: string,
+    label: string,
+  }[],
   title: string,
   body: string,
   buttons: any,
 
-};
+}>;
 
 export const RyuutamaDialogue: React.FC<Props> = (prop: Props) => {
   let { open, textFields, handleClose, title, body, buttons } = prop
@@ -25,32 +32,44 @@ export const RyuutamaDialogue: React.FC<Props> = (prop: Props) => {
   //might need an option to determine if this is a form
 
   //will require an array that contains all of the textfields needed to populate
-
+  let texts = null;
   //will need a map function to get all of the textfields working
-  return (
-    <>
+  if (textFields !== undefined) {
+    texts = textFields.map((eachText) => {
+      let { name, value, onChange, type, label } = eachText;
+      <RyuutamaTextField name={name} label={label} type={type} onChange={onChange} value={value} />
 
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {title}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            {body}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          {buttons}
-        </DialogActions>
-      </Dialog>
+    })
+  }
 
-    </>
-  )
+
+
+        return (
+        <>
+
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {title}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                {body}
+              </DialogContentText>
+              <DialogContent>{prop.children}</DialogContent>
+
+            </DialogContent>
+            <DialogActions>
+              {buttons}
+            </DialogActions>
+          </Dialog>
+
+        </>
+        )
 }
 
 

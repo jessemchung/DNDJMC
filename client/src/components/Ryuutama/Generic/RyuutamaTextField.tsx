@@ -39,24 +39,24 @@ export function RyuutamaTextField(props: Props) {
 
   // <Grid container spacing={1} columns={10}>
 
-  
+
 
   return (
     <>
 
-<TextField
-            autoFocus
-            margin="dense"
-            id={props.name}
+      <TextField
+        autoFocus
+        margin="dense"
+        id={props.name}
 
-            onChange={props.onChange}
-            value={props.value}
-            name={props.name}
-            label={props.label}
-            type="text"
-            fullWidth
-            variant="standard"
-          />
+        onChange={props.onChange}
+        value={props.value}
+        name={props.name}
+        label={props.label}
+        type="text"
+        fullWidth
+        variant="standard"
+      />
 
 
     </>
