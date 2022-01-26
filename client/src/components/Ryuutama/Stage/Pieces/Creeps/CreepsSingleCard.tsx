@@ -27,7 +27,7 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { CreepsCardData } from '../Common/_Types.jsx'
 import { CssTwoTone } from '@mui/icons-material';
 import { RyuutamaDialogue } from '../../../Generic/RyuutamaDialogue.jsx'
-import { RyuutamaTextField } from '../../../Generic/RyuutamaTextField'
+import { RyuutamaTextField } from '../../../Generic/RyuutamaTextField.jsx'
 
 interface Props {
   creepInfo: CreepsCardData,
@@ -69,7 +69,8 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
     setOpenChangeDialogue(false);
   };
 
-  const handleOpen = () => {
+  const handleOpen = (name: keyof CreepsCardData) => {
+    setNameOfEdit(name);
     setOpenChangeDialogue(true);
   };
 
@@ -110,7 +111,7 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
             onClick={() => { console.log('click image') }}
           />
           <CardContent >
-            <Typography variant="body2" component="div" color="primary">
+            <Typography variant="body2" component="div" color="primary" onClick={()=>{handleOpen('name')}} >
               {creepInfo.name}
             </Typography>
             <Box
@@ -140,12 +141,13 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
               }}
             >
 
-              <Typography display="inline" variant="body2" align="left" onClick={handleOpen}>
+              <Typography display="inline" variant="body2"
+              align="left" onClick={()=>{handleOpen('initiative')}} >
                 Init
               </Typography>
 
 
-              <Typography display="inline" variant="body2" align="left">
+              <Typography display="inline" variant="body2" align="left" >
                 {creepInfo.initiative}
               </Typography>
 
@@ -159,7 +161,7 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
               }}
             >
 
-              <Typography display="inline" variant="body2" align="left" >
+              <Typography display="inline" variant="body2" align="left" onClick={()=>{handleOpen('armor')}}  >
                 Armor
               </Typography>
 
@@ -180,7 +182,7 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
             >
 
 
-              <Typography display="inline" variant="body2" align="left">
+              <Typography display="inline" variant="body2" align="left" onClick={()=>{handleOpen('appearance')}} >
                 {creepInfo.appearance}
               </Typography>
 
