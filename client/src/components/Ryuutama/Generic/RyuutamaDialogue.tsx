@@ -27,12 +27,16 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { CssTwoTone } from '@mui/icons-material';
 
 interface Props {
-  creepInfo: CreepsCardData,
   //this is expecting a single object
+  open: boolean
+  setOpen: (change: boolean) => void,
+  textFields: [],
+  handleClose: () => any,
 
 };
 
 export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
+  let { open, setOpen, textFields, handleClose } = prop
   //this requires certain options
   //needs a handleclose passed through
   //might need an option to determine if this is a form
@@ -42,22 +46,12 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
 
   const [openChangeDialogue, setOpenChangeDialogue] = useState<boolean>(false)
 
-
-
-
-
-
-
-
-
-
-
   return (
     <>
 
       <Dialog
-        open={openChangeDialogue}
-        onClose={handleClose}
+        open={open}
+        onClose={setOpen}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
@@ -72,9 +66,6 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
-          </Button>
         </DialogActions>
       </Dialog>
 
