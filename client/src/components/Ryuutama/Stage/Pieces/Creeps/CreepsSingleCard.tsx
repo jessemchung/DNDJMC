@@ -39,30 +39,39 @@ interface Props {
 export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
   const [invisible, setInvisible] = useState<boolean>(false)
   const [creepInfo, setCreepInfo] = useState<CreepsCardData>(prop.creepInfo)
+  const [openChangeDialogue, setOpenChangeDialogue] = useState<boolean>(false)
 
-  useEffect(() => {
-    console.log('use effect')
-  }, [creepInfo]);
 
-  const handleClick = ()=> {
+  const handleClick = () => {
     setInvisible(true);
   }
 
-  const handleIncrease = ()=> {
+  const handleIncrease = () => {
     let newNumber: number = creepInfo.hitpoints++;
-    console.log(newNumber);
-    let newCount: CreepsCardData = JSON.parse(JSON.stringify(creepInfo));
-    newCount.hitpoints = newNumber+1;
-    console.log(newCount, 'this should be good');
-    
     setCreepInfo({
-      ...newCount,
+      ...creepInfo,
+      [creepInfo.hitpoints]: newNumber,
     })
-    console.log(prop.creepInfo.hitpoints, 'going up?')
-
-    // prop.creepInfo.hitpoints++;
-
   }
+
+
+  const handleDecrease = () => {
+    let newNumber: number = creepInfo.hitpoints--;
+    setCreepInfo({
+      ...creepInfo,
+      [creepInfo.hitpoints]: newNumber,
+    })
+  }
+
+  const handleClose = () => {
+    setOpenChangeDialogue(false);
+  };
+
+
+  const handleOpen = () => {
+    setOpenChangeDialogue(false);
+  };
+
 
   // <Grid container spacing={1} columns={10}>
   if (invisible) {
@@ -71,7 +80,6 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
 
   return (
     <>
-
       <Card >
         <CancelIcon className={"CancelButton"} sx={{ float: 'right' }} onClick={handleClick} />
         <Box sx={{ display: "grid", gridTemplateColumns: '1fr 2fr', alignItems: 'center', }}>
@@ -81,12 +89,10 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
             alt="A freep, a hero, a main honcho"
             onClick={() => { console.log('click image') }}
           />
-
           <CardContent >
             <Typography variant="body2" component="div" color="primary">
               {creepInfo.name}
             </Typography>
-
             <Box
               sx={{
                 display: 'flex',
@@ -96,7 +102,7 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
               <Typography display="inline" variant="body2" align="left" >
                 HP
               </Typography>
-              <RemoveCircleOutlineIcon />
+              <RemoveCircleOutlineIcon onClick={handleDecrease} />
               <Typography display="inline" variant="body2" align="left">
                 {creepInfo.hitpoints}
 
@@ -114,7 +120,7 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
               }}
             >
 
-              <Typography display="inline" variant="body2" align="left" >
+              <Typography display="inline" variant="body2" align="left" onClick={handleOpen}>
                 Init
               </Typography>
 
@@ -159,14 +165,32 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
               </Typography>
 
             </Box>
-
-
-
           </CardContent>
 
         </ Box>
       </Card>
-
+      <Dialog
+        open={openChangeDialogue}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Use Google's location service?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Let Google help apps determine location. This means sending anonymous
+            location data to Google, even when no apps are running.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleClose} autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
 
     </>
   )
