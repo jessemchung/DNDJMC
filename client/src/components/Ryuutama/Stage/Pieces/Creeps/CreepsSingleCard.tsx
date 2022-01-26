@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import CardMedia from '@mui/material/CardMedia';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -24,6 +25,7 @@ import { purple } from '@mui/material/colors';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { CreepsCardData } from '../Common/_Types.jsx'
+import { CssTwoTone } from '@mui/icons-material';
 
 interface Props {
   creepInfo: CreepsCardData,
@@ -35,34 +37,55 @@ interface Props {
 //creeps images should vibrate when taking damage or something to that effect
 //card likely needs to have flex to split it in a half
 export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
+  const [invisible, setInvisible] = useState<boolean>(false)
+  const [creepInfo, setCreepInfo] = useState<CreepsCardData>(prop.creepInfo)
 
+  useEffect(() => {
+    console.log('use effect')
+  }, [creepInfo]);
+
+  const handleClick = ()=> {
+    setInvisible(true);
+  }
+
+  const handleIncrease = ()=> {
+    let newNumber: number = creepInfo.hitpoints++;
+    console.log(newNumber);
+    let newCount: CreepsCardData = JSON.parse(JSON.stringify(creepInfo));
+    newCount.hitpoints = newNumber+1;
+    console.log(newCount, 'this should be good');
+    
+    setCreepInfo({
+      ...newCount,
+    })
+    console.log(prop.creepInfo.hitpoints, 'going up?')
+
+    // prop.creepInfo.hitpoints++;
+
+  }
 
   // <Grid container spacing={1} columns={10}>
+  if (invisible) {
+    return null
+  }
 
   return (
     <>
 
-      <Card sx={{ display: 'flex', padding: '0px', margin: '0px', }} >
-
+      <Card >
+        <CancelIcon className={"CancelButton"} sx={{ float: 'right' }} onClick={handleClick} />
+        <Box sx={{ display: "grid", gridTemplateColumns: '1fr 2fr', alignItems: 'center', }}>
+          <CardMedia
+            component="img"
+            image={creepInfo.healthyImage}
+            alt="A freep, a hero, a main honcho"
+            onClick={() => { console.log('click image') }}
+          />
 
           <CardContent >
-            <img src={prop.creepInfo.healthyImage} onClick={() => { console.log('click image') }} />
-          </CardContent>
-
-          <CardMedia
-          component="img"
-          image="/image/Personal/Ra.png"
-          alt="A freep, a hero, a main honcho"
-        />
-
-
-          <CardContent sx={{ maxWidth: '30%' }} >
-            <Typography variant="body1" component="div" color="primary">
-              {prop.creepInfo.name}
-
-
+            <Typography variant="body2" component="div" color="primary">
+              {creepInfo.name}
             </Typography>
-
 
             <Box
               sx={{
@@ -70,34 +93,17 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
                 justifyContent: 'space-between',
               }}
             >
+              <Typography display="inline" variant="body2" align="left" >
+                HP
+              </Typography>
+              <RemoveCircleOutlineIcon />
+              <Typography display="inline" variant="body2" align="left">
+                {creepInfo.hitpoints}
 
 
-              {/* <AddCircleOutlineIcon display="inline" style={{ position: 'relative', top: '14px' }} /> */}
+              </Typography>
 
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                flexWrap: 'nowrap',
-              }}>
-
-                <Typography display="inline" variant="body2" align="left" >
-                  HP
-                </Typography>
-
-                <RemoveCircleOutlineIcon />
-                <Typography display="inline" variant="body2" align="left">
-                  {prop.creepInfo.hitpoints}
-
-
-                </Typography>
-
-                <AddCircleOutlineIcon />
-
-
-
-              </div>
-
-
+              <AddCircleOutlineIcon onClick={handleIncrease} />
             </Box>
 
 
@@ -114,7 +120,7 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
 
 
               <Typography display="inline" variant="body2" align="left">
-                {prop.creepInfo.initiative}
+                {creepInfo.initiative}
               </Typography>
 
             </Box>
@@ -133,7 +139,7 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
 
 
               <Typography display="inline" variant="body2" align="left">
-                {prop.creepInfo.armor}
+                {creepInfo.armor}
               </Typography>
 
             </Box>
@@ -149,19 +155,16 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
 
 
               <Typography display="inline" variant="body2" align="left">
-                {prop.creepInfo.appearance}
+                {creepInfo.appearance}
               </Typography>
 
             </Box>
 
 
-            <Button size="small">E</Button>
-
-
 
           </CardContent>
 
-
+        </ Box>
       </Card>
 
 
