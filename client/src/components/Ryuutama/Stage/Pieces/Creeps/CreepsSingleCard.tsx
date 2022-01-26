@@ -75,7 +75,10 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
   };
 
   const onChange =(event: React.ChangeEvent<HTMLInputElement>) => {
-    let {name, value} = event.target;
+    let {name, value} : { name: string; value: any } = event.target;
+    if (isNaN(parseInt(value))) {
+      value = parseInt(value);
+    }
     setCreepInfo({
       ...creepInfo,
       [name]: value,
