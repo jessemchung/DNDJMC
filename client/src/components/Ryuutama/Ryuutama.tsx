@@ -59,16 +59,12 @@ export default function Ryuutama() {
 
 // a roll can be given I suppose.  
 
-
-
 //a dice roller on top to be implemented first
   return (
     <>
 
 
-      <Paper>
-
-        
+      <Paper>        
         <Box>
           <Grid container spacing={2}>
             {[lightTheme].map((theme, index) => (

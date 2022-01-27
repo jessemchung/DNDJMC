@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import {useState} from 'react';
+import { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -10,6 +10,8 @@ import Typography from '@mui/material/Typography';
 import { FreepsCardData } from '../Common/_Types.jsx'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import { RyuutamaDialogue } from '../../../Generic/RyuutamaDialogue.jsx'
+import { RyuutamaTextField } from '../../../Generic/RyuutamaTextField.jsx'
 
 
 //for canceling icons, it may be useful to index values so that things can have
@@ -17,6 +19,7 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
 // should creeps and freeps be fused together?
 import CancelIcon from '@mui/icons-material/Cancel';
+import { Button } from '@mui/material';
 
 //for deletion purposes, it may be best to have this get access to the overall number of and allow fixing
 interface Props {
@@ -28,15 +31,68 @@ interface Props {
 
 export function FreepsSingleCard(props: Props) {
   const theme = useTheme();
-  const [disappear, setDisappear] = useState<boolean>(false);
+  const [invisible, setInvisible] = useState<boolean>(false);
+  const [openChangeDialogue, setOpenChangeDialogue] = useState<boolean>(false)
+  const [nameOfEdit, setNameOfEdit] = useState<keyof FreepsCardData>('name')
+  const [creepInfo, setCreepInfo] = useState<FreepsCardData>(props.freepInfo)
 
 
-  const handleClick = (event:any) => {
+  const handleClick = (event: any) => {
     event.preventDefault();
-    console.log('click')
-    setDisappear(true);
+    setInvisible(true);
   }
-  if (disappear===true) {
+
+  const handleIncrease = () => {
+    let newNumber: number = creepInfo.hitpoints++;
+    setCreepInfo({
+      ...creepInfo,
+      [creepInfo.hitpoints]: newNumber,
+    })
+  }
+
+
+  const handleDecrease = () => {
+    let newNumber: number = creepInfo.hitpoints--;
+    setCreepInfo({
+      ...creepInfo,
+      [creepInfo.hitpoints]: newNumber,
+    })
+  }
+
+  const handleClose = () => {
+    setOpenChangeDialogue(false);
+  };
+
+  const handleOpen = (name: keyof FreepsCardData) => {
+    setNameOfEdit(name);
+    setOpenChangeDialogue(true);
+  };
+
+  const onChange =(event: React.ChangeEvent<HTMLInputElement>) => {
+    let {name, value} : { name: string; value: any } = event.target;
+    if (isNaN(parseInt(value))) {
+      value = parseInt(value);
+    }
+    setCreepInfo({
+      ...creepInfo,
+      [name]: value,
+    })
+  }
+
+  const buttonArray = [
+    <Button key={'agree'} onClick={handleClose} autoFocus>Save</Button>
+  ]
+
+
+  let textFields = <RyuutamaTextField
+    name={nameOfEdit}
+    label={nameOfEdit}
+    value={creepInfo[nameOfEdit]}
+    onChange={onChange}
+    type='string' />
+
+
+  if (invisible === true) {
     return null;
   }
 
