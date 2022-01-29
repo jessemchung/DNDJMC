@@ -39,6 +39,15 @@ export default function Ryuutama() {
   //if initiative is equal to the number it should be fixed
 
 
+  const initiativeCheck = ()=> {
+    //this will check initiative.  A button must be somewhere to also help this with a reset.  Perhaps
+    // a crude float or something.  Perhaps in the bottom part of the ryuutama thingx
+
+    let found = false;
+    for (let i = initiative; i>0; i--) {
+      console.log(i);
+    }
+  }
   
 
   const Item = styled(Paper)(({ theme }) => ({
