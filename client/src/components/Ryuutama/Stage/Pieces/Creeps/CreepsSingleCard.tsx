@@ -46,6 +46,10 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
 
   const handleClick = () => {
     setInvisible(true);
+    setCreepInfo({
+      ...creepInfo,
+      'null': true,
+    })
   }
 
   const handleIncrease = () => {
