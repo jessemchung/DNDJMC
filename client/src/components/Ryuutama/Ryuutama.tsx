@@ -14,6 +14,7 @@ import {CreepsSampleData} from './Stage/Pieces/Creeps/CreepsSampleData.jsx'
 import {FreepsSampleData} from './Stage/Pieces/Freeps/FreepsSampleData.jsx'
 
 import {CreepsCardData, FreepsCardData} from './Stage/Pieces/Common/_Types.jsx'
+import { Button } from '@mui/material';
 
 
 
@@ -38,6 +39,10 @@ export default function Ryuutama() {
   //!Jesse this is important there needs to be something that will clean the deleted items (aka, null) at loading time
   //if initiative is equal to the number it should be fixed
 
+  const testClick = () => {
+    console.log(fullDataCreeps, 'were these changed?');
+
+  }
 
   const initiativeCheck = ()=> {
     //this will check initiative.  A button must be somewhere to also help this with a reset.  Perhaps
@@ -127,7 +132,7 @@ export default function Ryuutama() {
 
       </Paper>
 
-
+      <Button onClick={testClick}>Test Button</Button>
     </>
   )
 }
