@@ -10,6 +10,7 @@ export const CreepsSampleData: CreepsCardData[] = [
     'initiative': 2,
     'name': "Bradford",
     'appearance': "purple hair, white skin",
+    'null': false,
 
   },
 
@@ -21,6 +22,7 @@ export const CreepsSampleData: CreepsCardData[] = [
     'initiative': 3,
     'name': "Mariner",
     'appearance': 'dark skin',
+    'null': false,
   },
 
   {
@@ -30,7 +32,8 @@ export const CreepsSampleData: CreepsCardData[] = [
     'bloodyImage': './image/Ryuutama/SampleIcons/TendiBad.png',
     'initiative': 1,
     'name': "Tendi",
-    'appearance': 'turquoise'
+    'appearance': 'turquoise',
+    'null': false,
   },
 
   {
@@ -41,6 +44,7 @@ export const CreepsSampleData: CreepsCardData[] = [
     'initiative': 1,
     'name': "Sam",
     'appearance': 'implant',
+    'null': false,
   },
 
 

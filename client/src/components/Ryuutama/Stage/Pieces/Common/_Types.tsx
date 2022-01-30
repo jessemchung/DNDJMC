@@ -8,6 +8,7 @@ export type CreepsCardData = {
   'initiative': number,
   'name': string,
   'appearance': string,
+  'null' : boolean,
 };
 
 export class newForm {
@@ -21,7 +22,8 @@ export class newForm {
       bloodyImage: '',
       initiative: 0,
       armor: 0,
-      appearance: 'none'
+      appearance: 'none',
+      null: false,
 
     };
     

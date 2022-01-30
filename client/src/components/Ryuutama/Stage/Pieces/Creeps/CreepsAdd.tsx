@@ -40,6 +40,7 @@ export function CreepsAdd(props:Props) {
   'initiative': 10,
   'name': "Bradford",
   'appearance': "purple hair, white skin",
+  'null': false,
 
   });
 
