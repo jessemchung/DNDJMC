@@ -40,7 +40,8 @@ export default function Ryuutama() {
   //if initiative is equal to the number it should be fixed
 
   const testClick = () => {
-    console.log(fullDataCreeps, 'were these changed?');
+    console.log(fullDataCreeps, 'were these changed fullDataCreeps?');
+    console.log(fullDataFreeps, 'fullDataFreeps')
 
   }
 
