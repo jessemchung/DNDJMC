@@ -30,7 +30,7 @@ export default function Creeps(props: Props) {
   const allCards = props.fullDataCreeps.map((singleCard, index)=> {
 
     return (
-      <CreepsSingleCard creepInfo={singleCard} key={index+' creeps'} index={index} fullDataCreeps={props.fullDataCreeps} setFullDataCreeps={props.setFullDataCreeps} />
+      <CreepsSingleCard creepInfo={singleCard} key={singleCard.name} index={index} fullDataCreeps={props.fullDataCreeps} setFullDataCreeps={props.setFullDataCreeps} />
     )
   })
 

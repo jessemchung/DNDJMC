@@ -11,15 +11,13 @@ import Image from './Image.jsx'
 import PropsBar from './PropsBar/PropsBar.jsx'
 
 
-
 export default function Ryuutama() {
 
 
   return (
     <>
-      <Image />
-
-      <PropsBar />
+      <Image key={'MainImage'} />
+      <PropsBar key={'MainPropsBar'}/>
 
 
     </>

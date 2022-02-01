@@ -72,12 +72,12 @@ export default function Image() {
             }}
           >
 
-            <Weather />
+            <Weather key={'Weather'} />
 
-            <div> <ElementalField /> </div>
+            <div> <ElementalField key={'ElementalField'} /> </div>
 
 
-            <TerrainType terrainType={terrainType} setTerrainType={setTerrainType} />
+            <TerrainType key={'TerrainType'} terrainType={terrainType} setTerrainType={setTerrainType} />
 
           </ Grid>
 

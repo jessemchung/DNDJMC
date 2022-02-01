@@ -50,11 +50,9 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
 
   const handleClick = () => {
     setInvisible(true);
-    setCreepInfo({
-      ...creepInfo,
-      'null': true,
-    })
-    console.log(creepInfo, 'change?')
+    // let newArray = prop.fullDataCreeps.splice(prop.index, 1);
+    // prop.setFullDataCreeps(prop.fullDataCreeps.splice(prop.index, 1))
+    // console.log(prop.index, newArray, 'change?')
   }
 
   const handleIncrease = () => {

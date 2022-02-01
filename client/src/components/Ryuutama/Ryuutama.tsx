@@ -17,7 +17,7 @@ import {CreepsCardData, FreepsCardData} from './Stage/Pieces/Common/_Types.jsx'
 import { Button } from '@mui/material';
 
 
-
+const quickTest = <MainStage key={'MainStage'} />
 
 export default function Ryuutama() {
 
@@ -99,7 +99,7 @@ export default function Ryuutama() {
                     <Item>
                       <div>Freeps</div>
 
-                      <FreepsMain indexPieces={indexFreeps} setIndexPieces={setIndexFreeps} fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps} />
+                      <FreepsMain key={'FreepsMain'} indexPieces={indexFreeps} setIndexPieces={setIndexFreeps} fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps} />
 
                     </Item>
 
@@ -107,13 +107,13 @@ export default function Ryuutama() {
                       
                       <div>Stage</div>
 
-                      <MainStage />
+                      {quickTest}
 
                     </Item>
 
                     <Item><div>Creeps </div>
 
-                    <CreepsMain fullDataCreeps={fullDataCreeps} setFullDataCreeps={setFullDataCreeps}/>
+                    <CreepsMain key={'CreepsMain'} fullDataCreeps={fullDataCreeps} setFullDataCreeps={setFullDataCreeps}/>
 
                     </Item>
 
