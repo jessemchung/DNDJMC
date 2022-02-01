@@ -31,7 +31,11 @@ import { RyuutamaTextField } from '../../../Generic/RyuutamaTextField.jsx'
 
 interface Props {
   creepInfo: CreepsCardData,
+  index: number,
   //this is expecting a single object
+  fullDataCreeps: CreepsCardData[],
+  setFullDataCreeps: React.Dispatch<React.SetStateAction<CreepsCardData[]>>,
+
 
 };
 //!Jesse unfinished
@@ -50,6 +54,7 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
       ...creepInfo,
       'null': true,
     })
+    console.log(creepInfo, 'change?')
   }
 
   const handleIncrease = () => {
