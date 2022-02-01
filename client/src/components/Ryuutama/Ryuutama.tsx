@@ -15,9 +15,7 @@ import { FreepsSampleData } from './Stage/Pieces/Freeps/FreepsSampleData.jsx'
 
 import { CreepsCardData, FreepsCardData } from './Stage/Pieces/Common/_Types.jsx'
 import { Button } from '@mui/material';
-import {createContext} from 'react';
-
-const UserContext = createContext(null);
+import UserContext from './UserContext.jsx'
 
 
 const quickTest = <MainStage key={'MainStage'} />
