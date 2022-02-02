@@ -58,6 +58,7 @@ export default function PropsBarIndividualCard() {
 
   const [title, setTitle] = useState<string>('Title');
 
+  //this is to allow saving I think?
   const [titleEdit, setTitleEdit] = useState<string>('Title');
 
 
