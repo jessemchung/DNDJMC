@@ -32,6 +32,7 @@ export default function Ryuutama() {
   const [fullDataCreeps, setFullDataCreeps] = useState<CreepsCardData[]>([])
   const [fullDataFreeps, setFullDataFreeps] = useState<FreepsCardData[]>(FreepsSampleData)
   const [initiative, setInitiative] = useState<number>(30);
+  const [weather, setWeather] = useState<string>('./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png');
 
   //readability probably trumps in thise case, I don't want to necessarilly have everything together
   //intitiative can be check both
@@ -79,7 +80,7 @@ export default function Ryuutama() {
   return (
     <>
 
-      <UserContext.Provider value={{  }}>
+      <UserContext.Provider value={{ weather, setWeather }}>
 
         <Paper>
           <Box>

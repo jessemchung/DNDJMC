@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import * as React from 'react'
 import * as THREE from "three";
 import Paper from '@mui/material/Paper';
@@ -21,6 +21,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import UserContext from '../../UserContext';
 
 //this might need to be a drop down
 const arrayOfBenefits: string[] = [
@@ -60,20 +61,19 @@ export default function PropsBarIndividualCard() {
 
   const [age, setAge] = React.useState('');
   const [open, setOpen] = useState<boolean>(false);
+  const { weather, setWeather } = useContext(UserContext);
 
   const handleChange = (event: SelectChangeEvent) => {
     setAge(event.target.value as string);
   };
 
-  const [weather, setWeather] = useState<string>('./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png');
+
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleClose = (event: any) => {
-
-
     if (event.target.src !== undefined) {
       setWeather(event.target.src)
     }
