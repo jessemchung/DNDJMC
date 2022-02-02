@@ -25,6 +25,14 @@ import { purple } from '@mui/material/colors';
 //   textAlign: 'center',
 //   color: theme.palette.text.secondary,
 // }));
+interface Props {
+  title: string 
+  setTitle : (title: string) => void
+  benefit : number
+  setBenefit : (benefitIndex: number) => void 
+  benefitPermanent : number 
+  setBenefitPermanent : (benefitPermanentIndex: number) => void
+}
 
 const bull = (
   <Box
@@ -54,16 +62,18 @@ const theme = createTheme({
   },
 });
 
-export default function PropsBarIndividualCard() {
+export default function PropsBarIndividualCard(props: Props) {
 
-  const [title, setTitle] = useState<string>('Title');
+  const {title, setTitle, benefit, setBenefit, benefitPermanent, setBenefitPermanent} = props
+
+  // const [title, setTitle] = useState<string>('Title');
+  // const [benefit, setBenefit] = useState<number>(0);
+  // const [benefitPermanent, setBenefitPermanent] = useState<number>(0);
+
 
   //this is to allow saving I think?
   const [titleEdit, setTitleEdit] = useState<string>('Title');
 
-
-  const [benefit, setBenefit] = useState<number>(0);
-  const [benefitPermanent, setBenefitPermanent] = useState<number>(0);
 
 
   const [open, setOpen] = useState(false);

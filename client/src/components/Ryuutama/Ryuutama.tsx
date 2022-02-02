@@ -26,10 +26,6 @@ export default function Ryuutama() {
 
   // }
   // var color = randomColor(); // a hex code for an attractive color
-
-  const [value, setValue] = useState("yes");
-  const [count, setCount] = useState(0);
-  const [color, setColor] = useState("");
   const [fullDataCreeps, setFullDataCreeps] = useState<CreepsCardData[]>([])
   const [fullDataFreeps, setFullDataFreeps] = useState<FreepsCardData[]>(FreepsSampleData)
   const [initiative, setInitiative] = useState<number>(30);
@@ -40,12 +36,53 @@ export default function Ryuutama() {
   const [second, setSecond] = useState<string | null>('white');
   const [third, setThird] = useState<string | null>('white');
 
+
+  const [title1, setTitle1] = useState<string>('Title');
+  const [benefit1, setBenefit1] = useState<number>(0);
+  const [benefitPermanent1, setBenefitPermanent1] = useState<number>(0);
+
+  const [title2, setTitle2] = useState<string>('Title');
+  const [benefit2, setBenefit2] = useState<number>(0);
+  const [benefitPermanent2, setBenefitPermanent2] = useState<number>(0);
+
+  const [title3, setTitle3] = useState<string>('Title');
+  const [benefit3, setBenefit3] = useState<number>(0);
+  const [benefitPermanent3, setBenefitPermanent3] = useState<number>(0);
+
+  const [title4, setTitle4] = useState<string>('Title');
+  const [benefit4, setBenefit4] = useState<number>(0);
+  const [benefitPermanent4, setBenefitPermanent4] = useState<number>(0);
+
+  const [title5, setTitle5] = useState<string>('Title');
+  const [benefit5, setBenefit5] = useState<number>(0);
+  const [benefitPermanent5, setBenefitPermanent5] = useState<number>(0);
+
+  const [title6, setTitle6] = useState<string>('Title');
+  const [benefit6, setBenefit6] = useState<number>(0);
+  const [benefitPermanent6, setBenefitPermanent6] = useState<number>(0);
+
+  const [title7, setTitle7] = useState<string>('Title');
+  const [benefit7, setBenefit7] = useState<number>(0);
+  const [benefitPermanent7, setBenefitPermanent7] = useState<number>(0);
+  
+  const [title8, setTitle8] = useState<string>('Title');
+  const [benefit8, setBenefit8] = useState<number>(0);
+  const [benefitPermanent8, setBenefitPermanent8] = useState<number>(0);
+
+  const [title9, setTitle9] = useState<string>('Title');
+  const [benefit9, setBenefit9] = useState<number>(0);
+  const [benefitPermanent9, setBenefitPermanent9] = useState<number>(0);
+
+  const [title10, setTitle10] = useState<string>('Title');
+  const [benefit10, setBenefit10] = useState<number>(0);
+  const [benefitPermanent10, setBenefitPermanent10] = useState<number>(0);
   //readability probably trumps in thise case, I don't want to necessarilly have everything together
   //intitiative can be check both
   const [indexFreeps, setIndexFreeps] = useState<number>(0)
 
   //!Jesse this is important there needs to be something that will clean the deleted items (aka, null) at loading time
   //if initiative is equal to the number it should be fixed
+
 
   const testClick = () => {
     console.log(fullDataCreeps, 'were these changed fullDataCreeps?');
@@ -86,7 +123,19 @@ export default function Ryuutama() {
   return (
     <>
 
-      <UserContext.Provider value={{ weather, setWeather, terrainType, setTerrainType, first, setFirst, second, setSecond, third, setThird }}>
+      <UserContext.Provider value={{ weather, setWeather, terrainType, 
+        setTerrainType, first, setFirst, second, setSecond, third, setThird, 
+        title1, setTitle1, benefit1, setBenefit1, benefitPermanent1, setBenefitPermanent1,
+        title2, setTitle2, benefit2, setBenefit2, benefitPermanent2, setBenefitPermanent2,
+        title3, setTitle3, benefit3, setBenefit3, benefitPermanent3, setBenefitPermanent3,
+        title4, setTitle4, benefit4, setBenefit4, benefitPermanent4, setBenefitPermanent4,
+        title5, setTitle5, benefit5, setBenefit5, benefitPermanent5, setBenefitPermanent5,
+        title6, setTitle6, benefit6, setBenefit6, benefitPermanent6, setBenefitPermanent6,
+        title7, setTitle7, benefit7, setBenefit7, benefitPermanent7, setBenefitPermanent7,
+        title8, setTitle8, benefit8, setBenefit8, benefitPermanent8, setBenefitPermanent8,
+        title9, setTitle9, benefit9, setBenefit9, benefitPermanent9, setBenefitPermanent9,
+        title10, setTitle10, benefit10, setBenefit10, benefitPermanent10, setBenefitPermanent10,
+        }}>
 
         <Paper>
           <Box>
