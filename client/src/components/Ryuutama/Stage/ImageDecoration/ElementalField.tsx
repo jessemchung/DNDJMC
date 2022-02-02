@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import * as React from 'react'
 import * as THREE from "three";
 import Paper from '@mui/material/Paper';
@@ -23,6 +23,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import { textAlign } from '@mui/system';
 import { Tab } from '@mui/material';
+import UserContext from '../../UserContext.jsx';
 
 //! cancel buttons might be not that useful.  I guess I could have a duplicate set that stores the temporary value
 // while the other stores the one shown in final screen but really?
@@ -62,9 +63,10 @@ const theme = createTheme({
 export function ElementalField(prop: Props) {
 
   const [open, setOpen] = useState<boolean>(false);
-  const [first, setFirst] = useState<string | null>('unset');
-  const [second, setSecond] = useState<string | null>('white');
-  const [third, setThird] = useState<string | null>('white');
+  // const [first, setFirst] = useState<string | null>('unset');
+  // const [second, setSecond] = useState<string | null>('white');
+  // const [third, setThird] = useState<string | null>('white');
+  const { first, setFirst, second, setSecond, third, setThird } = useContext(UserContext);
 
 
   // const handleChange = (event: SelectChangeEvent) => {

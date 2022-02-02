@@ -36,6 +36,9 @@ export default function Ryuutama() {
   const [weather, setWeather] = useState<string>('./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png');
   const [terrainType, setTerrainType] = useState<TerrainTypeInterface['possibleURL']>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
 
+  const [first, setFirst] = useState<string | null>('unset');
+  const [second, setSecond] = useState<string | null>('white');
+  const [third, setThird] = useState<string | null>('white');
 
   //readability probably trumps in thise case, I don't want to necessarilly have everything together
   //intitiative can be check both
@@ -83,7 +86,7 @@ export default function Ryuutama() {
   return (
     <>
 
-      <UserContext.Provider value={{ weather, setWeather, terrainType, setTerrainType }}>
+      <UserContext.Provider value={{ weather, setWeather, terrainType, setTerrainType, first, setFirst, second, setSecond, third, setThird }}>
 
         <Paper>
           <Box>

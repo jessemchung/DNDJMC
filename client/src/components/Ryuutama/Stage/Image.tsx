@@ -52,8 +52,6 @@ export default function Image() {
 
   return (
     <>
-
-
       <BackgroundPaper >
 
         <Box
@@ -90,10 +88,7 @@ export default function Image() {
 
         <img style={{
           height: '80%'
-          // position: 'absolute',
-          // top: 0,
-          // left: 0,
-          // border: '1px red solid',
+
 
 
         }} src="./image/Ryuutama.png" onClick={() => { console.log('click image') }} />
