@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 var randomColor = require('randomcolor'); // import the script
 import * as React from 'react'
 import * as THREE from "three";
@@ -13,9 +13,11 @@ import { TerrainType } from './ImageDecoration/TerrainType.jsx'
 import { ElementalField } from './ImageDecoration/ElementalField.jsx'
 
 import { TerrainTypeInterface } from './ImageDecoration/_Types.jsx';
+import UserContext from '../UserContext.jsx';
 export default function Image() {
 
-  const [terrainType, setTerrainType] = useState<TerrainTypeInterface['possibleURL']>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
+  // const [] = useState<TerrainTypeInterface['possibleURL']>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
+  const { terrainType, setTerrainType } = useContext(UserContext);
 
 
 

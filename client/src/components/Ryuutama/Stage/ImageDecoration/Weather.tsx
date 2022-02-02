@@ -21,7 +21,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import UserContext from '../../UserContext';
+import UserContext from '../../UserContext.jsx';
 
 //this might need to be a drop down
 const arrayOfBenefits: string[] = [

@@ -16,6 +16,7 @@ import { FreepsSampleData } from './Stage/Pieces/Freeps/FreepsSampleData.jsx'
 import { CreepsCardData, FreepsCardData } from './Stage/Pieces/Common/_Types.jsx'
 import { Button } from '@mui/material';
 import UserContext from './UserContext.jsx'
+import { TerrainTypeInterface } from './Stage/ImageDecoration/_Types.jsx';
 
 
 const quickTest = <MainStage key={'MainStage'} />
@@ -33,6 +34,8 @@ export default function Ryuutama() {
   const [fullDataFreeps, setFullDataFreeps] = useState<FreepsCardData[]>(FreepsSampleData)
   const [initiative, setInitiative] = useState<number>(30);
   const [weather, setWeather] = useState<string>('./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png');
+  const [terrainType, setTerrainType] = useState<TerrainTypeInterface['possibleURL']>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
+
 
   //readability probably trumps in thise case, I don't want to necessarilly have everything together
   //intitiative can be check both
@@ -80,7 +83,7 @@ export default function Ryuutama() {
   return (
     <>
 
-      <UserContext.Provider value={{ weather, setWeather }}>
+      <UserContext.Provider value={{ weather, setWeather, terrainType, setTerrainType }}>
 
         <Paper>
           <Box>
