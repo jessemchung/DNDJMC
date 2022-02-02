@@ -63,10 +63,12 @@ const theme = createTheme({
 export function ElementalField(prop: Props) {
 
   const [open, setOpen] = useState<boolean>(false);
-  // const [first, setFirst] = useState<string | null>('unset');
-  // const [second, setSecond] = useState<string | null>('white');
-  // const [third, setThird] = useState<string | null>('white');
+
   const { first, setFirst, second, setSecond, third, setThird } = useContext(UserContext);
+
+  const [modelFirst, setModelFirst] = useState<string | null>(first);
+  const [modelSecond, setModelSecond] = useState<string | null>(second);
+  const [modelThird, setModelThird] = useState<string | null>(third);
 
 
   // const handleChange = (event: SelectChangeEvent) => {
@@ -83,12 +85,23 @@ export function ElementalField(prop: Props) {
 
   };
 
+  const handleFinish = (event: any) => {
+    let newFirst = event.currentTarget.id as keyof typeof ElementalColors;
+    if (typeof (event.currentTarget.id) === 'string') {
+      setThird(modelThird);
+      setSecond(modelSecond);
+      setFirst(modelFirst);
+    }
+
+
+  };
+
   const handleElementalChange = (event: React.SyntheticEvent<HTMLImageElement>) => {
     let newFirst = event.currentTarget.id as keyof typeof ElementalColors;
     if (typeof (event.currentTarget.id) === 'string') {
-      setThird(second);
-      setSecond(first);
-      setFirst(ElementalColors[newFirst]);
+      setModelThird(modelSecond);
+      setModelSecond(modelFirst);
+      setModelFirst(ElementalColors[newFirst]);
     }
 
 
@@ -117,7 +130,7 @@ export function ElementalField(prop: Props) {
         <DialogContent>
 
           <div style={{
-            backgroundColor: `${third}`,
+            backgroundColor: `${modelThird}`,
             height: '80px', borderRadius: '50%', width: '20%', display: 'flex',
             alignItems: 'center',
             border: '1px black solid',
@@ -127,9 +140,9 @@ export function ElementalField(prop: Props) {
             onClick={handleClickOpen}
           >
 
-            <div style={{ backgroundColor: `${second}`, height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
+            <div style={{ backgroundColor: `${modelSecond}`, height: '80%', borderRadius: '50%', width: '80%', display: 'flex', alignItems: 'center', border: '1px black solid', }}>
 
-              <div style={{ backgroundColor: `${first}`, padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}>
+              <div style={{ backgroundColor: `${modelFirst}`, padding: '5px', height: '50%', borderRadius: '50%', width: '65%', border: '1px black solid' }}>
 
               </div>
 
@@ -155,7 +168,7 @@ export function ElementalField(prop: Props) {
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={handleClose}>Finish</Button>
+          <Button onClick={handleFinish}>Finish</Button>
         </DialogActions>
 
       </Dialog>
