@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 var randomColor = require('randomcolor'); // import the script
 import * as React from 'react'
 import * as THREE from "three";
@@ -47,6 +47,7 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
   const [creepInfo, setCreepInfo] = useState<CreepsCardData>(prop.creepInfo)
   const [openChangeDialogue, setOpenChangeDialogue] = useState<boolean>(false)
   const [nameOfEdit, setNameOfEdit] = useState<keyof CreepsCardData>('name')
+  const { initiative } = useContext(UserContext);
 
   const handleClick = () => {
     setInvisible(true);

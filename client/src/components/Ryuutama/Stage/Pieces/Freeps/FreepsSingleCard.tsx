@@ -35,6 +35,7 @@ export function FreepsSingleCard(props: Props) {
   const [openChangeDialogue, setOpenChangeDialogue] = useState<boolean>(false)
   const [nameOfEdit, setNameOfEdit] = useState<keyof FreepsCardData>('name')
   const [creepInfo, setCreepInfo] = useState<FreepsCardData>(props.freepInfo)
+  const { initiative } = useContext(UserContext);
 
 
   const handleClick = (event: any) => {

@@ -94,7 +94,7 @@ export default function Ryuutama() {
     // a crude float or something.  Perhaps in the bottom part of the ryuutama thingx
 
     let foundCreep: number;
-    let foundFreep: number;
+    let foundFreep: number = -10;
 
     
 
@@ -109,14 +109,11 @@ export default function Ryuutama() {
 
     for (let nextFreep = 0; nextFreep<fullDataFreeps.length; nextFreep++) {
       console.log(fullDataFreeps[nextFreep].initiative, initiative, 'something wrong')
-      if (fullDataFreeps[nextFreep].initiative < initiative) {
+      if (fullDataFreeps[nextFreep].initiative < initiative && fullDataFreeps[nextFreep].initiative > foundFreep) {
         console.log(fullDataFreeps[nextFreep].initiative, initiative, 'working')
 
         foundFreep = fullDataFreeps[nextFreep].initiative;
-        break;
-      } else {
-        continue;
-      }
+      } 
     }
 
     console.log(Math.max((foundFreep || -10), (foundCreep || -10) ), 'this houdl be bigger');
@@ -148,7 +145,7 @@ export default function Ryuutama() {
     <>
 
       <UserContext.Provider value={{ weather, setWeather, terrainType, 
-        setTerrainType, first, setFirst, second, setSecond, third, setThird, 
+        setTerrainType, first, setFirst, second, setSecond, third, setThird, initiative, 
         title1, setTitle1, benefit1, setBenefit1, benefitPermanent1, setBenefitPermanent1,
         title2, setTitle2, benefit2, setBenefit2, benefitPermanent2, setBenefitPermanent2,
         title3, setTitle3, benefit3, setBenefit3, benefitPermanent3, setBenefitPermanent3,
