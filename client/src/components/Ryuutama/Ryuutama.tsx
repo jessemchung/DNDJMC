@@ -112,7 +112,13 @@ export default function Ryuutama() {
     }
 
     console.log(Math.max((foundFreep || -10), (foundCreep || -10) ), 'this houdl be bigger');
-    setInitiative(Math.max((foundFreep || -10), (foundCreep || -10) ));
+    if (Math.max((foundFreep || -10), (foundCreep || -10) ) === -10) {
+      setInitiative(30);
+      console.log(initiative, 'this needs to be set to 30 first but it is not')
+      // initiativeCheck();
+    } else {
+      setInitiative(Math.max((foundFreep || -10), (foundCreep || -10) ));
+    }
 
   }
 
