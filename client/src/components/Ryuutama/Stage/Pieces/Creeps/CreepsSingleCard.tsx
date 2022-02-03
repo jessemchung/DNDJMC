@@ -50,6 +50,13 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
   const [nameOfEdit, setNameOfEdit] = useState<keyof CreepsCardData>('name')
   const { initiative } = useContext(UserContext);
 
+
+  let matchingInitiative = false;
+  if (initiative === creepInfo.initiative) {
+    matchingInitiative = true;
+  }
+
+
   const handleClick = () => {
     setInvisible(true);
     // let newArray = prop.fullDataCreeps.splice(prop.index, 1);
@@ -113,7 +120,7 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
 
   return (
     <>
-      <Card >
+      <Card className={matchingInitiative ? 'MatchInitiative' : 'NotMatchInitiative'} >
         <CancelIcon className={"CancelButton"} sx={{ float: 'right' }} onClick={handleClick} />
         <Box sx={{ display: "grid", gridTemplateColumns: '1fr 2fr', alignItems: 'center', }}>
           <CardMedia

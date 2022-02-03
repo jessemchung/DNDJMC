@@ -93,15 +93,11 @@ export default function Ryuutama() {
     //this will check initiative.  A button must be somewhere to also help this with a reset.  Perhaps
     // a crude float or something.  Perhaps in the bottom part of the ryuutama thingx
 
-    let foundCreep: number;
+    let foundCreep: number = -10;
     let foundFreep: number = -10;
-
-    
-
     for (let nextCreep = 0; nextCreep<fullDataCreeps.length; nextCreep++) {
-      if (fullDataCreeps[nextCreep].initiative < initiative) {
+      if (fullDataCreeps[nextCreep].initiative < initiative && fullDataCreeps[nextCreep].initiative > foundCreep) {
         foundCreep = fullDataCreeps[nextCreep].initiative;
-        break;
       } else {
         continue;
       }
@@ -110,7 +106,6 @@ export default function Ryuutama() {
     for (let nextFreep = 0; nextFreep<fullDataFreeps.length; nextFreep++) {
       console.log(fullDataFreeps[nextFreep].initiative, initiative, 'something wrong')
       if (fullDataFreeps[nextFreep].initiative < initiative && fullDataFreeps[nextFreep].initiative > foundFreep) {
-        console.log(fullDataFreeps[nextFreep].initiative, initiative, 'working')
 
         foundFreep = fullDataFreeps[nextFreep].initiative;
       } 
