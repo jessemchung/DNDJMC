@@ -113,16 +113,15 @@ export default function Ryuutama() {
         console.log(fullDataFreeps[nextFreep].initiative, initiative, 'working')
 
         foundFreep = fullDataFreeps[nextFreep].initiative;
-        console.log(foundFreep, 'this should be 0 because it is the initiative of the item')
         break;
       } else {
         continue;
       }
     }
 
-    if ((foundFreep || -10) > (foundCreep || -10)) {
-      console.log('foundFreep is bigger');
-    }
+    console.log(Math.max((foundFreep || -10), (foundCreep || -10) ), 'this houdl be bigger');
+    setInitiative(Math.max((foundFreep || -10), (foundCreep || -10) ));
+
   }
 
 
