@@ -36,7 +36,6 @@ export default function Ryuutama() {
   const [second, setSecond] = useState<string | null>('white');
   const [third, setThird] = useState<string | null>('white');
 
-
   const [title1, setTitle1] = useState<string>('Title');
   const [benefit1, setBenefit1] = useState<number>(0);
   const [benefitPermanent1, setBenefitPermanent1] = useState<number>(0);
@@ -94,10 +93,30 @@ export default function Ryuutama() {
     //this will check initiative.  A button must be somewhere to also help this with a reset.  Perhaps
     // a crude float or something.  Perhaps in the bottom part of the ryuutama thingx
 
-    let found = false;
-    for (let i = initiative; i > 0; i--) {
-      console.log(i);
+    let foundCreep: number;
+    let foundFreep: number;
+
+    
+
+    for (let nextCreep = 0; nextCreep<fullDataCreeps.length; nextCreep++) {
+      if (fullDataCreeps[nextCreep].initiative < initiative) {
+        foundCreep = nextCreep;
+        break;
+      } else {
+        continue;
+      }
     }
+
+    for (let nextFreep = 0; nextFreep<fullDataFreeps.length; nextFreep++) {
+      if (fullDataFreeps[nextFreep].initiative < initiative) {
+        foundFreep = nextFreep;
+        break;
+      } else {
+        continue;
+      }
+    }
+
+    console.log(foundCreep, foundFreep, 'stuff')
   }
 
 
@@ -192,6 +211,8 @@ export default function Ryuutama() {
         </Paper>
 
         <Button onClick={testClick}>Test Button</Button>
+        <Button onClick={initiativeCheck}>Initiative Check</Button>
+
       </UserContext.Provider >
 
     </>

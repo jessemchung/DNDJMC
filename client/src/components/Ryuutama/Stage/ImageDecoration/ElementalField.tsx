@@ -59,7 +59,7 @@ const theme = createTheme({
     },
   },
 });
-
+//! Jesse problem, so basically on clicking outside the box and closing the window, should reset all values in model to white
 export function ElementalField(prop: Props) {
 
   const [open, setOpen] = useState<boolean>(false);
@@ -74,6 +74,8 @@ export function ElementalField(prop: Props) {
   // const handleChange = (event: SelectChangeEvent) => {
   //   setAge(event.target.value as string);
   // };
+
+
 
 
   const handleClickOpen = () => {
