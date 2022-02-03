@@ -28,6 +28,7 @@ import { CreepsCardData } from '../Common/_Types.jsx'
 import { CssTwoTone } from '@mui/icons-material';
 import { RyuutamaDialogue } from '../../../Generic/RyuutamaDialogue.jsx'
 import { RyuutamaTextField } from '../../../Generic/RyuutamaTextField.jsx'
+import UserContext from '../../../UserContext.jsx';
 
 interface Props {
   creepInfo: CreepsCardData,

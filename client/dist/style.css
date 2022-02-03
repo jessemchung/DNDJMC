@@ -19,3 +19,7 @@
 .CancelButton:hover {
   color: red;
 }
+
+.MatchInitiative {
+  border: 2px solid blue;
+}

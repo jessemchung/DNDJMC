@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -20,6 +20,7 @@ import { RyuutamaTextField } from '../../../Generic/RyuutamaTextField.jsx'
 // should creeps and freeps be fused together?
 import CancelIcon from '@mui/icons-material/Cancel';
 import { Button } from '@mui/material';
+import UserContext from '../../../UserContext.jsx';
 
 //for deletion purposes, it may be best to have this get access to the overall number of and allow fixing
 interface Props {
@@ -34,9 +35,13 @@ export function FreepsSingleCard(props: Props) {
   const [invisible, setInvisible] = useState<boolean>(false);
   const [openChangeDialogue, setOpenChangeDialogue] = useState<boolean>(false)
   const [nameOfEdit, setNameOfEdit] = useState<keyof FreepsCardData>('name')
-  const [creepInfo, setCreepInfo] = useState<FreepsCardData>(props.freepInfo)
+  const [freepInfo, setFreepInfo] = useState<FreepsCardData>(props.freepInfo)
   const { initiative } = useContext(UserContext);
 
+  let matchingInitiative = false;
+  if (initiative === freepInfo.initiative) {
+    matchingInitiative = true;
+  }
 
   const handleClick = (event: any) => {
     event.preventDefault();
@@ -44,19 +49,19 @@ export function FreepsSingleCard(props: Props) {
   }
 
   const handleIncrease = () => {
-    let newNumber: number = creepInfo.hitpoints++;
-    setCreepInfo({
-      ...creepInfo,
-      [creepInfo.hitpoints]: newNumber,
+    let newNumber: number = freepInfo.hitpoints++;
+    setFreepInfo({
+      ...freepInfo,
+      [freepInfo.hitpoints]: newNumber,
     })
   }
 
 
   const handleDecrease = () => {
-    let newNumber: number = creepInfo.hitpoints--;
-    setCreepInfo({
-      ...creepInfo,
-      [creepInfo.hitpoints]: newNumber,
+    let newNumber: number = freepInfo.hitpoints--;
+    setFreepInfo({
+      ...freepInfo,
+      [freepInfo.hitpoints]: newNumber,
     })
   }
 
@@ -74,8 +79,8 @@ export function FreepsSingleCard(props: Props) {
     if (isNaN(parseInt(value))) {
       value = parseInt(value);
     }
-    setCreepInfo({
-      ...creepInfo,
+    setFreepInfo({
+      ...freepInfo,
       [name]: value,
     })
   }
@@ -88,7 +93,7 @@ export function FreepsSingleCard(props: Props) {
   let textFields = <RyuutamaTextField
     name={nameOfEdit}
     label={nameOfEdit}
-    value={creepInfo[nameOfEdit]}
+    value={freepInfo[nameOfEdit]}
     onChange={onChange}
     type='string' />
 
@@ -98,7 +103,7 @@ export function FreepsSingleCard(props: Props) {
   }
 
   return (
-    <Card >
+    <Card className={matchingInitiative ? 'MatchInitiative' : 'NotMatchInitiative'}>
       <CancelIcon className={"CancelButton"} sx={{ float: 'right' }} onClick={handleClick} />
       <Box sx={{ display: "grid", gridTemplateColumns: '2fr 1fr', alignItems: 'center', }}>
         <CardContent >
