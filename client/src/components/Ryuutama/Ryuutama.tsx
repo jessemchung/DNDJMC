@@ -63,7 +63,7 @@ export default function Ryuutama() {
   const [title7, setTitle7] = useState<string>('Title');
   const [benefit7, setBenefit7] = useState<number>(0);
   const [benefitPermanent7, setBenefitPermanent7] = useState<number>(0);
-  
+
   const [title8, setTitle8] = useState<string>('Title');
   const [benefit8, setBenefit8] = useState<number>(0);
   const [benefitPermanent8, setBenefitPermanent8] = useState<number>(0);
@@ -89,35 +89,38 @@ export default function Ryuutama() {
 
   }
 
-  const initiativeCheck = () => {
+  const initiativeCheck = (event: any, thisInitiative: number = initiative) => {
     //this will check initiative.  A button must be somewhere to also help this with a reset.  Perhaps
     // a crude float or something.  Perhaps in the bottom part of the ryuutama thingx
 
+    if (fullDataCreeps.length === 0 && fullDataFreeps.length === 0) {
+      return;
+    }
     let foundCreep: number = -10;
     let foundFreep: number = -10;
-    for (let nextCreep = 0; nextCreep<fullDataCreeps.length; nextCreep++) {
-      if (fullDataCreeps[nextCreep].initiative < initiative && fullDataCreeps[nextCreep].initiative > foundCreep) {
+    for (let nextCreep = 0; nextCreep < fullDataCreeps.length; nextCreep++) {
+      if (fullDataCreeps[nextCreep].initiative < thisInitiative && fullDataCreeps[nextCreep].initiative > foundCreep) {
         foundCreep = fullDataCreeps[nextCreep].initiative;
       } else {
         continue;
       }
     }
 
-    for (let nextFreep = 0; nextFreep<fullDataFreeps.length; nextFreep++) {
-      console.log(fullDataFreeps[nextFreep].initiative, initiative, 'something wrong')
-      if (fullDataFreeps[nextFreep].initiative < initiative && fullDataFreeps[nextFreep].initiative > foundFreep) {
+    for (let nextFreep = 0; nextFreep < fullDataFreeps.length; nextFreep++) {
+      console.log(fullDataFreeps[nextFreep].initiative, thisInitiative, 'something wrong')
+      if (fullDataFreeps[nextFreep].initiative < thisInitiative && fullDataFreeps[nextFreep].initiative > foundFreep) {
 
         foundFreep = fullDataFreeps[nextFreep].initiative;
-      } 
+      }
     }
 
-    console.log(Math.max((foundFreep || -10), (foundCreep || -10) ), 'this houdl be bigger');
-    if (Math.max((foundFreep || -10), (foundCreep || -10) ) === -10) {
+    console.log(Math.max((foundFreep || -10), (foundCreep || -10)), 'this houdl be bigger');
+    if (Math.max((foundFreep || -10), (foundCreep || -10)) === -10) {
       setInitiative(30);
-      console.log(initiative, 'this needs to be set to 30 first but it is not')
-      // initiativeCheck();
+      console.log(thisInitiative, 'this needs to be set to 30 first but it is not')
+      initiativeCheck(null, 30);
     } else {
-      setInitiative(Math.max((foundFreep || -10), (foundCreep || -10) ));
+      setInitiative(Math.max((foundFreep || -10), (foundCreep || -10)));
     }
 
   }
@@ -145,8 +148,9 @@ export default function Ryuutama() {
   return (
     <>
 
-      <UserContext.Provider value={{ weather, setWeather, terrainType, 
-        setTerrainType, first, setFirst, second, setSecond, third, setThird, initiative, 
+      <UserContext.Provider value={{
+        weather, setWeather, terrainType,
+        setTerrainType, first, setFirst, second, setSecond, third, setThird, initiative,
         title1, setTitle1, benefit1, setBenefit1, benefitPermanent1, setBenefitPermanent1,
         title2, setTitle2, benefit2, setBenefit2, benefitPermanent2, setBenefitPermanent2,
         title3, setTitle3, benefit3, setBenefit3, benefitPermanent3, setBenefitPermanent3,
@@ -157,7 +161,7 @@ export default function Ryuutama() {
         title8, setTitle8, benefit8, setBenefit8, benefitPermanent8, setBenefitPermanent8,
         title9, setTitle9, benefit9, setBenefit9, benefitPermanent9, setBenefitPermanent9,
         title10, setTitle10, benefit10, setBenefit10, benefitPermanent10, setBenefitPermanent10,
-        }}>
+      }}>
 
         <Paper>
           <Box>
