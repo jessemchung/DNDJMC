@@ -38,6 +38,16 @@ export enum ReadingTypes {
   Of = 'of',
   Strings = 'strings',
 }
+
+export enum conditions {
+  poison = 1,
+  curse = 2, 
+  prone = 3,
+  grappled = 4,
+  flu = 5, 
+  charm = 6,
+}
+
 export interface IReadings {
  param: ReadingTypes
 }
