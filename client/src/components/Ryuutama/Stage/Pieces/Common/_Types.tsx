@@ -46,6 +46,10 @@ export enum conditions {
   grappled = 4,
   flu = 5, 
   charm = 6,
+  frightened = 7,
+  blinded = 8,
+  petrified = 9,
+  
 }
 
 export interface IReadings {
