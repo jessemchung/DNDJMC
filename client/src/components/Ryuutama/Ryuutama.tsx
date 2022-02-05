@@ -31,6 +31,7 @@ export default function Ryuutama() {
   const [initiative, setInitiative] = useState<number | null>(30);
   const [weather, setWeather] = useState<string>('./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png');
   const [terrainType, setTerrainType] = useState<TerrainTypeInterface['possibleURL']>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
+  const [round, setRound] = useState<number>(1);
 
   const [first, setFirst] = useState<string | null>('unset');
   const [second, setSecond] = useState<string | null>('white');
@@ -118,6 +119,7 @@ export default function Ryuutama() {
     if (Math.max((foundFreep || -10), (foundCreep || -10)) === -10) {
       setInitiative(30);
       console.log(thisInitiative, 'this needs to be set to 30 first but it is not')
+      setRound(round+1);
       initiativeCheck(null, 30);
     } else {
       setInitiative(Math.max((foundFreep || -10), (foundCreep || -10)));
@@ -219,6 +221,7 @@ export default function Ryuutama() {
 
         <Button onClick={testClick}>Test Button</Button>
         <Button onClick={initiativeCheck}>Initiative Check</Button>
+        <span>Rounds </span>
 
       </UserContext.Provider >
 
