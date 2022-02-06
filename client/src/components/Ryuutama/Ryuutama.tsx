@@ -87,6 +87,7 @@ export default function Ryuutama() {
   const testClick = () => {
     console.log(fullDataCreeps, 'were these changed fullDataCreeps?');
     console.log(fullDataFreeps, 'fullDataFreeps')
+    console.log('happy times');
 
   }
 
