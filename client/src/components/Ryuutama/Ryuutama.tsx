@@ -224,6 +224,8 @@ export default function Ryuutama() {
         <Button onClick={initiativeCheck}>Initiative Check</Button>
         <span>Rounds </span>
 
+        <div>Dice will be at the bottom and a bit sticky</div>
+
       </UserContext.Provider >
 
     </>
