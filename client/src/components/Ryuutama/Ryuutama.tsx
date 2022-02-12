@@ -17,7 +17,7 @@ import { CreepsCardData, FreepsCardData } from './Stage/Pieces/Common/_Types.jsx
 import { Button } from '@mui/material';
 import UserContext from './UserContext.jsx'
 import { TerrainTypeInterface } from './Stage/ImageDecoration/_Types.jsx';
-
+import Dice from './Dice/Dice.jsx'
 
 const quickTest = <MainStage key={'MainStage'} />
 
@@ -225,6 +225,7 @@ export default function Ryuutama() {
         <span>Rounds </span>
 
         <div>Dice will be at the bottom and a bit sticky</div>
+        <Dice />
 
       </UserContext.Provider >
 

@@ -22,9 +22,17 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { Button } from '@mui/material';
 
 
 export default function Dice() {
+
+  const [d4, setD4] = useState<number>(0);
+
+  const testClick = () => {
+
+    console.log(Math.ceil(Math.random() * 10));
+  }
 
 
   return (
@@ -36,6 +44,9 @@ export default function Dice() {
         <span>d10</span>
         <span>d12</span>
         <span>d20</span>
+
+        <Button onClick={testClick}>{d4}</Button>
+
       </Box>
 
 
