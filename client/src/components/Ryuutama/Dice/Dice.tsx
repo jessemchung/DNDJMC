@@ -25,14 +25,40 @@ import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import { Button } from '@mui/material';
 
 
+interface DiceObject {
+  d4: number;
+  d6: number;
+  d8: number;
+  d10: number;
+  d12: number;
+  d20: number;
+}
+
 export default function Dice() {
 
   const [d4, setD4] = useState<number>(0);
+  const [d6, setD6] = useState<number>(0);
 
-  const testClick = (max: number, thing: Dispatch<SetStateAction<number>>) => {
+  const [diceValues, setDiceValues] = useState<DiceObject>({
+    d4: 0,
+    d6: 0,
+    d8: 0,
+    d10: 0,
+    d12: 0,
+    d20: 0,
+
+  })
+
+  //should I hook them into the right things? so that I can build
+
+  const numberGenerator = (max: number, thing: keyof DiceObject) => {
 
     let newNumber = (Math.ceil(Math.random() * max));
-    thing(newNumber);
+    // thing(newNumber);
+    setDiceValues({
+      ...diceValues,
+      [thing]: newNumber
+    })
   }
 
   return (
@@ -45,7 +71,8 @@ export default function Dice() {
         <span>d12</span>
         <span>d20</span>
 
-        <Button onClick={()=> {testClick(4, setD4)}}>{d4}</Button>
+        <Button onClick={()=> {numberGenerator(4, 'd4')}}>{diceValues.d4}</Button>
+        {/* <Button onClick={()=> {numberGenerator(6, setD4)}}>{d4}</Button> */}
 
 
       </Box>
