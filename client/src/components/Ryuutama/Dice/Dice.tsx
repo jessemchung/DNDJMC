@@ -13,7 +13,7 @@
 //this can all likely be done just here... maybe.  Context should include an array of objects
 //containing information for additional buttons
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 var randomColor = require('randomcolor'); // import the script
 import * as React from 'react'
 import * as THREE from "three";
@@ -29,11 +29,11 @@ export default function Dice() {
 
   const [d4, setD4] = useState<number>(0);
 
-  const testClick = () => {
+  const testClick = (max: number, thing: Dispatch<SetStateAction<number>>) => {
 
-    console.log(Math.ceil(Math.random() * 10));
+    let newNumber = (Math.ceil(Math.random() * max));
+    thing(newNumber);
   }
-
 
   return (
     <>
@@ -45,7 +45,8 @@ export default function Dice() {
         <span>d12</span>
         <span>d20</span>
 
-        <Button onClick={testClick}>{d4}</Button>
+        <Button onClick={()=> {testClick(4, setD4)}}>{d4}</Button>
+
 
       </Box>
 
