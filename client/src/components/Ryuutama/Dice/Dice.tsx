@@ -23,7 +23,7 @@ import Grid from '@mui/material/Grid';
 import axios from 'axios';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import { Button } from '@mui/material';
-
+import Stack from '@mui/material/Stack';
 
 interface DiceObject {
   d4: number;
@@ -63,19 +63,20 @@ export default function Dice() {
 
   return (
     <>
-      <Box>
-        <span>d4</span>
-        <span>d6</span>
-        <span>d8</span>
-        <span>d10</span>
-        <span>d12</span>
-        <span>d20</span>
+      <Stack direction="row" spacing={2}>
+
 
         <Button onClick={()=> {numberGenerator(4, 'd4')}}>{diceValues.d4}</Button>
+        <Button onClick={()=> {numberGenerator(6, 'd6')}}>{diceValues.d6}</Button>
+        <Button onClick={()=> {numberGenerator(8, 'd8')}}>{diceValues.d8}</Button>
+        <Button onClick={()=> {numberGenerator(10, 'd10')}}>{diceValues.d10}</Button>
+        <Button onClick={()=> {numberGenerator(12, 'd12')}}>{diceValues.d12}</Button>
+        <Button onClick={()=> {numberGenerator(20, 'd20')}}>{diceValues.d20}</Button>
+
         {/* <Button onClick={()=> {numberGenerator(6, setD4)}}>{d4}</Button> */}
 
 
-      </Box>
+      </Stack>
 
 
     </>
