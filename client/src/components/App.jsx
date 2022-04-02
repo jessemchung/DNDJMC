@@ -9,7 +9,8 @@ export default function App() {
         <Link to="/invoices">Invoices</Link> |{' '}
         <Link to="/expenses">Expenses</Link> |{' '}
 
-        <Link to="/ryuutama">Ryuutama</Link>
+        <Link to="/ryuutama">Ryuutama</Link> |{' '}
+        <Link to="/ryuutama">Postcard Maker</Link>
 
         
       </nav>

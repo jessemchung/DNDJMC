@@ -40,6 +40,7 @@ ReactDOM.render(
 
         <Route path="animation" element={<Ryuutama />} />
 
+        <Route path="postcard" element={<Ryuutama />} />
 
         {/* <Route path="journal" element={<Journal />} /> */}
 
