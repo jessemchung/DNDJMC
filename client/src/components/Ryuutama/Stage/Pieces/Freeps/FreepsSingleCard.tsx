@@ -46,13 +46,13 @@ export function FreepsSingleCard(props: Props) {
   const handleDeletion = (event: any) => {
     event.preventDefault();
     let nameFreep = props.freepInfo.name;
-    let copyFullDataCreep = JSON.parse(JSON.stringify(props.fullDataFreeps));
-    let lengthFullDataCreep = props.fullDataFreeps.length;
+    let copyFullDataFreep = JSON.parse(JSON.stringify(props.fullDataFreeps));
+    let lengthFullDataFreep = props.fullDataFreeps.length;
     
-    for (let singleCard=0; singleCard < lengthFullDataCreep; singleCard++) {
-      if (copyFullDataCreep[singleCard].name === nameFreep) {
-        copyFullDataCreep.splice(singleCard, 1);
-        props.setFullDataFreeps(copyFullDataCreep);
+    for (let singleCard=0; singleCard < lengthFullDataFreep; singleCard++) {
+      if (copyFullDataFreep[singleCard].name === nameFreep) {
+        copyFullDataFreep.splice(singleCard, 1);
+        props.setFullDataFreeps(copyFullDataFreep);
       } 
     }
   }
