@@ -43,9 +43,18 @@ export function FreepsSingleCard(props: Props) {
     matchingInitiative = true;
   }
 
-  const handleClick = (event: any) => {
+  const handleDeletion = (event: any) => {
     event.preventDefault();
-    setInvisible(true);
+    let nameFreep = props.freepInfo.name;
+    let copyFullDataCreep = JSON.parse(JSON.stringify(props.fullDataFreeps));
+    let lengthFullDataCreep = props.fullDataFreeps.length;
+    
+    for (let singleCard=0; singleCard < lengthFullDataCreep; singleCard++) {
+      if (copyFullDataCreep[singleCard].name === nameFreep) {
+        copyFullDataCreep.splice(singleCard, 1);
+        props.setFullDataFreeps(copyFullDataCreep);
+      } 
+    }
   }
 
   const handleIncrease = () => {
@@ -104,7 +113,7 @@ export function FreepsSingleCard(props: Props) {
 
   return (
     <Card className={matchingInitiative ? 'MatchInitiative' : 'NotMatchInitiative'}>
-      <CancelIcon className={"CancelButton"} sx={{ float: 'right' }} onClick={handleClick} />
+      <CancelIcon className={"CancelButton"} sx={{ float: 'right' }} onClick={handleDeletion} />
       <Box sx={{ display: "grid", gridTemplateColumns: '2fr 1fr', alignItems: 'center', }}>
         <CardContent >
           <Typography component="div" variant="body2">

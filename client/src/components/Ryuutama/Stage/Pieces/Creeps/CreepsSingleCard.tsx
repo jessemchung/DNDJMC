@@ -57,11 +57,20 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
   }
 
 
-  const handleClick = () => {
-    setInvisible(true);
-    // let newArray = prop.fullDataCreeps.splice(prop.index, 1);
-    // prop.setFullDataCreeps(prop.fullDataCreeps.splice(prop.index, 1))
-    // console.log(prop.index, newArray, 'change?')
+  const handleClick = (event:any) => {
+    event.preventDefault();
+    let nameCreeps = prop.creepInfo.name;
+    let copyFullDataCreep = JSON.parse(JSON.stringify(prop.fullDataCreeps));
+    let lengthFullDataCreep = prop.fullDataCreeps.length;
+    
+    for (let singleCard=0; singleCard < lengthFullDataCreep; singleCard++) {
+      if (copyFullDataCreep[singleCard].name === nameCreeps) {
+        copyFullDataCreep.splice(singleCard, 1);
+        prop.setFullDataCreeps(copyFullDataCreep);
+      } 
+    }
+
+
   }
 
   const handleIncrease = () => {

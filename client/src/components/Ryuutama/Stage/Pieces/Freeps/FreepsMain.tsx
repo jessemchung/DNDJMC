@@ -39,7 +39,6 @@ export default function FreepsMain(props: Props) {
       <div> Freeps </div>
       <FreepsSampleCard />
 
-      {/* <FreepsSingleCard /> */}
       {allCards}
 
       <FreepsAdd indexPieces={props.indexPieces} setIndexPieces={props.setIndexPieces} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>

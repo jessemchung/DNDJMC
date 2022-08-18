@@ -26,8 +26,8 @@ export default function Ryuutama() {
 
   // }
   // var color = randomColor(); // a hex code for an attractive color
-  const [fullDataCreeps, setFullDataCreeps] = useState<CreepsCardData[]>([])
-  const [fullDataFreeps, setFullDataFreeps] = useState<FreepsCardData[]>(FreepsSampleData)
+  const [fullDataCreeps, setFullDataCreeps] = useState<(CreepsCardData)[]>([])
+  const [fullDataFreeps, setFullDataFreeps] = useState<(FreepsCardData|null)[]>(FreepsSampleData)
   const [initiative, setInitiative] = useState<number | null>(30);
   const [weather, setWeather] = useState<string>('./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png');
   const [terrainType, setTerrainType] = useState<TerrainTypeInterface['possibleURL']>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
@@ -87,7 +87,10 @@ export default function Ryuutama() {
   const testClick = () => {
     console.log(fullDataCreeps, 'were these changed fullDataCreeps?');
     console.log(fullDataFreeps, 'fullDataFreeps')
-    console.log('happy times');
+
+    setFullDataFreeps([]);
+    //I predict this will delete everything... Hopefully.
+    //we need to delete
 
   }
 
@@ -109,7 +112,6 @@ export default function Ryuutama() {
     }
 
     for (let nextFreep = 0; nextFreep < fullDataFreeps.length; nextFreep++) {
-      console.log(fullDataFreeps[nextFreep].initiative, thisInitiative, 'something wrong')
       if (fullDataFreeps[nextFreep].initiative < thisInitiative && fullDataFreeps[nextFreep].initiative > foundFreep) {
 
         foundFreep = fullDataFreeps[nextFreep].initiative;
@@ -184,7 +186,6 @@ export default function Ryuutama() {
 
 
                       <Item>
-                        <div>Freeps</div>
 
                         <FreepsMain key={'FreepsMain'} indexPieces={indexFreeps} setIndexPieces={setIndexFreeps} fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps} />
 
@@ -198,7 +199,7 @@ export default function Ryuutama() {
 
                       </Item>
 
-                      <Item><div>Creeps </div>
+                      <Item>
 
                         <CreepsMain key={'CreepsMain'} fullDataCreeps={fullDataCreeps} setFullDataCreeps={setFullDataCreeps} />
 
