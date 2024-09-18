@@ -128,7 +128,7 @@ export function FreepsSingleCard(props: Props) {
             <Typography display="inline" variant="body2" align="left" >
               HP
             </Typography>
-            <RemoveCircleOutlineIcon />
+            <RemoveCircleOutlineIcon onClick={() => console.log("hello")}/>
             <Typography display="inline" variant="body2" align="left">
               {props.freepInfo.hitpoints} / {props.freepInfo.maxHitpoints}
             </Typography>
@@ -156,8 +156,6 @@ export function FreepsSingleCard(props: Props) {
             <Typography display="inline" variant="body2" align="left" >
               Armor
             </Typography>
-
-
             <Typography display="inline" variant="body2" align="left">
               {props.freepInfo.armor}
             </Typography>

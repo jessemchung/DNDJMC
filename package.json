@@ -1,26 +1,36 @@
 {
-  "name": "movie-browser",
+  "name": "jesseportfolio",
   "version": "1.1.0",
-  "description": "HRSF77/78 Review: Movie Browser",
-  "author": "Hack Reactor <curriculum.team@hackreactor.com>",
+  "description": "My portfolio.  BUilt off react template",
+  "author": "Jesse <jessemchung1@gmail.com>",
   "license": "UNLICENSED",
   "private": true,
+  "resolutions": {
+    "@types/node": "22.5.1"
+  },
   "scripts": {
     "start": "nodemon server/index.js",
-    "react": "webpack --config ./webpack.config.js --mode development -w"
+    "react": "webpack --config ./webpack.config.js --mode development -w",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/plugin-transform-runtime": "^7.25.4",
     "@babel/preset-env": "^7.25.4",
     "@babel/preset-react": "^7.24.7",
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.3.7",
     "@types/three": "^0.168.0",
+    "@typescript-eslint/eslint-plugin": "^8.6.0",
+    "@typescript-eslint/parser": "^8.6.0",
     "babel-loader": "^9.2.1",
+    "eslint": "^9.10.0",
     "nodemon": "^3.1.5"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@eslint/js": "^9.10.0",
     "@firebase/firestore": "^4.7.1",
     "@firebase/firestore-compat": "^0.3.36",
     "@mui/icons-material": "^6.1.0",
@@ -29,6 +39,7 @@
     "bcrypt": "^5.1.1",
     "css-loader": "^7.1.2",
     "dotenv": "^16.4.5",
+    "eslint-plugin-react": "^7.36.1",
     "express": "^4.21.0",
     "firebase": "^10.13.1",
     "mongodb": "^6.9.0",
@@ -45,6 +56,7 @@
     "style-loader": "^4.0.0",
     "styled-components": "^6.1.13",
     "three": "^0.168.0",
+    "typescript-eslint": "^8.6.0",
     "underscore": "^1.13.7",
     "url-loader": "^4.1.1",
     "webpack": "^5.94.0",

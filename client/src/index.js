@@ -18,7 +18,7 @@ import { Route, Routes } from 'react-router'
 import "./main.css";
 import App from './components/App.jsx';
 
-
+// this page is handling the paths to the various pieces.  
 ReactDOM.render(
   <HashRouter >
     <Routes>
@@ -41,6 +41,9 @@ ReactDOM.render(
         <Route path="animation" element={<Ryuutama />} />
 
         <Route path="postcard" element={<Ryuutama />} />
+
+        <Route path="aboutme" element={<AboutMe />} />
+
 
         {/* <Route path="journal" element={<Journal />} /> */}
 

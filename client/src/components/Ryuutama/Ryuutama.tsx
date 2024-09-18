@@ -27,8 +27,8 @@ export default function Ryuutama() {
   // }
   // var color = randomColor(); // a hex code for an attractive color
   const [fullDataCreeps, setFullDataCreeps] = useState<(CreepsCardData)[]>([])
-  const [fullDataFreeps, setFullDataFreeps] = useState<(FreepsCardData|null)[]>(FreepsSampleData)
-  const [initiative, setInitiative] = useState<number | null>(30);
+  const [fullDataFreeps, setFullDataFreeps] = useState<(FreepsCardData)[]>(FreepsSampleData)
+  const [initiative, setInitiative] = useState<number>(30);
   const [weather, setWeather] = useState<string>('./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png');
   const [terrainType, setTerrainType] = useState<TerrainTypeInterface['possibleURL']>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
   const [round, setRound] = useState<number>(1);
@@ -142,14 +142,6 @@ export default function Ryuutama() {
   const darkTheme = createTheme({ palette: { mode: 'dark' } });
   const lightTheme = createTheme({ palette: { mode: 'light' } });
 
-  // I would suspect we need to consider where initiative is decided.  It must start with the highest one I think.  If that is the case
-  // then both values should start here I suppose, then it picks starting from the highest number
-
-  //initiative will need to be tracked so that the next lowest one will be picked.
-
-  // a roll can be given I suppose.  
-
-  //a dice roller on top to be implemented first
   return (
     <>
 
