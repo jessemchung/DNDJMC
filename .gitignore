@@ -1,6 +1,6 @@
 node_modules
-bundle.js
-config.js
+# bundle.js
+# config.js
 
 **/*.map 
-client/src/components/Ryuutama/**/*.jsx
+# client/src/components/Ryuutama/**/*.jsx
