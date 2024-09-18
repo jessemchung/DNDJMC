@@ -11,6 +11,7 @@ export default function App() {
 
         <Link to="/ryuutama">Ryuutama</Link> |{' '}
         <Link to="/ryuutama">Postcard Maker</Link>
+        <Link to="/AboutMe">About Me</Link>
 
         
       </nav>
