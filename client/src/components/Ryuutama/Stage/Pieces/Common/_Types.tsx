@@ -55,6 +55,7 @@ export enum conditions {
 export interface IReadings {
  param: ReadingTypes
 }
+export type FreepOrCreep = "creep" | "freep";
 
 export type FreepsCardData = {
   'index': number,
@@ -65,4 +66,11 @@ export type FreepsCardData = {
   'maxHitpoints': number,
   'initiative': number,
   'name': string,
+  'creepOrFreep': FreepOrCreep
 };
+
+export type EnvironmentPropsData = {
+  'name': string,
+  description: string,
+  type: string
+}

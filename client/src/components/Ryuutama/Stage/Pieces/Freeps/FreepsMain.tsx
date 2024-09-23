@@ -4,6 +4,7 @@ import FreepsSampleCard from './FreepsSampleCard.jsx'
 import {FreepsCardData} from '../Common/_Types.jsx'
 import {FreepsSingleCard} from './FreepsSingleCard.jsx'
 import {FreepsAdd} from './FreepsAdd.jsx'
+import { RyuutamaForm } from '../../../Ryuutama.jsx';
 
 // this is the leftside component.  
 
@@ -13,24 +14,31 @@ interface Props {
 
   fullDataFreeps: FreepsCardData[],
   setFullDataFreeps:React.Dispatch<React.SetStateAction<FreepsCardData[]>>, 
+  form: RyuutamaForm,
+  setForm: (data: Partial<RyuutamaForm>) => void,
+  adjustCreatureSet: (indexOfChange: number, changedCard: FreepsCardData) => void
 }
 
-
+// this produces all the freep cards. 
 export default function FreepsMain(props: Props) {
-  const allCards: React.JSX.Element[] = props.fullDataFreeps.map((singleCard, index)=> {
 
-    return (
-      <FreepsSingleCard freepInfo={singleCard} key={index+"freeps"} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps} />
-    )
+  const allCards: React.JSX.Element[] = props.fullDataFreeps.map((singleCard, index)=> {
+    if (singleCard.creepOrFreep === "freep") {
+      return (
+        <FreepsSingleCard adjustCreatureSet={props.adjustCreatureSet} index={index} freepInfo={singleCard} key={index+"freeps"} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps} />
+      )
+    } else {
+      return null;
+    }
+
   })
 
 
   return (
     <>
-      <div> Freeps </div>
-      <FreepsSampleCard />
+      <div> Freeps Column </div>
       {allCards}
-      <FreepsAdd indexPieces={props.indexPieces} setIndexPieces={props.setIndexPieces} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>
+      <FreepsAdd form={props.form} setForm={props.setForm} indexPieces={props.indexPieces} setIndexPieces={props.setIndexPieces} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>
     </>
   )
 }

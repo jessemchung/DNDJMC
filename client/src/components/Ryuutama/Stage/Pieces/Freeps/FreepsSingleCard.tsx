@@ -26,8 +26,9 @@ import UserContext from '../../../UserContext.jsx';
 interface Props {
   freepInfo: FreepsCardData,
   fullDataFreeps: FreepsCardData[],
+  index: number,
   setFullDataFreeps: React.Dispatch<React.SetStateAction<FreepsCardData[]>>,
-
+  adjustCreatureSet: (indexOfChange: number, changedCard: FreepsCardData) => void
 }
 
 export function FreepsSingleCard(props: Props) {
@@ -45,33 +46,57 @@ export function FreepsSingleCard(props: Props) {
 
   const handleDeletion = (event: any) => {
     event.preventDefault();
-    let nameFreep = props.freepInfo.name;
-    let copyFullDataFreep = JSON.parse(JSON.stringify(props.fullDataFreeps));
-    let lengthFullDataFreep = props.fullDataFreeps.length;
-    
-    for (let singleCard=0; singleCard < lengthFullDataFreep; singleCard++) {
-      if (copyFullDataFreep[singleCard].name === nameFreep) {
-        copyFullDataFreep.splice(singleCard, 1);
-        props.setFullDataFreeps(copyFullDataFreep);
-      } 
-    }
+    console.log(props.fullDataFreeps, "deletion in progress")
+    let copyFullDataFreep = props.fullDataFreeps.filter((item, index) => {
+      if (index === props.index) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+
+    props.setFullDataFreeps(copyFullDataFreep);
+    // for (let singleCard=0; singleCard < lengthFullDataFreep; singleCard++) {
+    //   if (copyFullDataFreep[singleCard].name === nameFreep) {
+    //     copyFullDataFreep.splice(singleCard, 1);
+    //     props.setFullDataFreeps(copyFullDataFreep);
+    //   } 
+    // }
   }
 
-  const handleIncrease = () => {
+  const handleIncrease: () => void = () => {
     let newNumber: number = freepInfo.hitpoints++;
-    setFreepInfo({
+    const newFreep: FreepsCardData = {
       ...freepInfo,
       [freepInfo.hitpoints]: newNumber,
-    })
+    };
+    console.log("hello?")
+    const newArray = props.fullDataFreeps.map((item, index) => {
+      if (index === props.index) {
+        return newFreep; // Update the specific object
+      }
+      return item; // Return the unchanged object
+    });
+    props.setFullDataFreeps(newArray);
+
+
   }
 
 
   const handleDecrease = () => {
     let newNumber: number = freepInfo.hitpoints--;
-    setFreepInfo({
+    const newFreep: FreepsCardData = {
       ...freepInfo,
       [freepInfo.hitpoints]: newNumber,
-    })
+    };
+    console.log("hello?")
+    const newArray = props.fullDataFreeps.map((item, index) => {
+      if (index === props.index) {
+        return newFreep; // Update the specific object
+      }
+      return item; // Return the unchanged object
+    });
+    props.setFullDataFreeps(newArray);
   }
 
   const handleClose = () => {
@@ -128,11 +153,11 @@ export function FreepsSingleCard(props: Props) {
             <Typography display="inline" variant="body2" align="left" >
               HP
             </Typography>
-            <RemoveCircleOutlineIcon onClick={() => console.log("hello")}/>
+            <RemoveCircleOutlineIcon onClick={() =>handleDecrease()}/>
             <Typography display="inline" variant="body2" align="left">
               {props.freepInfo.hitpoints} / {props.freepInfo.maxHitpoints}
             </Typography>
-            <AddCircleOutlineIcon />
+            <AddCircleOutlineIcon onClick={()=> handleIncrease()} />
           </Box>
           <Box
             sx={{
@@ -166,7 +191,7 @@ export function FreepsSingleCard(props: Props) {
 
         <CardMedia
           component="img"
-          image="/image/Personal/Ra.png"
+          image={freepInfo.healthyImage}
           alt="A freep, a hero, a main honcho"
         />
       </Box>

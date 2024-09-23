@@ -13,15 +13,9 @@
 //this can all likely be done just here... maybe.  Context should include an array of objects
 //containing information for additional buttons
 
-import { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { useState } from 'react';
 var randomColor = require('randomcolor'); // import the script
 import * as React from 'react'
-import * as THREE from "three";
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import axios from 'axios';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import { Button } from '@mui/material';
 import Stack from '@mui/material/Stack';
 
@@ -61,12 +55,33 @@ export default function Dice() {
     })
   }
 
+
+  // probably better for a table adjustment
   return (
     <>
+
+<Stack direction="row" spacing={2}>
+
+<div>d4</div>
+<div>d6</div>
+<div>d8</div>
+<div>d10</div>
+<div>d12</div>
+<div>d20</div>
+
+
+
+</Stack>
+
       <Stack direction="row" spacing={2}>
 
+      <div>
+        <div>d4</div>
 
-        <Button onClick={()=> {numberGenerator(4, 'd4')}}>{diceValues.d4}</Button>
+      <Button onClick={()=> {numberGenerator(4, 'd4')}}>{diceValues.d4}</Button>
+
+      </div>
+
         <Button onClick={()=> {numberGenerator(6, 'd6')}}>{diceValues.d6}</Button>
         <Button onClick={()=> {numberGenerator(8, 'd8')}}>{diceValues.d8}</Button>
         <Button onClick={()=> {numberGenerator(10, 'd10')}}>{diceValues.d10}</Button>

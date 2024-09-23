@@ -15,7 +15,7 @@ import './main.css';
 import { HashRouter } from 'react-router-dom'
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter  } from "react-router-dom";
 import { Route, Routes } from 'react-router'
 import "./main.css";
 import App from './components/App.jsx';

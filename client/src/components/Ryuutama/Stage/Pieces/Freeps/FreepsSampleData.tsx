@@ -11,6 +11,7 @@ export const FreepsSampleData: FreepsCardData[] = [
     'initiative': 2,
     'name': "Bradford",
     'maxHitpoints': 10,
+     creepOrFreep: 'freep'
 
   },
 
@@ -23,11 +24,12 @@ export const FreepsSampleData: FreepsCardData[] = [
     'initiative': 3,
     'name': "Mariner",
     'maxHitpoints': 8,
+    creepOrFreep: 'freep'
+
   },
 
   {
     'index': -3,
-
     'armor': 12,
     'hitpoints':12,
     'healthyImage': './image/Ryuutama/SampleIcons/TendiGood.png',
@@ -35,6 +37,8 @@ export const FreepsSampleData: FreepsCardData[] = [
     'initiative': 1,
     'name': "Tendi",
     'maxHitpoints':12,
+    creepOrFreep: 'freep'
+
   },
 
   {
@@ -46,6 +50,7 @@ export const FreepsSampleData: FreepsCardData[] = [
     'initiative': 1,
     'name': "Sam",
     'maxHitpoints':18,
+    creepOrFreep: 'freep'
   },
 
 

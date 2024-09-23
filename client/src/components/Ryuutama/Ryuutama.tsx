@@ -5,6 +5,7 @@ import * as THREE from "three";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import Grid2 from "@mui/material/Grid2";
 import axios from 'axios';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import MainStage from './Stage/MainStage.jsx'
@@ -13,26 +14,50 @@ import CreepsMain from './Stage/Pieces/Creeps/CreepsMain.jsx'
 import { CreepsSampleData } from './Stage/Pieces/Creeps/CreepsSampleData.jsx'
 import { FreepsSampleData } from './Stage/Pieces/Freeps/FreepsSampleData.jsx'
 
-import { CreepsCardData, FreepsCardData } from './Stage/Pieces/Common/_Types.jsx'
+import { CreepsCardData, EnvironmentPropsData, FreepsCardData } from './Stage/Pieces/Common/_Types.jsx'
 import { Button } from '@mui/material';
 import UserContext from './UserContext.jsx'
-import { TerrainTypeInterface } from './Stage/ImageDecoration/_Types.jsx';
+import { TerrainTypeInterface, TerrainTypeOptions, WeatherOptions } from './Stage/ImageDecoration/_Types.jsx';
 import Dice from './Dice/Dice.jsx'
+import { useForm } from '../Common/setForm.jsx';
 
-const quickTest = <MainStage key={'MainStage'} />
+//goal, should have everything we need.  Maybe this isn't needed here?
+export interface RyuutamaForm {
+  weather: WeatherOptions;
+  terrainType: TerrainTypeOptions;
+  initiative: number;
+  round: number;
+  creatureData: Array<FreepsCardData>;
+}
+
+export const defaultRyuutamaForm : RyuutamaForm = {
+  weather: "./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png",
+  terrainType: "./image/Ryuutama/Terrain/Ryuutama_Alpine.png",
+  initiative: 30,
+  round: 0,
+  creatureData: FreepsSampleData
+}
 
 export default function Ryuutama() {
+  // goblin
+  // https://i.pinimg.com/originals/5b/9a/86/5b9a862f2e584eae40d8851e025847b8.png
+  const [form, setForm] = useForm<RyuutamaForm>(defaultRyuutamaForm);
+  const mainStageComponent = <MainStage key={'MainStage'} form={form} setForm={setForm} />
 
-
-  // }
-  // var color = randomColor(); // a hex code for an attractive color
   const [fullDataCreeps, setFullDataCreeps] = useState<(CreepsCardData)[]>([])
   const [fullDataFreeps, setFullDataFreeps] = useState<(FreepsCardData)[]>(FreepsSampleData)
-  const [initiative, setInitiative] = useState<number>(30);
+  const [initiative, setInitiative] = useState<number>(0);
   const [weather, setWeather] = useState<string>('./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png');
   const [terrainType, setTerrainType] = useState<TerrainTypeInterface['possibleURL']>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
   const [round, setRound] = useState<number>(1);
 
+  const myObject = { id: 1, name: 'Example' };
+
+// Create an array with 10 distinct copies of the object
+const arrayWithCopies = Array.from({ length: 10 }, () => ({ ...myObject }));
+
+console.log(arrayWithCopies);
+  const [arrayProps, setArrayProps] = useState<Array<EnvironmentPropsData>>([]);
   const [first, setFirst] = useState<string | null>('unset');
   const [second, setSecond] = useState<string | null>('white');
   const [third, setThird] = useState<string | null>('white');
@@ -83,6 +108,16 @@ export default function Ryuutama() {
   //!Jesse this is important there needs to be something that will clean the deleted items (aka, null) at loading time
   //if initiative is equal to the number it should be fixed
 
+
+  const adjustCreatureSet = (indexOfChange: number, changedCard: FreepsCardData) => {
+    const newArray = fullDataFreeps.map( (item: FreepsCardData, index: number) => {
+      if (index === indexOfChange) {
+        return changedCard; // Update the specific object by replacing it with the new object
+      }
+      return item; // Return the unchanged object
+    });
+    setFullDataFreeps(newArray);
+  };
 
   const testClick = () => {
     console.log(fullDataCreeps, 'were these changed fullDataCreeps?');
@@ -164,7 +199,7 @@ export default function Ryuutama() {
           <Box>
             <Grid container spacing={2}>
               {[lightTheme].map((theme, index) => (
-                <Grid item xs={6} sm={6} columns={6} key={index}>
+                <Grid2 columns={3} key={index}>
                   <ThemeProvider theme={theme}>
                     <Box
                       sx={{
@@ -177,9 +212,9 @@ export default function Ryuutama() {
                     >
 
 
-                      <Item>
+                      <Item id='Freeps'>
 
-                        <FreepsMain key={'FreepsMain'} indexPieces={indexFreeps} setIndexPieces={setIndexFreeps} fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps} />
+                        <FreepsMain adjustCreatureSet={adjustCreatureSet} form={form} setForm={setForm} key={'FreepsMain'} indexPieces={indexFreeps} setIndexPieces={setIndexFreeps} fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps} />
 
                       </Item>
 
@@ -187,19 +222,19 @@ export default function Ryuutama() {
 
                         <div>Stage</div>
 
-                        {quickTest}
+                        {mainStageComponent}
 
                       </Item>
 
                       <Item>
 
-                        <CreepsMain key={'CreepsMain'} fullDataCreeps={fullDataCreeps} setFullDataCreeps={setFullDataCreeps} />
+                        <CreepsMain key={'CreepsMain'} fullDataCreeps={fullDataFreeps} setFullDataCreeps={setFullDataFreeps} />
 
                       </Item>
 
                     </Box>
                   </ThemeProvider>
-                </Grid>
+                </Grid2>
               ))}
             </Grid>
 
@@ -215,6 +250,8 @@ export default function Ryuutama() {
 
         <Button onClick={testClick}>Test Button</Button>
         <Button onClick={initiativeCheck}>Initiative Check</Button>
+        <Button onClick={initiativeCheck}>Next Check</Button>
+
         <span>Rounds </span>
 
         <div>Dice will be at the bottom and a bit sticky</div>

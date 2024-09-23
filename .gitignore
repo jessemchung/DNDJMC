@@ -3,4 +3,5 @@ bundle.js
 config.js
 
 **/*.map 
+client/src/**/**/**/*.jsx
 client/src/components/Ryuutama/**/*.jsx

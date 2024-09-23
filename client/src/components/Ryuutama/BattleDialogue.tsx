@@ -1,58 +1,45 @@
+//goal here.
+
+
 //purpose, to add a creep to the menu
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 var randomColor = require('randomcolor'); // import the script
 import * as React from 'react'
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import axios from 'axios';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import {FreepsCardData} from '../Common/_Types.jsx'
-import { RyuutamaForm } from '../../../Ryuutama.jsx';
 
 
 //this needs to ability to set CreepsAdd
 interface Props {
-  setFullDataFreeps:React.Dispatch<React.SetStateAction<FreepsCardData[]>>, 
-  fullDataFreeps: FreepsCardData[],
-  indexPieces: number,
-  setIndexPieces: React.Dispatch<React.SetStateAction<number>>,
-  form: RyuutamaForm,
-  setForm: (data: Partial<RyuutamaForm>) => void
+  // setFullDataCreeps: React.Dispatch<React.SetStateAction<FreepsCardData[]>>,
+  // fullDataCreeps: FreepsCardData[],
 }
 
-export function FreepsAdd(props:Props) {
+export function BattleDialogu(props:Props) {
   const [open, setOpen] = useState<boolean>(false);
-  const [freepInfo, setFreepInfo] = useState<FreepsCardData>({
-  'index': props.fullDataFreeps.length-1,
+  const [creepInfo, setCreepInfo] = useState<FreepsCardData>({
   'armor': 10,
   'hitpoints':10,
-  'maxHitpoints':10,
+  'maxHitpoints':12,
   'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
   'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
   'initiative': 10,
   'name': "Bradford",
-  creepOrFreep: "freep"
+  creepOrFreep:"creep",
+  index: 1
   });
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void=> {
     const {name, value} = e.target;
-    console.log(name, value);
-    setFreepInfo({
-      ...freepInfo,
+    setCreepInfo({
+      ...creepInfo,
       [name] : value,
 
     })
@@ -60,15 +47,6 @@ export function FreepsAdd(props:Props) {
   }
 
 
-  const onHitpointChange = (e: React.ChangeEvent<HTMLInputElement>): void=> {
-    const {name, value} = e.target;
-    setFreepInfo({
-      ...freepInfo,
-      [name] : value,
-
-    })
-
-  }
   // 'armor': 6,
   // 'hitpoints':10,
   // 'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
@@ -88,21 +66,7 @@ export function FreepsAdd(props:Props) {
   };
 
   const onSubmit = () => {
-    // this is a mess
-    let test = [...props.fullDataFreeps, freepInfo];
-
-    test.sort((a: FreepsCardData,b: FreepsCardData) => {
-      if (a.initiative>b.initiative) {
-        return 1;
-      } else {
-        return 0;
-      }
-    })
-
-
-    console.log(freepInfo);
-    props.setFullDataFreeps([...props.fullDataFreeps, freepInfo])
-        
+    // props.setFullDataCreeps([...props.fullDataCreeps, creepInfo])
     handleClose()
   }
 
@@ -113,7 +77,7 @@ export function FreepsAdd(props:Props) {
   return (
     <>
 
-      <Button size="small" onClick={handleClickOpen}>Add Freep</Button>
+      <Button id={"AddCreeps"} style={{width:"100%"}} size="small" onClick={handleClickOpen}>Add Creeps</Button>
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add Creep</DialogTitle>
@@ -125,7 +89,7 @@ export function FreepsAdd(props:Props) {
             autoFocus
             margin="dense"
             onChange={onChange}
-            value={freepInfo.name}
+            value={creepInfo.name}
             id="name"
             name='name'
             label="Name"
@@ -139,7 +103,7 @@ export function FreepsAdd(props:Props) {
             margin="dense"
             id="armor"
             onChange={onChange}
-            value={freepInfo.armor}
+            value={creepInfo.armor}
             name='armor'
             label="Armor"
             type="text"
@@ -147,40 +111,11 @@ export function FreepsAdd(props:Props) {
             variant="standard"
           />
 
-<TextField
-            autoFocus
-            margin="dense"
-            id="maxHitpoints"
-            onChange={onChange}
-            value={freepInfo.maxHitpoints}
-            name='maxHitpoints'
-            label="Max Hitpoints"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-
-
-<TextField
-            autoFocus
-            margin="dense"
-            id="hitpoints"
-            onChange={onChange}
-            value={freepInfo.hitpoints}
-            name='hitpoints'
-            label="Hitpoints"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-
-          {/* some sort of value must be here integrated into the value.  Maybe a button or box */}
-
           <TextField
             autoFocus
             margin="dense"
             onChange={onChange}
-            value={freepInfo.initiative}
+            value={creepInfo.initiative}
             id="initiative"
             name='initiative'
             label="Initiative"
@@ -190,12 +125,39 @@ export function FreepsAdd(props:Props) {
           />
 
 
+
+
+<TextField
+            autoFocus
+            margin="dense"
+            onChange={onChange}
+            value={creepInfo.hitpoints}
+            id="hitpoints"
+            name='hitpoints'
+            label="hitpoints"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
+          {/* <TextField
+            autoFocus
+            margin="dense"
+            id="appearance"
+            onChange={onChange}
+            value={creepInfo.appearance}
+            name='appearance'
+            label="Appearance"
+            type="text"
+            fullWidth
+            variant="standard"
+          /> */}
+
           <TextField
             autoFocus
             margin="dense"
             id="bloodyImage"
             onChange={onChange}
-            value={freepInfo.bloodyImage}
+            value={creepInfo.bloodyImage}
             name='bloodyImage'
             label="Bloody Image"
             type="text"
@@ -209,13 +171,16 @@ export function FreepsAdd(props:Props) {
             id="healthyImage"
 
             onChange={onChange}
-            value={freepInfo.healthyImage}
+            value={creepInfo.healthyImage}
             name='healthyImage'
             label="Healthy Image"
             type="text"
             fullWidth
             variant="standard"
           />
+
+
+
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

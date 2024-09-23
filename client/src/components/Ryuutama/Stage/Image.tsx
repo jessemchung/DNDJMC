@@ -14,7 +14,15 @@ import { ElementalField } from './ImageDecoration/ElementalField.jsx'
 
 import { TerrainTypeInterface } from './ImageDecoration/_Types.jsx';
 import UserContext from '../UserContext.jsx';
-export default function Image() {
+import { RyuutamaForm } from '../Ryuutama.jsx';
+
+interface Props {
+  form: RyuutamaForm
+  setForm: (data: Partial<RyuutamaForm>) => void
+};
+
+
+export default function Image(props: Props) {
 
   // const [] = useState<TerrainTypeInterface['possibleURL']>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
   const { terrainType, setTerrainType } = useContext(UserContext);

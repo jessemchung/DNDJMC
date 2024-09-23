@@ -1,41 +1,27 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 var randomColor = require('randomcolor'); // import the script
 import * as React from 'react'
-import * as THREE from "three";
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import axios from 'axios';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import CardMedia from '@mui/material/CardMedia';
 import CancelIcon from '@mui/icons-material/Cancel';
 
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import { purple } from '@mui/material/colors';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import { CreepsCardData } from '../Common/_Types.jsx'
-import { CssTwoTone } from '@mui/icons-material';
+import { CreepsCardData, FreepsCardData } from '../Common/_Types.jsx'
 import { RyuutamaDialogue } from '../../../Generic/RyuutamaDialogue.jsx'
 import { RyuutamaTextField } from '../../../Generic/RyuutamaTextField.jsx'
 import UserContext from '../../../UserContext.jsx';
 
 interface Props {
-  creepInfo: CreepsCardData,
+  creepInfo: FreepsCardData,
   index: number,
   //this is expecting a single object
-  fullDataCreeps: CreepsCardData[],
-  setFullDataCreeps: React.Dispatch<React.SetStateAction<CreepsCardData[]>>,
+  fullDataCreeps: FreepsCardData[],
+  setFullDataCreeps: React.Dispatch<React.SetStateAction<FreepsCardData[]>>,
 
 
 };
@@ -45,9 +31,9 @@ interface Props {
 //card likely needs to have flex to split it in a half
 export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
   const [invisible, setInvisible] = useState<boolean>(false)
-  const [creepInfo, setCreepInfo] = useState<CreepsCardData>(prop.creepInfo)
+  const [creepInfo, setCreepInfo] = useState<FreepsCardData>(prop.creepInfo)
   const [openChangeDialogue, setOpenChangeDialogue] = useState<boolean>(false)
-  const [nameOfEdit, setNameOfEdit] = useState<keyof CreepsCardData>('name')
+  const [nameOfEdit, setNameOfEdit] = useState<keyof FreepsCardData>('name')
   const { initiative } = useContext(UserContext);
 
 
@@ -94,7 +80,7 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
     setOpenChangeDialogue(false);
   };
 
-  const handleOpen = (name: keyof CreepsCardData) => {
+  const handleOpen = (name: keyof FreepsCardData) => {
     setNameOfEdit(name);
     setOpenChangeDialogue(true);
   };
@@ -210,9 +196,9 @@ export const CreepsSingleCard: React.FC<Props> = (prop: Props) => {
             >
 
 
-              <Typography display="inline" variant="body2" align="left" onClick={()=>{handleOpen('appearance')}} >
+              {/* <Typography display="inline" variant="body2" align="left" onClick={()=>{handleOpen('appearance')}} >
                 {creepInfo.appearance}
-              </Typography>
+              </Typography> */}
 
             </Box>
           </CardContent>
