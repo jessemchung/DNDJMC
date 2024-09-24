@@ -4,7 +4,7 @@ import * as React from 'react'
 import * as THREE from "three";
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import axios from 'axios';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import Weather from './ImageDecoration/Weather.jsx'
@@ -87,18 +87,44 @@ export default function Image(props: Props) {
 
             <TerrainType key={'TerrainType'} terrainType={terrainType} setTerrainType={setTerrainType} />
 
+
+
           </ Grid>
+
+
+
+        </Box>
+
+        <Box
+          sx={{
+            position: 'absolute',
+            display: 'flex',
+            justifyContent: 'space-between',
+            top: 0,
+          }}
+        >
+          <Grid container spacing={1}
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              p: 1,
+              m: 1,
+              borderRadius: 1,
+            }}
+          >
+            <Weather key={'Weather'} />
+            <div> <ElementalField key={'ElementalField'} /> </div>
+            <TerrainType key={'TerrainType'} terrainType={terrainType} setTerrainType={setTerrainType} />
+          </ Grid>
+
+
 
         </Box>
 
 
 
-
         <img style={{
           height: '80%'
-
-
-
         }} src="./image/Ryuutama.png" onClick={() => { console.log('click image') }} />
 
 
@@ -106,24 +132,7 @@ export default function Image(props: Props) {
       </BackgroundPaper>
 
 
-      {/* <div>Terrain Advantage left, Elemental Field</div>
 
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          p: 1,
-          m: 1,
-          bgcolor: 'background.paper',
-          borderRadius: 1,
-        }}
-      >
-
-        <Weather />
-
-        <Weather />
-
-      </Box> */}
 
     </>
   )

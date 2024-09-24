@@ -133,36 +133,14 @@ console.log(arrayWithCopies);
     //this will check initiative.  A button must be somewhere to also help this with a reset.  Perhaps
     // a crude float or something.  Perhaps in the bottom part of the ryuutama thingx
 
-    if (fullDataCreeps.length === 0 && fullDataFreeps.length === 0) {
-      return;
-    }
-    let foundCreep: number = -10;
-    let foundFreep: number = -10;
-    for (let nextCreep = 0; nextCreep < fullDataCreeps.length; nextCreep++) {
-      if (fullDataCreeps[nextCreep].initiative < thisInitiative && fullDataCreeps[nextCreep].initiative > foundCreep) {
-        foundCreep = fullDataCreeps[nextCreep].initiative;
-      } else {
-        continue;
-      }
-    }
-
-    for (let nextFreep = 0; nextFreep < fullDataFreeps.length; nextFreep++) {
-      if (fullDataFreeps[nextFreep].initiative < thisInitiative && fullDataFreeps[nextFreep].initiative > foundFreep) {
-
-        foundFreep = fullDataFreeps[nextFreep].initiative;
-      }
-    }
-
-    console.log(Math.max((foundFreep || -10), (foundCreep || -10)), 'this houdl be bigger');
-    if (Math.max((foundFreep || -10), (foundCreep || -10)) === -10) {
-      setInitiative(30);
-      console.log(thisInitiative, 'this needs to be set to 30 first but it is not')
-      setRound(round+1);
-      initiativeCheck(null, 30);
+    console.log(initiative, "initiative");
+    const lengthOfMonsters = fullDataFreeps.length;
+    if (initiative + 1 >= fullDataFreeps.length) {
+      setInitiative(0);
     } else {
-      setInitiative(Math.max((foundFreep || -10), (foundCreep || -10)));
+      setInitiative(initiative+1);
     }
-
+    
   }
 
 
@@ -214,7 +192,7 @@ console.log(arrayWithCopies);
 
                       <Item id='Freeps'>
 
-                        <FreepsMain adjustCreatureSet={adjustCreatureSet} form={form} setForm={setForm} key={'FreepsMain'} indexPieces={indexFreeps} setIndexPieces={setIndexFreeps} fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps} />
+                        <FreepsMain adjustCreatureSet={adjustCreatureSet} form={form} setForm={setForm} key={'FreepsMain'} indexPieces={initiative} setIndexPieces={setIndexFreeps} fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps} />
 
                       </Item>
 
@@ -250,7 +228,7 @@ console.log(arrayWithCopies);
 
         <Button onClick={testClick}>Test Button</Button>
         <Button onClick={initiativeCheck}>Initiative Check</Button>
-        <Button onClick={initiativeCheck}>Next Check</Button>
+        <Button onClick={initiativeCheck}>Next Initative</Button>
 
         <span>Rounds </span>
 

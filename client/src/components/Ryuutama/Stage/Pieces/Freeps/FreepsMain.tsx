@@ -25,7 +25,7 @@ export default function FreepsMain(props: Props) {
   const allCards: React.JSX.Element[] = props.fullDataFreeps.map((singleCard, index)=> {
     if (singleCard.creepOrFreep === "freep") {
       return (
-        <FreepsSingleCard adjustCreatureSet={props.adjustCreatureSet} index={index} freepInfo={singleCard} key={index+"freeps"} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps} />
+        <FreepsSingleCard adjustCreatureSet={props.adjustCreatureSet} initiative={props.indexPieces} index={index} freepInfo={singleCard} key={index+"freeps"} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps} />
       )
     } else {
       return null;

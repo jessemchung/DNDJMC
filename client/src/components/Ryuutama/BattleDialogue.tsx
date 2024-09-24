@@ -14,6 +14,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { FreepsCardData } from './Stage/Pieces/Common/_Types';
 
 
 //this needs to ability to set CreepsAdd
@@ -22,7 +23,7 @@ interface Props {
   // fullDataCreeps: FreepsCardData[],
 }
 
-export function BattleDialogu(props:Props) {
+export function BattleDialogue(props:Props) {
   const [open, setOpen] = useState<boolean>(false);
   const [creepInfo, setCreepInfo] = useState<FreepsCardData>({
   'armor': 10,

@@ -14,19 +14,18 @@ import { RyuutamaDialogue } from '../../../Generic/RyuutamaDialogue.jsx'
 import { RyuutamaTextField } from '../../../Generic/RyuutamaTextField.jsx'
 
 
-//for canceling icons, it may be useful to index values so that things can have
-// the same name and be deleted quickly
 
 // should creeps and freeps be fused together?
 import CancelIcon from '@mui/icons-material/Cancel';
 import { Button } from '@mui/material';
 import UserContext from '../../../UserContext.jsx';
 
-//for deletion purposes, it may be best to have this get access to the overall number of and allow fixing
+// with the index set, we can now know to highlight a box.
 interface Props {
   freepInfo: FreepsCardData,
   fullDataFreeps: FreepsCardData[],
   index: number,
+  initiative: number,
   setFullDataFreeps: React.Dispatch<React.SetStateAction<FreepsCardData[]>>,
   adjustCreatureSet: (indexOfChange: number, changedCard: FreepsCardData) => void
 }
@@ -38,6 +37,8 @@ export function FreepsSingleCard(props: Props) {
   const [nameOfEdit, setNameOfEdit] = useState<keyof FreepsCardData>('name')
   const [freepInfo, setFreepInfo] = useState<FreepsCardData>(props.freepInfo)
   const { initiative } = useContext(UserContext);
+    const [isHighlighted, setIsHighlighted] = useState(false);
+
 
   let matchingInitiative = false;
   if (initiative === freepInfo.initiative) {
@@ -136,8 +137,28 @@ export function FreepsSingleCard(props: Props) {
     return null;
   }
 
+
+//   import React, { useState } from 'react';
+// import './HighlightComponent.css';
+
+// const HighlightComponent = () => {
+//   const [isHighlighted, setIsHighlighted] = useState(false);
+
+  const toggleHighlight = () => {
+    setIsHighlighted(!isHighlighted);
+  };
+
+//   return (
+//     <div className={`box ${isHighlighted ? 'highlight' : ''}`} onClick={toggleHighlight}>
+//       Click to Highlight Me
+//     </div>
+//   );
+// };
+
+// export default HighlightComponent;
+
   return (
-    <Card className={matchingInitiative ? 'MatchInitiative' : 'NotMatchInitiative'}>
+    <Card onClick={toggleHighlight} className={`box ${props.initiative === props.index ? 'highlight' : ''}`}>
       <CancelIcon className={"CancelButton"} sx={{ float: 'right' }} onClick={handleDeletion} />
       <Box sx={{ display: "grid", gridTemplateColumns: '2fr 1fr', alignItems: 'center', }}>
         <CardContent >

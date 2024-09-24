@@ -19,3 +19,9 @@ main > :last-child {
   margin-bottom: 0;
 }
 
+.box {
+}
+
+.box.highlight {
+  background-color: yellow; /* Highlight color */
+}
