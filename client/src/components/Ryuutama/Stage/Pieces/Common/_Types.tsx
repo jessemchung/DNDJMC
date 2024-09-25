@@ -66,7 +66,8 @@ export type FreepsCardData = {
   'maxHitpoints': number,
   'initiative': number,
   'name': string,
-  'creepOrFreep': FreepOrCreep
+  'creepOrFreep': FreepOrCreep,
+  shield?: number
 };
 
 export type EnvironmentPropsData = {

@@ -68,8 +68,6 @@ function Battlefield() {
 
   // }, [])
 
-  console.log('inside return')
-
     return (
       <>
       <h2 style={{color: color}}>Battlefield</h2>

@@ -25,3 +25,11 @@ main > :last-child {
 .box.highlight {
   background-color: yellow; /* Highlight color */
 }
+
+.marker {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: gray;
+  border-radius: 50%;
+}

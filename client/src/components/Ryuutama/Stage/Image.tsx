@@ -61,6 +61,35 @@ export default function Image(props: Props) {
   return (
     <>
       <BackgroundPaper >
+        {/* Freep Dots */}
+
+        {/* Electric Blue (#007AFF) – Bold and energetic, great for a standout player.
+            Fiery Red (#FF3B30) – A strong, attention-grabbing color perfect for a competitive player.
+            Sunflower Yellow (#FFCC00) – Bright and cheerful, ideal for a positive or cheerful player.
+            Emerald Green (#34C759) – A fresh, lively green that symbolizes growth and vitality.
+            Vivid Purple (#AF52DE) – A rich, playful color for a unique player.
+            Tangerine Orange (#FF9500) – Warm and energetic, ideal for someone who's quick or dynamic. */}
+      <div className="marker" style={{"top": "45%", "left": "41%"}}></div>
+      <div className="marker" style={{"top": "50%", "left": "40%"}}></div>
+      <div className="marker" style={{"top": "40%", "left": "42%"}}></div>
+      <div className="marker" style={{"top": "55%", "left": "41%"}}></div>
+      <div className="marker" style={{"top": "60%", "left": "42%"}}></div>
+      <div className="marker" style={{"top": "50%", "left": "25%"}}></div>
+      <div className="marker" style={{"top": "35%", "left": "30%"}}></div>
+      <div className="marker" style={{"top": "25%", "left": "40%"}}></div>
+      <div className="marker" style={{"top": "65%", "left": "30%"}}></div>
+      <div className="marker" style={{"top": "75%", "left": "40%"}}></div>
+
+      <div className="marker" style={{"top": "45%", "left": "59%"}}></div>
+      <div className="marker" style={{"top": "50%", "left": "60%"}}></div>
+      <div className="marker" style={{"top": "40%", "left": "58%"}}></div>
+      <div className="marker" style={{"top": "55%", "left": "59%"}}></div>
+      <div className="marker" style={{"top": "60%", "left": "58%"}}></div>
+      <div className="marker" style={{"top": "50%", "left": "75%"}}></div>
+      <div className="marker" style={{"top": "35%", "left": "70%"}}></div>
+      <div className="marker" style={{"top": "25%", "left": "60%"}}></div>
+      <div className="marker" style={{"top": "65%", "left": "70%"}}></div>
+      <div className="marker" style={{"top": "75%", "left": "60%"}}></div>
 
         <Box
           sx={{
@@ -126,14 +155,7 @@ export default function Image(props: Props) {
         <img style={{
           height: '80%'
         }} src="./image/Ryuutama.png" onClick={() => { console.log('click image') }} />
-
-
-
       </BackgroundPaper>
-
-
-
-
     </>
   )
 }
