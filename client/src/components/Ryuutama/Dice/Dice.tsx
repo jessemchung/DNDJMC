@@ -45,13 +45,13 @@ export default function Dice() {
 
   //should I hook them into the right things? so that I can build
 
-  const numberGenerator = (max: number, thing: keyof DiceObject) => {
+  const numberGenerator = (max: number, selectedDice: keyof DiceObject) => {
 
     let newNumber = (Math.ceil(Math.random() * max));
     // thing(newNumber);
     setDiceValues({
       ...diceValues,
-      [thing]: newNumber
+      [selectedDice]: newNumber
     })
   }
 
@@ -59,39 +59,60 @@ export default function Dice() {
   // probably better for a table adjustment
   return (
     <>
+      {/* 6 columns each */}
+      <table style={{ "width": "100%" }}>
 
-<Stack direction="row" spacing={2}>
+        <tbody style={{ "width": "100%" }}>
+          <tr style={{ "width": "100%" }}>
+            <td>
+              D4
+            </td>
+            <td>
+              D6
+            </td>
+            <td>
+              D8
+            </td>
+            <td>
+              D10
+            </td>
+            <td>
+              D12
+            </td>
+            <td>
+              D20
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <Button onClick={() => { numberGenerator(4, 'd4') }}>{diceValues.d4}</Button>
 
-<div>d4</div>
-<div>d6</div>
-<div>d8</div>
-<div>d10</div>
-<div>d12</div>
-<div>d20</div>
+            </td>
+            <td>
 
+              <Button onClick={() => { numberGenerator(6, 'd6') }}>{diceValues.d6}</Button>
 
+            </td>
+            <td>
+              <Button onClick={() => { numberGenerator(8, 'd8') }}>{diceValues.d8}</Button>
 
-</Stack>
+            </td>
+            <td>
+              <Button onClick={() => { numberGenerator(10, 'd10') }}>{diceValues.d10}</Button>
 
-      <Stack direction="row" spacing={2}>
+            </td>
+            <td>
+              <Button onClick={() => { numberGenerator(12, 'd12') }}>{diceValues.d12}</Button>
 
-      <div>
-        <div>d4</div>
+            </td>
+            <td>
+              <Button onClick={() => { numberGenerator(20, 'd20') }}>{diceValues.d20}</Button>
+            </td>
 
-      <Button onClick={()=> {numberGenerator(4, 'd4')}}>{diceValues.d4}</Button>
+          </tr>
+        </tbody>
 
-      </div>
-
-        <Button onClick={()=> {numberGenerator(6, 'd6')}}>{diceValues.d6}</Button>
-        <Button onClick={()=> {numberGenerator(8, 'd8')}}>{diceValues.d8}</Button>
-        <Button onClick={()=> {numberGenerator(10, 'd10')}}>{diceValues.d10}</Button>
-        <Button onClick={()=> {numberGenerator(12, 'd12')}}>{diceValues.d12}</Button>
-        <Button onClick={()=> {numberGenerator(20, 'd20')}}>{diceValues.d20}</Button>
-
-        {/* <Button onClick={()=> {numberGenerator(6, setD4)}}>{d4}</Button> */}
-
-
-      </Stack>
+      </table>
 
 
     </>

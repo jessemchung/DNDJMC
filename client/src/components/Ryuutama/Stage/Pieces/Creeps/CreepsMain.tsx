@@ -10,7 +10,7 @@ interface Props {
   fullDataCreeps: FreepsCardData[],
   setFullDataCreeps: React.Dispatch<React.SetStateAction<FreepsCardData[]>>,
   //this is expecting a single object
-
+  indexInitiative: number
 };
 
 
@@ -21,7 +21,7 @@ export default function Creeps(props: Props) {
   const allCreepCards = props.fullDataCreeps.map((singleCard, index)=> {
     if (singleCard.creepOrFreep === "creep") {
       return (
-        <CreepsSingleCard creepInfo={singleCard} key={singleCard.name} index={index} fullDataCreeps={props.fullDataCreeps} setFullDataCreeps={props.setFullDataCreeps} />
+        <CreepsSingleCard indexInitiative={props.indexInitiative} creepInfo={singleCard} key={singleCard.name} index={index} fullDataCreeps={props.fullDataCreeps} setFullDataCreeps={props.setFullDataCreeps} />
       )
     }
   })

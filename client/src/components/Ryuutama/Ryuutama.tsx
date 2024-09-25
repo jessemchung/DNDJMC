@@ -206,7 +206,7 @@ console.log(arrayWithCopies);
 
                       <Item>
 
-                        <CreepsMain key={'CreepsMain'} fullDataCreeps={fullDataFreeps} setFullDataCreeps={setFullDataFreeps} />
+                        <CreepsMain key={'CreepsMain'} indexInitiative={initiative} fullDataCreeps={fullDataFreeps} setFullDataCreeps={setFullDataFreeps} />
 
                       </Item>
 
@@ -229,10 +229,6 @@ console.log(arrayWithCopies);
         <Button onClick={testClick}>Test Button</Button>
         <Button onClick={initiativeCheck}>Initiative Check</Button>
         <Button onClick={initiativeCheck}>Next Initative</Button>
-
-        <span>Rounds </span>
-
-        <div>Dice will be at the bottom and a bit sticky</div>
         <Dice />
 
       </UserContext.Provider >
