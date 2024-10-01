@@ -11,7 +11,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { colorFreeps, FreepsCardData, positionsOptions } from '../Common/_Types.jsx'
+import { colorFreeps, FreepOrCreep, FreepsCardData, positionsOptions } from '../Common/_Types.jsx'
 import { RyuutamaForm } from '../../../Ryuutama.jsx';
 import { InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
@@ -28,6 +28,7 @@ interface Props {
   edit?: boolean,
   // going to need the need that specific person
   index?: number
+  freepsOrCreeps: FreepOrCreep
   // going to need their data to prepopulate the form
 }
 
@@ -59,7 +60,7 @@ export function FreepsAdd(props: Props) {
     'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
     'initiative': 10,
     'name': "Bradford",
-    creepOrFreep: "freep",
+    creepOrFreep: props.freepsOrCreeps,
     color: null,
     shield: 0,
     position: 0,

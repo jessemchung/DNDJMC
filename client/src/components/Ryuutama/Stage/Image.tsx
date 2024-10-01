@@ -41,7 +41,7 @@ export default function Image(props: Props) {
         if (props.creatureData[color].creepOrFreep === "creep") {
           constructedColorsCreeps[props.creatureData[color].position] = props.creatureData[color].color;
         } else {
-          console.log("howdy")
+          // must be a freep
           constructedColorsFreeps[props.creatureData[color].position] = props.creatureData[color].color;
         }
       }

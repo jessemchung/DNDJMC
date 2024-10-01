@@ -10,8 +10,6 @@ import axios from 'axios';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import MainStage from './Stage/MainStage.jsx'
 import FreepsMain from './Stage/Pieces/Freeps/FreepsMain.jsx'
-import CreepsMain from './Stage/Pieces/Creeps/CreepsMain.jsx'
-import { CreepsSampleData } from './Stage/Pieces/Creeps/CreepsSampleData.jsx'
 import { FreepsSampleData } from './Stage/Pieces/Freeps/FreepsSampleData.jsx'
 
 import { CreepsCardData, EnvironmentPropsData, FreepsCardData, terrainPropsData } from './Stage/Pieces/Common/_Types.jsx'
@@ -198,7 +196,7 @@ console.log(arrayWithCopies);
 
                       <Item id='Freeps'>
 
-                        <FreepsMain adjustCreatureSet={adjustCreatureSet} form={form} setForm={setForm} key={'FreepsMain'} indexPieces={initiative} setIndexPieces={setIndexFreeps} fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps} />
+                        <FreepsMain adjustCreatureSet={adjustCreatureSet} form={form} freepsOrCreeps="freep" setForm={setForm} key={'FreepsMain'} indexPieces={initiative} setIndexPieces={setIndexFreeps} fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps} />
 
                       </Item>
 
@@ -212,7 +210,7 @@ console.log(arrayWithCopies);
 
                       <Item>
 
-                        <CreepsMain key={'CreepsMain'} indexInitiative={initiative} fullDataCreeps={fullDataFreeps} setFullDataCreeps={setFullDataFreeps} />
+                        <FreepsMain adjustCreatureSet={adjustCreatureSet} form={form} freepsOrCreeps="creep" setForm={setForm} key={'FreepsMain'} indexPieces={initiative} setIndexPieces={setIndexFreeps} fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps} />
 
                       </Item>
 
