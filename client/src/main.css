@@ -33,3 +33,27 @@ main > :last-child {
   background-color: gray;
   border-radius: 50%;
 }
+
+.marker.Blue {
+  background-color: #007AFF;
+}
+
+.marker.Red {
+  background-color: #FF3B30;
+}
+
+.marker.Yellow {
+  background-color: #FFCC00;
+}
+
+.marker.Green {
+  background-color: #34C759;
+}
+
+.marker.Purple {
+  background-color: #AF52DE;
+}
+
+.marker.Orange {
+  background-color: #FF9500;
+}

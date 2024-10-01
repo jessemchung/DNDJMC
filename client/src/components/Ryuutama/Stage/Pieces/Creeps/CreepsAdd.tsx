@@ -23,7 +23,7 @@ interface Props {
 export function CreepsAdd(props:Props) {
   const [open, setOpen] = useState<boolean>(false);
   const [creepInfo, setCreepInfo] = useState<FreepsCardData>({
-  'armor': 10,
+  'defense': 10,
   'hitpoints':10,
   'maxHitpoints':12,
   'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
@@ -31,7 +31,10 @@ export function CreepsAdd(props:Props) {
   'initiative': 10,
   'name': "Bradford",
   creepOrFreep:"creep",
-  index: 1
+  index: 1,
+  color: null,
+  shield: 0,
+  position: null
   });
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void=> {
@@ -102,7 +105,7 @@ export function CreepsAdd(props:Props) {
             margin="dense"
             id="armor"
             onChange={onChange}
-            value={creepInfo.armor}
+            value={creepInfo.defense}
             name='armor'
             label="Armor"
             type="text"

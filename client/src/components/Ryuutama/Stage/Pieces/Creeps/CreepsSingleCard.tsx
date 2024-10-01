@@ -55,8 +55,6 @@ export const CreepsSingleCard: React.FC<Props> = (props: Props) => {
         props.setFullDataCreeps(copyFullDataCreep);
       } 
     }
-
-
   }
 
   const handleIncrease = () => {
@@ -175,13 +173,13 @@ export const CreepsSingleCard: React.FC<Props> = (props: Props) => {
               }}
             >
 
-              <Typography display="inline" variant="body2" align="left" onClick={()=>{handleOpen('armor')}}  >
+              <Typography display="inline" variant="body2" align="left" onClick={()=>{handleOpen('defense')}}  >
                 Armor
               </Typography>
 
 
               <Typography display="inline" variant="body2" align="left">
-                {creepInfo.armor}
+                {creepInfo.defense}
               </Typography>
 
             </Box>

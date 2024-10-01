@@ -26,7 +26,7 @@ interface Props {
 export function BattleDialogue(props:Props) {
   const [open, setOpen] = useState<boolean>(false);
   const [creepInfo, setCreepInfo] = useState<FreepsCardData>({
-  'armor': 10,
+  'defense': 10,
   'hitpoints':10,
   'maxHitpoints':12,
   'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
@@ -34,7 +34,10 @@ export function BattleDialogue(props:Props) {
   'initiative': 10,
   'name': "Bradford",
   creepOrFreep:"creep",
-  index: 1
+  index: 1,
+  position: null,
+  shield: 0,
+  color: null
   });
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void=> {
@@ -104,7 +107,7 @@ export function BattleDialogue(props:Props) {
             margin="dense"
             id="armor"
             onChange={onChange}
-            value={creepInfo.armor}
+            value={creepInfo.defense}
             name='armor'
             label="Armor"
             type="text"

@@ -42,14 +42,15 @@ export default function Ryuutama() {
   // goblin
   // https://i.pinimg.com/originals/5b/9a/86/5b9a862f2e584eae40d8851e025847b8.png
   const [form, setForm] = useForm<RyuutamaForm>(defaultRyuutamaForm);
-  const mainStageComponent = <MainStage key={'MainStage'} form={form} setForm={setForm} />
 
   const [fullDataCreeps, setFullDataCreeps] = useState<(CreepsCardData)[]>([])
   const [fullDataFreeps, setFullDataFreeps] = useState<(FreepsCardData)[]>(FreepsSampleData)
+
+  const mainStageComponent = <MainStage creatureData={fullDataFreeps} key={'MainStage'} form={form} setForm={setForm} />
+
   const [initiative, setInitiative] = useState<number>(0);
   const [weather, setWeather] = useState<string>('./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png');
   const [terrainType, setTerrainType] = useState<TerrainTypeInterface['possibleURL']>('./image/Ryuutama/Terrain/Ryuutama_Alpine.png');
-  const [round, setRound] = useState<number>(1);
 
   const myObject = { id: 1, name: 'Example' };
 

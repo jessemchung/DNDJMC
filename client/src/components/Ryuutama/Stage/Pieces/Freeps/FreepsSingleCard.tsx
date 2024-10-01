@@ -13,8 +13,6 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { RyuutamaDialogue } from '../../../Generic/RyuutamaDialogue.jsx'
 import { RyuutamaTextField } from '../../../Generic/RyuutamaTextField.jsx'
 
-
-
 // should creeps and freeps be fused together?
 import CancelIcon from '@mui/icons-material/Cancel';
 import { Button } from '@mui/material';
@@ -203,7 +201,7 @@ export function FreepsSingleCard(props: Props) {
               Armor
             </Typography>
             <Typography display="inline" variant="body2" align="left">
-              {props.freepInfo.armor}
+              {props.freepInfo.defense}
             </Typography>
 
           </Box>
