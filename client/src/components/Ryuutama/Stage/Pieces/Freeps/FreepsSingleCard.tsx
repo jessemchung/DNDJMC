@@ -160,7 +160,7 @@ export function FreepsSingleCard(props: Props) {
       <CancelIcon className={"CancelButton"} sx={{ float: 'right' }} onClick={handleDeletion} />
       <Box sx={{ display: "grid", gridTemplateColumns: '2fr 1fr', alignItems: 'center', }}>
         <CardContent >
-          <Typography component="div" variant="body2">
+          <Typography className={props.freepInfo.color !== null ? props.freepInfo.color : ""} component="div" variant="body2">
             {props.freepInfo.name}
           </Typography>
           <Box

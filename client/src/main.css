@@ -34,7 +34,7 @@ main > :last-child {
   border-radius: 50%;
 }
 
-.marker.Blue {
+/* .marker.Blue {
   background-color: #007AFF;
 }
 
@@ -55,5 +55,29 @@ main > :last-child {
 }
 
 .marker.Orange {
+  background-color: #FF9500;
+} */
+
+.Blue {
+  background-color: #007AFF;
+}
+
+.Red {
+  background-color: #FF3B30;
+}
+
+.Yellow {
+  background-color: #FFCC00;
+}
+
+.Green {
+  background-color: #34C759;
+}
+
+.Purple {
+  background-color: #AF52DE;
+}
+
+.Orange {
   background-color: #FF9500;
 }
