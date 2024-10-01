@@ -14,7 +14,7 @@ import CreepsMain from './Stage/Pieces/Creeps/CreepsMain.jsx'
 import { CreepsSampleData } from './Stage/Pieces/Creeps/CreepsSampleData.jsx'
 import { FreepsSampleData } from './Stage/Pieces/Freeps/FreepsSampleData.jsx'
 
-import { CreepsCardData, EnvironmentPropsData, FreepsCardData } from './Stage/Pieces/Common/_Types.jsx'
+import { CreepsCardData, EnvironmentPropsData, FreepsCardData, terrainPropsData } from './Stage/Pieces/Common/_Types.jsx'
 import { Button } from '@mui/material';
 import UserContext from './UserContext.jsx'
 import { TerrainTypeInterface, TerrainTypeOptions, WeatherOptions } from './Stage/ImageDecoration/_Types.jsx';
@@ -38,15 +38,20 @@ export const defaultRyuutamaForm : RyuutamaForm = {
   creatureData: FreepsSampleData
 }
 
+export const defaultTerrainProp : terrainPropsData = {
+  description: "Add description here",
+  title: "Set Prop"
+}
+
 export default function Ryuutama() {
-  // goblin
-  // https://i.pinimg.com/originals/5b/9a/86/5b9a862f2e584eae40d8851e025847b8.png
   const [form, setForm] = useForm<RyuutamaForm>(defaultRyuutamaForm);
 
   const [fullDataCreeps, setFullDataCreeps] = useState<(CreepsCardData)[]>([])
   const [fullDataFreeps, setFullDataFreeps] = useState<(FreepsCardData)[]>(FreepsSampleData)
+  const [terrainProps, setTerrainProps] = useState<(terrainPropsData)[]>(Array.from({ length: 10 }, () => ({ ...defaultTerrainProp })))
 
-  const mainStageComponent = <MainStage creatureData={fullDataFreeps} key={'MainStage'} form={form} setForm={setForm} />
+
+  const mainStageComponent = <MainStage terrainProps={terrainProps} setTerrainProps={setTerrainProps} creatureData={fullDataFreeps} key={'MainStage'} form={form} setForm={setForm} />
 
   const [initiative, setInitiative] = useState<number>(0);
   const [weather, setWeather] = useState<string>('./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png');
@@ -63,43 +68,43 @@ console.log(arrayWithCopies);
   const [second, setSecond] = useState<string | null>('white');
   const [third, setThird] = useState<string | null>('white');
 
-  const [title1, setTitle1] = useState<string>('Title');
+  const [title1, setTitle1] = useState<string>('Set Prop');
   const [benefit1, setBenefit1] = useState<number>(0);
   const [benefitPermanent1, setBenefitPermanent1] = useState<number>(0);
 
-  const [title2, setTitle2] = useState<string>('Title');
+  const [title2, setTitle2] = useState<string>('Set Prop');
   const [benefit2, setBenefit2] = useState<number>(0);
   const [benefitPermanent2, setBenefitPermanent2] = useState<number>(0);
 
-  const [title3, setTitle3] = useState<string>('Title');
+  const [title3, setTitle3] = useState<string>('Set Prop');
   const [benefit3, setBenefit3] = useState<number>(0);
   const [benefitPermanent3, setBenefitPermanent3] = useState<number>(0);
 
-  const [title4, setTitle4] = useState<string>('Title');
+  const [title4, setTitle4] = useState<string>('Set Prop');
   const [benefit4, setBenefit4] = useState<number>(0);
   const [benefitPermanent4, setBenefitPermanent4] = useState<number>(0);
 
-  const [title5, setTitle5] = useState<string>('Title');
+  const [title5, setTitle5] = useState<string>('Set Prop');
   const [benefit5, setBenefit5] = useState<number>(0);
   const [benefitPermanent5, setBenefitPermanent5] = useState<number>(0);
 
-  const [title6, setTitle6] = useState<string>('Title');
+  const [title6, setTitle6] = useState<string>('Set Prop');
   const [benefit6, setBenefit6] = useState<number>(0);
   const [benefitPermanent6, setBenefitPermanent6] = useState<number>(0);
 
-  const [title7, setTitle7] = useState<string>('Title');
+  const [title7, setTitle7] = useState<string>('Set Prop');
   const [benefit7, setBenefit7] = useState<number>(0);
   const [benefitPermanent7, setBenefitPermanent7] = useState<number>(0);
 
-  const [title8, setTitle8] = useState<string>('Title');
+  const [title8, setTitle8] = useState<string>('Set Prop');
   const [benefit8, setBenefit8] = useState<number>(0);
   const [benefitPermanent8, setBenefitPermanent8] = useState<number>(0);
 
-  const [title9, setTitle9] = useState<string>('Title');
+  const [title9, setTitle9] = useState<string>('Set Prop');
   const [benefit9, setBenefit9] = useState<number>(0);
   const [benefitPermanent9, setBenefitPermanent9] = useState<number>(0);
 
-  const [title10, setTitle10] = useState<string>('Title');
+  const [title10, setTitle10] = useState<string>('Set Prop');
   const [benefit10, setBenefit10] = useState<number>(0);
   const [benefitPermanent10, setBenefitPermanent10] = useState<number>(0);
   //readability probably trumps in thise case, I don't want to necessarilly have everything together

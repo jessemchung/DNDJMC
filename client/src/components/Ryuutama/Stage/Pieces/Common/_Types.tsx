@@ -1,5 +1,3 @@
-
-
 export type CreepsCardData = {
   'armor': number,
   'hitpoints':number,
@@ -9,6 +7,11 @@ export type CreepsCardData = {
   'name': string,
   'appearance': string,
   'null' : boolean,
+};
+
+export type terrainPropsData = {
+  'title': string,
+  'description': string
 };
 
 export class newForm {

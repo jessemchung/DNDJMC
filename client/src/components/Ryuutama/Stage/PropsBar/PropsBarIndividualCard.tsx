@@ -18,31 +18,14 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { purple } from '@mui/material/colors';
+import { terrainPropsData } from '../Pieces/Common/_Types';
 
-// const Item = styled(Paper)(({ theme }) => ({
-//   ...theme.typography.body2,
-//   padding: theme.spacing(1),
-//   textAlign: 'center',
-//   color: theme.palette.text.secondary,
-// }));
+
 interface Props {
-  title: string 
-  setTitle : (title: string) => void
-  benefit : number
-  setBenefit : (benefitIndex: number) => void 
-  benefitPermanent : number 
-  setBenefitPermanent : (benefitPermanentIndex: number) => void
+  terrainProp: terrainPropsData
+  index: number
+  setNewTerrainInformation: (index: number, newTerrainValue: terrainPropsData) => void
 }
-
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-);
-
 
 const arrayOfBenefits = ['Protective', 'Hampering', 'Offensive']
 
@@ -64,16 +47,10 @@ const theme = createTheme({
 
 export default function PropsBarIndividualCard(props: Props) {
 
-  const {title, setTitle, benefit, setBenefit, benefitPermanent, setBenefitPermanent} = props
-
-  // const [title, setTitle] = useState<string>('Title');
-  // const [benefit, setBenefit] = useState<number>(0);
-  // const [benefitPermanent, setBenefitPermanent] = useState<number>(0);
-
-
-  //this is to allow saving I think?
-  const [titleEdit, setTitleEdit] = useState<string>('Title');
-
+  const {terrainProp, setNewTerrainInformation, index} = props
+  const [titleEdit, setTitleEdit] = useState<string>(terrainProp.title);
+  const [description, setDescription] = useState<string>(terrainProp.description);
+  const maxDescriptionLength = 100;
 
 
   const [open, setOpen] = useState(false);
@@ -85,87 +62,86 @@ export default function PropsBarIndividualCard(props: Props) {
     setOpen(true);
   };
 
-  const toggleBenefit = () => {
-
-    if (benefit<arrayOfBenefits.length-1) {
-      setBenefit(benefit+1)
-    } else {
-      setBenefit(0);
-    }
 
 
-  }
 
-  const togglePermBenefit = () => {
-
-    if (benefitPermanent<arrayOfPermanent.length-1) {
-      setBenefitPermanent(benefitPermanent+1)
-    } else {
-      console.log('what the heck');
-      setBenefitPermanent(0);
-    }
-
-
-  }
 
   const handleClose = () => {
     setOpen(false);
   };
 
   const handleSubmit = () => {
-    setTitle(titleEdit)
+    let newTerrainProp = terrainProp;
+    terrainProp.title = titleEdit;
+    terrainProp.description = description;
+    setNewTerrainInformation(index, newTerrainProp)
     setOpen(false);
   };
 
 
-  const handleChange = (event:any) => {
+  const handleChangeTitle = (event:any) => {
     setTitleEdit(event.target.value)
   }
+
+  const handleChangeDescription = (event:any) => {
+    setDescription(event.target.value)
+  }
+
+  const truncateText = (text: string, maxLength: number) => {
+    if (text.length > maxLength) {
+      return text.slice(0, maxLength) + '...'; // Add ellipsis if truncated
+    }
+    return text;
+  };
 
   return (
     <>
     <ThemeProvider theme={theme}>
-      <Card >
-        <CardContent >
-          <Typography variant="body1" component="div">
-            {title}
-          </Typography>
+      <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: "100%" }}>
+        <CardContent style={{ flexGrow: 1, maxHeight: '10em', overflow: 'auto' }}>
+        <Typography variant="body1" component="div" gutterBottom>
+          {terrainProp.title}
+        </Typography>
 
-          <Typography variant="body2" color="error">
-            {arrayOfBenefits[benefit]}
-          </Typography>
+        <Typography variant="body2" component="div" color="textSecondary" style={{ wordBreak: 'break-word' }}>
+          {truncateText(terrainProp.description, maxDescriptionLength)}
+
+        </Typography>
+
         </CardContent>
-        <CardActions>
+        <CardActions style={{ marginTop: 'auto' }}>
           <Button size="small" onClick={handleClickOpen}>Edit</Button>
 
           <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>Prop</DialogTitle>
+            <DialogTitle>Edit This Prop</DialogTitle>
             <DialogContent>
-              <DialogContentText>
-
-                Edit this card
-              </DialogContentText>
               <TextField
                 autoFocus
                 margin="dense"
-                id="name"
+                id="propName"
+                label="prop name"
                 color="success"
                 type="email"
                 fullWidth
                 value={titleEdit}
-                onChange={handleChange}
+                onChange={handleChangeTitle}
                 variant="standard"
               />
 
-              <Button onClick={toggleBenefit}>
-                {arrayOfBenefits[benefit]}
-              </Button>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="propDescription"
+                color="success"
+                label="description"
+                type="text"
+                multiline
+                fullWidth
+                value={description}
+                onChange={handleChangeDescription}
+                variant="standard"
+              />
 
-              <Button onClick={togglePermBenefit}>
-                {arrayOfPermanent[benefitPermanent]}
-              </Button>
-
-              arrayOfPermanent
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>Cancel</Button>

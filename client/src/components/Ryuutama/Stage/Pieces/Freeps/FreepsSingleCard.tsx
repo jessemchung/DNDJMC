@@ -198,7 +198,7 @@ export function FreepsSingleCard(props: Props) {
             }}
           >
             <Typography display="inline" variant="body2" align="left" >
-              Armor
+              Defense
             </Typography>
             <Typography display="inline" variant="body2" align="left">
               {props.freepInfo.defense}
