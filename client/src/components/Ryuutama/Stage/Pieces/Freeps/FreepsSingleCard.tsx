@@ -13,21 +13,21 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { RyuutamaDialogue } from '../../../Generic/RyuutamaDialogue.jsx'
 import { RyuutamaTextField } from '../../../Generic/RyuutamaTextField.jsx'
 
-
-//for canceling icons, it may be useful to index values so that things can have
-// the same name and be deleted quickly
-
 // should creeps and freeps be fused together?
 import CancelIcon from '@mui/icons-material/Cancel';
 import { Button } from '@mui/material';
 import UserContext from '../../../UserContext.jsx';
+import { FreepsAdd } from './FreepsAdd.jsx';
 
-//for deletion purposes, it may be best to have this get access to the overall number of and allow fixing
+// with the index set, we can now know to highlight a box.
 interface Props {
   freepInfo: FreepsCardData,
   fullDataFreeps: FreepsCardData[],
+  index: number,
+  initiative: number,
   setFullDataFreeps: React.Dispatch<React.SetStateAction<FreepsCardData[]>>,
-
+  adjustCreatureSet: (indexOfChange: number, changedCard: FreepsCardData) => void
+  onSubmit?: () => void
 }
 
 export function FreepsSingleCard(props: Props) {
@@ -38,6 +38,8 @@ export function FreepsSingleCard(props: Props) {
   const [freepInfo, setFreepInfo] = useState<FreepsCardData>(props.freepInfo)
   const { initiative } = useContext(UserContext);
 
+
+
   let matchingInitiative = false;
   if (initiative === freepInfo.initiative) {
     matchingInitiative = true;
@@ -45,132 +47,137 @@ export function FreepsSingleCard(props: Props) {
 
   const handleDeletion = (event: any) => {
     event.preventDefault();
-    let nameFreep = props.freepInfo.name;
-    let copyFullDataFreep = JSON.parse(JSON.stringify(props.fullDataFreeps));
-    let lengthFullDataFreep = props.fullDataFreeps.length;
-    
-    for (let singleCard=0; singleCard < lengthFullDataFreep; singleCard++) {
-      if (copyFullDataFreep[singleCard].name === nameFreep) {
-        copyFullDataFreep.splice(singleCard, 1);
-        props.setFullDataFreeps(copyFullDataFreep);
-      } 
-    }
+    console.log(props.fullDataFreeps, "deletion in progress")
+    let copyFullDataFreep = props.fullDataFreeps.filter((item, index) => {
+      if (index === props.index) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+
+    props.setFullDataFreeps(copyFullDataFreep);
+
   }
 
-  const handleIncrease = () => {
+  const handleIncrease: () => void = () => {
     let newNumber: number = freepInfo.hitpoints++;
-    setFreepInfo({
+    const newFreep: FreepsCardData = {
       ...freepInfo,
       [freepInfo.hitpoints]: newNumber,
-    })
+    };
+    const newArray = props.fullDataFreeps.map((item, index) => {
+      if (index === props.index) {
+        return newFreep; // Update the specific object
+      }
+      return item; // Return the unchanged object
+    });
+    props.setFullDataFreeps(newArray);
   }
 
 
   const handleDecrease = () => {
     let newNumber: number = freepInfo.hitpoints--;
-    setFreepInfo({
+    const newFreep: FreepsCardData = {
       ...freepInfo,
       [freepInfo.hitpoints]: newNumber,
-    })
+    };
+    const newArray = props.fullDataFreeps.map((item, index) => {
+      if (index === props.index) {
+        return newFreep; // Update the specific object
+      }
+      return item; // Return the unchanged object
+    });
+    props.setFullDataFreeps(newArray);
   }
 
   const handleClose = () => {
     setOpenChangeDialogue(false);
   };
 
-  const handleOpen = (name: keyof FreepsCardData) => {
-    setNameOfEdit(name);
+  const handleOpen = () => {
     setOpenChangeDialogue(true);
   };
 
-  const onChange =(event: React.ChangeEvent<HTMLInputElement>) => {
-    let {name, value} : { name: string; value: any } = event.target;
-    if (isNaN(parseInt(value))) {
-      value = parseInt(value);
-    }
-    setFreepInfo({
-      ...freepInfo,
-      [name]: value,
-    })
-  }
-
-  const buttonArray = [
-    <Button key={'agree'} onClick={handleClose} autoFocus>Save</Button>
-  ]
-
-
-  let textFields = <RyuutamaTextField
-    name={nameOfEdit}
-    label={nameOfEdit}
-    value={freepInfo[nameOfEdit]}
-    onChange={onChange}
-    type='string' />
-
-
-  if (invisible === true) {
-    return null;
-  }
+  let editing = <FreepsAdd index={props.index} edit={openChangeDialogue} setEdit={setOpenChangeDialogue} freepInfo={props.freepInfo} freepsOrCreeps={props.freepInfo.creepOrFreep} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps} />
 
   return (
-    <Card className={matchingInitiative ? 'MatchInitiative' : 'NotMatchInitiative'}>
-      <CancelIcon className={"CancelButton"} sx={{ float: 'right' }} onClick={handleDeletion} />
-      <Box sx={{ display: "grid", gridTemplateColumns: '2fr 1fr', alignItems: 'center', }}>
-        <CardContent >
-          <Typography component="div" variant="body2">
-            {props.freepInfo.name}
-          </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Typography display="inline" variant="body2" align="left" >
-              HP
+    <>
+      {openChangeDialogue === true ? editing : ""}
+      <Card className={`box ${props.initiative === props.index ? 'highlight' : ''}`}>
+        <CancelIcon className={"CancelButton"} sx={{ float: 'right' }} onClick={handleDeletion} />
+        <Box sx={{ display: "grid", gridTemplateColumns: '2fr 1fr', alignItems: 'center', }}>
+          <CardContent >
+            <Typography className={props.freepInfo.color !== null ? props.freepInfo.color : ""} component="div" variant="body2">
+              {props.freepInfo.name}
             </Typography>
-            <RemoveCircleOutlineIcon onClick={() => console.log("hello")}/>
-            <Typography display="inline" variant="body2" align="left">
-              {props.freepInfo.hitpoints} / {props.freepInfo.maxHitpoints}
-            </Typography>
-            <AddCircleOutlineIcon />
-          </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Typography display="inline" variant="body2" align="left" >
-              Init
-            </Typography>
-            <Typography display="inline" variant="body2" align="left">
-              {props.freepInfo.initiative}
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Typography display="inline" variant="body2" align="left" >
-              Armor
-            </Typography>
-            <Typography display="inline" variant="body2" align="left">
-              {props.freepInfo.armor}
-            </Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Typography display="inline" variant="body2" align="left" >
+                HP
+              </Typography>
+              <RemoveCircleOutlineIcon
+                onClick={() => handleDecrease()}
+                sx={{
+                  cursor: 'pointer',
+                  fontSize: '1rem', // Set a custom font size (adjust as needed)
+                }}
+              // Optional: add some margin for spacing
+              />            <Typography display="inline" variant="body2" align="left">
+                {props.freepInfo.hitpoints} / {props.freepInfo.maxHitpoints}
+              </Typography>
+              <AddCircleOutlineIcon
+                onClick={() => handleIncrease()}
 
-          </Box>
+                sx={{
+                  cursor: 'pointer',
+                  fontSize: '1rem', // Set a custom font size (adjust as needed)
+                }}
+              />          </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Typography display="inline" variant="body2" align="left" >
+                Init
+              </Typography>
+              <Typography display="inline" variant="body2" align="left">
+                {props.freepInfo.initiative}
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Typography display="inline" variant="body2" align="left" >
+                Defense
+              </Typography>
+              <Typography display="inline" variant="body2" align="left">
+                {props.freepInfo.initiative > props.freepInfo.shield ? props.freepInfo.initiative : props.freepInfo.shield}
+              </Typography>
 
-        </CardContent>
+            </Box>
 
-        <CardMedia
-          component="img"
-          image="/image/Personal/Ra.png"
-          alt="A freep, a hero, a main honcho"
-        />
-      </Box>
+          </CardContent>
 
-    </Card>
+          <CardMedia
+            component="img"
+            image={freepInfo.healthyImage}
+            className="creature-image"
+            onClick={() => handleOpen()}
+            alt="A freep, a hero, a main honcho"
+          />
+        </Box>
+
+      </Card>
+    </>
   );
 }

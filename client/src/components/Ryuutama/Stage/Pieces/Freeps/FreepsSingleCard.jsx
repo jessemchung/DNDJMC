@@ -22,13 +22,10 @@ var CardMedia_1 = require("@mui/material/CardMedia");
 var Typography_1 = require("@mui/material/Typography");
 var AddCircleOutline_1 = require("@mui/icons-material/AddCircleOutline");
 var RemoveCircleOutline_1 = require("@mui/icons-material/RemoveCircleOutline");
-var RyuutamaTextField_jsx_1 = require("../../../Generic/RyuutamaTextField.jsx");
-//for canceling icons, it may be useful to index values so that things can have
-// the same name and be deleted quickly
 // should creeps and freeps be fused together?
 var Cancel_1 = require("@mui/icons-material/Cancel");
-var material_1 = require("@mui/material");
 var UserContext_jsx_1 = require("../../../UserContext.jsx");
+var FreepsAdd_jsx_1 = require("./FreepsAdd.jsx");
 function FreepsSingleCard(props) {
     var theme = (0, styles_1.useTheme)();
     var _a = (0, react_1.useState)(false), invisible = _a[0], setInvisible = _a[1];
@@ -42,98 +39,105 @@ function FreepsSingleCard(props) {
     }
     var handleDeletion = function (event) {
         event.preventDefault();
-        var nameFreep = props.freepInfo.name;
-        var copyFullDataFreep = JSON.parse(JSON.stringify(props.fullDataFreeps));
-        var lengthFullDataFreep = props.fullDataFreeps.length;
-        for (var singleCard = 0; singleCard < lengthFullDataFreep; singleCard++) {
-            if (copyFullDataFreep[singleCard].name === nameFreep) {
-                copyFullDataFreep.splice(singleCard, 1);
-                props.setFullDataFreeps(copyFullDataFreep);
+        console.log(props.fullDataFreeps, "deletion in progress");
+        var copyFullDataFreep = props.fullDataFreeps.filter(function (item, index) {
+            if (index === props.index) {
+                return false;
             }
-        }
+            else {
+                return true;
+            }
+        });
+        props.setFullDataFreeps(copyFullDataFreep);
     };
     var handleIncrease = function () {
         var _a;
         var newNumber = freepInfo.hitpoints++;
-        setFreepInfo(__assign(__assign({}, freepInfo), (_a = {}, _a[freepInfo.hitpoints] = newNumber, _a)));
+        var newFreep = __assign(__assign({}, freepInfo), (_a = {}, _a[freepInfo.hitpoints] = newNumber, _a));
+        var newArray = props.fullDataFreeps.map(function (item, index) {
+            if (index === props.index) {
+                return newFreep; // Update the specific object
+            }
+            return item; // Return the unchanged object
+        });
+        props.setFullDataFreeps(newArray);
     };
     var handleDecrease = function () {
         var _a;
         var newNumber = freepInfo.hitpoints--;
-        setFreepInfo(__assign(__assign({}, freepInfo), (_a = {}, _a[freepInfo.hitpoints] = newNumber, _a)));
+        var newFreep = __assign(__assign({}, freepInfo), (_a = {}, _a[freepInfo.hitpoints] = newNumber, _a));
+        var newArray = props.fullDataFreeps.map(function (item, index) {
+            if (index === props.index) {
+                return newFreep; // Update the specific object
+            }
+            return item; // Return the unchanged object
+        });
+        props.setFullDataFreeps(newArray);
     };
     var handleClose = function () {
         setOpenChangeDialogue(false);
     };
-    var handleOpen = function (name) {
-        setNameOfEdit(name);
+    var handleOpen = function () {
         setOpenChangeDialogue(true);
     };
-    var onChange = function (event) {
-        var _a;
-        var _b = event.target, name = _b.name, value = _b.value;
-        if (isNaN(parseInt(value))) {
-            value = parseInt(value);
-        }
-        setFreepInfo(__assign(__assign({}, freepInfo), (_a = {}, _a[name] = value, _a)));
-    };
-    var buttonArray = [
-        <material_1.Button key={'agree'} onClick={handleClose} autoFocus>Save</material_1.Button>
-    ];
-    var textFields = <RyuutamaTextField_jsx_1.RyuutamaTextField name={nameOfEdit} label={nameOfEdit} value={freepInfo[nameOfEdit]} onChange={onChange} type='string'/>;
-    if (invisible === true) {
-        return null;
-    }
-    return (<Card_1.default className={matchingInitiative ? 'MatchInitiative' : 'NotMatchInitiative'}>
-      <Cancel_1.default className={"CancelButton"} sx={{ float: 'right' }} onClick={handleDeletion}/>
-      <Box_1.default sx={{ display: "grid", gridTemplateColumns: '2fr 1fr', alignItems: 'center', }}>
-        <CardContent_1.default>
-          <Typography_1.default component="div" variant="body2">
-            {props.freepInfo.name}
-          </Typography_1.default>
-          <Box_1.default sx={{
+    var editing = <FreepsAdd_jsx_1.FreepsAdd index={props.index} edit={openChangeDialogue} setEdit={setOpenChangeDialogue} freepInfo={props.freepInfo} freepsOrCreeps={props.freepInfo.creepOrFreep} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>;
+    return (<>
+      {openChangeDialogue === true ? editing : ""}
+      <Card_1.default className={"box ".concat(props.initiative === props.index ? 'highlight' : '')}>
+        <Cancel_1.default className={"CancelButton"} sx={{ float: 'right' }} onClick={handleDeletion}/>
+        <Box_1.default sx={{ display: "grid", gridTemplateColumns: '2fr 1fr', alignItems: 'center', }}>
+          <CardContent_1.default>
+            <Typography_1.default className={props.freepInfo.color !== null ? props.freepInfo.color : ""} component="div" variant="body2">
+              {props.freepInfo.name}
+            </Typography_1.default>
+            <Box_1.default sx={{
             display: 'flex',
             justifyContent: 'space-between',
         }}>
-            <Typography_1.default display="inline" variant="body2" align="left">
-              HP
-            </Typography_1.default>
-            <RemoveCircleOutline_1.default onClick={function () { return console.log("hello"); }}/>
-            <Typography_1.default display="inline" variant="body2" align="left">
-              {props.freepInfo.hitpoints} / {props.freepInfo.maxHitpoints}
-            </Typography_1.default>
-            <AddCircleOutline_1.default />
-          </Box_1.default>
-          <Box_1.default sx={{
+              <Typography_1.default display="inline" variant="body2" align="left">
+                HP
+              </Typography_1.default>
+              <RemoveCircleOutline_1.default onClick={function () { return handleDecrease(); }} sx={{
+            cursor: 'pointer',
+            fontSize: '1rem', // Set a custom font size (adjust as needed)
+        }}/>            <Typography_1.default display="inline" variant="body2" align="left">
+                {props.freepInfo.hitpoints} / {props.freepInfo.maxHitpoints}
+              </Typography_1.default>
+              <AddCircleOutline_1.default onClick={function () { return handleIncrease(); }} sx={{
+            cursor: 'pointer',
+            fontSize: '1rem', // Set a custom font size (adjust as needed)
+        }}/>          </Box_1.default>
+            <Box_1.default sx={{
             display: 'flex',
             justifyContent: 'space-between',
         }}>
-            <Typography_1.default display="inline" variant="body2" align="left">
-              Init
-            </Typography_1.default>
-            <Typography_1.default display="inline" variant="body2" align="left">
-              {props.freepInfo.initiative}
-            </Typography_1.default>
-          </Box_1.default>
-          <Box_1.default sx={{
+              <Typography_1.default display="inline" variant="body2" align="left">
+                Init
+              </Typography_1.default>
+              <Typography_1.default display="inline" variant="body2" align="left">
+                {props.freepInfo.initiative}
+              </Typography_1.default>
+            </Box_1.default>
+            <Box_1.default sx={{
             display: 'flex',
             justifyContent: 'space-between',
         }}>
-            <Typography_1.default display="inline" variant="body2" align="left">
-              Armor
-            </Typography_1.default>
-            <Typography_1.default display="inline" variant="body2" align="left">
-              {props.freepInfo.armor}
-            </Typography_1.default>
+              <Typography_1.default display="inline" variant="body2" align="left">
+                Defense
+              </Typography_1.default>
+              <Typography_1.default display="inline" variant="body2" align="left">
+                {props.freepInfo.initiative > props.freepInfo.shield ? props.freepInfo.initiative : props.freepInfo.shield}
+              </Typography_1.default>
 
-          </Box_1.default>
+            </Box_1.default>
 
-        </CardContent_1.default>
+          </CardContent_1.default>
 
-        <CardMedia_1.default component="img" image="/image/Personal/Ra.png" alt="A freep, a hero, a main honcho"/>
-      </Box_1.default>
+          <CardMedia_1.default component="img" image={freepInfo.healthyImage} className="creature-image" onClick={function () { return handleOpen(); }} alt="A freep, a hero, a main honcho"/>
+        </Box_1.default>
 
-    </Card_1.default>);
+      </Card_1.default>
+    </>);
 }
 exports.FreepsSingleCard = FreepsSingleCard;
 //# sourceMappingURL=FreepsSingleCard.jsx.map

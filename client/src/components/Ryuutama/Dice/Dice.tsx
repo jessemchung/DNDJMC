@@ -13,15 +13,9 @@
 //this can all likely be done just here... maybe.  Context should include an array of objects
 //containing information for additional buttons
 
-import { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { useState } from 'react';
 var randomColor = require('randomcolor'); // import the script
 import * as React from 'react'
-import * as THREE from "three";
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import axios from 'axios';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import { Button } from '@mui/material';
 import Stack from '@mui/material/Stack';
 
@@ -51,32 +45,74 @@ export default function Dice() {
 
   //should I hook them into the right things? so that I can build
 
-  const numberGenerator = (max: number, thing: keyof DiceObject) => {
+  const numberGenerator = (max: number, selectedDice: keyof DiceObject) => {
 
     let newNumber = (Math.ceil(Math.random() * max));
     // thing(newNumber);
     setDiceValues({
       ...diceValues,
-      [thing]: newNumber
+      [selectedDice]: newNumber
     })
   }
 
+
+  // probably better for a table adjustment
   return (
     <>
-      <Stack direction="row" spacing={2}>
+      {/* 6 columns each */}
+      <table style={{ "width": "100%" }}>
 
+        <tbody style={{ "width": "100%", textAlign: "center" }}>
+          <tr style={{ "width": "100%" }}>
+            <td>
+              D4
+            </td>
+            <td>
+              D6
+            </td>
+            <td>
+              D8
+            </td>
+            <td>
+              D10
+            </td>
+            <td>
+              D12
+            </td>
+            <td>
+              D20
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <Button onClick={() => { numberGenerator(4, 'd4') }}>{diceValues.d4}</Button>
 
-        <Button onClick={()=> {numberGenerator(4, 'd4')}}>{diceValues.d4}</Button>
-        <Button onClick={()=> {numberGenerator(6, 'd6')}}>{diceValues.d6}</Button>
-        <Button onClick={()=> {numberGenerator(8, 'd8')}}>{diceValues.d8}</Button>
-        <Button onClick={()=> {numberGenerator(10, 'd10')}}>{diceValues.d10}</Button>
-        <Button onClick={()=> {numberGenerator(12, 'd12')}}>{diceValues.d12}</Button>
-        <Button onClick={()=> {numberGenerator(20, 'd20')}}>{diceValues.d20}</Button>
+            </td>
+            <td>
 
-        {/* <Button onClick={()=> {numberGenerator(6, setD4)}}>{d4}</Button> */}
+              <Button onClick={() => { numberGenerator(6, 'd6') }}>{diceValues.d6}</Button>
 
+            </td>
+            <td>
+              <Button onClick={() => { numberGenerator(8, 'd8') }}>{diceValues.d8}</Button>
 
-      </Stack>
+            </td>
+            <td>
+              <Button onClick={() => { numberGenerator(10, 'd10') }}>{diceValues.d10}</Button>
+
+            </td>
+            <td>
+              <Button onClick={() => { numberGenerator(12, 'd12') }}>{diceValues.d12}</Button>
+
+            </td>
+            <td>
+              <Button onClick={() => { numberGenerator(20, 'd20') }}>{diceValues.d20}</Button>
+            </td>
+
+          </tr>
+        </tbody>
+
+      </table>
 
 
     </>

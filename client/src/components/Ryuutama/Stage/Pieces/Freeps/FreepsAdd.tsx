@@ -1,78 +1,91 @@
 //purpose, to add a creep to the menu
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 var randomColor = require('randomcolor'); // import the script
 import * as React from 'react'
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import axios from 'axios';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import {FreepsCardData} from '../Common/_Types.jsx'
+import { colorFreeps, FreepOrCreep, FreepsCardData, positionsOptions } from '../Common/_Types.jsx'
+import { RyuutamaForm } from '../../../Ryuutama.jsx';
+import { InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 
 //this needs to ability to set CreepsAdd
 interface Props {
-  setFullDataFreeps:React.Dispatch<React.SetStateAction<FreepsCardData[]>>, 
+  setFullDataFreeps: React.Dispatch<React.SetStateAction<FreepsCardData[]>>,
   fullDataFreeps: FreepsCardData[],
-  indexPieces: number,
-  setIndexPieces: React.Dispatch<React.SetStateAction<number>>,
+  // best case scenario is to add edit functionality here
+  edit?: boolean,
+  // going to need the need that specific person
+  index?: number
+  freepsOrCreeps: FreepOrCreep
+  freepInfo?: FreepsCardData
+  setEdit?: React.Dispatch<React.SetStateAction<boolean>>
+  // going to need their data to prepopulate the form
 }
 
-export function FreepsAdd(props:Props) {
-  const [open, setOpen] = useState<boolean>(false);
-  const [freepInfo, setFreepInfo] = useState<FreepsCardData>({
-  'index': props.fullDataFreeps.length-1,
-  'armor': 10,
-  'hitpoints':10,
-  'maxHitpoints':10,
-  'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
-  'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
-  'initiative': 10,
-  'name': "Bradford",
-  });
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>): void=> {
-    const {name, value} = e.target;
+export function FreepsAdd(props: Props) {
+
+  const basicForm: FreepsCardData = {
+    'index': props.fullDataFreeps.length - 1,
+    'shield': 0,
+    'hitpoints': 10,
+    'maxHitpoints': 10,
+    'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
+    'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
+    'initiative': 10,
+    'name': "Bradford",
+    creepOrFreep: props.freepsOrCreeps,
+    color: null,
+    position: 0
+  }
+  
+  const [open, setOpen] = useState<boolean>(props.edit || false);
+  const [freepInfo, setFreepInfo] = useState<FreepsCardData>(props.freepInfo ? props.freepInfo : basicForm);
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target;
+    console.log(name, value, "something is wrong with the colot");
+    setFreepInfo({
+      ...freepInfo,
+      [name]: value,
+
+    })
+
+  }
+
+  const onChangeSelect = (e: SelectChangeEvent<any>): void => {
+    const { name, value } = e.target;
     console.log(name, value);
     setFreepInfo({
       ...freepInfo,
-      [name] : value,
+      [name]: value,
 
     })
 
   }
 
 
-  const onHitpointChange = (e: React.ChangeEvent<HTMLInputElement>): void=> {
-    const {name, value} = e.target;
-    console.log(name, value);
+  const onHitpointChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target;
     setFreepInfo({
       ...freepInfo,
-      [name] : value,
+      [name]: value,
 
     })
 
   }
-  // 'armor': 6,
-  // 'hitpoints':10,
-  // 'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
-  // 'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
-  // 'initiative': 2,
-  // 'name': "Bradford",
-  // 'appearance': "purple hair, white skin",
+
+
+  // Add field position
+  // Also add color
 
 
 
@@ -81,27 +94,71 @@ export function FreepsAdd(props:Props) {
   };
 
   const handleClose = () => {
-    setOpen(false);
+    if (props.edit !== undefined) {
+      props.setEdit(false)
+    } else {
+      setOpen(false);
+
+    }
   };
 
   const onSubmit = () => {
- 
+    // this is a mess
+    let test = [...props.fullDataFreeps, freepInfo];
 
-    props.setFullDataFreeps([...props.fullDataFreeps, freepInfo])
-    
-    //! Jesse, there needs to be a scan of the next empty item for index pieces, otherwise this cannot be saved
-    
+    test.sort((a: FreepsCardData, b: FreepsCardData) => {
+      if (a.initiative > b.initiative) {
+        return 1;
+      } else {
+        return 0;
+      }
+    })
+    props.setFullDataFreeps(test)
+
     handleClose()
   }
 
-  
+  const onEditSubmit = () => {
+    // this is a mess
+    const test = [...props.fullDataFreeps];
 
-  // <Grid container spacing={1} columns={10}>
+    test[props.index] = freepInfo;
+
+    test.sort((a: FreepsCardData, b: FreepsCardData) => {
+      if (a.initiative > b.initiative) {
+        return 1;
+      } else {
+        return 0;
+      }
+    })
+    props.setFullDataFreeps(test);
+
+    props.setEdit(false);
+  }
+
+  const generateColorMenuItems = () => {
+    return Object.entries(colorFreeps).map(([key, value]) => (
+      <MenuItem selected={key === freepInfo.color} key={key} value={value} style={{ color: value }}>
+        {key} {/* Display the color name (e.g., Blue, Red) */}
+      </MenuItem>
+    ));
+  };
+
+  const generatePositionMenuItems = () => {
+
+    
+    return Object.entries(positionsOptions)
+    .filter(([key, value]) => isNaN(Number(key))) // Filter out reverse mappings (numeric keys)
+    .map(([key, value]) => (
+      <MenuItem key={key} value={value}>
+        {key}
+      </MenuItem>
+    ));
+  };
 
   return (
     <>
-
-      <Button size="small" onClick={handleClickOpen}>Add</Button>
+      {props.edit !== true ? <Button style={{marginTop: "auto"}} size="small" onClick={handleClickOpen}>Add Freep/Creep</Button> : ""}
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add Creep</DialogTitle>
@@ -125,19 +182,6 @@ export function FreepsAdd(props:Props) {
           <TextField
             autoFocus
             margin="dense"
-            id="armor"
-            onChange={onChange}
-            value={freepInfo.armor}
-            name='armor'
-            label="Armor"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-
-<TextField
-            autoFocus
-            margin="dense"
             id="maxHitpoints"
             onChange={onChange}
             value={freepInfo.maxHitpoints}
@@ -149,7 +193,7 @@ export function FreepsAdd(props:Props) {
           />
 
 
-<TextField
+          <TextField
             autoFocus
             margin="dense"
             id="hitpoints"
@@ -195,7 +239,6 @@ export function FreepsAdd(props:Props) {
             autoFocus
             margin="dense"
             id="healthyImage"
-
             onChange={onChange}
             value={freepInfo.healthyImage}
             name='healthyImage'
@@ -204,14 +247,57 @@ export function FreepsAdd(props:Props) {
             fullWidth
             variant="standard"
           />
+
+          <TextField
+            autoFocus
+            margin="dense"
+            id="color"
+
+            onChange={onChange}
+            value={freepInfo.shield}
+            name="shield"
+            label="shield"
+            type="number"
+            fullWidth
+            variant="standard"
+          />
+
+
+          <InputLabel margin="dense" id="demo-simple-select-label">Color</InputLabel>
+            <Select
+              fullWidth
+              id="demo-simple-select"
+              label="Age"
+              labelId="demo-simple-select-label"
+              name="color"
+              onChange={onChangeSelect}
+              value={freepInfo.color}
+            >
+              <MenuItem selected={freepInfo.color === null} key={'nullColor'} value={null}>
+                "Select Color" 
+              </MenuItem>
+
+              {generateColorMenuItems()}
+          </Select>
+
+          <InputLabel id="demo-simple-select-label">Position</InputLabel>
+            <Select
+              fullWidth
+              id="demo-simple-select"
+              label="Age"
+              labelId="demo-simple-select-label"
+              name="position"
+              onChange={onChangeSelect}
+              value={freepInfo.position}
+            >
+              {generatePositionMenuItems()}
+          </Select>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={onSubmit}>Add</Button>
+          {props.edit === true ? <Button onClick={onEditSubmit}>Edit</Button> : <Button onClick={onSubmit}>Add</Button>}
         </DialogActions>
       </Dialog>
-
-
     </>
   )
 }

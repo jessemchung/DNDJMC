@@ -19,3 +19,82 @@ main > :last-child {
   margin-bottom: 0;
 }
 
+.box {
+}
+
+.box.highlight {
+  background-color: yellow; /* Highlight color */
+}
+
+.marker {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: gray;
+  border-radius: 50%;
+}
+
+/* .marker.Blue {
+  background-color: #007AFF;
+}
+
+.marker.Red {
+  background-color: #FF3B30;
+}
+
+.marker.Yellow {
+  background-color: #FFCC00;
+}
+
+.marker.Green {
+  background-color: #34C759;
+}
+
+.marker.Purple {
+  background-color: #AF52DE;
+}
+
+.marker.Orange {
+  background-color: #FF9500;
+} */
+
+.Blue {
+  background-color: #007AFF;
+}
+
+.Red {
+  background-color: #FF3B30;
+}
+
+.Yellow {
+  background-color: #FFCC00;
+}
+
+.Green {
+  background-color: #34C759;
+}
+
+.Purple {
+  background-color: #AF52DE;
+}
+
+.Orange {
+  background-color: #FF9500;
+}
+
+.creature-image {
+  border: 2px solid black;
+}
+
+.creature-image:hover {
+  border: 2px solid #007AFF; /* Change this color as needed */
+}
+
+.container {
+  position: relative;
+}
+
+.bottom-button {
+  background-color: red;
+  /* Center the button horizontally */
+}

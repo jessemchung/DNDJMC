@@ -2,18 +2,23 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var randomColor = require('randomcolor'); // import the script
 var React = require("react");
-var FreepsSampleCard_jsx_1 = require("./FreepsSampleCard.jsx");
 var FreepsSingleCard_jsx_1 = require("./FreepsSingleCard.jsx");
 var FreepsAdd_jsx_1 = require("./FreepsAdd.jsx");
+// this produces all the freep cards. 
 function FreepsMain(props) {
     var allCards = props.fullDataFreeps.map(function (singleCard, index) {
-        return (<FreepsSingleCard_jsx_1.FreepsSingleCard freepInfo={singleCard} key={index + "freeps"} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>);
+        if (singleCard.creepOrFreep === props.freepsOrCreeps) {
+            return (<FreepsSingleCard_jsx_1.FreepsSingleCard adjustCreatureSet={props.adjustCreatureSet} initiative={props.indexPieces} index={index} freepInfo={singleCard} key={index + "freeps"} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>);
+        }
+        else {
+            return null;
+        }
     });
     return (<>
-      <div> Freeps </div>
-      <FreepsSampleCard_jsx_1.default />
+    <div>
       {allCards}
-      <FreepsAdd_jsx_1.FreepsAdd indexPieces={props.indexPieces} setIndexPieces={props.setIndexPieces} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>
+    </div>
+      <FreepsAdd_jsx_1.FreepsAdd freepsOrCreeps={props.freepsOrCreeps} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>
     </>);
 }
 exports.default = FreepsMain;
