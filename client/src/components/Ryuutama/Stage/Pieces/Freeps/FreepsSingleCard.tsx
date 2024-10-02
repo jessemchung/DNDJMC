@@ -37,7 +37,7 @@ export function FreepsSingleCard(props: Props) {
   const [nameOfEdit, setNameOfEdit] = useState<keyof FreepsCardData>('name')
   const [freepInfo, setFreepInfo] = useState<FreepsCardData>(props.freepInfo)
   const { initiative } = useContext(UserContext);
-  
+
 
 
   let matchingInitiative = false;
@@ -99,73 +99,85 @@ export function FreepsSingleCard(props: Props) {
     setOpenChangeDialogue(true);
   };
 
-  let editing = <FreepsAdd index={props.index} edit={true} freepInfo={props.freepInfo} freepsOrCreeps={props.freepInfo.creepOrFreep} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>
+  let editing = <FreepsAdd index={props.index} edit={openChangeDialogue} setEdit={setOpenChangeDialogue} freepInfo={props.freepInfo} freepsOrCreeps={props.freepInfo.creepOrFreep} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps} />
 
   return (
     <>
-    {openChangeDialogue === true ? editing : ""}
-    <Card className={`box ${props.initiative === props.index ? 'highlight' : ''}`}>
-      <CancelIcon className={"CancelButton"} sx={{ float: 'right' }} onClick={handleDeletion} />
-      <Box sx={{ display: "grid", gridTemplateColumns: '2fr 1fr', alignItems: 'center', }}>
-        <CardContent >
-          <Typography className={props.freepInfo.color !== null ? props.freepInfo.color : ""} component="div" variant="body2">
-            {props.freepInfo.name}
-          </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Typography display="inline" variant="body2" align="left" >
-              HP
+      {openChangeDialogue === true ? editing : ""}
+      <Card className={`box ${props.initiative === props.index ? 'highlight' : ''}`}>
+        <CancelIcon className={"CancelButton"} sx={{ float: 'right' }} onClick={handleDeletion} />
+        <Box sx={{ display: "grid", gridTemplateColumns: '2fr 1fr', alignItems: 'center', }}>
+          <CardContent >
+            <Typography className={props.freepInfo.color !== null ? props.freepInfo.color : ""} component="div" variant="body2">
+              {props.freepInfo.name}
             </Typography>
-            <RemoveCircleOutlineIcon onClick={() =>handleDecrease()}/>
-            <Typography display="inline" variant="body2" align="left">
-              {props.freepInfo.hitpoints} / {props.freepInfo.maxHitpoints}
-            </Typography>
-            <AddCircleOutlineIcon onClick={()=> handleIncrease()} />
-          </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Typography display="inline" variant="body2" align="left" >
-              Init
-            </Typography>
-            <Typography display="inline" variant="body2" align="left">
-              {props.freepInfo.initiative}
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Typography display="inline" variant="body2" align="left" >
-              Defense
-            </Typography>
-            <Typography display="inline" variant="body2" align="left">
-              {props.freepInfo.initiative > props.freepInfo.shield ? props.freepInfo.initiative : props.freepInfo.shield}
-            </Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Typography display="inline" variant="body2" align="left" >
+                HP
+              </Typography>
+              <RemoveCircleOutlineIcon
+                onClick={() => handleDecrease()}
+                sx={{
+                  cursor: 'pointer',
+                  fontSize: '1rem', // Set a custom font size (adjust as needed)
+                }}
+              // Optional: add some margin for spacing
+              />            <Typography display="inline" variant="body2" align="left">
+                {props.freepInfo.hitpoints} / {props.freepInfo.maxHitpoints}
+              </Typography>
+              <AddCircleOutlineIcon
+                onClick={() => handleIncrease()}
 
-          </Box>
+                sx={{
+                  cursor: 'pointer',
+                  fontSize: '1rem', // Set a custom font size (adjust as needed)
+                }}
+              />          </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Typography display="inline" variant="body2" align="left" >
+                Init
+              </Typography>
+              <Typography display="inline" variant="body2" align="left">
+                {props.freepInfo.initiative}
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Typography display="inline" variant="body2" align="left" >
+                Defense
+              </Typography>
+              <Typography display="inline" variant="body2" align="left">
+                {props.freepInfo.initiative > props.freepInfo.shield ? props.freepInfo.initiative : props.freepInfo.shield}
+              </Typography>
 
-        </CardContent>
+            </Box>
 
-        <CardMedia
-          component="img"
-          image={freepInfo.healthyImage}
-          className="creature-image"
-          onClick={() => handleOpen()}
-          alt="A freep, a hero, a main honcho"
-        />
-      </Box>
+          </CardContent>
 
-    </Card>
+          <CardMedia
+            component="img"
+            image={freepInfo.healthyImage}
+            className="creature-image"
+            onClick={() => handleOpen()}
+            alt="A freep, a hero, a main honcho"
+          />
+        </Box>
+
+      </Card>
     </>
   );
 }

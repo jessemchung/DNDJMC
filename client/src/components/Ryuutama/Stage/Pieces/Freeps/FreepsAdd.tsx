@@ -26,6 +26,7 @@ interface Props {
   index?: number
   freepsOrCreeps: FreepOrCreep
   freepInfo?: FreepsCardData
+  setEdit?: React.Dispatch<React.SetStateAction<boolean>>
   // going to need their data to prepopulate the form
 }
 
@@ -93,7 +94,12 @@ export function FreepsAdd(props: Props) {
   };
 
   const handleClose = () => {
-    setOpen(false);
+    if (props.edit !== undefined) {
+      props.setEdit(false)
+    } else {
+      setOpen(false);
+
+    }
   };
 
   const onSubmit = () => {
@@ -127,7 +133,7 @@ export function FreepsAdd(props: Props) {
     })
     props.setFullDataFreeps(test);
 
-    handleClose()
+    props.setEdit(false);
   }
 
   const generateColorMenuItems = () => {
@@ -152,7 +158,7 @@ export function FreepsAdd(props: Props) {
 
   return (
     <>
-      {props.freepInfo === undefined ? <Button style={{marginTop: "auto"}} size="small" onClick={handleClickOpen}>Add Freep/Creep</Button> : ""}
+      {props.edit !== true ? <Button style={{marginTop: "auto"}} size="small" onClick={handleClickOpen}>Add Freep/Creep</Button> : ""}
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add Creep</DialogTitle>
@@ -168,19 +174,6 @@ export function FreepsAdd(props: Props) {
             id="name"
             name='name'
             label="Name"
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-
-          <TextField
-            autoFocus
-            margin="dense"
-            id="shield"
-            onChange={onChange}
-            value={freepInfo.shield}
-            name='shield'
-            label="Shield"
             type="text"
             fullWidth
             variant="standard"
@@ -302,7 +295,7 @@ export function FreepsAdd(props: Props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          {props.freepInfo ? <Button onClick={onEditSubmit}>Edit</Button> : <Button onClick={onSubmit}>Add</Button>}
+          {props.edit === true ? <Button onClick={onEditSubmit}>Edit</Button> : <Button onClick={onSubmit}>Add</Button>}
         </DialogActions>
       </Dialog>
     </>
