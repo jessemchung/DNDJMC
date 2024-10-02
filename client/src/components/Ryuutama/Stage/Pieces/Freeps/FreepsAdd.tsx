@@ -108,9 +108,9 @@ export function FreepsAdd(props: Props) {
 
     test.sort((a: FreepsCardData, b: FreepsCardData) => {
       if (a.initiative > b.initiative) {
-        return 1;
-      } else {
         return 0;
+      } else {
+        return 1;
       }
     })
     props.setFullDataFreeps(test)
@@ -126,9 +126,9 @@ export function FreepsAdd(props: Props) {
 
     test.sort((a: FreepsCardData, b: FreepsCardData) => {
       if (a.initiative > b.initiative) {
-        return 1;
-      } else {
         return 0;
+      } else {
+        return 1;
       }
     })
     props.setFullDataFreeps(test);
