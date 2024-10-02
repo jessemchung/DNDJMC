@@ -85,10 +85,10 @@ function FreepsAdd(props) {
         var test = __spreadArray(__spreadArray([], props.fullDataFreeps, true), [freepInfo], false);
         test.sort(function (a, b) {
             if (a.initiative > b.initiative) {
-                return 1;
+                return 0;
             }
             else {
-                return 0;
+                return 1;
             }
         });
         props.setFullDataFreeps(test);
@@ -100,10 +100,10 @@ function FreepsAdd(props) {
         test[props.index] = freepInfo;
         test.sort(function (a, b) {
             if (a.initiative > b.initiative) {
-                return 1;
+                return 0;
             }
             else {
-                return 0;
+                return 1;
             }
         });
         props.setFullDataFreeps(test);
