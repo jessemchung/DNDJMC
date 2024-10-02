@@ -26,7 +26,7 @@ interface Props {
 export function BattleDialogue(props:Props) {
   const [open, setOpen] = useState<boolean>(false);
   const [creepInfo, setCreepInfo] = useState<FreepsCardData>({
-  'defense': 10,
+  'shield': 10,
   'hitpoints':10,
   'maxHitpoints':12,
   'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
@@ -36,7 +36,6 @@ export function BattleDialogue(props:Props) {
   creepOrFreep:"creep",
   index: 1,
   position: null,
-  shield: 0,
   color: null
   });
 
@@ -105,11 +104,11 @@ export function BattleDialogue(props:Props) {
           <TextField
             autoFocus
             margin="dense"
-            id="armor"
+            id="shield"
             onChange={onChange}
-            value={creepInfo.defense}
-            name='armor'
-            label="Armor"
+            value={creepInfo.shield}
+            name='shield'
+            label="Shield"
             type="text"
             fullWidth
             variant="standard"

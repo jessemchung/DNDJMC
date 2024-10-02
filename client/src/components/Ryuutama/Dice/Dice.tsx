@@ -62,7 +62,7 @@ export default function Dice() {
       {/* 6 columns each */}
       <table style={{ "width": "100%" }}>
 
-        <tbody style={{ "width": "100%" }}>
+        <tbody style={{ "width": "100%", textAlign: "center" }}>
           <tr style={{ "width": "100%" }}>
             <td>
               D4

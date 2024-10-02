@@ -97,8 +97,8 @@ export default function PropsBarIndividualCard(props: Props) {
   return (
     <>
     <ThemeProvider theme={theme}>
-      <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: "100%" }}>
-        <CardContent style={{ flexGrow: 1, maxHeight: '10em', overflow: 'auto' }}>
+      <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: "100%", padding: 0 }}>
+        <CardContent style={{ flexGrow: 1, maxHeight: '10em', overflow: 'auto', padding: 0  }}>
         <Typography variant="body1" component="div" gutterBottom>
           {terrainProp.title}
         </Typography>
@@ -109,7 +109,7 @@ export default function PropsBarIndividualCard(props: Props) {
         </Typography>
 
         </CardContent>
-        <CardActions style={{ marginTop: 'auto' }}>
+        <CardActions style={{ marginTop: 'auto', padding: 0  }}>
           <Button size="small" onClick={handleClickOpen}>Edit</Button>
 
           <Dialog open={open} onClose={handleClose}>

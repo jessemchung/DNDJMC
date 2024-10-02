@@ -4,32 +4,30 @@ import {colorFreeps, FreepsCardData} from '../Common/_Types.jsx'
 export const FreepsSampleData: FreepsCardData[] = [
   {
     'index': -1,
-    'defense': 6,
+    'shield': 0,
     'hitpoints':10,
     'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
     'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
-    'initiative': 2,
+    'initiative': 5,
     'name': "Bradford",
     'maxHitpoints': 10,
      creepOrFreep: 'freep',
      color: colorFreeps.Blue,
-     shield: 0,
      position: 1
 
   },
 
   {
     'index': -2,
-    'defense': 10,
+    'shield': 10,
     'hitpoints':8,
     'healthyImage': './image/Ryuutama/SampleIcons/MarinerGood.png',
     'bloodyImage': './image/Ryuutama/SampleIcons/MarinerBad.png',
-    'initiative': 3,
+    'initiative': 4,
     'name': "Mariner",
     'maxHitpoints': 8,
     creepOrFreep: 'freep',
     color: colorFreeps.Red,
-    shield: 0,
     position: 2
 
 
@@ -37,38 +35,36 @@ export const FreepsSampleData: FreepsCardData[] = [
 
   {
     'index': -3,
-    'defense': 12,
+    'shield': 12,
     'hitpoints':12,
     'healthyImage': './image/Ryuutama/SampleIcons/TendiGood.png',
     'bloodyImage': './image/Ryuutama/SampleIcons/TendiBad.png',
-    'initiative': 1,
+    'initiative': 3,
     'name': "Tendi",
     'maxHitpoints':12,
     creepOrFreep: 'freep',
     color: colorFreeps.Green,
-    shield: 0,
     position: 3
 
   },
 
   {
     'index': -4,
-    'defense': 11,
+    'shield': 11,
     'hitpoints':18,
     'healthyImage': './image/Ryuutama/SampleIcons/SamGood.png',
     'bloodyImage': './image/Ryuutama/SampleIcons/SamBad.png',
-    'initiative': 1,
+    'initiative': 2,
     'name': "Sam",
     'maxHitpoints':18,
     creepOrFreep: 'freep',
     color: colorFreeps.Yellow,
-    shield: 0,
     position: 4
   },
 
   {
     'index': -5,
-    'defense': 11,
+    'shield': 3,
     'hitpoints':18,
     'healthyImage': 'https://i.ibb.co/CQ56XzK/the-goblin.png',
     'bloodyImage': 'https://i.ibb.co/CQ56XzK/the-goblin.png',
@@ -77,12 +73,11 @@ export const FreepsSampleData: FreepsCardData[] = [
     'maxHitpoints':18,
     creepOrFreep: 'freep',
     color: colorFreeps.Orange,
-    shield: 0,
     position: 5
   },
   {
     'index': -6,
-    'defense': 11,
+    'shield': 2,
     'hitpoints':18,
     'healthyImage': 'https://i.ibb.co/CQ56XzK/the-goblin.png',
     'bloodyImage': 'https://i.ibb.co/CQ56XzK/the-goblin.png',
@@ -91,7 +86,6 @@ export const FreepsSampleData: FreepsCardData[] = [
     'maxHitpoints':18,
     creepOrFreep: 'creep',
     color: colorFreeps.Blue,
-    shield: 0,
     position: 5
   }
 

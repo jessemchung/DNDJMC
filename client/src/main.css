@@ -81,3 +81,20 @@ main > :last-child {
 .Orange {
   background-color: #FF9500;
 }
+
+.creature-image {
+  border: 2px solid black;
+}
+
+.creature-image:hover {
+  border: 2px solid #007AFF; /* Change this color as needed */
+}
+
+.container {
+  position: relative;
+}
+
+.bottom-button {
+  background-color: red;
+  /* Center the button horizontally */
+}

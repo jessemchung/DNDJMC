@@ -20,15 +20,12 @@ import { InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
 interface Props {
   setFullDataFreeps: React.Dispatch<React.SetStateAction<FreepsCardData[]>>,
   fullDataFreeps: FreepsCardData[],
-  indexPieces: number,
-  setIndexPieces: React.Dispatch<React.SetStateAction<number>>,
-  form: RyuutamaForm,
-  setForm: (data: Partial<RyuutamaForm>) => void,
   // best case scenario is to add edit functionality here
   edit?: boolean,
   // going to need the need that specific person
   index?: number
   freepsOrCreeps: FreepOrCreep
+  freepInfo?: FreepsCardData
   // going to need their data to prepopulate the form
 }
 
@@ -37,23 +34,7 @@ export function FreepsAdd(props: Props) {
 
   const basicForm: FreepsCardData = {
     'index': props.fullDataFreeps.length - 1,
-    'defense': 10,
-    'hitpoints': 10,
-    'maxHitpoints': 10,
-    'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
-    'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
-    'initiative': 10,
-    'name': "Bradford",
-    creepOrFreep: "freep",
-    color: null,
-    shield: 0,
-    position: 0,
-  }
-  
-  const [open, setOpen] = useState<boolean>(false);
-  const [freepInfo, setFreepInfo] = useState<FreepsCardData>({
-    'index': props.fullDataFreeps.length - 1,
-    'defense': 10,
+    'shield': 0,
     'hitpoints': 10,
     'maxHitpoints': 10,
     'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
@@ -62,10 +43,11 @@ export function FreepsAdd(props: Props) {
     'name': "Bradford",
     creepOrFreep: props.freepsOrCreeps,
     color: null,
-    shield: 0,
-    position: 0,
-
-  });
+    position: 0
+  }
+  
+  const [open, setOpen] = useState<boolean>(props.edit || false);
+  const [freepInfo, setFreepInfo] = useState<FreepsCardData>(props.freepInfo ? props.freepInfo : basicForm);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
@@ -125,10 +107,25 @@ export function FreepsAdd(props: Props) {
         return 0;
       }
     })
+    props.setFullDataFreeps(test)
 
+    handleClose()
+  }
 
-    console.log(freepInfo);
-    props.setFullDataFreeps([...props.fullDataFreeps, freepInfo])
+  const onEditSubmit = () => {
+    // this is a mess
+    const test = [...props.fullDataFreeps];
+
+    test[props.index] = freepInfo;
+
+    test.sort((a: FreepsCardData, b: FreepsCardData) => {
+      if (a.initiative > b.initiative) {
+        return 1;
+      } else {
+        return 0;
+      }
+    })
+    props.setFullDataFreeps(test);
 
     handleClose()
   }
@@ -155,8 +152,7 @@ export function FreepsAdd(props: Props) {
 
   return (
     <>
-
-      <Button size="small" onClick={handleClickOpen}>Add Freep</Button>
+      {props.freepInfo === undefined ? <Button style={{marginTop: "auto"}} size="small" onClick={handleClickOpen}>Add Freep/Creep</Button> : ""}
 
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Add Creep</DialogTitle>
@@ -180,11 +176,11 @@ export function FreepsAdd(props: Props) {
           <TextField
             autoFocus
             margin="dense"
-            id="armor"
+            id="shield"
             onChange={onChange}
-            value={freepInfo.defense}
-            name='armor'
-            label="Armor"
+            value={freepInfo.shield}
+            name='shield'
+            label="Shield"
             type="text"
             fullWidth
             variant="standard"
@@ -250,7 +246,6 @@ export function FreepsAdd(props: Props) {
             autoFocus
             margin="dense"
             id="healthyImage"
-
             onChange={onChange}
             value={freepInfo.healthyImage}
             name='healthyImage'
@@ -307,7 +302,7 @@ export function FreepsAdd(props: Props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={onSubmit}>Add</Button>
+          {props.freepInfo ? <Button onClick={onEditSubmit}>Edit</Button> : <Button onClick={onSubmit}>Add</Button>}
         </DialogActions>
       </Dialog>
     </>

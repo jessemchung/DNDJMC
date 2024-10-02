@@ -123,14 +123,8 @@ console.log(arrayWithCopies);
     setFullDataFreeps(newArray);
   };
 
-  const testClick = () => {
-    console.log(fullDataCreeps, 'were these changed fullDataCreeps?');
-    console.log(fullDataFreeps, 'fullDataFreeps')
-
+  const clearCreatures = () => {
     setFullDataFreeps([]);
-    //I predict this will delete everything... Hopefully.
-    //we need to delete
-
   }
 
   const initiativeCheck = (event: any, thisInitiative: number = initiative) => {
@@ -193,22 +187,19 @@ console.log(arrayWithCopies);
                       }}
                     >
 
-
-                      <Item id='Freeps'>
+                      <Item id='Freeps' style={{ display: 'flex', flexDirection: 'column', maxHeight: "100%", overflowY: "auto" }}>
 
                         <FreepsMain adjustCreatureSet={adjustCreatureSet} form={form} freepsOrCreeps="freep" setForm={setForm} key={'FreepsMain'} indexPieces={initiative} setIndexPieces={setIndexFreeps} fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps} />
 
                       </Item>
 
-                      <Item>
-
-                        <div>Stage</div>
+                      <Item id="main-stage">
 
                         {mainStageComponent}
 
                       </Item>
 
-                      <Item>
+                      <Item id="creeps" style={{ display: 'flex', flexDirection: 'column'}}>
 
                         <FreepsMain adjustCreatureSet={adjustCreatureSet} form={form} freepsOrCreeps="creep" setForm={setForm} key={'FreepsMain'} indexPieces={initiative} setIndexPieces={setIndexFreeps} fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps} />
 
@@ -230,8 +221,7 @@ console.log(arrayWithCopies);
 
         </Paper>
 
-        <Button onClick={testClick}>Test Button</Button>
-        <Button onClick={initiativeCheck}>Initiative Check</Button>
+        <Button onClick={clearCreatures}>Clear All</Button>
         <Button onClick={initiativeCheck}>Next Initative</Button>
         <Dice />
 

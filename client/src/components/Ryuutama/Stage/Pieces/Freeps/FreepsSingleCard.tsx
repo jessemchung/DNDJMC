@@ -17,6 +17,7 @@ import { RyuutamaTextField } from '../../../Generic/RyuutamaTextField.jsx'
 import CancelIcon from '@mui/icons-material/Cancel';
 import { Button } from '@mui/material';
 import UserContext from '../../../UserContext.jsx';
+import { FreepsAdd } from './FreepsAdd.jsx';
 
 // with the index set, we can now know to highlight a box.
 interface Props {
@@ -26,6 +27,7 @@ interface Props {
   initiative: number,
   setFullDataFreeps: React.Dispatch<React.SetStateAction<FreepsCardData[]>>,
   adjustCreatureSet: (indexOfChange: number, changedCard: FreepsCardData) => void
+  onSubmit?: () => void
 }
 
 export function FreepsSingleCard(props: Props) {
@@ -35,7 +37,7 @@ export function FreepsSingleCard(props: Props) {
   const [nameOfEdit, setNameOfEdit] = useState<keyof FreepsCardData>('name')
   const [freepInfo, setFreepInfo] = useState<FreepsCardData>(props.freepInfo)
   const { initiative } = useContext(UserContext);
-    const [isHighlighted, setIsHighlighted] = useState(false);
+  
 
 
   let matchingInitiative = false;
@@ -55,12 +57,7 @@ export function FreepsSingleCard(props: Props) {
     });
 
     props.setFullDataFreeps(copyFullDataFreep);
-    // for (let singleCard=0; singleCard < lengthFullDataFreep; singleCard++) {
-    //   if (copyFullDataFreep[singleCard].name === nameFreep) {
-    //     copyFullDataFreep.splice(singleCard, 1);
-    //     props.setFullDataFreeps(copyFullDataFreep);
-    //   } 
-    // }
+
   }
 
   const handleIncrease: () => void = () => {
@@ -69,7 +66,6 @@ export function FreepsSingleCard(props: Props) {
       ...freepInfo,
       [freepInfo.hitpoints]: newNumber,
     };
-    console.log("hello?")
     const newArray = props.fullDataFreeps.map((item, index) => {
       if (index === props.index) {
         return newFreep; // Update the specific object
@@ -77,8 +73,6 @@ export function FreepsSingleCard(props: Props) {
       return item; // Return the unchanged object
     });
     props.setFullDataFreeps(newArray);
-
-
   }
 
 
@@ -88,7 +82,6 @@ export function FreepsSingleCard(props: Props) {
       ...freepInfo,
       [freepInfo.hitpoints]: newNumber,
     };
-    console.log("hello?")
     const newArray = props.fullDataFreeps.map((item, index) => {
       if (index === props.index) {
         return newFreep; // Update the specific object
@@ -102,61 +95,16 @@ export function FreepsSingleCard(props: Props) {
     setOpenChangeDialogue(false);
   };
 
-  const handleOpen = (name: keyof FreepsCardData) => {
-    setNameOfEdit(name);
+  const handleOpen = () => {
     setOpenChangeDialogue(true);
   };
 
-  const onChange =(event: React.ChangeEvent<HTMLInputElement>) => {
-    let {name, value} : { name: string; value: any } = event.target;
-    if (isNaN(parseInt(value))) {
-      value = parseInt(value);
-    }
-    setFreepInfo({
-      ...freepInfo,
-      [name]: value,
-    })
-  }
-
-  const buttonArray = [
-    <Button key={'agree'} onClick={handleClose} autoFocus>Save</Button>
-  ]
-
-
-  let textFields = <RyuutamaTextField
-    name={nameOfEdit}
-    label={nameOfEdit}
-    value={freepInfo[nameOfEdit]}
-    onChange={onChange}
-    type='string' />
-
-
-  if (invisible === true) {
-    return null;
-  }
-
-
-//   import React, { useState } from 'react';
-// import './HighlightComponent.css';
-
-// const HighlightComponent = () => {
-//   const [isHighlighted, setIsHighlighted] = useState(false);
-
-  const toggleHighlight = () => {
-    setIsHighlighted(!isHighlighted);
-  };
-
-//   return (
-//     <div className={`box ${isHighlighted ? 'highlight' : ''}`} onClick={toggleHighlight}>
-//       Click to Highlight Me
-//     </div>
-//   );
-// };
-
-// export default HighlightComponent;
+  let editing = <FreepsAdd index={props.index} edit={true} freepInfo={props.freepInfo} freepsOrCreeps={props.freepInfo.creepOrFreep} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>
 
   return (
-    <Card onClick={toggleHighlight} className={`box ${props.initiative === props.index ? 'highlight' : ''}`}>
+    <>
+    {openChangeDialogue === true ? editing : ""}
+    <Card className={`box ${props.initiative === props.index ? 'highlight' : ''}`}>
       <CancelIcon className={"CancelButton"} sx={{ float: 'right' }} onClick={handleDeletion} />
       <Box sx={{ display: "grid", gridTemplateColumns: '2fr 1fr', alignItems: 'center', }}>
         <CardContent >
@@ -201,7 +149,7 @@ export function FreepsSingleCard(props: Props) {
               Defense
             </Typography>
             <Typography display="inline" variant="body2" align="left">
-              {props.freepInfo.defense}
+              {props.freepInfo.initiative > props.freepInfo.shield ? props.freepInfo.initiative : props.freepInfo.shield}
             </Typography>
 
           </Box>
@@ -211,10 +159,13 @@ export function FreepsSingleCard(props: Props) {
         <CardMedia
           component="img"
           image={freepInfo.healthyImage}
+          className="creature-image"
+          onClick={() => handleOpen()}
           alt="A freep, a hero, a main honcho"
         />
       </Box>
 
     </Card>
+    </>
   );
 }

@@ -48,11 +48,9 @@ export default function Image(props: Props) {
     }
   }
 
-  console.log(constructedColorsFreeps, "this is not getting added?")
   const BackgroundPaper = styled(Paper)(({ theme }) => ({
     textAlign: 'center',
     position: 'relative',
-    border: '1px green solid',
     backgroundImage: `url(${terrainType})`,
     width: '100%',
     aspectRatio: '1.5 / 1',
@@ -60,7 +58,7 @@ export default function Image(props: Props) {
     backgroundSize: 'contain',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
 
   }));
 
@@ -168,8 +166,6 @@ export default function Image(props: Props) {
             <div> <ElementalField key={'ElementalField'} /> </div>
             <TerrainType key={'TerrainType'} terrainType={terrainType} setTerrainType={setTerrainType} />
           </ Grid>
-
-
 
         </Box>
 

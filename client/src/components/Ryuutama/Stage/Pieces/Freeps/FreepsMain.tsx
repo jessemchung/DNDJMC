@@ -37,9 +37,10 @@ export default function FreepsMain(props: Props) {
 
   return (
     <>
-      <div> Freeps Column </div>
+    <div>
       {allCards}
-      <FreepsAdd form={props.form} freepsOrCreeps={props.freepsOrCreeps} setForm={props.setForm} indexPieces={props.indexPieces} setIndexPieces={props.setIndexPieces} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>
+    </div>
+      <FreepsAdd freepsOrCreeps={props.freepsOrCreeps} fullDataFreeps={props.fullDataFreeps} setFullDataFreeps={props.setFullDataFreeps}/>
     </>
   )
 }
