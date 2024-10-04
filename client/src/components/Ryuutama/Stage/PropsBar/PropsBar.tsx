@@ -23,13 +23,12 @@ export default function PropsBar(prop: Props) {
 
   let finalConstruct = prop.terrainProps.map((item, index) => {
     return (
-      <Grid item xs={1}>
+      <Grid key={"propsBar" + index} item xs={1}>
         <PropsBarIndividualCard  setNewTerrainInformation={setNewTerrainInformation} terrainProp={item} index={index} />
       </Grid>
     )
   })
 
-  console.log(finalConstruct, "wha")
   return (
     <>
       <Box sx={{ flexGrow: 0 }}>
