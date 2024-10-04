@@ -36,7 +36,6 @@ var _Types_jsx_1 = require("../Common/_Types.jsx");
 var material_1 = require("@mui/material");
 function FreepsAdd(props) {
     var basicForm = {
-        'index': props.fullDataFreeps.length - 1,
         'shield': 0,
         'hitpoints': 10,
         'maxHitpoints': 10,

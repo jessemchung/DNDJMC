@@ -11,11 +11,10 @@ function PropsBar(prop) {
         prop.setTerrainProps(prop.terrainProps.map(function (item, originalIndex) { return (originalIndex === index ? newTerrainValue : item); }));
     };
     var finalConstruct = prop.terrainProps.map(function (item, index) {
-        return (<Grid_1.default item xs={1}>
+        return (<Grid_1.default key={"propsBar" + index} item xs={1}>
         <PropsBarIndividualCard_jsx_1.default setNewTerrainInformation={setNewTerrainInformation} terrainProp={item} index={index}/>
       </Grid_1.default>);
     });
-    console.log(finalConstruct, "wha");
     return (<>
       <Box_1.default sx={{ flexGrow: 0 }}>
         <Grid_1.default container spacing={0} columns={10}>

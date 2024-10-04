@@ -4,7 +4,6 @@ exports.FreepsSampleData = void 0;
 var _Types_jsx_1 = require("../Common/_Types.jsx");
 exports.FreepsSampleData = [
     {
-        'index': -1,
         'shield': 0,
         'hitpoints': 10,
         'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
@@ -17,7 +16,6 @@ exports.FreepsSampleData = [
         position: 1
     },
     {
-        'index': -2,
         'shield': 10,
         'hitpoints': 8,
         'healthyImage': './image/Ryuutama/SampleIcons/MarinerGood.png',
@@ -30,7 +28,6 @@ exports.FreepsSampleData = [
         position: 2
     },
     {
-        'index': -3,
         'shield': 12,
         'hitpoints': 12,
         'healthyImage': './image/Ryuutama/SampleIcons/TendiGood.png',
@@ -43,7 +40,6 @@ exports.FreepsSampleData = [
         position: 3
     },
     {
-        'index': -4,
         'shield': 11,
         'hitpoints': 18,
         'healthyImage': './image/Ryuutama/SampleIcons/SamGood.png',
@@ -56,7 +52,6 @@ exports.FreepsSampleData = [
         position: 4
     },
     {
-        'index': -5,
         'shield': 3,
         'hitpoints': 18,
         'healthyImage': 'https://i.ibb.co/CQ56XzK/the-goblin.png',
@@ -69,7 +64,6 @@ exports.FreepsSampleData = [
         position: 5
     },
     {
-        'index': -6,
         'shield': 2,
         'hitpoints': 18,
         'healthyImage': 'https://i.ibb.co/CQ56XzK/the-goblin.png',
