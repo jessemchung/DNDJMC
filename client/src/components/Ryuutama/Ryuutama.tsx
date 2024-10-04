@@ -11,12 +11,14 @@ import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import MainStage from './Stage/MainStage.jsx'
 import FreepsMain from './Stage/Pieces/Freeps/FreepsMain.jsx'
 import { FreepsSampleData } from './Stage/Pieces/Freeps/FreepsSampleData.jsx'
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
-import { CreepsCardData, EnvironmentPropsData, FreepsCardData, terrainPropsData } from './Stage/Pieces/Common/_Types.jsx'
+import { colorOptions, CreepsCardData, EnvironmentPropsData, FreepOrCreep, FreepsCardData, terrainPropsData } from './Stage/Pieces/Common/_Types.jsx'
 import { Button } from '@mui/material';
 import UserContext from './UserContext.jsx'
 import { TerrainTypeInterface, TerrainTypeOptions, WeatherOptions } from './Stage/ImageDecoration/_Types.jsx';
 import Dice from './Dice/Dice.jsx'
+import { CsvDownloadDialogue } from './CsvDownloadDialogue.jsx';
 import { useForm } from '../Common/setForm.jsx';
 
 //goal, should have everything we need.  Maybe this isn't needed here?
@@ -28,7 +30,7 @@ export interface RyuutamaForm {
   creatureData: Array<FreepsCardData>;
 }
 
-export const defaultRyuutamaForm : RyuutamaForm = {
+export const defaultRyuutamaForm: RyuutamaForm = {
   weather: "./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png",
   terrainType: "./image/Ryuutama/Terrain/Ryuutama_Alpine.png",
   initiative: 30,
@@ -36,15 +38,27 @@ export const defaultRyuutamaForm : RyuutamaForm = {
   creatureData: FreepsSampleData
 }
 
-export const defaultTerrainProp : terrainPropsData = {
+export const defaultTerrainProp: terrainPropsData = {
   description: "Add description here",
   title: "Set Prop"
 }
 
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1,
+});
+
 export default function Ryuutama() {
   const [form, setForm] = useForm<RyuutamaForm>(defaultRyuutamaForm);
+  const [openCsvDialogue, setOpenCsvDialogue] = useState<boolean>(false);
 
-  const [fullDataCreeps, setFullDataCreeps] = useState<(CreepsCardData)[]>([])
   const [fullDataFreeps, setFullDataFreeps] = useState<(FreepsCardData)[]>(FreepsSampleData)
   const [terrainProps, setTerrainProps] = useState<(terrainPropsData)[]>(Array.from({ length: 10 }, () => ({ ...defaultTerrainProp })))
 
@@ -57,54 +71,15 @@ export default function Ryuutama() {
 
   const myObject = { id: 1, name: 'Example' };
 
-// Create an array with 10 distinct copies of the object
-const arrayWithCopies = Array.from({ length: 10 }, () => ({ ...myObject }));
+  // Create an array with 10 distinct copies of the object
+  const arrayWithCopies = Array.from({ length: 10 }, () => ({ ...myObject }));
 
-console.log(arrayWithCopies);
+  console.log(arrayWithCopies);
   const [arrayProps, setArrayProps] = useState<Array<EnvironmentPropsData>>([]);
   const [first, setFirst] = useState<string | null>('unset');
   const [second, setSecond] = useState<string | null>('white');
   const [third, setThird] = useState<string | null>('white');
 
-  const [title1, setTitle1] = useState<string>('Set Prop');
-  const [benefit1, setBenefit1] = useState<number>(0);
-  const [benefitPermanent1, setBenefitPermanent1] = useState<number>(0);
-
-  const [title2, setTitle2] = useState<string>('Set Prop');
-  const [benefit2, setBenefit2] = useState<number>(0);
-  const [benefitPermanent2, setBenefitPermanent2] = useState<number>(0);
-
-  const [title3, setTitle3] = useState<string>('Set Prop');
-  const [benefit3, setBenefit3] = useState<number>(0);
-  const [benefitPermanent3, setBenefitPermanent3] = useState<number>(0);
-
-  const [title4, setTitle4] = useState<string>('Set Prop');
-  const [benefit4, setBenefit4] = useState<number>(0);
-  const [benefitPermanent4, setBenefitPermanent4] = useState<number>(0);
-
-  const [title5, setTitle5] = useState<string>('Set Prop');
-  const [benefit5, setBenefit5] = useState<number>(0);
-  const [benefitPermanent5, setBenefitPermanent5] = useState<number>(0);
-
-  const [title6, setTitle6] = useState<string>('Set Prop');
-  const [benefit6, setBenefit6] = useState<number>(0);
-  const [benefitPermanent6, setBenefitPermanent6] = useState<number>(0);
-
-  const [title7, setTitle7] = useState<string>('Set Prop');
-  const [benefit7, setBenefit7] = useState<number>(0);
-  const [benefitPermanent7, setBenefitPermanent7] = useState<number>(0);
-
-  const [title8, setTitle8] = useState<string>('Set Prop');
-  const [benefit8, setBenefit8] = useState<number>(0);
-  const [benefitPermanent8, setBenefitPermanent8] = useState<number>(0);
-
-  const [title9, setTitle9] = useState<string>('Set Prop');
-  const [benefit9, setBenefit9] = useState<number>(0);
-  const [benefitPermanent9, setBenefitPermanent9] = useState<number>(0);
-
-  const [title10, setTitle10] = useState<string>('Set Prop');
-  const [benefit10, setBenefit10] = useState<number>(0);
-  const [benefitPermanent10, setBenefitPermanent10] = useState<number>(0);
   //readability probably trumps in thise case, I don't want to necessarilly have everything together
   //intitiative can be check both
   const [indexFreeps, setIndexFreeps] = useState<number>(0)
@@ -114,7 +89,7 @@ console.log(arrayWithCopies);
 
 
   const adjustCreatureSet = (indexOfChange: number, changedCard: FreepsCardData) => {
-    const newArray = fullDataFreeps.map( (item: FreepsCardData, index: number) => {
+    const newArray = fullDataFreeps.map((item: FreepsCardData, index: number) => {
       if (index === indexOfChange) {
         return changedCard; // Update the specific object by replacing it with the new object
       }
@@ -127,20 +102,75 @@ console.log(arrayWithCopies);
     setFullDataFreeps([]);
   }
 
-  const initiativeCheck = (event: any, thisInitiative: number = initiative) => {
-    //this will check initiative.  A button must be somewhere to also help this with a reset.  Perhaps
-    // a crude float or something.  Perhaps in the bottom part of the ryuutama thingx
+  const handleFileUpload = (item: FileList) => {
+    const files = item;
+    if (files && files.length > 0) {
+      const file = files[0];
+      
+      // Check if the file is a CSV
+      if (file.type === 'text/csv') {
+        const reader = new FileReader();
+        
+        reader.onload = (e) => {
+          const text = e.target?.result as string;
+          console.log(text);  // This is the CSV content
 
-    console.log(initiative, "initiative");
-    const lengthOfMonsters = fullDataFreeps.length;
+          const lines = text.trim().split('\n');
+
+          // Skip the first line (header) and map each line to a character object
+          const characters: FreepsCardData[] = lines.slice(1).map(line => {
+            const [
+              bloodyImage,
+              color,
+              creepOrFreep,
+              healthyImage,
+              hitpoints,
+              initiative,
+              maxHitpoints,
+              name,
+              position,
+              shield
+            ] = line.split(',');
+        
+            return {
+              bloodyImage,
+              color: color as colorOptions,
+              creepOrFreep: creepOrFreep as FreepOrCreep,
+              healthyImage,
+              hitpoints: Number(hitpoints),
+              initiative: Number(initiative),
+              maxHitpoints: Number(maxHitpoints),
+              name,
+              position: Number(position),
+              shield: Number(shield),
+            };
+          });
+        
+          setFullDataFreeps(characters);
+
+
+        };
+
+        reader.onerror = () => {
+          console.error("Failed to read file!");
+        };
+        
+        reader.readAsText(file);  // Read file as text
+      } else {
+        console.error("Uploaded file is not a CSV");
+      }
+    }
+  };
+
+  const nextInitiative = () => {
+    // this will check initiative.  A button must be somewhere to also help this with a reset.  Perhaps
+    // a crude float or something.  Perhaps in the bottom part of the ryuutama thing
     if (initiative + 1 >= fullDataFreeps.length) {
       setInitiative(0);
     } else {
-      setInitiative(initiative+1);
+      setInitiative(initiative + 1);
     }
-    
   }
-
 
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -153,24 +183,20 @@ console.log(arrayWithCopies);
   const darkTheme = createTheme({ palette: { mode: 'dark' } });
   const lightTheme = createTheme({ palette: { mode: 'light' } });
 
+  let showCsvDownloadDialogue: React.JSX.Element | null = null;
+  if (openCsvDialogue) {
+    showCsvDownloadDialogue = <CsvDownloadDialogue fullDataFreeps={fullDataFreeps} open={openCsvDialogue} onClose={() => setOpenCsvDialogue(false)} />;
+  }
+
   return (
     <>
 
       <UserContext.Provider value={{
         weather, setWeather, terrainType,
-        setTerrainType, first, setFirst, second, setSecond, third, setThird, initiative,
-        title1, setTitle1, benefit1, setBenefit1, benefitPermanent1, setBenefitPermanent1,
-        title2, setTitle2, benefit2, setBenefit2, benefitPermanent2, setBenefitPermanent2,
-        title3, setTitle3, benefit3, setBenefit3, benefitPermanent3, setBenefitPermanent3,
-        title4, setTitle4, benefit4, setBenefit4, benefitPermanent4, setBenefitPermanent4,
-        title5, setTitle5, benefit5, setBenefit5, benefitPermanent5, setBenefitPermanent5,
-        title6, setTitle6, benefit6, setBenefit6, benefitPermanent6, setBenefitPermanent6,
-        title7, setTitle7, benefit7, setBenefit7, benefitPermanent7, setBenefitPermanent7,
-        title8, setTitle8, benefit8, setBenefit8, benefitPermanent8, setBenefitPermanent8,
-        title9, setTitle9, benefit9, setBenefit9, benefitPermanent9, setBenefitPermanent9,
-        title10, setTitle10, benefit10, setBenefit10, benefitPermanent10, setBenefitPermanent10,
+        setTerrainType, first, setFirst, second, setSecond, third, setThird, initiative
       }}>
 
+        {showCsvDownloadDialogue}
         <Paper>
           <Box>
             <Grid container spacing={2}>
@@ -199,7 +225,7 @@ console.log(arrayWithCopies);
 
                       </Item>
 
-                      <Item id="creeps" style={{ display: 'flex', flexDirection: 'column'}}>
+                      <Item id="creeps" style={{ display: 'flex', flexDirection: 'column' }}>
 
                         <FreepsMain adjustCreatureSet={adjustCreatureSet} form={form} freepsOrCreeps="creep" setForm={setForm} key={'FreepsMain'} indexPieces={initiative} setIndexPieces={setIndexFreeps} fullDataFreeps={fullDataFreeps} setFullDataFreeps={setFullDataFreeps} />
 
@@ -211,18 +237,30 @@ console.log(arrayWithCopies);
               ))}
             </Grid>
 
-
-
-
-
           </Box>
 
 
 
         </Paper>
 
-        <Button onClick={clearCreatures}>Clear All</Button>
-        <Button onClick={initiativeCheck}>Next Initative</Button>
+        <Button onClick={clearCreatures} variant="contained">Clear All</Button>
+        <Button onClick={nextInitiative} variant="contained">Next Initative</Button>
+        <Button onClick={() => setOpenCsvDialogue(true)} variant="contained">Download CSV</Button>
+        <Button
+          component="label"
+          role={undefined}
+          variant="contained"
+          tabIndex={-1}
+          startIcon={<CloudUploadIcon />}
+        >
+          Upload files
+          <VisuallyHiddenInput
+            type="file"
+            onChange={(event) => handleFileUpload(event.target.files)}
+            multiple
+          />
+        </Button>
+
         <Dice />
 
       </UserContext.Provider >

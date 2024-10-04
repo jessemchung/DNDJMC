@@ -3,7 +3,6 @@ import {colorFreeps, FreepsCardData} from '../Common/_Types.jsx'
 
 export const FreepsSampleData: FreepsCardData[] = [
   {
-    'index': -1,
     'shield': 0,
     'hitpoints':10,
     'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
@@ -18,7 +17,6 @@ export const FreepsSampleData: FreepsCardData[] = [
   },
 
   {
-    'index': -2,
     'shield': 10,
     'hitpoints':8,
     'healthyImage': './image/Ryuutama/SampleIcons/MarinerGood.png',
@@ -34,7 +32,6 @@ export const FreepsSampleData: FreepsCardData[] = [
   },
 
   {
-    'index': -3,
     'shield': 12,
     'hitpoints':12,
     'healthyImage': './image/Ryuutama/SampleIcons/TendiGood.png',
@@ -49,7 +46,6 @@ export const FreepsSampleData: FreepsCardData[] = [
   },
 
   {
-    'index': -4,
     'shield': 11,
     'hitpoints':18,
     'healthyImage': './image/Ryuutama/SampleIcons/SamGood.png',
@@ -63,7 +59,6 @@ export const FreepsSampleData: FreepsCardData[] = [
   },
 
   {
-    'index': -5,
     'shield': 3,
     'hitpoints':18,
     'healthyImage': 'https://i.ibb.co/CQ56XzK/the-goblin.png',
@@ -76,7 +71,6 @@ export const FreepsSampleData: FreepsCardData[] = [
     position: 5
   },
   {
-    'index': -6,
     'shield': 2,
     'hitpoints':18,
     'healthyImage': 'https://i.ibb.co/CQ56XzK/the-goblin.png',

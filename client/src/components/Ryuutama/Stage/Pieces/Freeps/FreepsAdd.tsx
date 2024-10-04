@@ -34,7 +34,6 @@ interface Props {
 export function FreepsAdd(props: Props) {
 
   const basicForm: FreepsCardData = {
-    'index': props.fullDataFreeps.length - 1,
     'shield': 0,
     'hitpoints': 10,
     'maxHitpoints': 10,

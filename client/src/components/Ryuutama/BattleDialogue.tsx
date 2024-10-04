@@ -34,7 +34,6 @@ export function BattleDialogue(props:Props) {
   'initiative': 10,
   'name': "Bradford",
   creepOrFreep:"creep",
-  index: 1,
   position: null,
   color: null
   });
