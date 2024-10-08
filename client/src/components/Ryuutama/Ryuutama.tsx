@@ -130,13 +130,13 @@ export default function Ryuutama() {
               name,
               position,
               shield
-            ] = line.split(',');
+            ] = line.split(', ');
         
             return {
               bloodyImage,
               color: color as colorOptions,
               creepOrFreep: creepOrFreep as FreepOrCreep,
-              healthyImage,
+              healthyImage: (healthyImage.replace("|", ",")).replace(/"/g, ""),
               hitpoints: Number(hitpoints),
               initiative: Number(initiative),
               maxHitpoints: Number(maxHitpoints),
@@ -145,7 +145,7 @@ export default function Ryuutama() {
               shield: Number(shield),
             };
           });
-        
+
           setFullDataFreeps(characters);
 
 
@@ -253,7 +253,7 @@ export default function Ryuutama() {
           tabIndex={-1}
           startIcon={<CloudUploadIcon />}
         >
-          Upload files
+          Upload CSV files
           <VisuallyHiddenInput
             type="file"
             onChange={(event) => handleFileUpload(event.target.files)}
