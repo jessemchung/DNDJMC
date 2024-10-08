@@ -6,6 +6,27 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.title {
+  color:#FF9500;
+  transition: all 1s ease-in;
+  transform-origin: left;
+  display: inline-block;
+}
+
+.title:hover {
+  color: #1f93ff;
+  transform: scale(1.5);
+}
+
+.nav-option {
+  transition: all 1s ease-out;
+}
+
+.nav-option:hover {
+  color: #1f93ff;
+  font-size: 1.5em;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
