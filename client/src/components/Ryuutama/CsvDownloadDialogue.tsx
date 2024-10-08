@@ -73,14 +73,14 @@ export function CsvDownloadDialogue(props: Props) {
     const titleRow: Array<keyof FreepsCardData> = ["bloodyImage", "color", "creepOrFreep", "healthyImage", "hitpoints", "initiative", "maxHitpoints", "name", "position", "shield"]
     csvRows.push(titleRow);
     for (var currentCreature = 0; currentCreature<workingOn.length; currentCreature++) {
-      let newRow = [workingOn[currentCreature].bloodyImage, workingOn[currentCreature].color, workingOn[currentCreature].creepOrFreep, workingOn[currentCreature].healthyImage, workingOn[currentCreature].hitpoints, workingOn[currentCreature].initiative, workingOn[currentCreature].maxHitpoints, workingOn[currentCreature].name, workingOn[currentCreature].position, workingOn[currentCreature].shield];
+      let newRow = [workingOn[currentCreature].bloodyImage, workingOn[currentCreature].color, workingOn[currentCreature].creepOrFreep,  `"${workingOn[currentCreature].healthyImage.replace(",", '|')}"`, workingOn[currentCreature].hitpoints, workingOn[currentCreature].initiative, workingOn[currentCreature].maxHitpoints, workingOn[currentCreature].name, workingOn[currentCreature].position, workingOn[currentCreature].shield];
       csvRows.push(newRow);
     }
 
     let csvContent = "data:text/csv;charset=utf-8,";
 
     csvRows.forEach(function (rowArray) {
-      let row = rowArray.join(",");
+      let row = rowArray.join(", ");
       csvContent += row + "\r\n";
     });
     var encodedUri = encodeURI(csvContent);

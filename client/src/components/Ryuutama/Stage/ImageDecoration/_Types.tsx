@@ -62,6 +62,22 @@ export type WeatherOptions =
   "./image/Ryuutama/Weather/Ryuutama_Strong_Wind.png" |
   "./image/Ryuutama/Weather/Ryuutama_Thunderstorm.png";
 
+
+  export enum SampleCharacterOptions {
+    Clear = "./image/Ryuutama/Weather/Ryuutama_Blizzard.png",
+    Cloudy = "./image/Ryuutama/Weather/Ryuutama_Cloudy.png",
+    Cold = "./image/Ryuutama/Weather/Ryuutama_Cold.png",
+    Dark = "./image/Ryuutama/Weather/Ryuutama_Darkness.png",
+    Bradford = "./image/Ryuutama/SampleIcons/BradGood.png",
+    Mariner = "./image/Ryuutama/SampleIcons/MarinerGood.png",
+    Tendi = "./image/Ryuutama/SampleIcons/TendiGood.png",
+    Sam = "./image/Ryuutama/SampleIcons/SamGood.png"
+  }
+
+  // 'healthyImage': './image/Ryuutama/SampleIcons/BradGood.png',
+  // 'bloodyImage': './image/Ryuutama/SampleIcons/BradBad.png',
+
+
 export enum ElementalFieldsColors {
   salamander = 'dog',
 

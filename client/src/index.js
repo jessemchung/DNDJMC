@@ -8,7 +8,8 @@ import Expenses from "./components/routes/expenses.jsx";
 import Invoices from "./components/routes/invoices.jsx";
 import Invoice from "./components/routes/invoice.jsx";
 import Ryuutama from "./components/Ryuutama/Ryuutama.jsx";
-import AboutMe from "./components/routes/aboutMe.jsx";
+// import AboutMyself from "./components/routes/AboutMyself.jsx";
+import Blog from "./components/routes/blog.jsx";
 
 
 import './main.css';
@@ -26,6 +27,9 @@ ReactDOM.render(
     <Routes>
       <Route path="/" element={<App />}>
         <Route path="expenses" element={<Expenses />} />
+        <Route path="blog" element={<Blog />} />
+        {/* <Route path="aboutme" element={<AboutMyself />} /> */}
+
         <Route path="invoices" element={<Invoices />}>
           <Route
             index
@@ -44,7 +48,7 @@ ReactDOM.render(
 
         <Route path="postcard" element={<Ryuutama />} />
 
-        <Route path="aboutme" element={<AboutMe />} />
+        {/* <Route path="AboutMyself" element={<AboutMyself />} /> */}
 
 
         {/* <Route path="journal" element={<Journal />} /> */}

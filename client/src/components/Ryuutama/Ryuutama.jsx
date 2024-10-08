@@ -10,23 +10,45 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.defaultTerrainProp = exports.defaultRyuutamaForm = void 0;
 var react_1 = require("react");
 var randomColor = require('randomcolor'); // import the script
-var React = require("react");
-var Box_1 = require("@mui/material/Box");
-var Paper_1 = require("@mui/material/Paper");
-var Grid_1 = require("@mui/material/Grid");
-var Grid2_1 = require("@mui/material/Grid2");
+var React = __importStar(require("react"));
+var Box_1 = __importDefault(require("@mui/material/Box"));
+var Paper_1 = __importDefault(require("@mui/material/Paper"));
+var Grid_1 = __importDefault(require("@mui/material/Grid"));
+var Grid2_1 = __importDefault(require("@mui/material/Grid2"));
 var styles_1 = require("@mui/material/styles");
-var MainStage_jsx_1 = require("./Stage/MainStage.jsx");
-var FreepsMain_jsx_1 = require("./Stage/Pieces/Freeps/FreepsMain.jsx");
+var MainStage_jsx_1 = __importDefault(require("./Stage/MainStage.jsx"));
+var FreepsMain_jsx_1 = __importDefault(require("./Stage/Pieces/Freeps/FreepsMain.jsx"));
 var FreepsSampleData_jsx_1 = require("./Stage/Pieces/Freeps/FreepsSampleData.jsx");
-var CloudUpload_1 = require("@mui/icons-material/CloudUpload");
+var CloudUpload_1 = __importDefault(require("@mui/icons-material/CloudUpload"));
 var material_1 = require("@mui/material");
-var UserContext_jsx_1 = require("./UserContext.jsx");
-var Dice_jsx_1 = require("./Dice/Dice.jsx");
+var UserContext_jsx_1 = __importDefault(require("./UserContext.jsx"));
+var Dice_jsx_1 = __importDefault(require("./Dice/Dice.jsx"));
 var CsvDownloadDialogue_jsx_1 = require("./CsvDownloadDialogue.jsx");
 var setForm_jsx_1 = require("../Common/setForm.jsx");
 exports.defaultRyuutamaForm = {
@@ -99,12 +121,12 @@ function Ryuutama() {
                     var lines = text.trim().split('\n');
                     // Skip the first line (header) and map each line to a character object
                     var characters = lines.slice(1).map(function (line) {
-                        var _a = line.split(','), bloodyImage = _a[0], color = _a[1], creepOrFreep = _a[2], healthyImage = _a[3], hitpoints = _a[4], initiative = _a[5], maxHitpoints = _a[6], name = _a[7], position = _a[8], shield = _a[9];
+                        var _a = line.split(', '), bloodyImage = _a[0], color = _a[1], creepOrFreep = _a[2], healthyImage = _a[3], hitpoints = _a[4], initiative = _a[5], maxHitpoints = _a[6], name = _a[7], position = _a[8], shield = _a[9];
                         return {
                             bloodyImage: bloodyImage,
                             color: color,
                             creepOrFreep: creepOrFreep,
-                            healthyImage: healthyImage,
+                            healthyImage: (healthyImage.replace("|", ",")).replace(/"/g, ""),
                             hitpoints: Number(hitpoints),
                             initiative: Number(initiative),
                             maxHitpoints: Number(maxHitpoints),
@@ -208,7 +230,7 @@ function Ryuutama() {
         <material_1.Button onClick={nextInitiative} variant="contained">Next Initative</material_1.Button>
         <material_1.Button onClick={function () { return setOpenCsvDialogue(true); }} variant="contained">Download CSV</material_1.Button>
         <material_1.Button component="label" role={undefined} variant="contained" tabIndex={-1} startIcon={<CloudUpload_1.default />}>
-          Upload files
+          Upload CSV files
           <VisuallyHiddenInput type="file" onChange={function (event) { return handleFileUpload(event.target.files); }} multiple/>
         </material_1.Button>
 

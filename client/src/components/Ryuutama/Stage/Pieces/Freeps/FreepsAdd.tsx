@@ -13,7 +13,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { colorFreeps, FreepOrCreep, FreepsCardData, positionsOptions } from '../Common/_Types.jsx'
 import { RyuutamaForm } from '../../../Ryuutama.jsx';
-import { InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { ButtonGroup, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import FreepsImageSelection from './FreepsImageSelection.jsx';
+import FreepsUploadImage from './FreepsUploadImage.jsx';
 
 
 //this needs to ability to set CreepsAdd
@@ -45,13 +47,15 @@ export function FreepsAdd(props: Props) {
     color: null,
     position: 0
   }
-  
+  const [openImage, setOpenImage] = useState<boolean>(false);
+  const [openUploadImage, setOpenUploadImage] = useState<boolean>(false);
+
   const [open, setOpen] = useState<boolean>(props.edit || false);
   const [freepInfo, setFreepInfo] = useState<FreepsCardData>(props.freepInfo ? props.freepInfo : basicForm);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
-    console.log(name, value, "something is wrong with the colot");
+    console.log(name, value, "something is wrong with the color");
     setFreepInfo({
       ...freepInfo,
       [name]: value,
@@ -72,17 +76,6 @@ export function FreepsAdd(props: Props) {
   }
 
 
-  const onHitpointChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { name, value } = e.target;
-    setFreepInfo({
-      ...freepInfo,
-      [name]: value,
-
-    })
-
-  }
-
-
   // Add field position
   // Also add color
 
@@ -91,6 +84,14 @@ export function FreepsAdd(props: Props) {
   const handleClickOpen = () => {
     setOpen(true);
   };
+
+  const handleOpening:(toggleValue: boolean) => void = (toggleValue: boolean) => {
+    setOpenImage(toggleValue)
+  }
+
+  const handleOpeningUploadImage:(toggleValue: boolean) => void = (toggleValue: boolean) => {
+    setOpenUploadImage(toggleValue)
+  }
 
   const handleClose = () => {
     if (props.edit !== undefined) {
@@ -102,9 +103,7 @@ export function FreepsAdd(props: Props) {
   };
 
   const onSubmit = () => {
-    // this is a mess
     let test = [...props.fullDataFreeps, freepInfo];
-
     test.sort((a: FreepsCardData, b: FreepsCardData) => {
       if (a.initiative > b.initiative) {
         return 0;
@@ -118,7 +117,6 @@ export function FreepsAdd(props: Props) {
   }
 
   const onEditSubmit = () => {
-    // this is a mess
     const test = [...props.fullDataFreeps];
 
     test[props.index] = freepInfo;
@@ -220,7 +218,7 @@ export function FreepsAdd(props: Props) {
             variant="standard"
           />
 
-
+{/* 
           <TextField
             autoFocus
             margin="dense"
@@ -232,16 +230,23 @@ export function FreepsAdd(props: Props) {
             type="text"
             fullWidth
             variant="standard"
-          />
+          /> */}
+
+          <ButtonGroup>
+            <Button onClick={()=> handleOpening(true)}>Choose Default Image</Button>
+            <Button onClick={()=> handleOpeningUploadImage(true)}>Upload Image</Button>
+
+          </ButtonGroup>
 
           <TextField
             autoFocus
             margin="dense"
             id="healthyImage"
+
             onChange={onChange}
             value={freepInfo.healthyImage}
             name='healthyImage'
-            label="Healthy Image"
+            label="Upload Simple"
             type="text"
             fullWidth
             variant="standard"
@@ -295,8 +300,12 @@ export function FreepsAdd(props: Props) {
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           {props.edit === true ? <Button onClick={onEditSubmit}>Edit</Button> : <Button onClick={onSubmit}>Add</Button>}
+          { openImage ? <FreepsImageSelection edit={props.edit} freepInfo={freepInfo} setFreepInfo={setFreepInfo} open={openImage} setOpen={setOpenImage} title=''  /> : ""}
+          { openUploadImage ? <FreepsUploadImage edit={props.edit} freepInfo={freepInfo} setFreepInfo={setFreepInfo} open={openUploadImage} setOpen={setOpenUploadImage} title=''  /> : ""}
+
         </DialogActions>
       </Dialog>
+
     </>
   )
 }

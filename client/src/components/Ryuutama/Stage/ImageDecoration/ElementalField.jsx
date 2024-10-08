@@ -1,16 +1,38 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ElementalField = void 0;
 var react_1 = require("react");
-var React = require("react");
+var React = __importStar(require("react"));
 var styles_1 = require("@mui/material/styles");
-var Button_1 = require("@mui/material/Button");
-var Dialog_1 = require("@mui/material/Dialog");
-var DialogActions_1 = require("@mui/material/DialogActions");
-var DialogContent_1 = require("@mui/material/DialogContent");
-var DialogTitle_1 = require("@mui/material/DialogTitle");
+var Button_1 = __importDefault(require("@mui/material/Button"));
+var Dialog_1 = __importDefault(require("@mui/material/Dialog"));
+var DialogActions_1 = __importDefault(require("@mui/material/DialogActions"));
+var DialogContent_1 = __importDefault(require("@mui/material/DialogContent"));
+var DialogTitle_1 = __importDefault(require("@mui/material/DialogTitle"));
 var colors_1 = require("@mui/material/colors");
-var UserContext_jsx_1 = require("../../UserContext.jsx");
+var UserContext_jsx_1 = __importDefault(require("../../UserContext.jsx"));
 //add a color enum for all my things as well
 var ElementalColors;
 (function (ElementalColors) {
