@@ -21,15 +21,18 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __importStar(require("react"));
 var react_router_dom_1 = require("react-router-dom");
+//adjust the full height appropriately.  
 function App() {
-    return (<div>
-      <h1>Bookkeeper</h1>
-      <nav style={{ borderBottom: 'solid 1px', paddingBottom: '1rem' }}>
-        <react_router_dom_1.Link to="/blog">Blog</react_router_dom_1.Link> | {' '}
-        <react_router_dom_1.Link to="/ryuutama">Ryuutama</react_router_dom_1.Link> | {' '}
-        <react_router_dom_1.Link to="/ryuutama">Postcard Maker</react_router_dom_1.Link> | {' '}
-        {/* <Link to="/AboutMyself">About Me</Link>         */}
-      </nav>
+    return (<div className='biggy'>
+      <div className="top-component">
+        <h1 className="title">Welcome</h1>
+        <nav style={{ borderBottom: 'solid 1px', paddingBottom: '0.5rem' }}>
+          <react_router_dom_1.Link className="nav-option" to="/about-me">About Me</react_router_dom_1.Link> | {' '}
+          <react_router_dom_1.Link className="nav-option" to="/ryuutama">Ryuutama</react_router_dom_1.Link> | {' '}
+          <react_router_dom_1.Link className="nav-option" to="/ryuutama">Postcard Maker</react_router_dom_1.Link> | {' '}
+          {/* <Link to="/AboutMyself">About Me</Link>         */}
+        </nav>
+      </div>
       <react_router_dom_1.Outlet />
     </div>);
 }

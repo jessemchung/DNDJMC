@@ -27,7 +27,7 @@ ReactDOM.render(
     <Routes>
       <Route path="/" element={<App />}>
         <Route path="expenses" element={<Expenses />} />
-        <Route path="blog" element={<Blog />} />
+        <Route path="about-me" element={<Blog />} />
         {/* <Route path="aboutme" element={<AboutMyself />} /> */}
 
         <Route path="invoices" element={<Invoices />}>
@@ -47,6 +47,9 @@ ReactDOM.render(
         <Route path="animation" element={<Ryuutama />} />
 
         <Route path="postcard" element={<Ryuutama />} />
+
+        <Route path="hex-map" element={<Ryuutama />} />
+
 
         {/* <Route path="AboutMyself" element={<AboutMyself />} /> */}
 

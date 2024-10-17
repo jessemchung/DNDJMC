@@ -50,4 +50,4 @@ var styles = {
         fontFamily: 'Arial, sans-serif',
     },
 };
-//# sourceMappingURL=AboutMe.jsx.map
+//# sourceMappingURL=aboutMe.jsx.map

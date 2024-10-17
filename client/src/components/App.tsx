@@ -1,16 +1,20 @@
 import * as React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 
+//adjust the full height appropriately.  
+
 export default function App() {
   return (
-    <div>
-      <h1 className="title">Welcome</h1>
-      <nav style={{ borderBottom: 'solid 1px', paddingBottom: '1rem' }}>
-        <Link className="nav-option" to="/blog">Blog</Link> | {' '}
-        <Link className="nav-option" to="/ryuutama">Ryuutama</Link> | {' '}
-        <Link className="nav-option" to="/ryuutama">Postcard Maker</Link> | {' '}
-        {/* <Link to="/AboutMyself">About Me</Link>         */}
-      </nav>
+    <div className='biggy'>
+      <div className="top-component">
+        <h1 className="title">Welcome</h1>
+        <nav style={{ borderBottom: 'solid 1px', paddingBottom: '0.5rem' }}>
+          <Link className="nav-option" to="/about-me">About Me</Link> | {' '}
+          <Link className="nav-option" to="/ryuutama">Ryuutama</Link> | {' '}
+          <Link className="nav-option" to="/ryuutama">Postcard Maker</Link> | {' '}
+          {/* <Link to="/AboutMyself">About Me</Link>         */}
+        </nav>
+      </div>
       <Outlet />
     </div>
   );

@@ -189,7 +189,7 @@ export default function Ryuutama() {
   }
 
   return (
-    <>
+    <div className="lower-component">
 
       <UserContext.Provider value={{
         weather, setWeather, terrainType,
@@ -197,7 +197,7 @@ export default function Ryuutama() {
       }}>
 
         {showCsvDownloadDialogue}
-        <Paper>
+        <Paper >
           <Box>
             <Grid container spacing={2}>
               {[lightTheme].map((theme, index) => (
@@ -265,7 +265,7 @@ export default function Ryuutama() {
 
       </UserContext.Provider >
 
-    </>
+    </div>
   )
 }
 

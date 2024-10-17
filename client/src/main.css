@@ -4,6 +4,140 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.biggy {
+  display: flex;
+  flex-direction: column; /* Align children vertically */
+  height: 95vh; /* Full viewport height */
+}
+
+.top-component {
+  /* height: 10vh; */
+}
+
+.lower-component {
+  position: relative;
+  padding-top: 1rem;
+  overflow: scroll;
+}
+
+.blog-container {
+  text-align: center;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  z-index: inherit;
+  animation: blog-fade-in 3s linear 5s;
+  animation-fill-mode: forwards;
+  background: linear-gradient(to top, red, yellow);
+  -webkit-background-clip: text;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  background-clip: text;
+  color: transparent;
+  mask-size: 0%;
+  -webkit-mask-size: 0%;
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1) 70%,
+    rgba(0, 0, 0, 0)
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1) 70%,
+    rgba(0, 0, 0, 0)
+  );    
+}
+
+@keyframes blog-fade-in {
+  from {
+    -webkit-mask-size: 0%;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 1) 70%,
+      rgba(0, 0, 0, 0)
+    );    
+  }
+  50% {
+    -webkit-mask-size: 100%;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 1)
+    );    
+
+  }
+  100% {
+    -webkit-mask-size: 100%;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 1)
+    );    
+    color: black;
+  }
+}
+
+
+.blog-background-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  animation: sword-animation 5s linear; /* Smooth zoom transition */
+  animation-fill-mode: forwards;
+  z-index: -1; /* Keeps the background behind content */
+}
+
+.blog-background-image-skip {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: -1; /* Keeps the background behind content */
+  transform: scale(400) translateX(-1.4vh);
+}
+
+
+/* oh I see, so the first part is the trigger, the second part is what it is actually effected */
+/* maybe need two different keyframes? */
+@keyframes sword-animation {
+  from {
+
+  }
+  33% {
+    transform: scale(10) translateY(-15vh) translateX(-1.4vh);
+  }
+  66% {
+    transform: scale(10) translateY(10vh) translateX(-1.4vh);
+  }
+  100% {
+    transform: scale(400) translateX(-1.4vh);
+  }
+
+}
+
+#root {
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allow content to grow and fill available space */
+  justify-content: center; /* Vertically center content */
+  align-items: center; /* Horizontally center content */
 }
 
 .title {
@@ -11,6 +145,7 @@ body {
   transition: all 1s ease-in;
   transform-origin: left;
   display: inline-block;
+  margin: 0;  
 }
 
 .title:hover {
@@ -54,30 +189,6 @@ main > :last-child {
   background-color: gray;
   border-radius: 50%;
 }
-
-/* .marker.Blue {
-  background-color: #007AFF;
-}
-
-.marker.Red {
-  background-color: #FF3B30;
-}
-
-.marker.Yellow {
-  background-color: #FFCC00;
-}
-
-.marker.Green {
-  background-color: #34C759;
-}
-
-.marker.Purple {
-  background-color: #AF52DE;
-}
-
-.marker.Orange {
-  background-color: #FF9500;
-} */
 
 .Blue {
   background-color: #007AFF;
@@ -147,3 +258,27 @@ main > :last-child {
   height: auto;   /* Maintains aspect ratio */
   object-fit: cover; /* Ensures the image covers the entire area of the container */
 }
+
+
+.social-media-buttons {
+  display: flex;
+  gap: 1em;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
+}
+
+.social-media-buttons a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.social-media-buttons a:hover {
+  color: #007AFF; /* Change this to the hover color of your choice */
+}
+
+.facebook-btn { color: #3b5998; }
+.twitter-btn { color: #1DA1F2; }
+.instagram-btn { color: #E1306C; }
+.linkedin-btn { color: #0077B5; }
+.github-btn { color: #333; }
