@@ -29,6 +29,8 @@ function App() {
         <nav style={{ borderBottom: 'solid 1px', paddingBottom: '0.5rem' }}>
           <react_router_dom_1.Link className="nav-option" to="/about-me">About Me</react_router_dom_1.Link> | {' '}
           <react_router_dom_1.Link className="nav-option" to="/ryuutama">Ryuutama</react_router_dom_1.Link> | {' '}
+          <react_router_dom_1.Link className="nav-option" to="/ryuutama">Hex Map</react_router_dom_1.Link> | {' '}
+
           <react_router_dom_1.Link className="nav-option" to="/ryuutama">Postcard Maker</react_router_dom_1.Link> | {' '}
           {/* <Link to="/AboutMyself">About Me</Link>         */}
         </nav>

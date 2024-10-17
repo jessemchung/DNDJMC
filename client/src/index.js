@@ -10,6 +10,7 @@ import Invoice from "./components/routes/invoice.jsx";
 import Ryuutama from "./components/Ryuutama/Ryuutama.jsx";
 // import AboutMyself from "./components/routes/AboutMyself.jsx";
 import Blog from "./components/routes/blog.jsx";
+import HexMap from "./components/routes/HexMap/HexMap.jsx";
 
 
 import './main.css';
@@ -48,7 +49,7 @@ ReactDOM.render(
 
         <Route path="postcard" element={<Ryuutama />} />
 
-        <Route path="hex-map" element={<Ryuutama />} />
+        <Route path="hex-map" element={<HexMap />} />
 
 
         {/* <Route path="AboutMyself" element={<AboutMyself />} /> */}
