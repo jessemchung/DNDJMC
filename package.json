@@ -18,7 +18,7 @@
     "@babel/plugin-transform-runtime": "^7.25.4",
     "@babel/preset-env": "^7.25.4",
     "@babel/preset-react": "^7.24.7",
-    "@types/node": "^18.11.9",
+    "@types/node": "^20.14.0",
     "@types/react": "^18.3.7",
     "@types/three": "^0.168.0",
     "@typescript-eslint/eslint-plugin": "^8.6.0",
