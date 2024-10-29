@@ -5,3 +5,5 @@ config.js
 **/*.map 
 client/src/**/**/**/*.jsx
 client/src/components/Ryuutama/**/*.jsx
+
+.DS_Store
