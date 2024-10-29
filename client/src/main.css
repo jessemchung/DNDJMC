@@ -7,13 +7,12 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .biggy {
   display: flex;
   flex-direction: column; /* Align children vertically */
-  height: 95dvh; /* Full viewport height */
 }
 
 .top-component {
@@ -24,7 +23,6 @@ body {
 .lower-component {
   position: relative;
   padding-top: 1rem;
-  overflow: scroll;
 }
 
 .blog-container {
@@ -128,7 +126,6 @@ body {
 }
 
 #root {
-  height: 100dvh; /* Full viewport height */
   display: flex;
   flex-direction: column; /* Stack content vertically */
 }
@@ -297,19 +294,45 @@ main > :last-child {
   margin: -0.5px;
 }
 
+.hex-map-container {
+  margin: 0 auto;
+  /* overflow: scroll;
+  overflow-y: scroll;
+  height: 50vh; */
+
+}
+
 .hex-image {
-  margin: 0.5px;
+  margin: 1.5px;
   z-index: 10;
   position: relative;
 }
 
-.hex-image.transparent {
+/* might want an animation of this flickering in and out which would be helpful maybe? */
+.hex-image.semi-transparent {
   z-index: 1;
-  opacity: 30%;
+  opacity: 50%;
 }
 
+/* this is for tiles that need to be completely hidden */
+.hex-image.transparent {
+  z-index: 1;
+  opacity: 0%;
+}
+
+.hex-map-slide-container {
+  position: absolute;
+}
 
 /* This is part of the issue */
 #hex-map-canvas {
   /* transform: scale(2); */
+  
 }
+
+
+.slide-container {
+
+}
+
+/*! hex map css end */

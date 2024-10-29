@@ -9,22 +9,25 @@ import { BaseFullTileEnum, BaseTileEnum, hexInformation } from './_Types.jsx';
 // will require receiving stuff
 interface Props {
   // this could possibly be a null value which means that there is no hex there.  Like an abyss
+  addSurroundingGhostHexes: (originalHexGrid: hexInformation[][], xValue: number, yValue: number) => void;
+  hexGrid: hexInformation[][];
+  setHexGrid: React.Dispatch<React.SetStateAction<hexInformation[][]>>;
   hexInformation: hexInformation | null;
   toggleThisHex: any;
   // will be an x and y value
   indexArray: Array<any>;
+
   // probably also need to import a bunch of functions as well
 };
 
 export default function IndividualHexPiece(props: Props) {
   const ref = useRef(null);
-
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   //I think I need to add the hexInformation here so it can be updated more easily?  I think?
   const [menuVisible, setMenuVisible] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
   
-  const [terrain, setTerrain] = useState(props.hexInformation?.terrain || null);
+  const [terrain, setTerrain] = useState<BaseTileEnum[] | null>(props.hexInformation?.terrain || null);
   const [flavorName, setFlavorName] = useState(props.hexInformation?.name || null);
   const [opaque, setOpaque] = useState(props.hexInformation?.opaque || null);
   const [topping, setTopping] = useState(props.hexInformation?.topping || null);
@@ -58,7 +61,6 @@ export default function IndividualHexPiece(props: Props) {
 
   function handleClickOutside(event: { target: any; }) {
     if (ref.current && !ref.current.contains(event.target)) {
-      console.log("gribble")
       setMenuVisible(false);
       document.removeEventListener("mousedown", handleClickOutside);
 
@@ -104,8 +106,20 @@ export default function IndividualHexPiece(props: Props) {
   };
 
   const adjustAppearance = (item: keyof typeof BaseTileEnum) => {
-    terrain[terrain.length-1] = BaseTileEnum[item];
-    setTerrain([... terrain]);
+    // not properly offsetting the top
+    let test = false;
+
+    if (props.hexInformation.terrain[0] === BaseTileEnum.None) {
+      test = true;
+    }
+    props.hexInformation.terrain[0] = BaseTileEnum[item];
+    if (test) {
+      props.addSurroundingGhostHexes(props.hexGrid, props.indexArray[0], props.indexArray[1])
+
+    }
+    props.setHexGrid([... props.hexGrid]);
+
+
   }
 
   // built an array of components that can be stacked on top of each other.  I guess a span?
@@ -113,22 +127,22 @@ export default function IndividualHexPiece(props: Props) {
 
   const BaseTileOptions = Object.keys(BaseFullTileEnum);
   const BaseTileList = BaseTileOptions.map((item) => {
-    return (<li style={{ padding: "5px 10px", cursor: "pointer" }} onClick={() => {adjustAppearance(item as keyof typeof BaseTileEnum)}}>{item}</li>)
+    return (<li key={item} style={{ padding: "5px 10px", cursor: "pointer" }} onClick={() => {adjustAppearance(item as keyof typeof BaseTileEnum)}}>{item}</li>)
   })
 
   //i can use stop propgation if the top image is not transparent, then it knows not to dig deeper.
   // some kind of flexbox?  I can't help but think that grid is going to be better though... hmm
 
-
   return (
-    <span >
-      <img id="my-image" className={`hex-image ${terrain === null ? "transparent" : ""}`} onContextMenu={(e) => {
+    <span title={props.indexArray[0] + ", " + props.indexArray[1]}>
+      <img id="my-image"  className={`hex-image ${props.hexInformation === null ? "transparent" : ""} ${props.hexInformation?.terrain?.[0] === BaseTileEnum.None ? "semi-transparent" : ""}` } onContextMenu={(e) => {
+        //
         e.preventDefault(); // prevent the default behaviour when right clicked
         handleRightClick(e)
-      }} onClick={handleCanvasClick} src={terrain ? terrain[0] : BaseTileEnum.Stone} />
+      }} onClick={handleCanvasClick} src={props.hexInformation?.terrain ? props.hexInformation?.terrain[0] : BaseTileEnum.Stone} />
 
 
-      {menuVisible && (
+      {menuVisible && props.hexInformation?.terrain !== null && (
         <ul
         ref={ref}
           style={{

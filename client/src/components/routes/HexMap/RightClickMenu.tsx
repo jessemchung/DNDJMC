@@ -18,7 +18,7 @@ const RightClickMenu = () => {
   };
 
   return (
-    <div onClick={handleClickOutside} style={{ height: "100vh", width: "100vw" }}>
+    <div onClick={handleClickOutside}>
       <button onContextMenu={handleRightClick} style={{ margin: "50px" }}>
         Right Click Me
       </button>

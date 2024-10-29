@@ -6,40 +6,188 @@ import IndividualHexPiece from './IndividualHexPiece.jsx';
 import RightClickMenu from './RightClickMenu.jsx';
 
 
-const sampleHexGrid: Array<Array<hexInformation | null>> = [[null, null, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }], 
-[{ terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }], 
-[{ terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }]]
+const sampleHexGrid: Array<Array<hexInformation | null>> = [[null, { terrain: [BaseTileEnum.None], topping: ["fish"] }, { terrain: [BaseTileEnum.Water], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }],
+[{ terrain: [BaseTileEnum.Magic], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }],
+[{ terrain: [BaseTileEnum.Lava], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }]]
+
+
 
 export default function HexMap() {
+  // grid height and grid width are
+  const [gridHeight, setGridHeight] = useState<number>(sampleHexGrid.length);
+  const [gridWidth, setGridWidth] = useState<number>(sampleHexGrid[0].length);
+  const [zoom, setZoom] = useState(0);
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const [hexHeight, setHexHeight] = useState(0);
   const ref = useRef(null);
+  const widthRef = useRef<HTMLInputElement>(null);
+  const heightRef = useRef(0);
   const [hexGrid, setHexGrid] = useState<Array<Array<hexInformation | null>>>([[]]);
-  const [gridWidth, setGridWidth] = useState(0);
-  const [gridHeight, setGridHeight] = useState(0);
-  const [zoom, setZoom] = useState(0);
+
+  const ghostRef = useRef(new Map);
+  const counter = useRef(0);
+  const isRightTop = useRef(false);
 
 
 
   useEffect(() => {
-    // maybe a timeout function?
-    setHexHeight(ref.current.clientHeight)
-    console.log(ref.current.clientHeight, "what is client height?")
+
+    let test = populateGhostHexes(sampleHexGrid);
+    setHexGrid([...test])
+    setTimeout(() => {
+      setHexHeight(ref.current.clientHeight)
+    }, 500)
   }, [])
 
-  const toggleThisHex = (newHex: hexInformation, indexArray: [number, number]) => {
-    let newHexGrid: Array<Array<hexInformation>> = hexGrid;
-    // the last one
-    newHexGrid[indexArray[1]][indexArray[0]] = newHex;
-    //replace the value here
-    setHexGrid([...newHexGrid]);
 
-
+  function toggleTopRow() {
+    // setIsRightTopRow(!isRightTopRow);
   }
-  // Handle clicks of the image.  
-  // IOCE: Input is going to need to be an address but we also need an index value so that we know which 
-  // output is going to be a change in the appearance
-  const handleCanvasClick = (e: React.MouseEvent) => {
+
+  function populateGhostHexes(originalHexGrid: Array<Array<hexInformation | null>>): Array<Array<hexInformation | null>> {
+    // go through y axis starting from the top
+    for (let yValues = 0; yValues < originalHexGrid.length; yValues++) {
+      if (yValues === 0) {
+        increaseHeight(originalHexGrid, true);
+      } else {
+
+        for (let xValues = 0; xValues < originalHexGrid[yValues].length; xValues++) {
+          // if the hex is not null or unefined or none
+          if (originalHexGrid[yValues][xValues] !== null && originalHexGrid[yValues][xValues] !== undefined && originalHexGrid[yValues][xValues].terrain[0] !== BaseTileEnum.None) {
+
+            addSurroundingGhostHexes(originalHexGrid, xValues, yValues);
+          }
+        }
+
+
+      }
+
+    }
+    return originalHexGrid;
+  }
+
+  function increaseHeight(originalHexGrid: Array<Array<hexInformation | null>>, top: boolean) {
+    //increase as needed
+    console.log("increasing Height", originalHexGrid)
+    let arr: Array<hexInformation | null> = [...Array(originalHexGrid[0].length)].fill(null);
+    if (top) {
+      let gridHeightCheck = (originalHexGrid.unshift(arr))
+      console.log("we are changing top row?")
+      isRightTop.current = !isRightTop.current;
+      counter.current = counter.current + 1;
+    } else {
+      // what is going on here?
+      let gridHeightCheck = (originalHexGrid.push(arr))
+    }
+  }
+
+  function increaseWidth(originalHexGrid: Array<Array<hexInformation | null>>, left: boolean) {
+    console.log(left, "increasing width?")
+    originalHexGrid.map((item, index) => {
+      // just the first row needs to be checked.
+      if (left) {
+        let gridWidthCheck = (item.unshift(null))
+        if (index === 0 && gridWidthCheck > originalHexGrid[0].length) {
+          console.log("are we off?")
+          setGridWidth(gridWidthCheck);
+        }
+      } else {
+        console.log("are we off?1")
+
+        let gridWidthCheck = (item.push(null))
+        if (index === 0 && gridWidthCheck > originalHexGrid[0].length) {
+          setGridHeight(gridWidthCheck);
+        }
+      }
+    })
+  }
+
+  function addSurroundingGhostHexes(originalHexGrid: Array<Array<hexInformation>>, xValue: number, yValue: number) {
+    console.log(xValue, "x")
+    let storedXValue = xValue;
+    let storedYValue = yValue;
+    if (originalHexGrid[yValue][xValue] === null || originalHexGrid[yValue][xValue].terrain[0] === BaseTileEnum.None) {
+      return;
+    }
+    if (storedXValue >= originalHexGrid[0].length - 1) {
+      increaseWidth(originalHexGrid, false);
+    }
+
+    if (storedXValue === 0) {
+      increaseWidth(originalHexGrid, true);
+      storedXValue++;
+    }
+
+    if (storedYValue >= originalHexGrid.length - 1) {
+      console.log(originalHexGrid, "Increase Y bottom??")
+      increaseHeight(originalHexGrid, false);
+    }
+    else if (storedYValue === 0) {
+      console.log("increase Y+, meaning that from the top")
+      increaseHeight(originalHexGrid, true);
+      storedYValue++;
+    }
+
+
+    let numbero: number = 0;
+    if (isRightTop.current) {
+      numbero = storedYValue % 2 - 1;
+    } else {
+      numbero = storedYValue % 2;
+
+    }
+    console.log("calculating numbero?", numbero)
+
+    let isGreaterThan0 = (storedXValue + numbero - 1 >= 0);
+    if (originalHexGrid[storedYValue + 1][storedXValue + numbero] === null) {
+
+      originalHexGrid[storedYValue + 1][storedXValue + numbero] = {
+        terrain: [BaseTileEnum.None]
+      }
+    }
+
+    if (originalHexGrid[storedYValue + 1][storedXValue + numbero - 1] === null && isGreaterThan0) {
+      originalHexGrid[storedYValue + 1][storedXValue + numbero - 1] = {
+        terrain: [BaseTileEnum.None]
+      }
+    }
+
+    // handle the top elements
+    if (originalHexGrid[storedYValue - 1][storedXValue + numbero] === null) {
+      if (storedYValue - 1 === 0 && storedXValue + numbero === 2) {
+        console.log("why?")
+      }
+      originalHexGrid[storedYValue - 1][storedXValue + numbero] = {
+        terrain: [BaseTileEnum.None]
+      }
+    }
+
+    if (originalHexGrid[storedYValue - 1][storedXValue + numbero - 1] === null && isGreaterThan0) {
+      if (storedYValue - 1 === 0 && storedXValue + numbero - 1 === 2) {
+        console.log("why1?")
+      }
+
+      originalHexGrid[storedYValue - 1][storedXValue + numbero - 1] = {
+        terrain: [BaseTileEnum.None]
+      }
+    }
+
+    // handle elements on the same row
+    if (originalHexGrid[storedYValue][storedXValue - 1] === null && isGreaterThan0) {
+      originalHexGrid[storedYValue][storedXValue - 1] = {
+        terrain: [BaseTileEnum.None]
+      }
+    }
+
+    if (originalHexGrid[storedYValue][storedXValue + 1] === null && isGreaterThan0) {
+      originalHexGrid[storedYValue][storedXValue + 1] = {
+        terrain: [BaseTileEnum.None]
+      }
+    }
+  }
+
+
+  function handleCanvasClick(e: React.MouseEvent) {
     var img = document.getElementById('my-image') as HTMLImageElement;
     var canvas = document.createElement('canvas');
     canvas.width = img.width;
@@ -54,55 +202,54 @@ export default function HexMap() {
       const { offsetX, offsetY } = e.nativeEvent as MouseEvent;
       const pixelData = ctx.getImageData(offsetX, offsetY, 1, 1).data;
       if (pixelData[3] === 0) {
-        console.log("this is an empty pixel")
         //if transparent go deeper.  Else, hmmmm.  What about trees?  
       } else {
         e.stopPropagation();
       }
 
-      console.log(pixelData, "this is the console data");  // This will log the RGBA values of the clicked pixel
+      console.log(pixelData, "this is the console data");
     }
   };
 
-
-  let hexComponents = sampleHexGrid.map((item, index, actualArray) => {
+  let hexComponents = hexGrid.map((item, index, actualArray) => {
     const row = [];
-    const hexHeightCalculation = hexHeight*2.2;
-
+    const hexHeightCalculation = hexHeight * 0.4;
     let pixel = "-" + hexHeightCalculation + "px"
-    console.log(pixel, "what is this?");
-
     for (var i = 0; i < item.length; i++) {
-      row.push(<IndividualHexPiece hexInformation={item[i]} toggleThisHex={() => { }} indexArray={[index, i]} />)
+      row.push(<IndividualHexPiece setHexGrid={setHexGrid} hexGrid={hexGrid} addSurroundingGhostHexes={addSurroundingGhostHexes} key={index.toString() + i.toString() + "hexKey"} hexInformation={item[i]} toggleThisHex={() => { }} indexArray={[i, index]} />)
       //row is a given row, it will need to be enclosed in a div at some point
     }
 
     // the first value is just to calculate the height of the hexes to then caculate how much to increase the other hex rows by so that they can be proper
     if (index === 0) {
       return (
-        <div style={{ display: "flex", width: "100%" }} ref={ref}>
-          <div className='half-hex'>hello</div>
+        <div key={index + "rowKey"} style={{ display: "flex", width: "100%" }} ref={ref}>
+          {isRightTop.current ? <div className='half-hex'>hello</div> : ""}
 
           {row}
+          {isRightTop.current ? "" : <div className='half-hex'>hello</div>}
+
         </div>
       )
 
     }
     if (index % 2 === 1) {
       return (
-        <div style={{ display: "flex", width: "100%", marginTop: pixel }}>
+        <div key={index + "rowKey"} style={{ display: "flex", width: "100%", marginTop: pixel }}>
 
+          {isRightTop.current ? "" : <div className='half-hex'>hello</div>}
           {row}
-          <div className='half-hex'>hello</div>
+          {isRightTop.current ? <div className='half-hex'>hello</div> : ""}
 
         </div>
       )
     } else {
       return (
-        <div style={{ display: "flex", width: "100%", marginTop: pixel }}>
-          <div className='half-hex'>hello</div>
+        <div key={index + "rowKey"} style={{ display: "flex", width: "100%", marginTop: pixel }}>
+          {isRightTop.current ? <div className='half-hex'>hello</div> : ""}
 
           {row}
+          {isRightTop.current ? "" : <div className='half-hex'>hello</div>}
 
         </div>
       )
@@ -110,22 +257,25 @@ export default function HexMap() {
     }
   })
 
-
+  //
   //i can use stop propgation if the top image is not transparent, then it knows not to dig deeper.
   return (
     <>
-      <div className="slidecontainer">
-        <input onChange={(e)=> {setGridWidth(parseInt(e.target.value))}} type="range" min="1" max="100" value={gridWidth} className="slider" id="myRange" />
-        <p>Width: <input id="width" type="text" /></p>
-        <input onChange={(e)=> {setGridHeight(parseInt(e.target.value))}} type="range" min="1" max="100" value={gridHeight} className="slider" id="myRange" />
-        <p>Height: <input id="width" type="text" /></p>
+      <div>
+        <div className="hex-map-slide-container">
+          <input ref={widthRef} type="range" min="1" max="100" className="slider" id="myRange" />
+          {/* <input onChange={(e)=> {setGridHeight(parseInt(e.target.value))}} type="range" min="1" max="100" value={gridHeight} className="slider" id="myRange" />
+        <p>Height: <input id="width" type="text" value={gridHeight} />{gridHeight}</p>
         <input onChange={(e)=> {setZoom(parseInt(e.target.value))}} type="range" min="1" max="100" value={zoom} className="slider" id="myRange" /> <span>zoom value</span>
-        <p>Zoom: <input id="width" type="text" /></p>
+        <p>Zoom: <input id="width" type="text" value={zoom} />{zoom}</p> */}
 
-      </div><div style={styles.container}>
-        <div id="hex-map-canvas">
-        {hexComponents}
         </div>
+      </div>
+      <div className='hex-map-container'>
+        <div id="hex-map-canvas">
+          {hexComponents}
+        </div>
+        <button onClick={toggleTopRow}>click</button>
       </div>
 
 
