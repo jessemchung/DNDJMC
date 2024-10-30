@@ -126,17 +126,18 @@ export default function IndividualHexPiece(props: Props) {
 
   let x = 1;
   const calculated = props.hexHeight * x;
-
+  console.log(calculated, "this is the calculated value");
   let stackedTerrain = [];
 
   if (props.hexInformation !== null && props.hexInformation.terrain[1]) {
     console.log("only appears once at the moment?", props.hexInformation)
-    console.log(props.hexHeight, "hex Height")
+    console.log(`-${calculated}px`, "calculated Height")
     stackedTerrain.push(
-      <img id="my-image1" className={"hex-top-floors"} style={{ marginTop: "-90px" }} src={BaseTileEnum.Stone} />
+      <img id="my-image1" className={"hex-top-floors"} style={{ marginLeft: "1.5px", marginTop: `-${calculated+1.5}px` }} src={BaseFullTileEnum['Full Grass']} />
     )
+    // it would be `-${calculated + 25}px`
     stackedTerrain.push(
-      <img id="my-image2" className={"hex-top-floors"} style={{ marginTop: "-120px" }} src={BaseTileEnum.Stone} />
+      <img id="my-image2" className={"hex-top-floors"} style={{ marginLeft: "1.5px", marginTop: `-${calculated + calculated/4}px` }} src={BaseFullTileEnum['Full Grass']} />
     )
   }
 
