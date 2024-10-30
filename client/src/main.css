@@ -335,4 +335,13 @@ main > :last-child {
 
 }
 
+.hex-top-floors {
+  position: absolute;
+  z-index: 100;
+  top: 0px;
+  left: 0px;
+
+  
+}
+
 /*! hex map css end */

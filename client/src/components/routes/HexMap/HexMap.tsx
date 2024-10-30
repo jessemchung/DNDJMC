@@ -6,7 +6,7 @@ import IndividualHexPiece from './IndividualHexPiece.jsx';
 import RightClickMenu from './RightClickMenu.jsx';
 
 
-const sampleHexGrid: Array<Array<hexInformation | null>> = [[null, { terrain: [BaseTileEnum.None], topping: ["fish"] }, { terrain: [BaseTileEnum.Water], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }],
+const sampleHexGrid: Array<Array<hexInformation | null>> = [[null, { terrain: [BaseTileEnum.None], topping: ["fish"] }, { terrain: [BaseTileEnum.Water], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Grass, BaseTileEnum.Grass], topping: ["fish"] }],
 [{ terrain: [BaseTileEnum.Magic], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }],
 [{ terrain: [BaseTileEnum.Lava], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }]]
 
@@ -14,21 +14,18 @@ const sampleHexGrid: Array<Array<hexInformation | null>> = [[null, { terrain: [B
 
 export default function HexMap() {
   // grid height and grid width are
-  const [gridHeight, setGridHeight] = useState<number>(sampleHexGrid.length);
-  const [gridWidth, setGridWidth] = useState<number>(sampleHexGrid[0].length);
-  const [zoom, setZoom] = useState(0);
-  const canvasRef = React.useRef<HTMLCanvasElement>(null);
+  // const [gridHeight, setGridHeight] = useState<number>(sampleHexGrid.length);
+  // const [gridWidth, setGridWidth] = useState<number>(sampleHexGrid[0].length);
+  // const [zoom, setZoom] = useState(0);
+  // const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const [hexHeight, setHexHeight] = useState(0);
   const ref = useRef(null);
   const widthRef = useRef<HTMLInputElement>(null);
   const heightRef = useRef(0);
   const [hexGrid, setHexGrid] = useState<Array<Array<hexInformation | null>>>([[]]);
 
-  const ghostRef = useRef(new Map);
   const counter = useRef(0);
   const isRightTop = useRef(false);
-
-
 
   useEffect(() => {
 
@@ -82,21 +79,15 @@ export default function HexMap() {
   }
 
   function increaseWidth(originalHexGrid: Array<Array<hexInformation | null>>, left: boolean) {
-    console.log(left, "increasing width?")
     originalHexGrid.map((item, index) => {
       // just the first row needs to be checked.
       if (left) {
         let gridWidthCheck = (item.unshift(null))
         if (index === 0 && gridWidthCheck > originalHexGrid[0].length) {
-          console.log("are we off?")
-          setGridWidth(gridWidthCheck);
         }
       } else {
-        console.log("are we off?1")
-
         let gridWidthCheck = (item.push(null))
         if (index === 0 && gridWidthCheck > originalHexGrid[0].length) {
-          setGridHeight(gridWidthCheck);
         }
       }
     })
@@ -127,47 +118,62 @@ export default function HexMap() {
       increaseHeight(originalHexGrid, true);
       storedYValue++;
     }
+    console.log(isRightTop, "this is true?")
 
+    // choose 3,4 what is going on here?  It is two off now?
+    // rightTop.current has never changed
+    // 
 
     let numbero: number = 0;
     if (isRightTop.current) {
-      numbero = storedYValue % 2 - 1;
+
+      if (storedYValue%2 === 0) {
+        //this is a right most component
+        numbero = 1;
+        // number is 1 because we need the right most tile to also be checked
+
+      } else if (storedYValue%2 === 1) {
+        console.log("This is a left most component");
+        // the bottom so we need to check the left most tile
+        numbero = -1;
+      }
+
     } else {
-      numbero = storedYValue % 2;
+      // top most is a left most component
+      if (storedYValue%2 === 0) {
+        //this is a left most component
+        numbero = -1 ;
+
+      } else if (storedYValue%2 === 1) {
+        numbero = 1;
+      }
 
     }
-    console.log("calculating numbero?", numbero)
 
     let isGreaterThan0 = (storedXValue + numbero - 1 >= 0);
-    if (originalHexGrid[storedYValue + 1][storedXValue + numbero] === null) {
 
+    if (originalHexGrid[storedYValue + 1][storedXValue + numbero] === null) {
+      console.log("do we even get in here?", storedXValue + numbero)
       originalHexGrid[storedYValue + 1][storedXValue + numbero] = {
         terrain: [BaseTileEnum.None]
       }
     }
 
-    if (originalHexGrid[storedYValue + 1][storedXValue + numbero - 1] === null && isGreaterThan0) {
-      originalHexGrid[storedYValue + 1][storedXValue + numbero - 1] = {
+    if (originalHexGrid[storedYValue + 1][storedXValue] === null && isGreaterThan0) {
+      originalHexGrid[storedYValue + 1][storedXValue] = {
         terrain: [BaseTileEnum.None]
       }
     }
 
     // handle the top elements
-    if (originalHexGrid[storedYValue - 1][storedXValue + numbero] === null) {
-      if (storedYValue - 1 === 0 && storedXValue + numbero === 2) {
-        console.log("why?")
-      }
-      originalHexGrid[storedYValue - 1][storedXValue + numbero] = {
+    if (originalHexGrid[storedYValue - 1][storedXValue] === null) {
+      originalHexGrid[storedYValue - 1][storedXValue] = {
         terrain: [BaseTileEnum.None]
       }
     }
 
-    if (originalHexGrid[storedYValue - 1][storedXValue + numbero - 1] === null && isGreaterThan0) {
-      if (storedYValue - 1 === 0 && storedXValue + numbero - 1 === 2) {
-        console.log("why1?")
-      }
-
-      originalHexGrid[storedYValue - 1][storedXValue + numbero - 1] = {
+    if (originalHexGrid[storedYValue - 1][storedXValue + numbero] === null && isGreaterThan0) {
+      originalHexGrid[storedYValue - 1][storedXValue + numbero] = {
         terrain: [BaseTileEnum.None]
       }
     }
@@ -216,7 +222,11 @@ export default function HexMap() {
     const hexHeightCalculation = hexHeight * 0.4;
     let pixel = "-" + hexHeightCalculation + "px"
     for (var i = 0; i < item.length; i++) {
-      row.push(<IndividualHexPiece setHexGrid={setHexGrid} hexGrid={hexGrid} addSurroundingGhostHexes={addSurroundingGhostHexes} key={index.toString() + i.toString() + "hexKey"} hexInformation={item[i]} toggleThisHex={() => { }} indexArray={[i, index]} />)
+      row.push(<IndividualHexPiece hexHeight={hexHeight} 
+        setHexGrid={setHexGrid} hexGrid={hexGrid} 
+        addSurroundingGhostHexes={addSurroundingGhostHexes} 
+        key={index.toString() + i.toString() + "hexKey"} 
+        hexInformation={item[i]} toggleThisHex={() => { }} indexArray={[i, index]} />)
       //row is a given row, it will need to be enclosed in a div at some point
     }
 

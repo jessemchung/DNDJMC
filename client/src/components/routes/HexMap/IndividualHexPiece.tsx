@@ -16,21 +16,16 @@ interface Props {
   toggleThisHex: any;
   // will be an x and y value
   indexArray: Array<any>;
+  hexHeight: number;
 
   // probably also need to import a bunch of functions as well
 };
 
 export default function IndividualHexPiece(props: Props) {
   const ref = useRef(null);
-  const canvasRef = React.useRef<HTMLCanvasElement>(null);
   //I think I need to add the hexInformation here so it can be updated more easily?  I think?
   const [menuVisible, setMenuVisible] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
-  
-  const [terrain, setTerrain] = useState<BaseTileEnum[] | null>(props.hexInformation?.terrain || null);
-  const [flavorName, setFlavorName] = useState(props.hexInformation?.name || null);
-  const [opaque, setOpaque] = useState(props.hexInformation?.opaque || null);
-  const [topping, setTopping] = useState(props.hexInformation?.topping || null);
 
 
   // Handle clicks on the canvas
@@ -68,10 +63,10 @@ export default function IndividualHexPiece(props: Props) {
     }
   }
 
-  function convertRemToPixels(remValue: number) {    
+  function convertRemToPixels(remValue: number) {
     // remValue here is like 5 rem.
     return remValue * parseFloat(getComputedStyle(document.documentElement).fontSize);
-}
+  }
 
   const handleRightClick = (event: React.MouseEvent) => {
     event.preventDefault(); // Prevent the default context menu
@@ -83,7 +78,7 @@ export default function IndividualHexPiece(props: Props) {
     
     //my screen the box is 314 high 97.75 wide
     console.log(getComputedStyle(document.documentElement).fontSize, "this is the fontsize we need to multiply by?")
-
+    console.log(props.hexHeight, "what a mess");
     const menuWidth = convertRemToPixels(20); // Assuming the width of the context menu
     const menuHeight = convertRemToPixels(20); // Assuming the height of the context menu
     const windowWidth = window.innerWidth;
@@ -100,7 +95,9 @@ export default function IndividualHexPiece(props: Props) {
       posY = windowHeight - menuHeight;
     }
 
-
+    console.log (window.innerHeight, "this height needs to be calculated somehow?")
+    // I guess this is the height of the component?
+  
     setMenuPosition({ x: posX, y: posY });
     setMenuVisible(true);
   };
@@ -117,34 +114,46 @@ export default function IndividualHexPiece(props: Props) {
       props.addSurroundingGhostHexes(props.hexGrid, props.indexArray[0], props.indexArray[1])
 
     }
-    props.setHexGrid([... props.hexGrid]);
+    props.setHexGrid([...props.hexGrid]);
 
 
   }
 
-  // built an array of components that can be stacked on top of each other.  I guess a span?
-  //
-
-  const BaseTileOptions = Object.keys(BaseFullTileEnum);
+  const BaseTileOptions = Object.keys(BaseTileEnum);
   const BaseTileList = BaseTileOptions.map((item) => {
-    return (<li key={item} style={{ padding: "5px 10px", cursor: "pointer" }} onClick={() => {adjustAppearance(item as keyof typeof BaseTileEnum)}}>{item}</li>)
+    return (<li key={item} style={{ padding: "5px 10px", cursor: "pointer" }} onClick={() => { adjustAppearance(item as keyof typeof BaseTileEnum) }}>{item}</li>)
   })
 
-  //i can use stop propgation if the top image is not transparent, then it knows not to dig deeper.
-  // some kind of flexbox?  I can't help but think that grid is going to be better though... hmm
+  let x = 1;
+  const calculated = props.hexHeight * x;
+
+  let stackedTerrain = [];
+
+  if (props.hexInformation !== null && props.hexInformation.terrain[1]) {
+    console.log("only appears once at the moment?", props.hexInformation)
+    console.log(props.hexHeight, "hex Height")
+    stackedTerrain.push(
+      <img id="my-image1" className={"hex-top-floors"} style={{ marginTop: "-90px" }} src={BaseTileEnum.Stone} />
+    )
+    stackedTerrain.push(
+      <img id="my-image2" className={"hex-top-floors"} style={{ marginTop: "-120px" }} src={BaseTileEnum.Stone} />
+    )
+  }
 
   return (
-    <span title={props.indexArray[0] + ", " + props.indexArray[1]}>
-      <img id="my-image"  className={`hex-image ${props.hexInformation === null ? "transparent" : ""} ${props.hexInformation?.terrain?.[0] === BaseTileEnum.None ? "semi-transparent" : ""}` } onContextMenu={(e) => {
-        //
-        e.preventDefault(); // prevent the default behaviour when right clicked
-        handleRightClick(e)
-      }} onClick={handleCanvasClick} src={props.hexInformation?.terrain ? props.hexInformation?.terrain[0] : BaseTileEnum.Stone} />
+    <span >
+      <span style={{position: "relative"}} title={props.indexArray[0] + ", " + props.indexArray[1]}>
+        <img id="my-image" className={`hex-image ${props.hexInformation === null ? "transparent" : ""} ${props.hexInformation?.terrain?.[0] === BaseTileEnum.None ? "semi-transparent" : ""}`} onContextMenu={(e) => {
+          e.preventDefault(); // prevent the default behaviour when right clicked
+          handleRightClick(e)
+        }} onClick={handleCanvasClick} src={props.hexInformation?.terrain ? props.hexInformation?.terrain[0] : BaseTileEnum.Stone} />
 
+        {stackedTerrain}
+      </span>
 
       {menuVisible && props.hexInformation?.terrain !== null && (
         <ul
-        ref={ref}
+          ref={ref}
           style={{
             position: "absolute",
             top: `${menuPosition.y}px`,
@@ -163,7 +172,10 @@ export default function IndividualHexPiece(props: Props) {
     </span>
 
   );
-
-
 }
 
+const styles = {
+  container: {
+    margin: '0 auto',
+  },
+};

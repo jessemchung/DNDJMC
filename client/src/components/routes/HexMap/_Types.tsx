@@ -32,17 +32,17 @@
 
   // these are the solid colors
   export enum BaseFullTileEnum {
-    Autumn = "./image/map/tileAutumn_full.png",
-    Dirt = "./image/map/tileDirt_full.png",
-    Grass = "./image/map/tileGrass_full.png",
-    Lava = "./image/map/tileLava_full.png",
-    Magic = "./image/map/tileMagic_full.png",
-    Rock = "./image/map/tileRock_full.png",
-    Sand = "./image/map/tileSand_full.png",
-    Snow = "./image/map/tileSnow_full.png",
-    Stone =  "./image/map/tileStone_full.png",
-    Water = "./image/map/tileWater_full.png",
-    None = "./image/map/tileSnow_full.png"
+    "Full Autumn" = "./image/map/tileAutumn_full.png",
+    "Full Dirt" = "./image/map/tileDirt_full.png",
+    "Full Grass" = "./image/map/tileGrass_full.png",
+    "Full Lava" = "./image/map/tileLava_full.png",
+    "Full Magic" = "./image/map/tileMagic_full.png",
+    "Full Rock" = "./image/map/tileRock_full.png",
+    "Full Sand" = "./image/map/tileSand_full.png",
+    "Full Snow" = "./image/map/tileSnow_full.png",
+    "Full Stone" =  "./image/map/tileStone_full.png",
+    "Full Water" = "./image/map/tileWater_full.png",
+    "None" = "./image/map/tileSnow_full.png"
   }
 
   // a single hex.  It needs information to dictate how high it is and what toppings it should have
@@ -50,7 +50,7 @@
   // text would be the optional name that appears in the center of the hex?
   // opaque could be a hidden value?
   export type hexInformation = {
-    terrain: Array<BaseTileEnum | null>,
+    terrain: Array<BaseTileEnum | BaseFullTileEnum | null>,
     name?: string,
     topping?: Array<string>,
     opaque?: boolean
