@@ -1,4 +1,4 @@
-//Idea, individual work
+// Idea, individual work
 // each one should possibly have multiple stacks of the same piece and possibly 
 
 import * as React from 'react';
@@ -22,9 +22,13 @@ interface Props {
 };
 
 export default function IndividualHexPiece(props: Props) {
-  const ref = useRef(null);
+  const contextRef: React.MutableRefObject<any> = useRef(null);
+  const expandedContextRef: React.MutableRefObject<any> = useRef(null);
+
   //I think I need to add the hexInformation here so it can be updated more easily?  I think?
-  const [menuVisible, setMenuVisible] = useState(false);
+  const [menuVisible, setMenuVisible] = useState<boolean>(false);
+  const [expandedMenuPosition, setExpandedMenuPosition] = useState<boolean>(false);
+
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
 
 
@@ -49,36 +53,26 @@ export default function IndividualHexPiece(props: Props) {
         e.stopPropagation();
       }
 
-      console.log(pixelData, "this is the console data");  // This will log the RGBA values of the clicked pixel
     }
   };
 
 
   function handleClickOutside(event: { target: any; }) {
-    if (ref.current && !ref.current.contains(event.target)) {
+    if (contextRef.current && !contextRef.current.contains(event.target) && (expandedContextRef.current === null || !expandedContextRef.current.contains(event.target))) {
       setMenuVisible(false);
+      setExpandedMenuPosition(false);
       document.removeEventListener("mousedown", handleClickOutside);
-
-
     }
   }
 
   function convertRemToPixels(remValue: number) {
-    // remValue here is like 5 rem.
     return remValue * parseFloat(getComputedStyle(document.documentElement).fontSize);
   }
 
-  const handleRightClick = (event: React.MouseEvent) => {
+  function handleRightClickHex(event: React.MouseEvent) {
     event.preventDefault(); // Prevent the default context menu
 
     document.addEventListener("mousedown", handleClickOutside);
-    // we need to add a menu calculation here.  Hmm.
-    
-
-    
-    //my screen the box is 314 high 97.75 wide
-    console.log(getComputedStyle(document.documentElement).fontSize, "this is the fontsize we need to multiply by?")
-    console.log(props.hexHeight, "what a mess");
     const menuWidth = convertRemToPixels(20); // Assuming the width of the context menu
     const menuHeight = convertRemToPixels(20); // Assuming the height of the context menu
     const windowWidth = window.innerWidth;
@@ -94,13 +88,19 @@ export default function IndividualHexPiece(props: Props) {
     if (posY + menuHeight > windowHeight) {
       posY = windowHeight - menuHeight;
     }
-
-    console.log (window.innerHeight, "this height needs to be calculated somehow?")
-    // I guess this is the height of the component?
-  
     setMenuPosition({ x: posX, y: posY });
     setMenuVisible(true);
   };
+
+  function deleteHex() {
+  }
+
+  function checkIfLeavingAdvancedContext(event: { target: any; }) {
+    console.log("hello?")
+    if (expandedContextRef.current && contextRef.current) {
+      setExpandedMenuPosition(false);
+    }
+  }
 
   const adjustAppearance = (item: keyof typeof BaseTileEnum) => {
     // not properly offsetting the top
@@ -109,44 +109,59 @@ export default function IndividualHexPiece(props: Props) {
     if (props.hexInformation.terrain[0] === BaseTileEnum.None) {
       test = true;
     }
-    props.hexInformation.terrain[0] = BaseTileEnum[item];
+    props.hexInformation.terrain[props.hexInformation.terrain.length-1] = BaseTileEnum[item];
     if (test) {
       props.addSurroundingGhostHexes(props.hexGrid, props.indexArray[0], props.indexArray[1])
-
     }
     props.setHexGrid([...props.hexGrid]);
+  }
 
+  const addStack = (item: keyof typeof BaseFullTileEnum) => {
+    // not properly offsetting the top
 
+    props.hexInformation.terrain.push(BaseFullTileEnum[item]);
+    console.log(props.hexInformation, "something weird?")
+
+    props.setHexGrid([...props.hexGrid]);
   }
 
   const BaseTileOptions = Object.keys(BaseTileEnum);
+  //! this add a second arrow context menu for additional stacking and unstacking and deleting make it have a scroll wheel as well
+
   const BaseTileList = BaseTileOptions.map((item) => {
-    return (<li key={item} style={{ padding: "5px 10px", cursor: "pointer" }} onClick={() => { adjustAppearance(item as keyof typeof BaseTileEnum) }}>{item}</li>)
+    return (<li key={"basetile" + item} style={{ padding: "5px 10px", cursor: "pointer" }} onClick={() => { adjustAppearance(item as keyof typeof BaseTileEnum) }}>{item}</li>)
   })
+
+  
+  const FullTileOptions = Object.keys(BaseFullTileEnum);
+
+  const FullTileList = FullTileOptions.map((item) => {
+    return (<li key={"fulltile " + item}  style={{ padding: "5px 10px", cursor: "pointer" }} onClick={() => { addStack(item as keyof typeof BaseFullTileEnum) }}>{item}</li>)
+  })
+
+  BaseTileList.push(
+    <li key={"delete"} style={{ padding: "5px 10px", cursor: "pointer" }} onClick={() => { deleteHex() }}>Delete</li>
+  )
 
   let x = 1;
   const calculated = props.hexHeight * x;
-  console.log(calculated, "this is the calculated value");
-  let stackedTerrain = [];
+
+  const stackedTerrain = [];
 
   if (props.hexInformation !== null && props.hexInformation.terrain[1]) {
-    console.log("only appears once at the moment?", props.hexInformation)
-    console.log(`-${calculated}px`, "calculated Height")
-    stackedTerrain.push(
-      <img id="my-image1" className={"hex-top-floors"} style={{ marginLeft: "1.5px", marginTop: `-${calculated+1.5}px` }} src={BaseFullTileEnum['Full Grass']} />
-    )
-    // it would be `-${calculated + 25}px`
-    stackedTerrain.push(
-      <img id="my-image2" className={"hex-top-floors"} style={{ marginLeft: "1.5px", marginTop: `-${calculated + calculated/4}px` }} src={BaseFullTileEnum['Full Grass']} />
-    )
+    for (var i = 1; i < props.hexInformation.terrain.length; i++) {
+      stackedTerrain.push(
+        <img key={"stack" + i} id="my-image1" className={"hex-top-floors"} style={{ marginLeft: "1.5px", marginTop: `-${calculated + ( calculated * (i - 1) / 4) + 1.5}px` }} src={props.hexInformation.terrain[i]} />
+      )
+    }
   }
 
   return (
     <span >
-      <span style={{position: "relative"}} title={props.indexArray[0] + ", " + props.indexArray[1]}>
+      <span style={{ position: "relative" }} title={props.indexArray[0] + ", " + props.indexArray[1]}>
         <img id="my-image" className={`hex-image ${props.hexInformation === null ? "transparent" : ""} ${props.hexInformation?.terrain?.[0] === BaseTileEnum.None ? "semi-transparent" : ""}`} onContextMenu={(e) => {
           e.preventDefault(); // prevent the default behaviour when right clicked
-          handleRightClick(e)
+          handleRightClickHex(e)
         }} onClick={handleCanvasClick} src={props.hexInformation?.terrain ? props.hexInformation?.terrain[0] : BaseTileEnum.Stone} />
 
         {stackedTerrain}
@@ -154,7 +169,7 @@ export default function IndividualHexPiece(props: Props) {
 
       {menuVisible && props.hexInformation?.terrain !== null && (
         <ul
-          ref={ref}
+          ref={contextRef}
           style={{
             position: "absolute",
             top: `${menuPosition.y}px`,
@@ -166,9 +181,32 @@ export default function IndividualHexPiece(props: Props) {
             zIndex: 1000,
           }}
         >
+          <li onClick={() => setExpandedMenuPosition(true)} style={{ padding: "5px 10px", cursor: "pointer" }}>Add Stack</li>
           {BaseTileList}
+
         </ul>
       )}
+
+      {expandedMenuPosition && (
+        <ul
+          onMouseLeave={(event) => checkIfLeavingAdvancedContext(event)}
+          ref={expandedContextRef}
+          style={{
+            position: "absolute",
+            top: `${menuPosition.y}px`,
+            left: `${menuPosition.x + contextRef.current.clientWidth}px`,
+            backgroundColor: "#fff",
+            border: "1px solid #ccc",
+            padding: "10px",
+            listStyle: "none",
+            zIndex: 1001,
+          }}
+        >
+          {FullTileList}
+        </ul>
+      )
+
+      }
 
     </span>
 
@@ -180,3 +218,6 @@ const styles = {
     margin: '0 auto',
   },
 };
+
+
+// suspicicion.  I need to check whenever it leaves if it is entering another component

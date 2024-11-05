@@ -5,12 +5,9 @@ import { BaseTileEnum, hexInformation } from './_Types.jsx';
 import IndividualHexPiece from './IndividualHexPiece.jsx';
 import RightClickMenu from './RightClickMenu.jsx';
 
-
-const sampleHexGrid: Array<Array<hexInformation | null>> = [[null, { terrain: [BaseTileEnum.None], topping: ["fish"] }, { terrain: [BaseTileEnum.Water], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Grass, BaseTileEnum.Grass], topping: ["fish"] }],
+const sampleHexGrid: Array<Array<hexInformation | null>> = [[null, { terrain: [BaseTileEnum.None], topping: ["fish"] }, { terrain: [BaseTileEnum.Water], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Lava, BaseTileEnum.Lava, BaseTileEnum.Lava], topping: ["fish"] }, { terrain: [BaseTileEnum.Grass, BaseTileEnum.Grass], topping: ["fish"] }],
 [{ terrain: [BaseTileEnum.Magic], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }],
 [{ terrain: [BaseTileEnum.Lava], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }]]
-
-
 
 export default function HexMap() {
   // grid height and grid width are
@@ -94,7 +91,6 @@ export default function HexMap() {
   }
 
   function addSurroundingGhostHexes(originalHexGrid: Array<Array<hexInformation>>, xValue: number, yValue: number) {
-    console.log(xValue, "x")
     let storedXValue = xValue;
     let storedYValue = yValue;
     if (originalHexGrid[yValue][xValue] === null || originalHexGrid[yValue][xValue].terrain[0] === BaseTileEnum.None) {
@@ -110,15 +106,12 @@ export default function HexMap() {
     }
 
     if (storedYValue >= originalHexGrid.length - 1) {
-      console.log(originalHexGrid, "Increase Y bottom??")
       increaseHeight(originalHexGrid, false);
     }
     else if (storedYValue === 0) {
-      console.log("increase Y+, meaning that from the top")
       increaseHeight(originalHexGrid, true);
       storedYValue++;
     }
-    console.log(isRightTop, "this is true?")
 
     // choose 3,4 what is going on here?  It is two off now?
     // rightTop.current has never changed
@@ -150,10 +143,10 @@ export default function HexMap() {
 
     }
 
-    let isGreaterThan0 = (storedXValue + numbero - 1 >= 0);
+    // let isGreaterThan0 = (storedXValue + numbero - 1 >= 0);
+    let isGreaterThan0 = storedXValue > 0;
 
     if (originalHexGrid[storedYValue + 1][storedXValue + numbero] === null) {
-      console.log("do we even get in here?", storedXValue + numbero)
       originalHexGrid[storedYValue + 1][storedXValue + numbero] = {
         terrain: [BaseTileEnum.None]
       }
