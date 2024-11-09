@@ -21,6 +21,7 @@ import Dice from './Dice/Dice.jsx'
 import { CsvDownloadDialogue } from './CsvDownloadDialogue.jsx';
 import { useForm } from '../Common/setForm.jsx';
 
+
 //goal, should have everything we need.  Maybe this isn't needed here?
 export interface RyuutamaForm {
   weather: WeatherOptions;
@@ -80,12 +81,9 @@ export default function Ryuutama() {
   const [second, setSecond] = useState<string | null>('white');
   const [third, setThird] = useState<string | null>('white');
 
-  //readability probably trumps in thise case, I don't want to necessarilly have everything together
-  //intitiative can be check both
   const [indexFreeps, setIndexFreeps] = useState<number>(0)
 
   //!Jesse this is important there needs to be something that will clean the deleted items (aka, null) at loading time
-  //if initiative is equal to the number it should be fixed
 
 
   const adjustCreatureSet = (indexOfChange: number, changedCard: FreepsCardData) => {
@@ -163,8 +161,6 @@ export default function Ryuutama() {
   };
 
   const nextInitiative = () => {
-    // this will check initiative.  A button must be somewhere to also help this with a reset.  Perhaps
-    // a crude float or something.  Perhaps in the bottom part of the ryuutama thing
     if (initiative + 1 >= fullDataFreeps.length) {
       setInitiative(0);
     } else {

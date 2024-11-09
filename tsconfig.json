@@ -8,8 +8,10 @@
     "noImplicitAny": true,
     "target": "es5",
     "skipLibCheck": true,
-    "esModuleInterop": true
-  }
+    "esModuleInterop": true,
+    "types": ["node"]  // Specify types explicitly
+  },
+  "exclude": ["node_modules"]
 }
 
 

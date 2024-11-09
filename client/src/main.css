@@ -186,6 +186,7 @@ main > :last-child {
   height: 20px;
   background-color: gray;
   border-radius: 50%;
+  z-index: 10;
 }
 
 .Blue {
@@ -344,4 +345,6 @@ main > :last-child {
   
 }
 
+/* #ryuutama_map_no_border {
+} */
 /*! hex map css end */

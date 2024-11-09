@@ -140,7 +140,13 @@ export default function IndividualHexPiece(props: Props) {
   })
 
   BaseTileList.push(
-    <li key={"delete"} style={{ padding: "5px 10px", cursor: "pointer" }} onClick={() => { deleteHex() }}>Delete</li>
+    <>    
+      <li key={"delete"} style={{ padding: "5px 10px", cursor: "pointer" }} onClick={() => { deleteHex() }}>Delete</li>
+      <li key={"delete"} style={{ padding: "5px 10px", cursor: "pointer" }} onClick={() => { deleteHex() }}>Add Hero</li>
+      <li key={"delete"} style={{ padding: "5px 10px", cursor: "pointer" }} onClick={() => { deleteHex() }}>Add Toppers</li>
+
+    </>
+
   )
 
   let x = 1;
