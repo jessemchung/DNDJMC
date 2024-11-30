@@ -1,0 +1,7 @@
+node_modules
+node_modules/
+# bundle.js
+# config.js
+
+**/*.map 
+# client/src/components/Ryuutama/**/*.jsx
