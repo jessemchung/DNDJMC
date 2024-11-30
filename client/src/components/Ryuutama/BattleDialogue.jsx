@@ -35,7 +35,6 @@ function BattleDialogue(props) {
         'initiative': 10,
         'name': "Bradford",
         creepOrFreep: "creep",
-        index: 1,
         position: null,
         color: null
     }), creepInfo = _b[0], setCreepInfo = _b[1];

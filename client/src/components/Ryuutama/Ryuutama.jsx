@@ -22,55 +22,54 @@ var MainStage_jsx_1 = require("./Stage/MainStage.jsx");
 var FreepsMain_jsx_1 = require("./Stage/Pieces/Freeps/FreepsMain.jsx");
 var CreepsMain_jsx_1 = require("./Stage/Pieces/Creeps/CreepsMain.jsx");
 var FreepsSampleData_jsx_1 = require("./Stage/Pieces/Freeps/FreepsSampleData.jsx");
+var CloudUpload_1 = require("@mui/icons-material/CloudUpload");
 var material_1 = require("@mui/material");
 var UserContext_jsx_1 = require("./UserContext.jsx");
 var Dice_jsx_1 = require("./Dice/Dice.jsx");
-var quickTest = <MainStage_jsx_1.default key={'MainStage'}/>;
+var CsvDownloadDialogue_jsx_1 = require("./CsvDownloadDialogue.jsx");
+var setForm_jsx_1 = require("../Common/setForm.jsx");
+exports.defaultRyuutamaForm = {
+    weather: "./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png",
+    terrainType: "./image/Ryuutama/Terrain/Ryuutama_Alpine.png",
+    initiative: 30,
+    round: 0,
+    creatureData: FreepsSampleData_jsx_1.FreepsSampleData
+};
+exports.defaultTerrainProp = {
+    description: "Add description here",
+    title: "Set Prop"
+};
+var VisuallyHiddenInput = (0, styles_1.styled)('input')({
+    clip: 'rect(0 0 0 0)',
+    clipPath: 'inset(50%)',
+    height: 1,
+    overflow: 'hidden',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    whiteSpace: 'nowrap',
+    width: 1,
+});
 function Ryuutama() {
-    // }
-    // var color = randomColor(); // a hex code for an attractive color
-    var _a = (0, react_1.useState)([]), fullDataCreeps = _a[0], setFullDataCreeps = _a[1];
-    var _b = (0, react_1.useState)(FreepsSampleData_jsx_1.FreepsSampleData), fullDataFreeps = _b[0], setFullDataFreeps = _b[1];
-    var _c = (0, react_1.useState)(30), initiative = _c[0], setInitiative = _c[1];
-    var _d = (0, react_1.useState)('./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png'), weather = _d[0], setWeather = _d[1];
-    var _e = (0, react_1.useState)('./image/Ryuutama/Terrain/Ryuutama_Alpine.png'), terrainType = _e[0], setTerrainType = _e[1];
-    var _f = (0, react_1.useState)(1), round = _f[0], setRound = _f[1];
-    var _g = (0, react_1.useState)('unset'), first = _g[0], setFirst = _g[1];
-    var _h = (0, react_1.useState)('white'), second = _h[0], setSecond = _h[1];
-    var _j = (0, react_1.useState)('white'), third = _j[0], setThird = _j[1];
-    var _k = (0, react_1.useState)('Title'), title1 = _k[0], setTitle1 = _k[1];
-    var _l = (0, react_1.useState)(0), benefit1 = _l[0], setBenefit1 = _l[1];
-    var _m = (0, react_1.useState)(0), benefitPermanent1 = _m[0], setBenefitPermanent1 = _m[1];
-    var _o = (0, react_1.useState)('Title'), title2 = _o[0], setTitle2 = _o[1];
-    var _p = (0, react_1.useState)(0), benefit2 = _p[0], setBenefit2 = _p[1];
-    var _q = (0, react_1.useState)(0), benefitPermanent2 = _q[0], setBenefitPermanent2 = _q[1];
-    var _r = (0, react_1.useState)('Title'), title3 = _r[0], setTitle3 = _r[1];
-    var _s = (0, react_1.useState)(0), benefit3 = _s[0], setBenefit3 = _s[1];
-    var _t = (0, react_1.useState)(0), benefitPermanent3 = _t[0], setBenefitPermanent3 = _t[1];
-    var _u = (0, react_1.useState)('Title'), title4 = _u[0], setTitle4 = _u[1];
-    var _v = (0, react_1.useState)(0), benefit4 = _v[0], setBenefit4 = _v[1];
-    var _w = (0, react_1.useState)(0), benefitPermanent4 = _w[0], setBenefitPermanent4 = _w[1];
-    var _x = (0, react_1.useState)('Title'), title5 = _x[0], setTitle5 = _x[1];
-    var _y = (0, react_1.useState)(0), benefit5 = _y[0], setBenefit5 = _y[1];
-    var _z = (0, react_1.useState)(0), benefitPermanent5 = _z[0], setBenefitPermanent5 = _z[1];
-    var _0 = (0, react_1.useState)('Title'), title6 = _0[0], setTitle6 = _0[1];
-    var _1 = (0, react_1.useState)(0), benefit6 = _1[0], setBenefit6 = _1[1];
-    var _2 = (0, react_1.useState)(0), benefitPermanent6 = _2[0], setBenefitPermanent6 = _2[1];
-    var _3 = (0, react_1.useState)('Title'), title7 = _3[0], setTitle7 = _3[1];
-    var _4 = (0, react_1.useState)(0), benefit7 = _4[0], setBenefit7 = _4[1];
-    var _5 = (0, react_1.useState)(0), benefitPermanent7 = _5[0], setBenefitPermanent7 = _5[1];
-    var _6 = (0, react_1.useState)('Title'), title8 = _6[0], setTitle8 = _6[1];
-    var _7 = (0, react_1.useState)(0), benefit8 = _7[0], setBenefit8 = _7[1];
-    var _8 = (0, react_1.useState)(0), benefitPermanent8 = _8[0], setBenefitPermanent8 = _8[1];
-    var _9 = (0, react_1.useState)('Title'), title9 = _9[0], setTitle9 = _9[1];
-    var _10 = (0, react_1.useState)(0), benefit9 = _10[0], setBenefit9 = _10[1];
-    var _11 = (0, react_1.useState)(0), benefitPermanent9 = _11[0], setBenefitPermanent9 = _11[1];
-    var _12 = (0, react_1.useState)('Title'), title10 = _12[0], setTitle10 = _12[1];
-    var _13 = (0, react_1.useState)(0), benefit10 = _13[0], setBenefit10 = _13[1];
-    var _14 = (0, react_1.useState)(0), benefitPermanent10 = _14[0], setBenefitPermanent10 = _14[1];
+    var _a = (0, setForm_jsx_1.useForm)(exports.defaultRyuutamaForm), form = _a[0], setForm = _a[1];
+    var _b = (0, react_1.useState)(false), openCsvDialogue = _b[0], setOpenCsvDialogue = _b[1];
+    var _c = (0, react_1.useState)(FreepsSampleData_jsx_1.FreepsSampleData), fullDataFreeps = _c[0], setFullDataFreeps = _c[1];
+    var _d = (0, react_1.useState)(Array.from({ length: 10 }, function () { return (__assign({}, exports.defaultTerrainProp)); })), terrainProps = _d[0], setTerrainProps = _d[1];
+    var mainStageComponent = <MainStage_jsx_1.default terrainProps={terrainProps} setTerrainProps={setTerrainProps} creatureData={fullDataFreeps} key={'MainStage'} form={form} setForm={setForm}/>;
+    var _e = (0, react_1.useState)(0), initiative = _e[0], setInitiative = _e[1];
+    var _f = (0, react_1.useState)('./image/Ryuutama/Weather/Ryuutama_Clear_Skies.png'), weather = _f[0], setWeather = _f[1];
+    var _g = (0, react_1.useState)('./image/Ryuutama/Terrain/Ryuutama_Alpine.png'), terrainType = _g[0], setTerrainType = _g[1];
+    var myObject = { id: 1, name: 'Example' };
+    // Create an array with 10 distinct copies of the object
+    var arrayWithCopies = Array.from({ length: 10 }, function () { return (__assign({}, myObject)); });
+    console.log(arrayWithCopies);
+    var _h = (0, react_1.useState)([]), arrayProps = _h[0], setArrayProps = _h[1];
+    var _j = (0, react_1.useState)('unset'), first = _j[0], setFirst = _j[1];
+    var _k = (0, react_1.useState)('white'), second = _k[0], setSecond = _k[1];
+    var _l = (0, react_1.useState)('white'), third = _l[0], setThird = _l[1];
     //readability probably trumps in thise case, I don't want to necessarilly have everything together
     //intitiative can be check both
-    var _15 = (0, react_1.useState)(0), indexFreeps = _15[0], setIndexFreeps = _15[1];
+    var _m = (0, react_1.useState)(0), indexFreeps = _m[0], setIndexFreeps = _m[1];
     //!Jesse this is important there needs to be something that will clean the deleted items (aka, null) at loading time
     //if initiative is equal to the number it should be fixed
     var testClick = function () {
@@ -80,34 +79,51 @@ function Ryuutama() {
         //I predict this will delete everything... Hopefully.
         //we need to delete
     };
-    var initiativeCheck = function (event, thisInitiative) {
-        //this will check initiative.  A button must be somewhere to also help this with a reset.  Perhaps
-        // a crude float or something.  Perhaps in the bottom part of the ryuutama thingx
-        if (thisInitiative === void 0) { thisInitiative = initiative; }
-        if (fullDataCreeps.length === 0 && fullDataFreeps.length === 0) {
-            return;
-        }
-        var foundCreep = -10;
-        var foundFreep = -10;
-        for (var nextCreep = 0; nextCreep < fullDataCreeps.length; nextCreep++) {
-            if (fullDataCreeps[nextCreep].initiative < thisInitiative && fullDataCreeps[nextCreep].initiative > foundCreep) {
-                foundCreep = fullDataCreeps[nextCreep].initiative;
+    var handleFileUpload = function (item) {
+        var files = item;
+        if (files && files.length > 0) {
+            var file = files[0];
+            // Check if the file is a CSV
+            if (file.type === 'text/csv') {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var _a;
+                    var text = (_a = e.target) === null || _a === void 0 ? void 0 : _a.result;
+                    console.log(text); // This is the CSV content
+                    var lines = text.trim().split('\n');
+                    // Skip the first line (header) and map each line to a character object
+                    var characters = lines.slice(1).map(function (line) {
+                        var _a = line.split(','), bloodyImage = _a[0], color = _a[1], creepOrFreep = _a[2], healthyImage = _a[3], hitpoints = _a[4], initiative = _a[5], maxHitpoints = _a[6], name = _a[7], position = _a[8], shield = _a[9];
+                        return {
+                            bloodyImage: bloodyImage,
+                            color: color,
+                            creepOrFreep: creepOrFreep,
+                            healthyImage: healthyImage,
+                            hitpoints: Number(hitpoints),
+                            initiative: Number(initiative),
+                            maxHitpoints: Number(maxHitpoints),
+                            name: name,
+                            position: Number(position),
+                            shield: Number(shield),
+                        };
+                    });
+                    setFullDataFreeps(characters);
+                };
+                reader.onerror = function () {
+                    console.error("Failed to read file!");
+                };
+                reader.readAsText(file); // Read file as text
             }
             else {
-                continue;
+                console.error("Uploaded file is not a CSV");
             }
         }
-        for (var nextFreep = 0; nextFreep < fullDataFreeps.length; nextFreep++) {
-            if (fullDataFreeps[nextFreep].initiative < thisInitiative && fullDataFreeps[nextFreep].initiative > foundFreep) {
-                foundFreep = fullDataFreeps[nextFreep].initiative;
-            }
-        }
-        console.log(Math.max((foundFreep || -10), (foundCreep || -10)), 'this houdl be bigger');
-        if (Math.max((foundFreep || -10), (foundCreep || -10)) === -10) {
-            setInitiative(30);
-            console.log(thisInitiative, 'this needs to be set to 30 first but it is not');
-            setRound(round + 1);
-            initiativeCheck(null, 30);
+    };
+    var nextInitiative = function () {
+        // this will check initiative.  A button must be somewhere to also help this with a reset.  Perhaps
+        // a crude float or something.  Perhaps in the bottom part of the ryuutama thing
+        if (initiative + 1 >= fullDataFreeps.length) {
+            setInitiative(0);
         }
         else {
             setInitiative(Math.max((foundFreep || -10), (foundCreep || -10)));
@@ -119,6 +135,10 @@ function Ryuutama() {
     });
     var darkTheme = (0, styles_1.createTheme)({ palette: { mode: 'dark' } });
     var lightTheme = (0, styles_1.createTheme)({ palette: { mode: 'light' } });
+    var showCsvDownloadDialogue = null;
+    if (openCsvDialogue) {
+        showCsvDownloadDialogue = <CsvDownloadDialogue_jsx_1.CsvDownloadDialogue fullDataFreeps={fullDataFreeps} open={openCsvDialogue} onClose={function () { return setOpenCsvDialogue(false); }}/>;
+    }
     return (<>
 
       <UserContext_jsx_1.default.Provider value={{
@@ -132,69 +152,10 @@ function Ryuutama() {
             setSecond: setSecond,
             third: third,
             setThird: setThird,
-            initiative: initiative,
-            title1: title1,
-            setTitle1: setTitle1,
-            benefit1: benefit1,
-            setBenefit1: setBenefit1,
-            benefitPermanent1: benefitPermanent1,
-            setBenefitPermanent1: setBenefitPermanent1,
-            title2: title2,
-            setTitle2: setTitle2,
-            benefit2: benefit2,
-            setBenefit2: setBenefit2,
-            benefitPermanent2: benefitPermanent2,
-            setBenefitPermanent2: setBenefitPermanent2,
-            title3: title3,
-            setTitle3: setTitle3,
-            benefit3: benefit3,
-            setBenefit3: setBenefit3,
-            benefitPermanent3: benefitPermanent3,
-            setBenefitPermanent3: setBenefitPermanent3,
-            title4: title4,
-            setTitle4: setTitle4,
-            benefit4: benefit4,
-            setBenefit4: setBenefit4,
-            benefitPermanent4: benefitPermanent4,
-            setBenefitPermanent4: setBenefitPermanent4,
-            title5: title5,
-            setTitle5: setTitle5,
-            benefit5: benefit5,
-            setBenefit5: setBenefit5,
-            benefitPermanent5: benefitPermanent5,
-            setBenefitPermanent5: setBenefitPermanent5,
-            title6: title6,
-            setTitle6: setTitle6,
-            benefit6: benefit6,
-            setBenefit6: setBenefit6,
-            benefitPermanent6: benefitPermanent6,
-            setBenefitPermanent6: setBenefitPermanent6,
-            title7: title7,
-            setTitle7: setTitle7,
-            benefit7: benefit7,
-            setBenefit7: setBenefit7,
-            benefitPermanent7: benefitPermanent7,
-            setBenefitPermanent7: setBenefitPermanent7,
-            title8: title8,
-            setTitle8: setTitle8,
-            benefit8: benefit8,
-            setBenefit8: setBenefit8,
-            benefitPermanent8: benefitPermanent8,
-            setBenefitPermanent8: setBenefitPermanent8,
-            title9: title9,
-            setTitle9: setTitle9,
-            benefit9: benefit9,
-            setBenefit9: setBenefit9,
-            benefitPermanent9: benefitPermanent9,
-            setBenefitPermanent9: setBenefitPermanent9,
-            title10: title10,
-            setTitle10: setTitle10,
-            benefit10: benefit10,
-            setBenefit10: setBenefit10,
-            benefitPermanent10: benefitPermanent10,
-            setBenefitPermanent10: setBenefitPermanent10,
+            initiative: initiative
         }}>
 
+        {showCsvDownloadDialogue}
         <Paper_1.default>
           <Box_1.default>
             <Grid_1.default container spacing={2}>
@@ -234,21 +195,20 @@ function Ryuutama() {
                 </Grid_1.default>); })}
             </Grid_1.default>
 
-
-
-
-
           </Box_1.default>
 
 
 
         </Paper_1.default>
 
-        <material_1.Button onClick={testClick}>Test Button</material_1.Button>
-        <material_1.Button onClick={initiativeCheck}>Initiative Check</material_1.Button>
-        <span>Rounds </span>
+        <material_1.Button onClick={clearCreatures} variant="contained">Clear All</material_1.Button>
+        <material_1.Button onClick={nextInitiative} variant="contained">Next Initative</material_1.Button>
+        <material_1.Button onClick={function () { return setOpenCsvDialogue(true); }} variant="contained">Download CSV</material_1.Button>
+        <material_1.Button component="label" role={undefined} variant="contained" tabIndex={-1} startIcon={<CloudUpload_1.default />}>
+          Upload files
+          <VisuallyHiddenInput type="file" onChange={function (event) { return handleFileUpload(event.target.files); }} multiple/>
+        </material_1.Button>
 
-        <div>Dice will be at the bottom and a bit sticky</div>
         <Dice_jsx_1.default />
 
       </UserContext_jsx_1.default.Provider>
