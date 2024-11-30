@@ -1,9 +1,6 @@
 node_modules
-bundle.js
-config.js
+# bundle.js
+# config.js
 
 **/*.map 
-client/src/**/**/**/*.jsx
-client/src/components/Ryuutama/**/*.jsx
-
-.DS_Store
+# client/src/components/Ryuutama/**/*.jsx
