@@ -20,6 +20,7 @@ import { TerrainTypeInterface, TerrainTypeOptions, WeatherOptions } from './Stag
 import Dice from './Dice/Dice.jsx'
 import { CsvDownloadDialogue } from './CsvDownloadDialogue.jsx';
 import { useForm } from '../Common/setForm.jsx';
+import { purple } from '@mui/material/colors';
 
 
 //goal, should have everything we need.  Maybe this isn't needed here?
@@ -176,7 +177,25 @@ export default function Ryuutama() {
 
   }));
 
-  const darkTheme = createTheme({ palette: { mode: 'dark' } });
+  const darkTheme = createTheme({ 
+    palette: { 
+      mode: 'dark',
+    primary: {
+      // Purple and green play nicely together.
+      main: purple[500],
+    },
+    secondary: {
+      // This is green.A700 as hex.
+      main: '#11cb5f',
+    },
+
+      background: {
+        default: '#121212',
+        paper: '#1D1D1D'
+      }
+    } 
+  
+  });
   const lightTheme = createTheme({ palette: { mode: 'light' } });
 
   let showCsvDownloadDialogue: React.JSX.Element | null = null;
@@ -196,7 +215,7 @@ export default function Ryuutama() {
         <Paper >
           <Box>
             <Grid container spacing={2}>
-              {[lightTheme].map((theme, index) => (
+              {[darkTheme].map((theme, index) => (
                 <Grid2 columns={3} key={index}>
                   <ThemeProvider theme={theme}>
                     <Box

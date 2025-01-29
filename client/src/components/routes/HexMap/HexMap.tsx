@@ -1,41 +1,151 @@
 import * as React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
-import { BaseTileEnum, hexInformation } from './_Types.jsx';
+import { BaseTileEnum, characterInformation, CharacterTileEnum, Coordinate, coordinateKey, GridValue, hexInformation } from './_Types.jsx';
 import IndividualHexPiece from './IndividualHexPiece.jsx';
 import RightClickMenu from './RightClickMenu.jsx';
+import { Button, styled } from '@mui/material';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
-const sampleHexGrid: Array<Array<hexInformation | null>> = [[null, { terrain: [BaseTileEnum.None], topping: ["fish"] }, { terrain: [BaseTileEnum.Water], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Lava, BaseTileEnum.Lava, BaseTileEnum.Lava], topping: ["fish"] }, { terrain: [BaseTileEnum.Grass, BaseTileEnum.Grass], topping: ["fish"] }],
-[{ terrain: [BaseTileEnum.Magic], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }],
+//! next thing to work on, getting the characters to display correctly
+const sampleHexGrid: Array<Array<hexInformation | null>> = [[null, { terrain: [BaseTileEnum.None], topping: ["fish"] }, { name: "Old Spring Town", terrain: [BaseTileEnum.Water], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Lava, BaseTileEnum.Lava, BaseTileEnum.Lava], topping: ["fish"] }, { terrain: [BaseTileEnum.Grass, BaseTileEnum.Grass], topping: ["fish"] }],
+[{ terrain: [BaseTileEnum.Magic], topping: ["fish"] }, { terrain: [BaseTileEnum.Magic], topping: ["fish"], character: [ CharacterTileEnum.Blue ,null] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }],
 [{ terrain: [BaseTileEnum.Lava], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }]]
 
+const sampleCharacterGrid = new Map<string, GridValue>();
+
+sampleCharacterGrid.set("3,4", { character: CharacterTileEnum.Blue, highlight: true});
+sampleCharacterGrid.set("3,3", { character: CharacterTileEnum['Pink Ship'], highlight: false});
+
+const VisuallyHiddenInput = styled('input')({
+  clip: 'rect(0 0 0 0)',
+  clipPath: 'inset(50%)',
+  height: 1,
+  overflow: 'hidden',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  whiteSpace: 'nowrap',
+  width: 1,
+});
+
+type characterArrayItem = {
+  character: [CharacterTileEnum | null, CharacterTileEnum | null],
+  coordinates: [number, number]
+} 
+
 export default function HexMap() {
-  // grid height and grid width are
-  // const [gridHeight, setGridHeight] = useState<number>(sampleHexGrid.length);
-  // const [gridWidth, setGridWidth] = useState<number>(sampleHexGrid[0].length);
-  // const [zoom, setZoom] = useState(0);
-  // const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const [hexHeight, setHexHeight] = useState(0);
   const ref = useRef(null);
   const widthRef = useRef<HTMLInputElement>(null);
   const heightRef = useRef(0);
   const [hexGrid, setHexGrid] = useState<Array<Array<hexInformation | null>>>([[]]);
+  const [characterArray, setCharacterArray] = useState<Array<characterArrayItem>>();
 
   const counter = useRef(0);
   const isRightTop = useRef(false);
+  const [grid, setGrid] = React.useState(new Map<string, GridValue>(sampleCharacterGrid));
+  function getCharacterArray(item: Array<Array<hexInformation | null>>) : Array<characterArrayItem> {
+    const returnArray: Array<characterArrayItem> = [];
+    for (var y = 0; y < item.length; y++) {
+      for (var x = 0; x < item[y].length; x++) {
+        if (item[y][x] !== null && item[y][x]?.character?.[0]) {
+          let newValue: characterArrayItem = {
+            character: item[y][x].character,
+            coordinates: [x, y]
+          }
+          returnArray.push(newValue);
+        }
+      }
+    }
+    return returnArray;
+  }
+
+  // Get the value of a cell
+  const getCell = (x: number, y: number): GridValue | undefined => grid.get(coordinateKey(x, y));
+  
+  // Update the value or properties of a cell
+  const updateCell = (x: number, y: number, updates: Partial<GridValue>): void => {
+    setGrid(prevGrid => {
+      const key = coordinateKey(x, y);
+      const existingCell = prevGrid.get(key) || { character: null };
+      const updatedCell = { ...existingCell, ...updates };
+      const newGrid = new Map(prevGrid);
+      newGrid.set(key, updatedCell);
+      return newGrid;
+    });
+  };
+  
+  // Example Usage
+  // updateCell(2, 3, { character: "My Value", highlight: true });
+
 
   useEffect(() => {
 
     let test = populateGhostHexes(sampleHexGrid);
+    let newCharacterGrid = getCharacterArray(test);
     setHexGrid([...test])
     setTimeout(() => {
       setHexHeight(ref.current.clientHeight)
     }, 500)
   }, [])
 
+  function moveCharacter(destination: [number, number]) {
+    console.log("moving character now");
+    for (var y = 0; y < hexGrid.length; y++) {
+      for (var x = 0; x < hexGrid[y].length; x++) {
+        if (hexGrid[y][x] !== null && hexGrid[y][x]?.character?.[0]) {
+          hexGrid[y][x].character = null;
+        }
+      }
+    }
+    hexGrid[destination[1]][destination[0]].character = [CharacterTileEnum['Pink Ship'], null];
 
-  function toggleTopRow() {
-    // setIsRightTopRow(!isRightTopRow);
+    setHexGrid([...hexGrid]);
+  }
+
+  function debug () {
+    // purpose it to debug any issues that might occur for the user and recheck and set all values
+  }
+
+  function downloadJSON() {
+    // goal is to first grab the data
+    let jsonContent = "data:application/json;charset=utf-8," + encodeURIComponent(JSON.stringify(hexGrid, null, 2));
+    var link = document.createElement("a");
+    link.setAttribute("href", jsonContent);
+    link.setAttribute("download", `${"hex-map"}.json`); document.body.appendChild(link); // Required for Firefox
+
+    link.click(); // This will download the data file named "my_data.csv".
+  }
+
+  function uploadJSON(item: FileList) {
+    const files = item;
+    if (files && files.length > 0) {
+      const file = files[0];
+
+      // Check if the file is a CSV
+      if (file.type === "application/json") {
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+
+          try {
+            const text = e.target?.result as string;
+            console.log(JSON.parse(text));  // This is the JSON content
+            setHexGrid(JSON.parse(text));
+  
+          } catch (error) {
+            console.error("Failed to parse json")
+          }
+
+        };
+
+        reader.readAsText(file);  // Read file as text
+      } else {
+        console.error("Uploaded file is not a JSON");
+      }
+    }
+
   }
 
   function populateGhostHexes(originalHexGrid: Array<Array<hexInformation | null>>): Array<Array<hexInformation | null>> {
@@ -52,10 +162,7 @@ export default function HexMap() {
             addSurroundingGhostHexes(originalHexGrid, xValues, yValues);
           }
         }
-
-
       }
-
     }
     return originalHexGrid;
   }
@@ -112,35 +219,26 @@ export default function HexMap() {
       increaseHeight(originalHexGrid, true);
       storedYValue++;
     }
-
-    // choose 3,4 what is going on here?  It is two off now?
-    // rightTop.current has never changed
-    // 
-
     let numbero: number = 0;
     if (isRightTop.current) {
 
-      if (storedYValue%2 === 0) {
+      if (storedYValue % 2 === 0) {
         //this is a right most component
         numbero = 1;
         // number is 1 because we need the right most tile to also be checked
 
-      } else if (storedYValue%2 === 1) {
-        console.log("This is a left most component");
+      } else if (storedYValue % 2 === 1) {
         // the bottom so we need to check the left most tile
         numbero = -1;
       }
-
     } else {
       // top most is a left most component
-      if (storedYValue%2 === 0) {
+      if (storedYValue % 2 === 0) {
         //this is a left most component
-        numbero = -1 ;
-
-      } else if (storedYValue%2 === 1) {
+        numbero = -1;
+      } else if (storedYValue % 2 === 1) {
         numbero = 1;
       }
-
     }
 
     // let isGreaterThan0 = (storedXValue + numbero - 1 >= 0);
@@ -185,41 +283,21 @@ export default function HexMap() {
     }
   }
 
-
-  function handleCanvasClick(e: React.MouseEvent) {
-    var img = document.getElementById('my-image') as HTMLImageElement;
-    var canvas = document.createElement('canvas');
-    canvas.width = img.width;
-    canvas.height = img.height;
-    canvas.getContext('2d').drawImage(img, 0, 0, img.width, img.height);
-
-    const ctx = canvas.getContext('2d');
-    if (ctx) {
-      ctx.drawImage(img, 0, 0, img.width, img.height);
-
-      // Use nativeEvent to access offsetX and offsetY
-      const { offsetX, offsetY } = e.nativeEvent as MouseEvent;
-      const pixelData = ctx.getImageData(offsetX, offsetY, 1, 1).data;
-      if (pixelData[3] === 0) {
-        //if transparent go deeper.  Else, hmmmm.  What about trees?  
-      } else {
-        e.stopPropagation();
-      }
-
-      console.log(pixelData, "this is the console data");
-    }
-  };
-
   let hexComponents = hexGrid.map((item, index, actualArray) => {
     const row = [];
     const hexHeightCalculation = hexHeight * 0.4;
     let pixel = "-" + hexHeightCalculation + "px"
     for (var i = 0; i < item.length; i++) {
-      row.push(<IndividualHexPiece hexHeight={hexHeight} 
-        setHexGrid={setHexGrid} hexGrid={hexGrid} 
-        addSurroundingGhostHexes={addSurroundingGhostHexes} 
-        key={index.toString() + i.toString() + "hexKey"} 
-        hexInformation={item[i]} toggleThisHex={() => { }} indexArray={[i, index]} />)
+      row.push(<IndividualHexPiece hexHeight={hexHeight}
+        
+        characters={getCell(i, index)}
+        setHexGrid={setHexGrid} hexGrid={hexGrid}
+        moveCharacter={moveCharacter}
+        addSurroundingGhostHexes={addSurroundingGhostHexes}
+        key={index.toString() + i.toString() + "hexKey"}
+        hexInformation={item[i]} 
+        toggleThisHex={() => { }} 
+        indexArray={[i, index]} />)
       //row is a given row, it will need to be enclosed in a div at some point
     }
 
@@ -260,7 +338,6 @@ export default function HexMap() {
     }
   })
 
-  //
   //i can use stop propgation if the top image is not transparent, then it knows not to dig deeper.
   return (
     <>
@@ -278,18 +355,32 @@ export default function HexMap() {
         <div id="hex-map-canvas">
           {hexComponents}
         </div>
-        <button onClick={toggleTopRow}>click</button>
+        <Button
+          component="label"
+          role={undefined}
+          variant="contained"
+          tabIndex={-1}
+          startIcon={<CloudUploadIcon />}
+          onClick={downloadJSON}>
+        Download for later</Button>
+        <Button
+          component="label"
+          role={undefined}
+          variant="contained"
+          tabIndex={-1}
+          startIcon={<CloudUploadIcon />}
+        >
+          Upload JSON file
+          <VisuallyHiddenInput
+            type="file"
+            onChange={(event) => uploadJSON(event.target.files)}
+            multiple
+          />
+        </Button>
+
       </div>
 
 
     </>
   );
 }
-
-// this margin is adjusted?  hmm.  Something to think about.  Especially as I zoom in.  I think a max height is probably preferable?
-const styles = {
-  container: {
-    margin: '0 auto',
-  },
-};
-

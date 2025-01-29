@@ -177,7 +177,7 @@ main > :last-child {
 }
 
 .box.highlight {
-  background-color: yellow; /* Highlight color */
+  background-color: #FFC107; /* Amber yellow color */
 }
 
 .marker {
@@ -341,10 +341,34 @@ main > :last-child {
   z-index: 100;
   top: 0px;
   left: 0px;
-
-  
+  pointer-events: none;
 }
 
+.hex-character {
+  position: absolute;
+  z-index: 100;
+  top: 0px;
+  left: 0px;
+  
+  /* pointer-events: none; */
+}
+
+
+.hex-title {
+  position: absolute;
+  color: greenyellow;
+  font-weight: bold;
+  font-size: small;
+  max-width: 100%;
+  text-align: center; /* Centers each line of text */
+  word-break: break-word; /* Breaks long words to fit the width */
+  white-space: normal; /* Allows wrapping */
+}
+
+.hex-span {
+  display: flex;
+  justify-content: center;
+}
 /* #ryuutama_map_no_border {
 } */
 /*! hex map css end */

@@ -32,18 +32,18 @@ const arrayOfBenefits = ['Protective', 'Hampering', 'Offensive']
 const arrayOfPermanent = ['Permanent', 'One-Use', 'Temporal']
 
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      // Purple and green play nicely together.
-      main: purple[500],
-    },
-    secondary: {
-      // This is green.A700 as hex.
-      main: '#11cb5f',
-    },
-  },
-});
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       // Purple and green play nicely together.
+//       main: purple[500],
+//     },
+//     secondary: {
+//       // This is green.A700 as hex.
+//       main: '#11cb5f',
+//     },
+//   },
+// });
 
 export default function PropsBarIndividualCard(props: Props) {
 
@@ -96,7 +96,7 @@ export default function PropsBarIndividualCard(props: Props) {
 
   return (
     <>
-    <ThemeProvider theme={theme}>
+    {/* <ThemeProvider theme={theme}> */}
       <Card sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', height: "100%", padding: 0 }}>
         <CardContent style={{ flexGrow: 1, maxHeight: '10em', overflow: 'auto', padding: 0  }}>
         <Typography variant="body1" component="div" gutterBottom>
@@ -153,7 +153,7 @@ export default function PropsBarIndividualCard(props: Props) {
         </CardActions>
       </Card>
 
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
 
     </>
   )
