@@ -149,7 +149,11 @@ export default function IndividualHexPiece(props: Props) {
   }
 
   function removeTopLayer() {
-    const undoPossible = form.terrain.pop();
+    if (form.terrain.length > 1) {
+      const undoPossible = form.terrain.pop();
+    } else {
+      form.terrain[0] = BaseTileEnum.None;
+    }
     setForm({ ...form });
   }
 
