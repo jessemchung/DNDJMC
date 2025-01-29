@@ -46,6 +46,7 @@ var material_1 = require("@mui/material");
 var HexMapCommon_jsx_1 = require("./HexMapCommon.jsx");
 ;
 function IndividualHexPiece(props) {
+<<<<<<< HEAD
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t;
     var contextRef = (0, react_1.useRef)(null);
     var expandedContextRef = (0, react_1.useRef)(null);
@@ -54,6 +55,16 @@ function IndividualHexPiece(props) {
     var _w = (0, react_1.useState)(false), expandedMenuPosition = _w[0], setExpandedMenuPosition = _w[1];
     var _x = (0, react_1.useState)({ x: 0, y: 0 }), menuPosition = _x[0], setMenuPosition = _x[1];
     var _y = (0, react_1.useState)(false), open = _y[0], setOpen = _y[1];
+=======
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+    var contextRef = (0, react_1.useRef)(null);
+    var expandedContextRef = (0, react_1.useRef)(null);
+    var _l = (0, react_1.useState)(JSON.parse(JSON.stringify(props.hexInformation))), form = _l[0], setForm = _l[1];
+    var _m = (0, react_1.useState)(false), menuVisible = _m[0], setMenuVisible = _m[1];
+    var _o = (0, react_1.useState)(false), expandedMenuPosition = _o[0], setExpandedMenuPosition = _o[1];
+    var _p = (0, react_1.useState)({ x: 0, y: 0 }), menuPosition = _p[0], setMenuPosition = _p[1];
+    var _q = (0, react_1.useState)(false), open = _q[0], setOpen = _q[1];
+>>>>>>> 40a19f6 (more fixing)
     var getFromEnumSelectComponents = function (selected) {
         var enums = [];
         for (var _i = 1; _i < arguments.length; _i++) {
@@ -166,22 +177,29 @@ function IndividualHexPiece(props) {
         setForm(__assign({}, form));
     }
     function removeTopLayer() {
+<<<<<<< HEAD
         if (form.terrain.length > 1) {
             var undoPossible = form.terrain.pop();
         }
         else {
             form.terrain[0] = _Types_jsx_1.BaseTileEnum.None;
         }
+=======
+        var undoPossible = form.terrain.pop();
+>>>>>>> 40a19f6 (more fixing)
         setForm(__assign({}, form));
     }
     function updateHexForm(terrain, index) {
         form.terrain[index] = terrain;
         setForm(__assign({}, form));
     }
+<<<<<<< HEAD
     function updateToppings(topping, index) {
         form.topping = [topping];
         setForm(__assign({}, form));
     }
+=======
+>>>>>>> 40a19f6 (more fixing)
     var FullTileOptions = Object.keys(_Types_jsx_1.BaseFullTileEnum);
     var FullTileList = FullTileOptions.map(function (item) {
         return (<li key={"fulltile " + item} style={{ padding: "5px 10px", cursor: "pointer" }} onClick={function () { addStack(item); }}>{item}</li>);
@@ -197,11 +215,16 @@ function IndividualHexPiece(props) {
     var counter = 1;
     if (props.hexInformation !== null && props.hexInformation.terrain[1]) {
         for (counter = 1; counter < props.hexInformation.terrain.length; counter++) {
+<<<<<<< HEAD
             stackedTerrain.push(<img key={"stack" + counter} className={"hex-top-floors hex-image"} style={{ marginLeft: "1.5px", marginTop: "-".concat(calculated / 5 + (calculated * (counter - 1) / 4) + 1.5, "px") }} src={(_a = props.hexInformation) === null || _a === void 0 ? void 0 : _a.terrain[counter]}/>);
+=======
+            stackedTerrain.push(<img key={"stack" + counter} id="my-image1" className={"hex-top-floors"} style={{ marginLeft: "1.5px", marginTop: "-".concat(calculated / 5 + (calculated * (counter - 1) / 4) + 1.5, "px") }} src={(_a = props.hexInformation) === null || _a === void 0 ? void 0 : _a.terrain[counter]}/>);
+>>>>>>> 40a19f6 (more fixing)
         }
     }
     var character;
     if (((_b = props.hexInformation) === null || _b === void 0 ? void 0 : _b.character) && ((_d = (_c = props.hexInformation) === null || _c === void 0 ? void 0 : _c.character) === null || _d === void 0 ? void 0 : _d[0])) {
+<<<<<<< HEAD
         // hmm strange, something is off.  Needs to multiply by height I think
         character = (<img key={"character-marker"} className={"hex-character"} style={{ marginLeft: "25%", width: calculated / 3 + "px", height: "auto", marginTop: "-".concat(calculated / 5 + (calculated * (counter - 1) / 4) + 1.5, "px") }} src={"./image/map/shipPink_manned.png"}/>);
     }
@@ -211,11 +234,17 @@ function IndividualHexPiece(props) {
     console.log("why so many?", (_f = (_e = props.hexInformation) === null || _e === void 0 ? void 0 : _e.topping) === null || _f === void 0 ? void 0 : _f.length, ((_h = (_g = props.hexInformation) === null || _g === void 0 ? void 0 : _g.topping) === null || _h === void 0 ? void 0 : _h.length) > 0);
     if (((_k = (_j = props.hexInformation) === null || _j === void 0 ? void 0 : _j.topping) === null || _k === void 0 ? void 0 : _k.length) > 0) {
         toppings = (<img key={"character-marker"} className={"hex-character"} style={{ marginLeft: "25%", width: calculated / 3 + "px", marginTop: "-".concat(calculated / 5 + (calculated * (counter) / 4) + 1.5, "px") }} src={props.hexInformation.topping[0]}/>);
+=======
+        character = (<img key={"character-marker"} className={"hex-character"} style={{ marginLeft: "25%", width: calculated / 3 + "px", height: "auto" }} src={"./image/map/shipPink_manned.png"}/>);
+>>>>>>> 40a19f6 (more fixing)
     }
     function editLayers() {
         var layerArray = [];
         var _loop_1 = function (currentLayer) {
+<<<<<<< HEAD
             // check if first layer
+=======
+>>>>>>> 40a19f6 (more fixing)
             var index = currentLayer;
             var frontendLayer = currentLayer + 1;
             layerArray.push(<div style={{ display: "flex" }}>
@@ -246,6 +275,7 @@ function IndividualHexPiece(props) {
 
 
           <material_1.TextField fullWidth id="outlined-basic" label="Hex Title" value={(form === null || form === void 0 ? void 0 : form.name) || ""} variant="outlined" onChange={function (e) { return updateTitle(e.target.value); }}/>
+<<<<<<< HEAD
           
           
           <material_1.InputLabel id={"select-label-select-topping"}>{"layer-toppings"}</material_1.InputLabel>
@@ -262,6 +292,11 @@ function IndividualHexPiece(props) {
 
                 </div>
 
+=======
+          <material_1.Grid2 container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+            <material_1.Grid2 size={12}>
+              <material_1.Grid2 container flexDirection={"column"} rowSpacing={0} columnSpacing={0}>
+>>>>>>> 40a19f6 (more fixing)
                 {editLayers()}
               </material_1.Grid2>
             </material_1.Grid2>
@@ -273,6 +308,7 @@ function IndividualHexPiece(props) {
         </material_1.DialogActions>
       </material_1.Dialog>
       <span className="hex-span">
+<<<<<<< HEAD
         {((_o = props.hexInformation) === null || _o === void 0 ? void 0 : _o.name) ? <p key={props.hexInformation.name + "-hex-title"} id={props.hexInformation.name + "-hex-title"} className={"hex-title"} style={{ marginLeft: "1.5px", maxWidth: "".concat(calculated / 2, "px"), zIndex: 999 }}> {props.hexInformation.name} </p> : null}
         <span className='individual-hex' style={{ position: "relative" }} title={props.indexArray[0] + ", " + props.indexArray[1]}>
           <img id="my-image" className={"hex-image ".concat(props.hexInformation === null ? "transparent" : "", " ").concat(((_q = (_p = props.hexInformation) === null || _p === void 0 ? void 0 : _p.terrain) === null || _q === void 0 ? void 0 : _q[0]) === _Types_jsx_1.BaseTileEnum.None ? "semi-transparent" : "")} onContextMenu={function (e) { e.preventDefault(); handleRightClickHex(e); }} onClick={handleCanvasClick} src={((_r = props.hexInformation) === null || _r === void 0 ? void 0 : _r.terrain) ? (_s = props.hexInformation) === null || _s === void 0 ? void 0 : _s.terrain[0] : _Types_jsx_1.BaseTileEnum.Stone}/>
@@ -281,6 +317,15 @@ function IndividualHexPiece(props) {
           {character}
         </span>
         {menuVisible && ((_t = props.hexInformation) === null || _t === void 0 ? void 0 : _t.terrain) !== null && (<ul ref={contextRef} style={{ position: "absolute", top: "".concat(menuPosition.y, "px"), left: "".concat(menuPosition.x, "px"), backgroundColor: "#fff", border: "1px solid #ccc", padding: "10px", listStyle: "none", zIndex: 1000 }}>
+=======
+        {((_e = props.hexInformation) === null || _e === void 0 ? void 0 : _e.name) ? <p key={props.hexInformation.name + "-hex-title"} id={props.hexInformation.name + "-hex-title"} className={"hex-title"} style={{ marginLeft: "1.5px", maxWidth: "".concat(calculated / 2, "px"), zIndex: 999 }}> {props.hexInformation.name} </p> : null}
+        <span style={{ position: "relative" }} title={props.indexArray[0] + ", " + props.indexArray[1]}>
+          <img id="my-image" className={"hex-image ".concat(props.hexInformation === null ? "transparent" : "", " ").concat(((_g = (_f = props.hexInformation) === null || _f === void 0 ? void 0 : _f.terrain) === null || _g === void 0 ? void 0 : _g[0]) === _Types_jsx_1.BaseTileEnum.None ? "semi-transparent" : "")} onContextMenu={function (e) { e.preventDefault(); handleRightClickHex(e); }} onClick={handleCanvasClick} src={((_h = props.hexInformation) === null || _h === void 0 ? void 0 : _h.terrain) ? (_j = props.hexInformation) === null || _j === void 0 ? void 0 : _j.terrain[0] : _Types_jsx_1.BaseTileEnum.Stone}/>
+          {stackedTerrain}
+          {character}
+        </span>
+        {menuVisible && ((_k = props.hexInformation) === null || _k === void 0 ? void 0 : _k.terrain) !== null && (<ul ref={contextRef} style={{ position: "absolute", top: "".concat(menuPosition.y, "px"), left: "".concat(menuPosition.x, "px"), backgroundColor: "#fff", border: "1px solid #ccc", padding: "10px", listStyle: "none", zIndex: 1000 }}>
+>>>>>>> 40a19f6 (more fixing)
             <li onClick={function () { return setExpandedMenuPosition(true); }} style={{ padding: "5px 10px", cursor: "pointer" }}>Add Stack</li>
             {BaseTileList}
           </ul>)}

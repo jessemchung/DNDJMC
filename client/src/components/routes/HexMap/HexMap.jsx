@@ -48,9 +48,16 @@ var _Types_jsx_1 = require("./_Types.jsx");
 var IndividualHexPiece_jsx_1 = __importDefault(require("./IndividualHexPiece.jsx"));
 var material_1 = require("@mui/material");
 var CloudUpload_1 = __importDefault(require("@mui/icons-material/CloudUpload"));
+<<<<<<< HEAD
 var sampleHexGrid = [[null, { terrain: [_Types_jsx_1.BaseTileEnum.None] }, { name: "Old Spring Town", terrain: [_Types_jsx_1.BaseTileEnum.Water] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt] }, { terrain: [_Types_jsx_1.BaseTileEnum.Lava, _Types_jsx_1.BaseTileEnum.Lava, _Types_jsx_1.BaseTileEnum.Lava] }, { terrain: [_Types_jsx_1.BaseTileEnum.Grass, _Types_jsx_1.BaseTileEnum.Grass] }],
     [{ terrain: [_Types_jsx_1.BaseTileEnum.Magic], topping: [_Types_jsx_1.TerrainTopper.Blue_Tree] }, { terrain: [_Types_jsx_1.BaseTileEnum.Magic], character: [_Types_jsx_1.CharacterTileEnum.Blue, null] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt] }],
     [{ terrain: [_Types_jsx_1.BaseTileEnum.Lava], topping: [_Types_jsx_1.TerrainTopper.Autumn_Tree] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt], topping: [_Types_jsx_1.TerrainTopper.Autumn_Tree] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt] }]];
+=======
+//! next thing to work on, getting the characters to display correctly
+var sampleHexGrid = [[null, { terrain: [_Types_jsx_1.BaseTileEnum.None], topping: ["fish"] }, { name: "Old Spring Town", terrain: [_Types_jsx_1.BaseTileEnum.Water], topping: ["fish"] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [_Types_jsx_1.BaseTileEnum.Lava, _Types_jsx_1.BaseTileEnum.Lava, _Types_jsx_1.BaseTileEnum.Lava], topping: ["fish"] }, { terrain: [_Types_jsx_1.BaseTileEnum.Grass, _Types_jsx_1.BaseTileEnum.Grass], topping: ["fish"] }],
+    [{ terrain: [_Types_jsx_1.BaseTileEnum.Magic], topping: ["fish"] }, { terrain: [_Types_jsx_1.BaseTileEnum.Magic], topping: ["fish"], character: [_Types_jsx_1.CharacterTileEnum.Blue, null] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt], topping: ["fish"] }],
+    [{ terrain: [_Types_jsx_1.BaseTileEnum.Lava], topping: ["fish"] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [_Types_jsx_1.BaseTileEnum.Dirt], topping: ["fish"] }]];
+>>>>>>> 40a19f6 (more fixing)
 var sampleCharacterGrid = new Map();
 sampleCharacterGrid.set("3,4", { character: _Types_jsx_1.CharacterTileEnum.Blue, highlight: true });
 sampleCharacterGrid.set("3,3", { character: _Types_jsx_1.CharacterTileEnum['Pink Ship'], highlight: false });
@@ -104,7 +111,10 @@ function HexMap() {
             return newGrid;
         });
     };
+<<<<<<< HEAD
     // maybe on hover.
+=======
+>>>>>>> 40a19f6 (more fixing)
     // Example Usage
     // updateCell(2, 3, { character: "My Value", highlight: true });
     (0, react_1.useEffect)(function () {
@@ -117,6 +127,10 @@ function HexMap() {
     }, []);
     function moveCharacter(destination) {
         var _a, _b;
+<<<<<<< HEAD
+=======
+        console.log("moving character now");
+>>>>>>> 40a19f6 (more fixing)
         for (var y = 0; y < hexGrid.length; y++) {
             for (var x = 0; x < hexGrid[y].length; x++) {
                 if (hexGrid[y][x] !== null && ((_b = (_a = hexGrid[y][x]) === null || _a === void 0 ? void 0 : _a.character) === null || _b === void 0 ? void 0 : _b[0])) {
@@ -164,6 +178,7 @@ function HexMap() {
             }
         }
     }
+<<<<<<< HEAD
     function clearMap() {
         //must clear the map
         setHexGrid([[{ terrain: [_Types_jsx_1.BaseTileEnum.None] }, { terrain: [_Types_jsx_1.BaseTileEnum.None] }],
@@ -171,6 +186,8 @@ function HexMap() {
             [{ terrain: [_Types_jsx_1.BaseTileEnum.None] }, { terrain: [_Types_jsx_1.BaseTileEnum.None] }]
         ]);
     }
+=======
+>>>>>>> 40a19f6 (more fixing)
     function populateGhostHexes(originalHexGrid) {
         // go through y axis starting from the top
         for (var yValues = 0; yValues < originalHexGrid.length; yValues++) {
@@ -220,8 +237,11 @@ function HexMap() {
     }
     function addSurroundingGhostHexes(originalHexGrid, xValue, yValue) {
         var storedXValue = xValue;
+<<<<<<< HEAD
         // what is going on?
         console.log("hell");
+=======
+>>>>>>> 40a19f6 (more fixing)
         var storedYValue = yValue;
         if (originalHexGrid[yValue][xValue] === null || originalHexGrid[yValue][xValue].terrain[0] === _Types_jsx_1.BaseTileEnum.None) {
             return;
@@ -307,9 +327,13 @@ function HexMap() {
         }
         // the first value is just to calculate the height of the hexes to then caculate how much to increase the other hex rows by so that they can be proper
         if (index === 0) {
+<<<<<<< HEAD
             return (
             // flex-grow is problematic?
             <div key={index + "rowKey"} style={{ display: "flex", width: "100%" }} ref={ref}>
+=======
+            return (<div key={index + "rowKey"} style={{ display: "flex", width: "100%" }} ref={ref}>
+>>>>>>> 40a19f6 (more fixing)
           {isRightTop.current ? <div className='half-hex'>hello</div> : ""}
 
           {row}
@@ -336,10 +360,21 @@ function HexMap() {
         </div>);
         }
     });
+<<<<<<< HEAD
+=======
+    //i can use stop propgation if the top image is not transparent, then it knows not to dig deeper.
+>>>>>>> 40a19f6 (more fixing)
     return (<>
       <div>
         <div className="hex-map-slide-container">
           <input ref={widthRef} type="range" min="1" max="100" className="slider" id="myRange"/>
+<<<<<<< HEAD
+=======
+          {/* <input onChange={(e)=> {setGridHeight(parseInt(e.target.value))}} type="range" min="1" max="100" value={gridHeight} className="slider" id="myRange" />
+      <p>Height: <input id="width" type="text" value={gridHeight} />{gridHeight}</p>
+      <input onChange={(e)=> {setZoom(parseInt(e.target.value))}} type="range" min="1" max="100" value={zoom} className="slider" id="myRange" /> <span>zoom value</span>
+      <p>Zoom: <input id="width" type="text" value={zoom} />{zoom}</p> */}
+>>>>>>> 40a19f6 (more fixing)
 
         </div>
       </div>
@@ -347,16 +382,21 @@ function HexMap() {
         <div id="hex-map-canvas">
           {hexComponents}
         </div>
+<<<<<<< HEAD
 
       </div>
       <material_1.ButtonGroup>
       <material_1.Button component="label" role={undefined} variant="contained" tabIndex={-1} startIcon={<CloudUpload_1.default />} onClick={downloadJSON}>
+=======
+        <material_1.Button component="label" role={undefined} variant="contained" tabIndex={-1} startIcon={<CloudUpload_1.default />} onClick={downloadJSON}>
+>>>>>>> 40a19f6 (more fixing)
         Download for later</material_1.Button>
         <material_1.Button component="label" role={undefined} variant="contained" tabIndex={-1} startIcon={<CloudUpload_1.default />}>
           Upload JSON file
           <VisuallyHiddenInput type="file" onChange={function (event) { return uploadJSON(event.target.files); }} multiple/>
         </material_1.Button>
 
+<<<<<<< HEAD
         <material_1.Button component="label" role={undefined} variant="contained" onClick={clearMap}>
           Clear Map
         </material_1.Button>
@@ -365,6 +405,11 @@ function HexMap() {
 
       </material_1.ButtonGroup>
       <a href="mailto:deeperwishingwell@gmail.com?subject=just-a-subject">Send me and e-mail for feedback!</a>
+=======
+      </div>
+
+
+>>>>>>> 40a19f6 (more fixing)
     </>);
 }
 exports.default = HexMap;
