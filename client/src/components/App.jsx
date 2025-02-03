@@ -30,7 +30,7 @@ function App() {
           <react_router_dom_1.Link className="nav-option" to="/about-me">About Me</react_router_dom_1.Link> | {' '}
           <react_router_dom_1.Link className="nav-option" to="/ryuutama">Ryuutama</react_router_dom_1.Link> | {' '}
           <react_router_dom_1.Link className="nav-option" to="/hex-map">Hex Map</react_router_dom_1.Link> | {' '}
-
+          <react_router_dom_1.Link className="nav-option" to="/flash-card">Flash Cards</react_router_dom_1.Link> | {' '}
           <react_router_dom_1.Link className="nav-option" to="/ryuutama">Postcard Maker</react_router_dom_1.Link> | {' '}
           {/* <Link to="/AboutMyself">About Me</Link>         */}
         </nav>

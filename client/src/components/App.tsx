@@ -12,7 +12,7 @@ export default function App() {
           <Link className="nav-option" to="/about-me">About Me</Link> | {' '}
           <Link className="nav-option" to="/ryuutama">Ryuutama</Link> | {' '}
           <Link className="nav-option" to="/hex-map">Hex Map</Link> | {' '}
-
+          <Link className="nav-option" to="/flash-card">Flash Cards</Link> | {' '}
           <Link className="nav-option" to="/ryuutama">Postcard Maker</Link> | {' '}
           {/* <Link to="/AboutMyself">About Me</Link>         */}
         </nav>

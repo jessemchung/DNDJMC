@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faTwitter, faInstagram, faLinkedinIn, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 
-export default function App() {
+export default function Blog() {
   const [isComponentVisible, setIsComponentVisible] = React.useState(false);
   const ref = React.useRef(null);
 

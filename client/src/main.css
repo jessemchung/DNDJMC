@@ -372,3 +372,144 @@ main > :last-child {
 /* #ryuutama_map_no_border {
 } */
 /*! hex map css end */
+
+
+
+/* Adds a smooth transition effect to all properties over 750ms */
+.anim750 {
+  transition: all 750ms ease-in-out;
+}
+
+/* Main container for the entire component */
+#Awesome {
+  position: relative; /* Allows child elements to be positioned absolutely relative to this container */
+  width: 360px; /* Fixed width of the container */
+  height: 360px; /* Fixed height of the container */
+  margin: 0 auto; /* Centers the container horizontally */
+  backface-visibility: hidden; /* Hides the back side of rotated elements */
+}
+
+/* Rotates the sticky note effect to the top right corner */
+#Awesome .sticky {
+  transform: rotate(45deg); /* Rotates the element by 45 degrees */
+}
+
+/* Slightly adjusts the rotation on hover for a dynamic effect */
+#Awesome:hover .sticky {
+  transform: rotate(10deg); /* Rotates the element by 10 degrees on hover */
+}
+
+/* Positions the sticky element absolutely within the container */
+#Awesome .sticky {
+  position: absolute; /* Positions the element relative to the nearest positioned ancestor */
+  top: 0; /* Aligns the element to the top of the container */
+  left: 0; /* Aligns the element to the left of the container */
+  width: 360px; /* Matches the width of the container */
+  height: 360px; /* Matches the height of the container */
+}
+
+/* Styles for the reveal circle (top circle) */
+#Awesome .reveal .circle {
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.15); /* Adds a subtle shadow */
+  font-family: 'helvetica neue', arial; /* Sets the font family */
+  font-weight: 200; /* Sets the font weight */
+  line-height: 280px; /* Centers text vertically */
+  text-align: center; /* Centers text horizontally */
+  cursor: pointer; /* Changes the cursor to a pointer on hover */
+}
+
+/* Background color for the reveal circle */
+#Awesome .reveal .circle {
+  background: #fafafa; /* Light gray background */
+}
+
+/* Wrapper for the circle elements */
+#Awesome .circle_wrapper {
+  position: absolute; /* Positions the wrapper absolutely within the container */
+  width: 360px; /* Matches the width of the container */
+  height: 360px; /* Matches the height of the container */
+  left: 0px; /* Aligns the wrapper to the left */
+  top: 0px; /* Aligns the wrapper to the top */
+  overflow: hidden; /* Hides any content that overflows the wrapper */
+}
+
+/* Styles for the circle elements */
+#Awesome .circle {
+  position: absolute; /* Positions the circle absolutely within the wrapper */
+  width: 280px; /* Fixed width of the circle */
+  height: 280px; /* Fixed height of the circle */
+  margin: 40px; /* Centers the circle within the wrapper */
+  border-radius: 999px; /* Makes the circle perfectly round */
+}
+
+/* Styles for the back circle (bottom circle) */
+#Awesome .back {
+  height: 20px; /* Initial height of the back circle */
+  top: 60px; /* Initial vertical position of the back circle */
+}
+
+/* Adjusts the back circle on hover */
+#Awesome:hover .back {
+  height: 180px; /* Increases the height of the back circle on hover */
+  top: 220px; /* Adjusts the vertical position of the back circle on hover */
+}
+
+/* Styles for the back circle's inner circle */
+#Awesome .back .circle {
+  margin-top: -260px; /* Positions the inner circle within the back circle */
+  background-color: #fbec3f; /* Yellow background color */
+  background-image: -webkit-linear-gradient(bottom, rgba(251, 236, 63, 0), rgba(255, 255, 255, 0.8)); /* Adds a gradient effect */
+}
+
+/* Adjusts the back circle's inner circle on hover */
+#Awesome:hover .back .circle {
+  margin-top: -100px; /* Repositions the inner circle on hover */
+}
+
+/* Styles for the front circle (top circle) */
+#Awesome .front {
+  height: 300px; /* Initial height of the front circle */
+  bottom: 0; /* Aligns the front circle to the bottom */
+  top: auto; /* Overrides any top positioning */
+  -webkit-box-shadow: 0 -280px 40px -280px rgba(0, 0, 0, 0.3); /* Adds a shadow effect */
+}
+
+/* Adjusts the front circle on hover */
+#Awesome:hover .front {
+  height: 140px; /* Reduces the height of the front circle on hover */
+  -webkit-box-shadow: 0 -120px 20px -120px rgba(0, 0, 0, 0.1); /* Adjusts the shadow on hover */
+}
+
+/* Styles for the front circle's inner circle */
+#Awesome .front .circle {
+  margin-top: -20px; /* Positions the inner circle within the front circle */
+  background: #fbec3f; /* Yellow background color */
+  background-image: -webkit-linear-gradient(bottom, rgba(251, 236, 63, 0) 75%, #f7bb37 95%); /* Adds a gradient effect */
+  background-image: -moz-linear-gradient(bottom, rgba(251, 236, 63, 0) 75%, #f7bb37 95%); /* Adds a gradient effect */
+  background-image: linear-gradient(bottom, rgba(251, 236, 63, 0) 75%, #f7bb37 95%); /* Adds a gradient effect */
+}
+
+/* Styles for the "Peel Me!" text */
+#Awesome h4 {
+  font-family: 'helvetica neue', arial; /* Sets the font family */
+  font-weight: 200; /* Sets the font weight */
+  text-align: center; /* Centers the text horizontally */
+  position: absolute; /* Positions the text absolutely within the container */
+  width: 360px; /* Matches the width of the container */
+  height: 280px; /* Matches the height of the circle */
+  line-height: 280px; /* Centers the text vertically */
+  transition: opacity 50ms linear 400ms; /* Adds a fade-out transition */
+}
+
+/* Hides the "Peel Me!" text on hover */
+#Awesome:hover h4 {
+  opacity: 0; /* Makes the text fully transparent */
+  transition: opacity 50ms linear 300ms; /* Adjusts the transition timing */
+}
+
+/* Adjusts the front circle's inner circle on hover */
+#Awesome:hover .front .circle {
+  margin-top: -180px; /* Repositions the inner circle on hover */
+  background-color: #e2d439; /* Changes the background color on hover */
+  background-position: 0 200px; /* Adjusts the gradient position on hover */
+}

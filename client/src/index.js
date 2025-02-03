@@ -7,6 +7,8 @@ import Invoices from "./components/routes/invoices.jsx";
 import Invoice from "./components/routes/invoice.jsx";
 import Ryuutama from "./components/Ryuutama/Ryuutama.jsx";
 import Blog from "./components/routes/blog.jsx";
+import FlashCard from "./components/routes/flashcard.jsx";
+
 import HexMap from "./components/routes/HexMap/HexMap.jsx";
 import './main.css';
 
@@ -15,12 +17,16 @@ const container = document.getElementById('app');
 const root = createRoot(container);
 
 // Render the application
+
+//cheer gif
+
+// read music and time the beat
 root.render(
   <HashRouter>
     <Routes>
       <Route path="/" element={<App />}>
+      <Route index element={<Blog />} />
         <Route path="expenses" element={<Expenses />} />
-        <Route path="about-me" element={<Blog />} />
         {/* <Route path="aboutme" element={<AboutMyself />} /> */}
 
         <Route path="invoices" element={<Invoices />}>
@@ -39,17 +45,18 @@ root.render(
         <Route path="animation" element={<Ryuutama />} />
         <Route path="postcard" element={<Ryuutama />} />
         <Route path="hex-map" element={<HexMap />} />
+        <Route path="flash-card" element={<FlashCard />} />
+
+        <Route path="about-me" element={<Blog />} />
+        {/* <Route path="about-me" element={<ChangeLog />} /> */}
+
 
         {/* <Route path="AboutMyself" element={<AboutMyself />} /> */}
         {/* <Route path="journal" element={<Journal />} /> */}
 
         <Route
           path="*"
-          element={
-            <main style={{ padding: '1rem' }}>
-              <p>There's nothing here!</p>
-            </main>
-          }
+          element={<Blog />}
         />
       </Route>
     </Routes>
