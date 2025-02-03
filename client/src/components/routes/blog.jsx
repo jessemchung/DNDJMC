@@ -22,7 +22,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var React = __importStar(require("react"));
 var react_fontawesome_1 = require("@fortawesome/react-fontawesome");
 var free_brands_svg_icons_1 = require("@fortawesome/free-brands-svg-icons");
-function App() {
+function Blog() {
     var _a = React.useState(false), isComponentVisible = _a[0], setIsComponentVisible = _a[1];
     var ref = React.useRef(null);
     var handleClickOutside = function (event) {
@@ -70,7 +70,7 @@ function App() {
     </div>
     </>);
 }
-exports.default = App;
+exports.default = Blog;
 var styles = {
     container: {
         padding: '20px',
