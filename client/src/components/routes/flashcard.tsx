@@ -78,6 +78,7 @@ export default function flashcard() {
 
   const [cardFront, setCardFront] = React.useState<boolean>(true);
   const [openDialogue, setOpenDialogue] = React.useState<boolean>(false);
+  const [editing, setEditing] = React.useState<boolean>(false);
   const [newCardForm, setNewCardForm] = React.useState<flashcard>({
     backText: "",
     frontText: "",
@@ -150,6 +151,14 @@ export default function flashcard() {
     };
   }, [cardIndex, cardList]); 
 
+  React.useEffect(() => {
+    if (editing === true) {
+      setNewCardForm(cardList[cardIndex]);
+    }
+
+  }, [editing]); 
+
+
   /* Randomize array in-place using Durstenfeld shuffle algorithm */
   function shuffleArray(array: Array<flashcard>) {
     for (var i = array.length - 1; i >= 0; i--) {
@@ -189,8 +198,19 @@ export default function flashcard() {
   }
 
   function saveCard() {
-    console.log(newCardForm);
-    setCardList(cardList.concat([newCardForm]))
+    if (editing === true) {
+      setCardList(cardList.map((item, index)=> {
+        if (index === cardIndex) {
+          return newCardForm;
+        } else {
+          return item;
+        }
+      })) 
+      setEditing(false);
+    } else {
+      setCardList(cardList.concat([newCardForm]))
+    }
+
     setOpenDialogue(false);
   } 
 
@@ -205,7 +225,7 @@ export default function flashcard() {
         <CommonDialogue 
         open={openDialogue} 
         onClose={() => setOpenDialogue(false)} 
-        buttons={[{ label: "Cancel",  onClick: ()=>{setOpenDialogue(false)}}, { label: "Save", onClick: saveCard  }]} 
+        buttons={[{ label: "Cancel",  onClick: ()=>{setOpenDialogue(false);}}, { label: "Save", onClick: saveCard  }]} 
         title={''}
         textFields={[
           {label: "front title", onChange: (event) => {updateForm('frontTitle', event.target.value)}, value: newCardForm.frontTitle, multiline: false},
@@ -241,7 +261,9 @@ export default function flashcard() {
           />
         </Button>          <Button onClick={deleteCards}>Clear</Button>
           <Button>Discard</Button>
-          <Button onClick={() => {setOpenDialogue(true)}}>Add New Card</Button>
+          <Button onClick={() => {console.log('hello'); setOpenDialogue(true); setEditing(true)}}>Edit</Button>
+
+          <Button onClick={() => {setOpenDialogue(true); setEditing(false)}}>Add New Card</Button>
           <Button onClick={() => { shuffleArray(cardList) }}>Shuffle</Button>
           <Button onClick={() => { previousCard(true) }}>Previous</Button>
           <Button onClick={() => { nextCard(true) }}>Success</Button>
