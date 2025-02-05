@@ -35,6 +35,23 @@ export enum BaseFullTileEnum {
   "Full None" = "./image/map/tileSnow_full.png"
 }
 
+export enum TerrainTopper {
+  "Green_Tree" = "./image/map/treeGreen_low.png",
+  "Blue_Tree" = "./image/map/treeBlue_low.png",
+  "Autumn_Tree" = "./image/map/treeAutumn_low.png",
+  // "Cactus" = "./image/map/treeCactus_1.png",
+  // "Stone_Rock" = "./image/map/rockStone.png",
+  // "Sand_Rock" = "./image/map/rockSand.png",
+  // "Sand_Moss" = "./image/map/rockDirt_moss1.png"
+}
+
+export enum TerrainTopperRock {
+  "Stone_Rock" = "./image/map/rockStone.png",
+  "Sand_Rock" = "./image/map/rockSand.png",
+  "Sand_Moss" = "./image/map/rockDirt_moss1.png"
+}
+
+
 // these are characters like aliens
 export enum CharacterTileEnum {
   "Blue" = "./image/map/alienBlue.png",
@@ -52,7 +69,7 @@ export enum CharacterTileEnum {
  */  export type hexInformation = {
   terrain: Array<BaseTileEnum | BaseFullTileEnum | null>,
   name?: string,
-  topping?: Array<string>,
+  topping?: Array<TerrainTopper | null>,
   opaque?: boolean,
   character?: [CharacterTileEnum | null, CharacterTileEnum | null]
 }

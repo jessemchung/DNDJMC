@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
-import { BaseFullTileEnum, BaseTileEnum, characterInformation, CharacterTileEnum, GridValue, hexInformation } from './_Types.jsx';
+import { BaseFullTileEnum, BaseTileEnum, characterInformation, CharacterTileEnum, GridValue, hexInformation, TerrainTopper } from './_Types.jsx';
 import { Box, Button, ButtonGroup, Dialog, DialogActions, DialogContent, DialogTitle, FormControl, Grid2, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
 import { MENU_HEIGHT, MENU_WIDTH } from './HexMapCommon.jsx';
 
@@ -162,6 +162,12 @@ export default function IndividualHexPiece(props: Props) {
     setForm({ ...form });
   }
 
+  function updateToppings(topping: (TerrainTopper), index: number) {
+    form.topping = [topping]
+    setForm({ ...form });
+  }
+
+
   const FullTileOptions = Object.keys(BaseFullTileEnum);
   const FullTileList = FullTileOptions.map((item) => {
     return (<li key={"fulltile " + item} style={{ padding: "5px 10px", cursor: "pointer" }} onClick={() => { addStack(item as keyof typeof BaseFullTileEnum) }}>{item}</li>);
@@ -182,19 +188,33 @@ export default function IndividualHexPiece(props: Props) {
   if (props.hexInformation !== null && props.hexInformation.terrain[1]) {
     for (counter = 1; counter < props.hexInformation.terrain.length; counter++) {
       stackedTerrain.push(
-        <img key={"stack" + counter} id="my-image1" className={"hex-top-floors"} style={{ marginLeft: "1.5px", marginTop: `-${calculated / 5 + (calculated * (counter - 1) / 4) + 1.5}px` }} src={props.hexInformation?.terrain[counter]} />
+        <img key={"stack" + counter} className={"hex-top-floors hex-image"} style={{ marginLeft: "1.5px", marginTop: `-${calculated / 5 + (calculated * (counter - 1) / 4) + 1.5}px` }} src={props.hexInformation?.terrain[counter]} />
       );
     }
   }
 
   let character: React.JSX.Element;
   if (props.hexInformation?.character && props.hexInformation?.character?.[0]) {
-    character = (<img key={"character-marker"} className={"hex-character"} style={{ marginLeft: "25%", width: calculated / 3 + "px", height: "auto" }} src={"./image/map/shipPink_manned.png"} />);
+    // hmm strange, something is off.  Needs to multiply by height I think
+    character = (<img key={"character-marker"} className={"hex-character"} style={{ marginLeft: "25%", width: calculated / 3 + "px", height: "auto", marginTop: `-${calculated / 5 + (calculated * (counter - 1) / 4) + 1.5}px` }} src={"./image/map/shipPink_manned.png"} />);
+  }
+
+  let toppings: React.JSX.Element;
+  // now to handle toppings
+    // hmm strange, something is off.  Needs to multiply by height I think
+
+    console.log("why so many?", props.hexInformation?.topping?.length, props.hexInformation?.topping?.length > 0)
+
+  if (props.hexInformation?.topping?.length > 0) {
+    toppings = (<img key={"character-marker"} className={"hex-character"} style={{ marginLeft: "25%", width: calculated / 3 + "px", marginTop: `-${calculated / 5 + (calculated * (counter) / 4) + 1.5}px` }} src={props.hexInformation.topping[0]} />);
+
   }
 
   function editLayers(): React.JSX.Element[] {
     let layerArray = [];
     for (let currentLayer = form?.terrain.length - 1; currentLayer >= 0; currentLayer--) {
+
+      // check if first layer
       let index = currentLayer;
       let frontendLayer = currentLayer + 1;
       layerArray.push(
@@ -226,9 +246,22 @@ export default function IndividualHexPiece(props: Props) {
 
 
           <TextField fullWidth id="outlined-basic" label="Hex Title" value={form?.name || ""} variant="outlined" onChange={(e) => updateTitle(e.target.value)} />
+          
+          
+          <InputLabel id={"select-label-select-topping"}>{"layer-toppings"}</InputLabel>
+            <Select style={{ width: "90%" }} labelId="demo-simple-select-topping-label" id={"select-topping"} label={"Topping Select"} onChange={(event) => { updateToppings(event.target.value as TerrainTopper, 0) }} value={form?.topping?.[0] || ""}>
+              {getFromEnumSelectComponents("fish", TerrainTopper)}
+            </Select>
+
+          
           <Grid2 container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
             <Grid2 size={12}>
               <Grid2 container flexDirection={"column"} rowSpacing={0} columnSpacing={0}>
+                <div>
+                <img key={"topping-select-display"} className={""} src={form?.topping?.[0] || ""} />
+
+                </div>
+
                 {editLayers()}
               </Grid2>
             </Grid2>
@@ -241,9 +274,10 @@ export default function IndividualHexPiece(props: Props) {
       </Dialog>
       <span className="hex-span">
         {props.hexInformation?.name ? <p key={props.hexInformation.name + "-hex-title"} id={props.hexInformation.name + "-hex-title"} className={"hex-title"} style={{ marginLeft: "1.5px", maxWidth: `${calculated / 2}px`, zIndex: 999 }}> {props.hexInformation.name} </p> : null}
-        <span style={{ position: "relative" }} title={props.indexArray[0] + ", " + props.indexArray[1]}>
+        <span className='individual-hex' style={{ position: "relative"}} title={props.indexArray[0] + ", " + props.indexArray[1]}>
           <img id="my-image" className={`hex-image ${props.hexInformation === null ? "transparent" : ""} ${props.hexInformation?.terrain?.[0] === BaseTileEnum.None ? "semi-transparent" : ""}`} onContextMenu={(e) => { e.preventDefault(); handleRightClickHex(e); }} onClick={handleCanvasClick} src={props.hexInformation?.terrain ? props.hexInformation?.terrain[0] : BaseTileEnum.Stone} />
           {stackedTerrain}
+          {toppings}
           {character}
         </span>
         {menuVisible && props.hexInformation?.terrain !== null && (

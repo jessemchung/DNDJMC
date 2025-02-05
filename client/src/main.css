@@ -290,7 +290,6 @@ main > :last-child {
 }
 
 .half-hex {
-  flex-grow: 0.5;
   opacity: 0;
   margin: -0.5px;
 }
@@ -303,11 +302,21 @@ main > :last-child {
 
 }
 
+.hex-map-container:hover .hex-image:not(.transparent) {
+  opacity: 0.50;
+}
+
+/* Override opacity and add background color for the specific .hex-image being hovered */
+.hex-map-container .hex-image:not(.transparent):hover {
+  opacity: 1;
+}
+
 .hex-image {
   margin: 1.5px;
   z-index: 10;
   position: relative;
 }
+
 
 /* might want an animation of this flickering in and out which would be helpful maybe? */
 .hex-image.semi-transparent {
@@ -326,10 +335,10 @@ main > :last-child {
 }
 
 /* This is part of the issue */
-#hex-map-canvas {
-  /* transform: scale(2); */
-  
-}
+/* #hex-map-canvas :hover {
+
+  opacity: 50%
+} */
 
 
 .slide-container {

@@ -141,15 +141,23 @@ export default function flashcard() {
 
 
   React.useEffect(() => {
-    window.addEventListener('keydown', handleKeys);
-    window.addEventListener('keyup', handleKeysUp);
+    if (openDialogue === false) {
+      window.addEventListener('keydown', handleKeys);
+      window.addEventListener('keyup', handleKeysUp);
+  
+    } else {
+      window.removeEventListener('keydown', handleKeys);
+      window.removeEventListener('keyup', handleKeysUp);
 
+    }
     return () => {
       window.removeEventListener('keydown', handleKeys);
       window.removeEventListener('keyup', handleKeysUp);
 
     };
-  }, [cardIndex, cardList]); 
+  }, [cardIndex, cardList, openDialogue]); 
+
+
 
   React.useEffect(() => {
     if (editing === true) {
@@ -160,17 +168,17 @@ export default function flashcard() {
 
 
   /* Randomize array in-place using Durstenfeld shuffle algorithm */
-  function shuffleArray(array: Array<flashcard>) {
-    for (var i = array.length - 1; i >= 0; i--) {
+  function shuffleArray(arrayToShuffle: Array<flashcard>) {
+    for (var i = arrayToShuffle.length - 1; i >= 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
-      var temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
+      var temp = arrayToShuffle[i];
+      arrayToShuffle[i] = arrayToShuffle[j];
+      arrayToShuffle[j] = temp;
     }
+    setCardList(JSON.parse(JSON.stringify(arrayToShuffle)))
   }
 
   function card(): React.ReactElement<any, 'div'> {
-
     if (cardFront) {
       return (<div>
         <CardContent>
@@ -210,7 +218,6 @@ export default function flashcard() {
     } else {
       setCardList(cardList.concat([newCardForm]))
     }
-
     setOpenDialogue(false);
   } 
 
@@ -279,10 +286,6 @@ export default function flashcard() {
             <CardActionArea onClick={() => { setCardFront(!cardFront) }}>
               <Card sx={{ minWidth: 275 }}>
                 {card()}
-                {/* <CardActions>
-                  <Button size="small">Discard</Button>
-                  <Button size="small">Edit</Button>
-                </CardActions> */}
               </Card>
             </CardActionArea>
           </Grid2>

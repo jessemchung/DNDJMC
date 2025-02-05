@@ -1,16 +1,15 @@
 import * as React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
-import { BaseTileEnum, characterInformation, CharacterTileEnum, Coordinate, coordinateKey, GridValue, hexInformation } from './_Types.jsx';
+import { BaseTileEnum, characterInformation, CharacterTileEnum, TerrainTopper, Coordinate, coordinateKey, GridValue, hexInformation } from './_Types.jsx';
 import IndividualHexPiece from './IndividualHexPiece.jsx';
 import RightClickMenu from './RightClickMenu.jsx';
-import { Button, styled } from '@mui/material';
+import { Button, ButtonGroup, styled } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
-//! next thing to work on, getting the characters to display correctly
-const sampleHexGrid: Array<Array<hexInformation | null>> = [[null, { terrain: [BaseTileEnum.None], topping: ["fish"] }, { name: "Old Spring Town", terrain: [BaseTileEnum.Water], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Lava, BaseTileEnum.Lava, BaseTileEnum.Lava], topping: ["fish"] }, { terrain: [BaseTileEnum.Grass, BaseTileEnum.Grass], topping: ["fish"] }],
-[{ terrain: [BaseTileEnum.Magic], topping: ["fish"] }, { terrain: [BaseTileEnum.Magic], topping: ["fish"], character: [ CharacterTileEnum.Blue ,null] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }],
-[{ terrain: [BaseTileEnum.Lava], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }, { terrain: [BaseTileEnum.Dirt], topping: ["fish"] }]]
+const sampleHexGrid: Array<Array<hexInformation | null>> = [[null, { terrain: [BaseTileEnum.None] }, { name: "Old Spring Town", terrain: [BaseTileEnum.Water] }, { terrain: [BaseTileEnum.Dirt]}, { terrain: [BaseTileEnum.Lava, BaseTileEnum.Lava, BaseTileEnum.Lava] }, { terrain: [BaseTileEnum.Grass, BaseTileEnum.Grass]}],
+[{ terrain: [BaseTileEnum.Magic], topping: [TerrainTopper.Blue_Tree] }, { terrain: [BaseTileEnum.Magic], character: [ CharacterTileEnum.Blue ,null] }, { terrain: [BaseTileEnum.Dirt] }, { terrain: [BaseTileEnum.Dirt] }, { terrain: [BaseTileEnum.Dirt]}, { terrain: [BaseTileEnum.Dirt] }],
+[{ terrain: [BaseTileEnum.Lava], topping: [TerrainTopper.Autumn_Tree] }, { terrain: [BaseTileEnum.Dirt]}, { terrain: [BaseTileEnum.Dirt], topping: [TerrainTopper.Autumn_Tree] }, { terrain: [BaseTileEnum.Dirt] }, { terrain: [BaseTileEnum.Dirt] }, { terrain: [BaseTileEnum.Dirt]}]]
 
 const sampleCharacterGrid = new Map<string, GridValue>();
 
@@ -75,13 +74,15 @@ export default function HexMap() {
       return newGrid;
     });
   };
+
+  // maybe on hover.
+
   
   // Example Usage
   // updateCell(2, 3, { character: "My Value", highlight: true });
 
 
   useEffect(() => {
-
     let test = populateGhostHexes(sampleHexGrid);
     let newCharacterGrid = getCharacterArray(test);
     setHexGrid([...test])
@@ -91,7 +92,6 @@ export default function HexMap() {
   }, [])
 
   function moveCharacter(destination: [number, number]) {
-    console.log("moving character now");
     for (var y = 0; y < hexGrid.length; y++) {
       for (var x = 0; x < hexGrid[y].length; x++) {
         if (hexGrid[y][x] !== null && hexGrid[y][x]?.character?.[0]) {
@@ -148,6 +148,15 @@ export default function HexMap() {
 
   }
 
+  function clearMap() {
+    //must clear the map
+    setHexGrid([[{ terrain: [BaseTileEnum.None]}, { terrain: [BaseTileEnum.None]}],
+      [{ terrain: [BaseTileEnum.None]}, { terrain: [BaseTileEnum.Dirt]}, { terrain: [BaseTileEnum.None]}],
+      [{ terrain: [BaseTileEnum.None]}, { terrain: [BaseTileEnum.None]}]
+    ],
+    );
+  }
+
   function populateGhostHexes(originalHexGrid: Array<Array<hexInformation | null>>): Array<Array<hexInformation | null>> {
     // go through y axis starting from the top
     for (let yValues = 0; yValues < originalHexGrid.length; yValues++) {
@@ -199,6 +208,10 @@ export default function HexMap() {
 
   function addSurroundingGhostHexes(originalHexGrid: Array<Array<hexInformation>>, xValue: number, yValue: number) {
     let storedXValue = xValue;
+
+    // what is going on?
+
+    console.log("hell")
     let storedYValue = yValue;
     if (originalHexGrid[yValue][xValue] === null || originalHexGrid[yValue][xValue].terrain[0] === BaseTileEnum.None) {
       return;
@@ -289,7 +302,6 @@ export default function HexMap() {
     let pixel = "-" + hexHeightCalculation + "px"
     for (var i = 0; i < item.length; i++) {
       row.push(<IndividualHexPiece hexHeight={hexHeight}
-        
         characters={getCell(i, index)}
         setHexGrid={setHexGrid} hexGrid={hexGrid}
         moveCharacter={moveCharacter}
@@ -304,6 +316,7 @@ export default function HexMap() {
     // the first value is just to calculate the height of the hexes to then caculate how much to increase the other hex rows by so that they can be proper
     if (index === 0) {
       return (
+        // flex-grow is problematic?
         <div key={index + "rowKey"} style={{ display: "flex", width: "100%" }} ref={ref}>
           {isRightTop.current ? <div className='half-hex'>hello</div> : ""}
 
@@ -338,16 +351,11 @@ export default function HexMap() {
     }
   })
 
-  //i can use stop propgation if the top image is not transparent, then it knows not to dig deeper.
   return (
     <>
       <div>
         <div className="hex-map-slide-container">
           <input ref={widthRef} type="range" min="1" max="100" className="slider" id="myRange" />
-          {/* <input onChange={(e)=> {setGridHeight(parseInt(e.target.value))}} type="range" min="1" max="100" value={gridHeight} className="slider" id="myRange" />
-        <p>Height: <input id="width" type="text" value={gridHeight} />{gridHeight}</p>
-        <input onChange={(e)=> {setZoom(parseInt(e.target.value))}} type="range" min="1" max="100" value={zoom} className="slider" id="myRange" /> <span>zoom value</span>
-        <p>Zoom: <input id="width" type="text" value={zoom} />{zoom}</p> */}
 
         </div>
       </div>
@@ -355,7 +363,10 @@ export default function HexMap() {
         <div id="hex-map-canvas">
           {hexComponents}
         </div>
-        <Button
+
+      </div>
+      <ButtonGroup>
+      <Button
           component="label"
           role={undefined}
           variant="contained"
@@ -378,9 +389,20 @@ export default function HexMap() {
           />
         </Button>
 
-      </div>
+        <Button
+          component="label"
+          role={undefined}
+          variant="contained"
+          onClick={clearMap}
+
+        >
+          Clear Map
+        </Button>
 
 
+
+      </ButtonGroup>
+      <a href="mailto:deeperwishingwell@gmail.com?subject=just-a-subject">Send me and e-mail for feedback!</a>
     </>
   );
 }
