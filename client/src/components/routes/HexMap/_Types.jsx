@@ -1,10 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-<<<<<<< HEAD
 exports.coordinateKey = exports.CharacterTileEnum = exports.TerrainTopperRock = exports.TerrainTopper = exports.BaseFullTileEnum = exports.BaseTileEnum = void 0;
-=======
-exports.coordinateKey = exports.CharacterTileEnum = exports.BaseFullTileEnum = exports.BaseTileEnum = void 0;
->>>>>>> 40a19f6 (more fixing)
 /**
  * Represents the base tile textures available for the map meaning with the dirt underneath.
  * Each enum value corresponds to a specific image file path for a tile texture.
@@ -41,7 +37,6 @@ var BaseFullTileEnum;
     BaseFullTileEnum["Full Water"] = "./image/map/tileWater_full.png";
     BaseFullTileEnum["Full None"] = "./image/map/tileSnow_full.png";
 })(BaseFullTileEnum = exports.BaseFullTileEnum || (exports.BaseFullTileEnum = {}));
-<<<<<<< HEAD
 var TerrainTopper;
 (function (TerrainTopper) {
     TerrainTopper["Green_Tree"] = "./image/map/treeGreen_low.png";
@@ -58,8 +53,6 @@ var TerrainTopperRock;
     TerrainTopperRock["Sand_Rock"] = "./image/map/rockSand.png";
     TerrainTopperRock["Sand_Moss"] = "./image/map/rockDirt_moss1.png";
 })(TerrainTopperRock = exports.TerrainTopperRock || (exports.TerrainTopperRock = {}));
-=======
->>>>>>> 40a19f6 (more fixing)
 // these are characters like aliens
 var CharacterTileEnum;
 (function (CharacterTileEnum) {
